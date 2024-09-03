@@ -5398,5 +5398,23 @@
       "uf": "Rio Grande do Norte"
     },
     "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725393651009",
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MUNICIPIO DE SAO PAULO",
+    "email": "alpalmieri@prefeitura.sp.gov.br",
+    "telefone": "(11) 3113-8438/ (11) 3113-8437",
+    "cpf": "",
+    "cnpj": "46.395.000/0001-39",
+    "endereco": {
+      "cep": "01.002-020",
+      "logradouro": "VD DO CHA",
+      "numero": "15",
+      "bairro": "CENTRO",
+      "cidade": "SAO PAULO",
+      "uf": "SP"
+    },
+    "dataCadastro": "03/09/2024, 17:00:50"
   }
 ]

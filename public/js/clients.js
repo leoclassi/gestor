@@ -315,4 +315,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Erro ao buscar dados do CNPJ. Por favor, tente novamente.');
             });
     }
+
+    // Adicione estas novas funções
+    function formatDocument(input) {
+        let value = input.value.replace(/\D/g, '');
+        let formattedValue = '';
+
+        if (input.id === 'cpf') {
+            // Formatação para CPF
+            if (value.length <= 3) {
+                formattedValue = value;
+            } else if (value.length <= 6) {
+                formattedValue = value.slice(0, 3) + '.' + value.slice(3);
+            } else if (value.length <= 9) {
+                formattedValue = value.slice(0, 3) + '.' + value.slice(3, 6) + '.' + value.slice(6);
+            } else {
+                formattedValue = value.slice(0, 3) + '.' + value.slice(3, 6) + '.' + value.slice(6, 9) + '-' + value.slice(9, 11);
+            }
+        } else if (input.id === 'cnpj') {
+            // Formatação para CNPJ
+            if (value.length <= 2) {
+                formattedValue = value;
+            } else if (value.length <= 5) {
+                formattedValue = value.slice(0, 2) + '.' + value.slice(2);
+            } else if (value.length <= 8) {
+                formattedValue = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5);
+            } else if (value.length <= 12) {
+                formattedValue = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '/' + value.slice(8);
+            } else {
+                formattedValue = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '/' + value.slice(8, 12) + '-' + value.slice(12, 14);
+            }
+        }
+
+        input.value = formattedValue;
+    }
+
+    // Adicione os event listeners para os campos de CPF e CNPJ
+    const cpfInput = document.getElementById('cpf');
+    const cnpjInput = document.getElementById('cnpj');
+
+    if (cpfInput) {
+        cpfInput.addEventListener('input', () => formatDocument(cpfInput));
+    }
+
+    if (cnpjInput) {
+        cnpjInput.addEventListener('input', () => formatDocument(cnpjInput));
+    }
 });
