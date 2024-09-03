@@ -270,4 +270,49 @@ document.addEventListener('DOMContentLoaded', () => {
             addClientToTable(client);
         });
     }
+
+    document.getElementById('buscarCNPJ').addEventListener('click', buscarDadosCNPJ);
+
+    function buscarDadosCNPJ() {
+        const cnpj = document.getElementById('cnpj').value.replace(/[^\d]/g, '');
+        if (cnpj.length !== 14) {
+            alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 dígitos.');
+            return;
+        }
+
+        fetch(`/api/cnpj/${cnpj}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ERROR') {
+                    alert(data.message);
+                    return;
+                }
+                
+                // Função auxiliar para preencher o campo se ele existir
+                const preencherCampo = (id, valor) => {
+                    const campo = document.getElementById(id);
+                    if (campo) {
+                        campo.value = valor;
+                    } else {
+                        console.warn(`Campo com id '${id}' não encontrado.`);
+                    }
+                };
+
+                preencherCampo('nome', data.nome);
+                preencherCampo('email', data.email);
+                preencherCampo('cep', data.cep);
+                preencherCampo('logradouro', data.logradouro);
+                preencherCampo('numero', data.numero);
+                preencherCampo('bairro', data.bairro);
+                preencherCampo('cidade', data.municipio);
+                preencherCampo('uf', data.uf);
+                preencherCampo('telefone', data.telefone);
+
+                console.log('Dados do CNPJ preenchidos com sucesso.');
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados do CNPJ:', error);
+                alert('Erro ao buscar dados do CNPJ. Por favor, tente novamente.');
+            });
+    }
 });

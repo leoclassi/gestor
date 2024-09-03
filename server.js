@@ -4,6 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const app = express();
 const PORT = 3000;
+const axios = require('axios');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -164,6 +165,17 @@ app.get('/api/sales/:id', async (req, res) => {
         res.json(sale);
     } else {
         res.status(404).json({ error: 'Sale not found' });
+    }
+});
+
+app.get('/api/cnpj/:cnpj', async (req, res) => {
+    const cnpj = req.params.cnpj;
+    try {
+        const response = await axios.get(`https://www.receitaws.com.br/v1/cnpj/${cnpj}`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Erro ao buscar dados do CNPJ:', error);
+        res.status(500).json({ error: 'Erro ao buscar dados do CNPJ' });
     }
 });
 
