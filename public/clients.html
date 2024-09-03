@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dark-theme.css">
+    <style>
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        }
+        .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .modal-footer {
+            border-top: 1px solid #dee2e6;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>🌲 Portugal Madeiras</h3>
+            <hr>
+        </div>
+        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="productsSubmenu">
+            <li>
+                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+            </li>
+        </ul>
+        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="clientsSubmenu">
+            <li>
+                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+            </li>
+        </ul>
+        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="salesSubmenu">
+            <li>
+                <a href="sales.html" class="pl-5">Adicionar Venda</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <h1 class="mb-4">👥 Clientes</h1>
+            <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addClientModal">➕ Adicionar Cliente</button>
+            <button class="btn btn-danger mb-3" id="deleteSelected" style="display: none;">🗑️ Excluir Selecionados</button>
+            <input type="text" id="search" class="form-control mb-3" placeholder="🔍 Buscar">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
+                        <th>🆔 ID</th>
+                        <th>👤 Nome</th>
+                        <th>📧 Email</th>
+                        <th>📞 Telefone</th>
+                        <th>📅 Cadastrado em</th>
+                        <th>⚙️ Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="clientTable">
+                    <!-- Clientes serão adicionados aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addClientModalLabel">Adicionar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addClientForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Dados Pessoais</h6>
+                                <div class="form-group">
+                                    <label for="tipoCliente">Tipo de Cliente</label>
+                                    <select class="form-control" id="tipoCliente" required>
+                                        <option value="">Selecione</option>
+                                        <option value="Pessoa Física">Pessoa Física</option>
+                                        <option value="Pessoa Jurídica">Pessoa Jurídica</option>
+                                        <option value="Estrangeiro">Estrangeiro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control" id="nome" required>
+                                </div>
+                                <div class="form-group" id="cpfField" style="display: none;">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" class="form-control" id="cpf">
+                                </div>
+                                <div class="form-group" id="cnpjField" style="display: none;">
+                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" class="form-control" id="cnpj" placeholder="Digite o CNPJ">
+                                    <button type="button" id="buscarCNPJ" class="btn btn-primary mt-2">Buscar CNPJ</button>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefone">Telefone</label>
+                                    <input type="tel" class="form-control" id="telefone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Endereço</h6>
+                                <div class="form-group">
+                                    <label for="cep">CEP</label>
+                                    <input type="text" class="form-control" id="cep">
+                                </div>
+                                <div class="form-group">
+                                    <label for="logradouro">Logradouro</label>
+                                    <input type="text" class="form-control" id="logradouro">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="numero">Número</label>
+                                        <input type="text" class="form-control" id="numero">
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="bairro">Bairro</label>
+                                        <input type="text" class="form-control" id="bairro">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="cidade">Cidade</label>
+                                        <input type="text" class="form-control" id="cidade">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="uf">UF</label>
+                                        <input type="text" class="form-control" id="uf">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/clients.js"></script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Venda</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <style>
+        :root {
+            --sidebar-bg: #f8f9fa;
+            --sidebar-color: #333;
+            --sidebar-hover: #e9ecef;
+            --modal-bg: #ffffff;
+            --modal-color: #333333;
+            --input-bg: #ffffff;
+            --input-color: #495057;
+            --input-border: #ced4da;
+        }
+
+        .dark-theme {
+            --sidebar-bg: #212222;
+            --sidebar-color: #ecf0f1;
+            --sidebar-hover: #34495e;
+            --modal-bg: #333333;
+            --modal-color: #ffffff;
+            --input-bg: #444444;
+            --input-color: #ffffff;
+            --input-border: #666666;
+        }
+
+        body {
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar-header h3 {
+            color: var(--sidebar-color);
+            margin-bottom: 0;
+        }
+
+        .sidebar hr {
+            border-top: 1px solid var(--sidebar-color);
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--sidebar-color);
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--sidebar-hover);
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
+        .sidebar a .arrow {
+            float: right;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar a[aria-expanded="true"] .arrow {
+            transform: rotate(90deg);
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            color: var(--input-color);
+            border-color: var(--input-border);
+        }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            background-color: var(--input-bg);
+            color: var(--input-color);
+        }
+
+        .btn-outline-secondary {
+            color: var(--modal-color);
+            border-color: var(--input-border);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--sidebar-hover);
+            color: var(--modal-color);
+        }
+
+        .input-group-text {
+            background-color: var(--input-bg);
+            color: var(--input-color);
+            border-color: var(--input-border);
+        }
+
+        .ui-autocomplete {
+            background-color: var(--input-bg);
+            color: var(--input-color);
+            border-color: var(--input-border);
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .ui-menu-item {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .ui-menu-item:hover {
+            background-color: var(--sidebar-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>🌲 Portugal Madeiras</h3>
+            <hr>
+        </div>
+        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="productsSubmenu">
+            <li>
+                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+            </li>
+        </ul>
+        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="clientsSubmenu">
+            <li>
+                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+            </li>
+        </ul>
+        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="salesSubmenu">
+            <li>
+                <a href="sales.html" class="pl-5">Adicionar Venda</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <h1 class="mb-4">Adicionar Venda</h1>
+            <form id="addSaleForm">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-edit mr-2"></i>Dados gerais
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="numero">Número</label>
+                                <input type="text" class="form-control" id="numero" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="cliente">Cliente</label>
+                                <input type="text" class="form-control" id="cliente" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="situacao">Situação</label>
+                                <select class="form-control" id="situacao" required>
+                                    <option value="Concretizada">Concretizada</option>
+                                    <option value="Pendente">Pendente</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="data">Data</label>
+                                <input type="date" class="form-control" id="data" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="prazoEntrega">Prazo de entrega</label>
+                                <input type="date" class="form-control" id="prazoEntrega">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-box-open mr-2"></i>Produtos
+                    </div>
+                    <div class="card-body">
+                        <div id="productsContainer">
+                            <div class="form-row mb-3">
+                                <div class="form-group col-md-3">
+                                    <label for="produto">Produto</label>
+                                    <input type="text" class="form-control produto-autocomplete" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="quantidade">Quant.</label>
+                                    <input type="number" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="valor">Valor</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">R$</span>
+                                        </div>
+                                        <input type="number" class="form-control" step="0.01" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="desconto">Desconto</label>
+                                    <input type="number" class="form-control" step="0.01">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="subtotal">Subtotal</label>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                                <div class="form-group col-md-1 d-flex align-items-end">
+                                    <button type="button" class="btn btn-danger btn-sm remove-product">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="addProduct">
+                            <i class="fas fa-plus"></i> Adicionar produto
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save mr-2"></i>Salvar Venda
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/sales.js"></script>
+</body>
+</html>

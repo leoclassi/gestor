@@ -1,0 +1,5402 @@
+[
+  {
+    "id": "1725330860311",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Etelvina Barros",
+    "email": "etelvina.barros@example.com",
+    "telefone": "(86) 7189-6555",
+    "cpf": "533.287.131-07",
+    "cnpj": "",
+    "endereco": {
+      "cep": "13797",
+      "logradouro": "Rua Belo Horizonte ",
+      "numero": "6515",
+      "bairro": "Centro",
+      "cidade": "Macaé",
+      "uf": "Amapá"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330860678",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Pérsio Farias",
+    "email": "persio.farias@example.com",
+    "telefone": "(22) 3594-7833",
+    "cpf": "357.475.984-07",
+    "cnpj": "",
+    "endereco": {
+      "cep": "76456",
+      "logradouro": "Rua São Luiz ",
+      "numero": "6375",
+      "bairro": "Centro",
+      "cidade": "Vitória de Santo Antão",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330861004",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Constantino Monteiro",
+    "email": "constantino.monteiro@example.com",
+    "telefone": "(40) 6355-2618",
+    "cpf": "744.433.017-84",
+    "cnpj": "",
+    "endereco": {
+      "cep": "48374",
+      "logradouro": "Rua São Francisco ",
+      "numero": "9787",
+      "bairro": "Centro",
+      "cidade": "Curitiba",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330861356",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Arcanjo Oliveira",
+    "email": "arcanjo.oliveira@example.com",
+    "telefone": "(69) 4147-0673",
+    "cpf": "073.867.388-28",
+    "cnpj": "",
+    "endereco": {
+      "cep": "37911",
+      "logradouro": "Rua Castro Alves ",
+      "numero": "681",
+      "bairro": "Centro",
+      "cidade": "Castanhal",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330861728",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Roque Cavalcanti",
+    "email": "roque.cavalcanti@example.com",
+    "telefone": "(15) 4281-2339",
+    "cpf": "417.651.649-02",
+    "cnpj": "",
+    "endereco": {
+      "cep": "18091",
+      "logradouro": "Rua Rui Barbosa ",
+      "numero": "5696",
+      "bairro": "Centro",
+      "cidade": "Macapá",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330862286",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Varlene Silveira",
+    "email": "varlene.silveira@example.com",
+    "telefone": "(61) 6445-1753",
+    "cpf": "036.672.706-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "69219",
+      "logradouro": "Avenida Brasil ",
+      "numero": "8560",
+      "bairro": "Centro",
+      "cidade": "Timon",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330862653",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Laércio Nunes",
+    "email": "laercio.nunes@example.com",
+    "telefone": "(35) 0484-7440",
+    "cpf": "338.378.442-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "73516",
+      "logradouro": "Travessa dos Açorianos",
+      "numero": "1585",
+      "bairro": "Centro",
+      "cidade": "Itapipoca",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330863066",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Laica Costa",
+    "email": "laica.costa@example.com",
+    "telefone": "(24) 2111-4884",
+    "cpf": "940.221.154-74",
+    "cnpj": "",
+    "endereco": {
+      "cep": "60875",
+      "logradouro": "Rua São Paulo ",
+      "numero": "2628",
+      "bairro": "Centro",
+      "cidade": "Rio Branco",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330863387",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Turgo Duarte",
+    "email": "turgo.duarte@example.com",
+    "telefone": "(11) 2303-3920",
+    "cpf": "838.054.553-11",
+    "cnpj": "",
+    "endereco": {
+      "cep": "79284",
+      "logradouro": "Rua Pará ",
+      "numero": "348",
+      "bairro": "Centro",
+      "cidade": "Itabira",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330863694",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Edmur Dias",
+    "email": "edmur.dias@example.com",
+    "telefone": "(47) 3372-0521",
+    "cpf": "485.846.249-64",
+    "cnpj": "",
+    "endereco": {
+      "cep": "64049",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "3837",
+      "bairro": "Centro",
+      "cidade": "Sobral",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330864018",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lois Nogueira",
+    "email": "lois.nogueira@example.com",
+    "telefone": "(31) 3516-7068",
+    "cpf": "381.523.969-11",
+    "cnpj": "",
+    "endereco": {
+      "cep": "68206",
+      "logradouro": "Rua Vinte E Um",
+      "numero": "9798",
+      "bairro": "Centro",
+      "cidade": "São Carlos",
+      "uf": "Pará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330864928",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Faustina Dias",
+    "email": "faustina.dias@example.com",
+    "telefone": "(99) 1828-1322",
+    "cpf": "283.566.241-63",
+    "cnpj": "",
+    "endereco": {
+      "cep": "43404",
+      "logradouro": "Rua São Luiz ",
+      "numero": "8658",
+      "bairro": "Centro",
+      "cidade": "Pelotas",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330865271",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Romarico da Rocha",
+    "email": "romarico.darocha@example.com",
+    "telefone": "(87) 2561-3622",
+    "cpf": "837.716.342-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "72849",
+      "logradouro": "Rua São Jorge ",
+      "numero": "9681",
+      "bairro": "Centro",
+      "cidade": "Porto Seguro",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330865600",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Arlene Lima",
+    "email": "arlene.lima@example.com",
+    "telefone": "(57) 2648-2132",
+    "cpf": "580.334.474-52",
+    "cnpj": "",
+    "endereco": {
+      "cep": "84907",
+      "logradouro": "Rua São Francisco ",
+      "numero": "5835",
+      "bairro": "Centro",
+      "cidade": "Rio Branco",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330865908",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Sisínio Ribeiro",
+    "email": "sisinio.ribeiro@example.com",
+    "telefone": "(45) 7429-1478",
+    "cpf": "850.348.390-70",
+    "cnpj": "",
+    "endereco": {
+      "cep": "36537",
+      "logradouro": "Rua Rio de Janeiro ",
+      "numero": "3350",
+      "bairro": "Centro",
+      "cidade": "Maringá",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330866251",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rudesindo Martins",
+    "email": "rudesindo.martins@example.com",
+    "telefone": "(11) 8176-5881",
+    "cpf": "075.497.856-57",
+    "cnpj": "",
+    "endereco": {
+      "cep": "62084",
+      "logradouro": "Rua Dezesseis de Maio",
+      "numero": "615",
+      "bairro": "Centro",
+      "cidade": "Olinda",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330866599",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aureliano Araújo",
+    "email": "aureliano.araujo@example.com",
+    "telefone": "(52) 7200-7220",
+    "cpf": "418.862.989-04",
+    "cnpj": "",
+    "endereco": {
+      "cep": "10362",
+      "logradouro": "Rua João Xxiii",
+      "numero": "8760",
+      "bairro": "Centro",
+      "cidade": "Luziânia",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330866904",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Suzane Pinto",
+    "email": "suzane.pinto@example.com",
+    "telefone": "(79) 6284-2236",
+    "cpf": "082.092.449-67",
+    "cnpj": "",
+    "endereco": {
+      "cep": "89240",
+      "logradouro": "Rua Dom Pedro Ii ",
+      "numero": "316",
+      "bairro": "Centro",
+      "cidade": "Sinop",
+      "uf": "Pernambuco"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330867209",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alexandre Almeida",
+    "email": "alexandre.almeida@example.com",
+    "telefone": "(50) 6995-2491",
+    "cpf": "651.039.039-31",
+    "cnpj": "",
+    "endereco": {
+      "cep": "86338",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "6527",
+      "bairro": "Centro",
+      "cidade": "Passo Fundo",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330867522",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Gabriele Novaes",
+    "email": "gabriele.novaes@example.com",
+    "telefone": "(89) 2448-5623",
+    "cpf": "488.898.277-00",
+    "cnpj": "",
+    "endereco": {
+      "cep": "95145",
+      "logradouro": "Rua São Francisco ",
+      "numero": "8053",
+      "bairro": "Centro",
+      "cidade": "Nova Iguaçu",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330867833",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lélia Araújo",
+    "email": "lelia.araujo@example.com",
+    "telefone": "(79) 9074-7976",
+    "cpf": "512.921.907-18",
+    "cnpj": "",
+    "endereco": {
+      "cep": "75410",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "3379",
+      "bairro": "Centro",
+      "cidade": "Várzea Grande",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330868189",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Roselaine Pires",
+    "email": "roselaine.pires@example.com",
+    "telefone": "(56) 4913-3844",
+    "cpf": "048.766.488-33",
+    "cnpj": "",
+    "endereco": {
+      "cep": "67007",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "2220",
+      "bairro": "Centro",
+      "cidade": "Jacareí",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330868519",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Nilzete Ribeiro",
+    "email": "nilzete.ribeiro@example.com",
+    "telefone": "(97) 5716-5974",
+    "cpf": "861.928.730-60",
+    "cnpj": "",
+    "endereco": {
+      "cep": "26671",
+      "logradouro": "Rua São Jorge ",
+      "numero": "8575",
+      "bairro": "Centro",
+      "cidade": "Caraguatatuba",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330868833",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Magdo da Conceição",
+    "email": "magdo.daconceicao@example.com",
+    "telefone": "(94) 7382-7376",
+    "cpf": "743.724.707-87",
+    "cnpj": "",
+    "endereco": {
+      "cep": "60196",
+      "logradouro": "Rua Doze ",
+      "numero": "1886",
+      "bairro": "Centro",
+      "cidade": "São Leopoldo",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330869331",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Terumi Freitas",
+    "email": "terumi.freitas@example.com",
+    "telefone": "(70) 3669-1771",
+    "cpf": "833.626.217-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51258",
+      "logradouro": "Rua São João ",
+      "numero": "1151",
+      "bairro": "Centro",
+      "cidade": "Porto Alegre",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330869649",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vilma da Rocha",
+    "email": "vilma.darocha@example.com",
+    "telefone": "(86) 4906-8135",
+    "cpf": "961.476.668-06",
+    "cnpj": "",
+    "endereco": {
+      "cep": "73373",
+      "logradouro": "Rua Das Flores ",
+      "numero": "5808",
+      "bairro": "Centro",
+      "cidade": "Cariacica",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330869963",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Emídio Cavalcanti",
+    "email": "emidio.cavalcanti@example.com",
+    "telefone": "(08) 2036-7244",
+    "cpf": "713.068.909-20",
+    "cnpj": "",
+    "endereco": {
+      "cep": "75304",
+      "logradouro": "Avenida da Democracia",
+      "numero": "9948",
+      "bairro": "Centro",
+      "cidade": "Santana de Parnaíba",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330870293",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Raúl Duarte",
+    "email": "raul.duarte@example.com",
+    "telefone": "(01) 4183-6513",
+    "cpf": "619.635.755-07",
+    "cnpj": "",
+    "endereco": {
+      "cep": "27170",
+      "logradouro": "Rua Das Flores ",
+      "numero": "9153",
+      "bairro": "Centro",
+      "cidade": "Divinópolis",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330870617",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Neiva Carvalho",
+    "email": "neiva.carvalho@example.com",
+    "telefone": "(15) 0995-2407",
+    "cpf": "975.616.652-74",
+    "cnpj": "",
+    "endereco": {
+      "cep": "54356",
+      "logradouro": "Rua Bela Vista ",
+      "numero": "7470",
+      "bairro": "Centro",
+      "cidade": "Parnaíba",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330870927",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Amauri da Costa",
+    "email": "amauri.dacosta@example.com",
+    "telefone": "(56) 6283-5306",
+    "cpf": "993.899.786-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "38874",
+      "logradouro": "Rua Castro Alves ",
+      "numero": "6460",
+      "bairro": "Centro",
+      "cidade": "Petrópolis",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330871321",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ventura Nunes",
+    "email": "ventura.nunes@example.com",
+    "telefone": "(88) 7887-0157",
+    "cpf": "312.782.557-16",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55481",
+      "logradouro": "Rua Santos Dumont ",
+      "numero": "2133",
+      "bairro": "Centro",
+      "cidade": "Itajaí",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330871640",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Quísnia Oliveira",
+    "email": "quisnia.oliveira@example.com",
+    "telefone": "(80) 9617-5353",
+    "cpf": "919.202.673-38",
+    "cnpj": "",
+    "endereco": {
+      "cep": "94015",
+      "logradouro": "Rua José Bonifácio ",
+      "numero": "7159",
+      "bairro": "Centro",
+      "cidade": "Barreiras",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330872035",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rubi Novaes",
+    "email": "rubi.novaes@example.com",
+    "telefone": "(84) 2562-1335",
+    "cpf": "600.037.908-28",
+    "cnpj": "",
+    "endereco": {
+      "cep": "25288",
+      "logradouro": "Rua São Jorge ",
+      "numero": "9994",
+      "bairro": "Centro",
+      "cidade": "Santa Luzia",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330872779",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Péricles da Mota",
+    "email": "pericles.damota@example.com",
+    "telefone": "(10) 4617-3942",
+    "cpf": "533.759.687-84",
+    "cnpj": "",
+    "endereco": {
+      "cep": "15218",
+      "logradouro": "Rua João Xxiii",
+      "numero": "8451",
+      "bairro": "Centro",
+      "cidade": "Bagé",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330873114",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Elenise Alves",
+    "email": "elenise.alves@example.com",
+    "telefone": "(81) 8333-0619",
+    "cpf": "231.592.270-23",
+    "cnpj": "",
+    "endereco": {
+      "cep": "59212",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "6778",
+      "bairro": "Centro",
+      "cidade": "Campinas",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330873477",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Déborah Gonçalves",
+    "email": "deborah.goncalves@example.com",
+    "telefone": "(16) 7252-3294",
+    "cpf": "040.968.974-66",
+    "cnpj": "",
+    "endereco": {
+      "cep": "63200",
+      "logradouro": "Rua São Jorge ",
+      "numero": "4263",
+      "bairro": "Centro",
+      "cidade": "Uruguaiana",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330873777",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lino Pereira",
+    "email": "lino.pereira@example.com",
+    "telefone": "(69) 3104-6491",
+    "cpf": "885.856.988-34",
+    "cnpj": "",
+    "endereco": {
+      "cep": "85758",
+      "logradouro": "Rua Dezesseis de Maio",
+      "numero": "1315",
+      "bairro": "Centro",
+      "cidade": "Valparaíso de Goiás",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330874083",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Albenisa Nascimento",
+    "email": "albenisa.nascimento@example.com",
+    "telefone": "(21) 3102-5706",
+    "cpf": "584.945.385-11",
+    "cnpj": "",
+    "endereco": {
+      "cep": "49666",
+      "logradouro": "Avenida D. Pedro Ii",
+      "numero": "9075",
+      "bairro": "Centro",
+      "cidade": "Rio Claro",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330874381",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Simara da Rosa",
+    "email": "simara.darosa@example.com",
+    "telefone": "(37) 9415-0397",
+    "cpf": "041.276.570-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "42376",
+      "logradouro": "Avenida D. Pedro Ii",
+      "numero": "1635",
+      "bairro": "Centro",
+      "cidade": "Itajaí",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330874712",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Donato da Cruz",
+    "email": "donato.dacruz@example.com",
+    "telefone": "(04) 1595-1272",
+    "cpf": "592.098.332-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "73671",
+      "logradouro": "Rua Carlos Gomes",
+      "numero": "2279",
+      "bairro": "Centro",
+      "cidade": "São Bernardo do Campo",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330875033",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Bernarda Lima",
+    "email": "bernarda.lima@example.com",
+    "telefone": "(10) 7609-9209",
+    "cpf": "356.935.974-62",
+    "cnpj": "",
+    "endereco": {
+      "cep": "33157",
+      "logradouro": "Rua Quatro",
+      "numero": "6253",
+      "bairro": "Centro",
+      "cidade": "Passos",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330875352",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aguinaldo Jesus",
+    "email": "aguinaldo.jesus@example.com",
+    "telefone": "(26) 5068-6502",
+    "cpf": "981.367.629-42",
+    "cnpj": "",
+    "endereco": {
+      "cep": "75232",
+      "logradouro": "Rua São Pedro ",
+      "numero": "1672",
+      "bairro": "Centro",
+      "cidade": "Niterói",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330875918",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Donzílio Nunes",
+    "email": "donzilio.nunes@example.com",
+    "telefone": "(91) 4310-3725",
+    "cpf": "097.167.004-41",
+    "cnpj": "",
+    "endereco": {
+      "cep": "85765",
+      "logradouro": "Rua Minas Gerais ",
+      "numero": "5073",
+      "bairro": "Centro",
+      "cidade": "Açailândia",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330876233",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Zoraide da Mata",
+    "email": "zoraide.damata@example.com",
+    "telefone": "(45) 3014-3008",
+    "cpf": "453.533.520-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "39080",
+      "logradouro": "Avenida D. Pedro Ii",
+      "numero": "5884",
+      "bairro": "Centro",
+      "cidade": "Dourados",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330876556",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Gisele Aragão",
+    "email": "gisele.aragao@example.com",
+    "telefone": "(21) 4227-7393",
+    "cpf": "650.061.441-05",
+    "cnpj": "",
+    "endereco": {
+      "cep": "82159",
+      "logradouro": "Rua São Francisco ",
+      "numero": "1637",
+      "bairro": "Centro",
+      "cidade": "Blumenau",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330876863",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Claudete da Mota",
+    "email": "claudete.damota@example.com",
+    "telefone": "(88) 8425-5190",
+    "cpf": "264.522.792-04",
+    "cnpj": "",
+    "endereco": {
+      "cep": "93954",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "9325",
+      "bairro": "Centro",
+      "cidade": "Fortaleza",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330877207",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Laurita da Costa",
+    "email": "laurita.dacosta@example.com",
+    "telefone": "(09) 6458-9103",
+    "cpf": "205.247.622-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "69616",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "1710",
+      "bairro": "Centro",
+      "cidade": "Carapicuíba",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330877550",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Márcia Lima",
+    "email": "marcia.lima@example.com",
+    "telefone": "(16) 3424-4643",
+    "cpf": "892.838.949-58",
+    "cnpj": "",
+    "endereco": {
+      "cep": "11183",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "2516",
+      "bairro": "Centro",
+      "cidade": "Vila Velha",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330877894",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alvino Campos",
+    "email": "alvino.campos@example.com",
+    "telefone": "(57) 8578-3102",
+    "cpf": "939.445.116-86",
+    "cnpj": "",
+    "endereco": {
+      "cep": "12026",
+      "logradouro": "Rua Paraná ",
+      "numero": "2806",
+      "bairro": "Centro",
+      "cidade": "Cametá",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330878215",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Zóica Nascimento",
+    "email": "zoica.nascimento@example.com",
+    "telefone": "(27) 1376-0747",
+    "cpf": "178.348.236-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "90244",
+      "logradouro": "Rua Maranhão ",
+      "numero": "352",
+      "bairro": "Centro",
+      "cidade": "Eunápolis",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330878575",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rurique Nunes",
+    "email": "rurique.nunes@example.com",
+    "telefone": "(72) 0313-5660",
+    "cpf": "995.310.475-31",
+    "cnpj": "",
+    "endereco": {
+      "cep": "80242",
+      "logradouro": "Rua São Jorge ",
+      "numero": "9411",
+      "bairro": "Centro",
+      "cidade": "Tatuí",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330878901",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Neura da Costa",
+    "email": "neura.dacosta@example.com",
+    "telefone": "(72) 0220-2375",
+    "cpf": "946.738.367-63",
+    "cnpj": "",
+    "endereco": {
+      "cep": "26627",
+      "logradouro": "Rua Dezesseis de Maio",
+      "numero": "2374",
+      "bairro": "Centro",
+      "cidade": "Camaçari",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330879225",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Divo Ferreira",
+    "email": "divo.ferreira@example.com",
+    "telefone": "(83) 4377-6289",
+    "cpf": "709.808.835-37",
+    "cnpj": "",
+    "endereco": {
+      "cep": "65680",
+      "logradouro": "Rua Tiradentes ",
+      "numero": "8771",
+      "bairro": "Centro",
+      "cidade": "Guarulhos",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330879544",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Erique Freitas",
+    "email": "erique.freitas@example.com",
+    "telefone": "(23) 6830-2333",
+    "cpf": "267.405.739-42",
+    "cnpj": "",
+    "endereco": {
+      "cep": "27036",
+      "logradouro": "Rua São Francisco ",
+      "numero": "1659",
+      "bairro": "Centro",
+      "cidade": "Alagoinhas",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330879869",
+    "tipoCliente": "Pessoa Física",
+    "nome": "José Nascimento",
+    "email": "jose.nascimento@example.com",
+    "telefone": "(63) 1244-6202",
+    "cpf": "616.050.916-51",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17751",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "811",
+      "bairro": "Centro",
+      "cidade": "Joinville",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330880174",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Apolinário Vieira",
+    "email": "apolinario.vieira@example.com",
+    "telefone": "(24) 9089-1670",
+    "cpf": "858.783.861-35",
+    "cnpj": "",
+    "endereco": {
+      "cep": "81535",
+      "logradouro": "Rua Maranhão ",
+      "numero": "4506",
+      "bairro": "Centro",
+      "cidade": "Luziânia",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330880491",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rosil da Costa",
+    "email": "rosil.dacosta@example.com",
+    "telefone": "(07) 5972-1359",
+    "cpf": "020.017.105-25",
+    "cnpj": "",
+    "endereco": {
+      "cep": "96374",
+      "logradouro": "Rua Treze ",
+      "numero": "3260",
+      "bairro": "Centro",
+      "cidade": "Curitiba",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330880813",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Valdemira Silva",
+    "email": "valdemira.silva@example.com",
+    "telefone": "(30) 6071-4625",
+    "cpf": "879.805.202-13",
+    "cnpj": "",
+    "endereco": {
+      "cep": "56784",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "9427",
+      "bairro": "Centro",
+      "cidade": "Maracanaú",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330881252",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Graciele Barros",
+    "email": "graciele.barros@example.com",
+    "telefone": "(69) 8468-6442",
+    "cpf": "939.969.752-50",
+    "cnpj": "",
+    "endereco": {
+      "cep": "73192",
+      "logradouro": "Rua Sete de Setembro ",
+      "numero": "1204",
+      "bairro": "Centro",
+      "cidade": "Águas Lindas de Goiás",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330881703",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ediane Cardoso",
+    "email": "ediane.cardoso@example.com",
+    "telefone": "(15) 4715-3899",
+    "cpf": "738.721.045-38",
+    "cnpj": "",
+    "endereco": {
+      "cep": "82050",
+      "logradouro": "Rua São João ",
+      "numero": "6289",
+      "bairro": "Centro",
+      "cidade": "Alvorada",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330882077",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Albina Rezende",
+    "email": "albina.rezende@example.com",
+    "telefone": "(48) 6357-1706",
+    "cpf": "309.002.881-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "27342",
+      "logradouro": "Rua Quinze de Novembro ",
+      "numero": "7222",
+      "bairro": "Centro",
+      "cidade": "São Carlos",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330882423",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Soraia Duarte",
+    "email": "soraia.duarte@example.com",
+    "telefone": "(71) 2189-6816",
+    "cpf": "044.156.324-00",
+    "cnpj": "",
+    "endereco": {
+      "cep": "75991",
+      "logradouro": "Rua São Francisco ",
+      "numero": "5018",
+      "bairro": "Centro",
+      "cidade": "Campo Largo",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330882754",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Caterine Lopes",
+    "email": "caterine.lopes@example.com",
+    "telefone": "(76) 4599-7573",
+    "cpf": "828.596.540-18",
+    "cnpj": "",
+    "endereco": {
+      "cep": "77472",
+      "logradouro": "Rua Mato Grosso ",
+      "numero": "2347",
+      "bairro": "Centro",
+      "cidade": "Canoas",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330883156",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Arquimínio Dias",
+    "email": "arquiminio.dias@example.com",
+    "telefone": "(17) 8745-1735",
+    "cpf": "256.815.818-34",
+    "cnpj": "",
+    "endereco": {
+      "cep": "96311",
+      "logradouro": "Rua Onze ",
+      "numero": "2599",
+      "bairro": "Centro",
+      "cidade": "Arapiraca",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330883451",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Zóica Alves",
+    "email": "zoica.alves@example.com",
+    "telefone": "(48) 7096-9462",
+    "cpf": "333.631.391-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "89119",
+      "logradouro": "Rua Dezessete ",
+      "numero": "1507",
+      "bairro": "Centro",
+      "cidade": "São José dos Pinhais",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330883769",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Arlene Sales",
+    "email": "arlene.sales@example.com",
+    "telefone": "(48) 0639-2125",
+    "cpf": "713.582.101-16",
+    "cnpj": "",
+    "endereco": {
+      "cep": "61315",
+      "logradouro": "Rua São Pedro ",
+      "numero": "5685",
+      "bairro": "Centro",
+      "cidade": "Cubatão",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330884072",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Egil Lopes",
+    "email": "egil.lopes@example.com",
+    "telefone": "(67) 2049-1370",
+    "cpf": "647.241.031-06",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55155",
+      "logradouro": "Rua São Francisco ",
+      "numero": "1600",
+      "bairro": "Centro",
+      "cidade": "Natal",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330884632",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Verilândia da Paz",
+    "email": "verilandia.dapaz@example.com",
+    "telefone": "(39) 4912-7997",
+    "cpf": "543.896.939-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "85238",
+      "logradouro": "Rua São Francisco ",
+      "numero": "6141",
+      "bairro": "Centro",
+      "cidade": "João Pessoa",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330884947",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ifigênia Ferreira",
+    "email": "ifigenia.ferreira@example.com",
+    "telefone": "(87) 1649-7355",
+    "cpf": "674.172.158-33",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17746",
+      "logradouro": "Rua Pará ",
+      "numero": "4283",
+      "bairro": "Centro",
+      "cidade": "Americana",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330885357",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alano Fogaça",
+    "email": "alano.fogaca@example.com",
+    "telefone": "(89) 4236-8651",
+    "cpf": "671.558.971-68",
+    "cnpj": "",
+    "endereco": {
+      "cep": "45165",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "4372",
+      "bairro": "Centro",
+      "cidade": "Várzea Paulista",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330885678",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Jansénio Freitas",
+    "email": "jansenio.freitas@example.com",
+    "telefone": "(99) 9623-7869",
+    "cpf": "550.720.322-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "88842",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "1064",
+      "bairro": "Centro",
+      "cidade": "Camaçari",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330886039",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Kate Pereira",
+    "email": "kate.pereira@example.com",
+    "telefone": "(43) 9967-1117",
+    "cpf": "119.531.399-12",
+    "cnpj": "",
+    "endereco": {
+      "cep": "25090",
+      "logradouro": "Rua Amazonas ",
+      "numero": "1319",
+      "bairro": "Centro",
+      "cidade": "Itu",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330886344",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lauriana Souza",
+    "email": "lauriana.souza@example.com",
+    "telefone": "(15) 7993-4454",
+    "cpf": "045.082.514-73",
+    "cnpj": "",
+    "endereco": {
+      "cep": "42891",
+      "logradouro": "Rua São Paulo ",
+      "numero": "9989",
+      "bairro": "Centro",
+      "cidade": "Rio das Ostras",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330886666",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Eloides Viana",
+    "email": "eloides.viana@example.com",
+    "telefone": "(96) 9627-6764",
+    "cpf": "581.917.327-57",
+    "cnpj": "",
+    "endereco": {
+      "cep": "38446",
+      "logradouro": "Rua Rio de Janeiro ",
+      "numero": "3939",
+      "bairro": "Centro",
+      "cidade": "Jaú",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330886999",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Jetro Cavalcanti",
+    "email": "jetro.cavalcanti@example.com",
+    "telefone": "(12) 1505-8060",
+    "cpf": "651.713.830-10",
+    "cnpj": "",
+    "endereco": {
+      "cep": "57660",
+      "logradouro": "Rua Dom Pedro Ii ",
+      "numero": "3042",
+      "bairro": "Centro",
+      "cidade": "Belford Roxo",
+      "uf": "Pernambuco"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330887595",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alani Pinto",
+    "email": "alani.pinto@example.com",
+    "telefone": "(78) 0145-8517",
+    "cpf": "959.788.853-51",
+    "cnpj": "",
+    "endereco": {
+      "cep": "86666",
+      "logradouro": "Rua Dezenove de Outubro",
+      "numero": "1317",
+      "bairro": "Centro",
+      "cidade": "Parnamirim",
+      "uf": "Pernambuco"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330887918",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Regino Teixeira",
+    "email": "regino.teixeira@example.com",
+    "telefone": "(83) 8479-2441",
+    "cpf": "868.659.485-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "95223",
+      "logradouro": "Rua da Paz ",
+      "numero": "2046",
+      "bairro": "Centro",
+      "cidade": "Valparaíso de Goiás",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330888219",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rosália Melo",
+    "email": "rosalia.melo@example.com",
+    "telefone": "(99) 9019-0861",
+    "cpf": "632.017.507-30",
+    "cnpj": "",
+    "endereco": {
+      "cep": "14028",
+      "logradouro": "Rua Amazonas ",
+      "numero": "877",
+      "bairro": "Centro",
+      "cidade": "Teresina",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330888536",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Florisbela Santos",
+    "email": "florisbela.santos@example.com",
+    "telefone": "(35) 2237-6578",
+    "cpf": "642.577.782-15",
+    "cnpj": "",
+    "endereco": {
+      "cep": "46195",
+      "logradouro": "Rua Pernambuco ",
+      "numero": "4774",
+      "bairro": "Centro",
+      "cidade": "Fortaleza",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330889000",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alma Silveira",
+    "email": "alma.silveira@example.com",
+    "telefone": "(20) 9867-3466",
+    "cpf": "473.703.620-40",
+    "cnpj": "",
+    "endereco": {
+      "cep": "49523",
+      "logradouro": "Rua Rio de Janeiro ",
+      "numero": "8599",
+      "bairro": "Centro",
+      "cidade": "Arapongas",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330889317",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alísia Cardoso",
+    "email": "alisia.cardoso@example.com",
+    "telefone": "(87) 5026-8090",
+    "cpf": "969.437.108-88",
+    "cnpj": "",
+    "endereco": {
+      "cep": "19308",
+      "logradouro": "Rua São Paulo ",
+      "numero": "7973",
+      "bairro": "Centro",
+      "cidade": "Águas Lindas de Goiás",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330889631",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Florinda Melo",
+    "email": "florinda.melo@example.com",
+    "telefone": "(62) 0041-5251",
+    "cpf": "844.615.597-07",
+    "cnpj": "",
+    "endereco": {
+      "cep": "62803",
+      "logradouro": "Rua Espirito Santo ",
+      "numero": "2703",
+      "bairro": "Centro",
+      "cidade": "Igarassu",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330890210",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Boanerges Monteiro",
+    "email": "boanerges.monteiro@example.com",
+    "telefone": "(41) 8931-1423",
+    "cpf": "649.253.892-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "42145",
+      "logradouro": "Travessa dos Açorianos",
+      "numero": "7230",
+      "bairro": "Centro",
+      "cidade": "Colombo",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330890554",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Jamile Nascimento",
+    "email": "jamile.nascimento@example.com",
+    "telefone": "(67) 8695-7829",
+    "cpf": "130.118.017-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "38622",
+      "logradouro": "Rua Pará ",
+      "numero": "7360",
+      "bairro": "Centro",
+      "cidade": "Vespasiano",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330890872",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Acúrsio Mendes",
+    "email": "acursio.mendes@example.com",
+    "telefone": "(38) 2532-2876",
+    "cpf": "061.303.698-60",
+    "cnpj": "",
+    "endereco": {
+      "cep": "81768",
+      "logradouro": "Beco dos Namorados",
+      "numero": "8432",
+      "bairro": "Centro",
+      "cidade": "Itajaí",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330891169",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Bernardina Sales",
+    "email": "bernardina.sales@example.com",
+    "telefone": "(07) 4954-2290",
+    "cpf": "770.458.961-01",
+    "cnpj": "",
+    "endereco": {
+      "cep": "40438",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "5287",
+      "bairro": "Centro",
+      "cidade": "São Bernardo do Campo",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330891481",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Zilma da Conceição",
+    "email": "zilma.daconceicao@example.com",
+    "telefone": "(64) 8081-5665",
+    "cpf": "720.299.479-28",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55222",
+      "logradouro": "Rua Dezesseis de Maio",
+      "numero": "1824",
+      "bairro": "Centro",
+      "cidade": "Governador Valadares",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330891785",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Francisco Souza",
+    "email": "francisco.souza@example.com",
+    "telefone": "(11) 2456-3369",
+    "cpf": "654.420.119-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55079",
+      "logradouro": "Rua Primeiro de Maio ",
+      "numero": "2399",
+      "bairro": "Centro",
+      "cidade": "Taboão da Serra",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330892123",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Generosa Moreira",
+    "email": "generosa.moreira@example.com",
+    "telefone": "(81) 9180-0277",
+    "cpf": "651.615.269-53",
+    "cnpj": "",
+    "endereco": {
+      "cep": "38816",
+      "logradouro": "Rua Vinte de Setembro",
+      "numero": "1681",
+      "bairro": "Centro",
+      "cidade": "São Vicente",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330892749",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Georgino Alves",
+    "email": "georgino.alves@example.com",
+    "telefone": "(53) 4157-2301",
+    "cpf": "754.264.960-36",
+    "cnpj": "",
+    "endereco": {
+      "cep": "19121",
+      "logradouro": "Rua Pernambuco ",
+      "numero": "9855",
+      "bairro": "Centro",
+      "cidade": "Indaiatuba",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330893056",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Abdénago Viana",
+    "email": "abdenago.viana@example.com",
+    "telefone": "(65) 9921-6863",
+    "cpf": "714.284.214-86",
+    "cnpj": "",
+    "endereco": {
+      "cep": "47822",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "4054",
+      "bairro": "Centro",
+      "cidade": "Guarapari",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330893401",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Antonieta da Cunha",
+    "email": "antonieta.dacunha@example.com",
+    "telefone": "(74) 5406-7220",
+    "cpf": "129.939.018-18",
+    "cnpj": "",
+    "endereco": {
+      "cep": "41897",
+      "logradouro": "Rua Dom Pedro Ii ",
+      "numero": "6506",
+      "bairro": "Centro",
+      "cidade": "Sobral",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330893707",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Genoveva Aragão",
+    "email": "genoveva.aragao@example.com",
+    "telefone": "(57) 5563-7203",
+    "cpf": "352.614.036-68",
+    "cnpj": "",
+    "endereco": {
+      "cep": "10011",
+      "logradouro": "Rua Maranhão ",
+      "numero": "1582",
+      "bairro": "Centro",
+      "cidade": "Uberaba",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330894008",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Emanuel Silva",
+    "email": "emanuel.silva@example.com",
+    "telefone": "(62) 8064-0954",
+    "cpf": "582.239.841-22",
+    "cnpj": "",
+    "endereco": {
+      "cep": "35833",
+      "logradouro": "Rua São Paulo ",
+      "numero": "6241",
+      "bairro": "Centro",
+      "cidade": "Embu",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330894329",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rosalina Cardoso",
+    "email": "rosalina.cardoso@example.com",
+    "telefone": "(98) 9742-7729",
+    "cpf": "305.072.395-66",
+    "cnpj": "",
+    "endereco": {
+      "cep": "97345",
+      "logradouro": "Rua Pará ",
+      "numero": "9921",
+      "bairro": "Centro",
+      "cidade": "Contagem",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330894648",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alaíde da Luz",
+    "email": "alaide.daluz@example.com",
+    "telefone": "(71) 3505-5200",
+    "cpf": "311.649.725-73",
+    "cnpj": "",
+    "endereco": {
+      "cep": "53045",
+      "logradouro": "Rua Sete de Setembro ",
+      "numero": "5910",
+      "bairro": "Centro",
+      "cidade": "Simões Filho",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330894976",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Clarinda Fernandes",
+    "email": "clarinda.fernandes@example.com",
+    "telefone": "(88) 3223-8964",
+    "cpf": "064.870.868-88",
+    "cnpj": "",
+    "endereco": {
+      "cep": "98687",
+      "logradouro": "Rua São Sebastiao ",
+      "numero": "1611",
+      "bairro": "Centro",
+      "cidade": "Garanhuns",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330895352",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Emília Mendes",
+    "email": "emilia.mendes@example.com",
+    "telefone": "(83) 7954-1541",
+    "cpf": "620.994.107-33",
+    "cnpj": "",
+    "endereco": {
+      "cep": "18231",
+      "logradouro": "Rua São Pedro ",
+      "numero": "8127",
+      "bairro": "Centro",
+      "cidade": "Tatuí",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330895649",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Valesca Nunes",
+    "email": "valesca.nunes@example.com",
+    "telefone": "(45) 1003-1959",
+    "cpf": "094.468.685-23",
+    "cnpj": "",
+    "endereco": {
+      "cep": "36035",
+      "logradouro": "Rua Paraná ",
+      "numero": "8801",
+      "bairro": "Centro",
+      "cidade": "Olinda",
+      "uf": "Pernambuco"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330896002",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Diovalda Duarte",
+    "email": "diovalda.duarte@example.com",
+    "telefone": "(43) 1667-2789",
+    "cpf": "004.866.445-11",
+    "cnpj": "",
+    "endereco": {
+      "cep": "31118",
+      "logradouro": "Rua Bela Vista ",
+      "numero": "4441",
+      "bairro": "Centro",
+      "cidade": "Varginha",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330896331",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Norma Monteiro",
+    "email": "norma.monteiro@example.com",
+    "telefone": "(45) 8691-9267",
+    "cpf": "979.207.784-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "80036",
+      "logradouro": "Rua Maranhão ",
+      "numero": "4",
+      "bairro": "Centro",
+      "cidade": "Umuarama",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330896645",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Castor Teixeira",
+    "email": "castor.teixeira@example.com",
+    "telefone": "(58) 8543-8085",
+    "cpf": "995.034.789-07",
+    "cnpj": "",
+    "endereco": {
+      "cep": "49542",
+      "logradouro": "Avenida D. Pedro Ii",
+      "numero": "2895",
+      "bairro": "Centro",
+      "cidade": "Tatuí",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330896971",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Iago Gomes",
+    "email": "iago.gomes@example.com",
+    "telefone": "(20) 4696-2489",
+    "cpf": "807.396.725-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "67242",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "3755",
+      "bairro": "Centro",
+      "cidade": "Santa Bárbara D'Oeste",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330897734",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Falco Moura",
+    "email": "falco.moura@example.com",
+    "telefone": "(95) 0471-3305",
+    "cpf": "542.980.233-68",
+    "cnpj": "",
+    "endereco": {
+      "cep": "47591",
+      "logradouro": "Rua Rui Barbosa ",
+      "numero": "7404",
+      "bairro": "Centro",
+      "cidade": "Vitória de Santo Antão",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330898052",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Uilian Castro",
+    "email": "uilian.castro@example.com",
+    "telefone": "(65) 0997-0871",
+    "cpf": "016.761.460-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "68837",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "6307",
+      "bairro": "Centro",
+      "cidade": "Rondonópolis",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330898371",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Claudine Teixeira",
+    "email": "claudine.teixeira@example.com",
+    "telefone": "(02) 0168-8682",
+    "cpf": "880.492.283-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "71825",
+      "logradouro": "Rua Minas Gerais ",
+      "numero": "4725",
+      "bairro": "Centro",
+      "cidade": "Bagé",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330898706",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Denice Ribeiro",
+    "email": "denice.ribeiro@example.com",
+    "telefone": "(94) 8791-8017",
+    "cpf": "626.390.338-35",
+    "cnpj": "",
+    "endereco": {
+      "cep": "21209",
+      "logradouro": "Rua Santa Catarina ",
+      "numero": "92",
+      "bairro": "Centro",
+      "cidade": "Florianópolis",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330899027",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marivana Silva",
+    "email": "marivana.silva@example.com",
+    "telefone": "(53) 2849-9141",
+    "cpf": "008.327.672-70",
+    "cnpj": "",
+    "endereco": {
+      "cep": "62792",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "466",
+      "bairro": "Centro",
+      "cidade": "Olinda",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330899348",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Benício Carvalho",
+    "email": "benicio.carvalho@example.com",
+    "telefone": "(58) 9598-6424",
+    "cpf": "822.122.431-02",
+    "cnpj": "",
+    "endereco": {
+      "cep": "14422",
+      "logradouro": "Rua Dezessete ",
+      "numero": "5356",
+      "bairro": "Centro",
+      "cidade": "Araguaína",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330899658",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ataíde Teixeira",
+    "email": "ataide.teixeira@example.com",
+    "telefone": "(16) 2022-8656",
+    "cpf": "687.270.494-81",
+    "cnpj": "",
+    "endereco": {
+      "cep": "61222",
+      "logradouro": "Rua Dom Pedro Ii ",
+      "numero": "693",
+      "bairro": "Centro",
+      "cidade": "Bacabal",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330899958",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Angelino Novaes",
+    "email": "angelino.novaes@example.com",
+    "telefone": "(75) 5895-6488",
+    "cpf": "622.577.378-02",
+    "cnpj": "",
+    "endereco": {
+      "cep": "54890",
+      "logradouro": "Rua Boa Vista ",
+      "numero": "1070",
+      "bairro": "Centro",
+      "cidade": "São José do Rio Preto",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330900287",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Zanete da Rocha",
+    "email": "zanete.darocha@example.com",
+    "telefone": "(20) 6771-0768",
+    "cpf": "282.360.045-86",
+    "cnpj": "",
+    "endereco": {
+      "cep": "72763",
+      "logradouro": "Rua Piauí ",
+      "numero": "1704",
+      "bairro": "Centro",
+      "cidade": "Porto Velho",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330900619",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aldrovanda Lopes",
+    "email": "aldrovanda.lopes@example.com",
+    "telefone": "(50) 2236-6480",
+    "cpf": "918.337.074-32",
+    "cnpj": "",
+    "endereco": {
+      "cep": "29129",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "3762",
+      "bairro": "Centro",
+      "cidade": "Passo Fundo",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330901106",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Cléia Rocha",
+    "email": "cleia.rocha@example.com",
+    "telefone": "(30) 1208-5408",
+    "cpf": "388.279.484-73",
+    "cnpj": "",
+    "endereco": {
+      "cep": "93542",
+      "logradouro": "Rua Sete de Setembro ",
+      "numero": "6153",
+      "bairro": "Centro",
+      "cidade": "Ribeirão das Neves",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330901407",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Érico Pires",
+    "email": "erico.pires@example.com",
+    "telefone": "(53) 9185-0083",
+    "cpf": "657.765.152-37",
+    "cnpj": "",
+    "endereco": {
+      "cep": "70794",
+      "logradouro": "Rua Um",
+      "numero": "1258",
+      "bairro": "Centro",
+      "cidade": "Marituba",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330901843",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Glaúcia Campos",
+    "email": "glaucia.campos@example.com",
+    "telefone": "(96) 7949-7628",
+    "cpf": "264.266.034-60",
+    "cnpj": "",
+    "endereco": {
+      "cep": "10488",
+      "logradouro": "Avenida da Legalidade",
+      "numero": "8196",
+      "bairro": "Centro",
+      "cidade": "Criciúma",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330902467",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Fábia da Costa",
+    "email": "fabia.dacosta@example.com",
+    "telefone": "(39) 9596-2631",
+    "cpf": "107.899.170-74",
+    "cnpj": "",
+    "endereco": {
+      "cep": "77789",
+      "logradouro": "Rua Tiradentes ",
+      "numero": "9184",
+      "bairro": "Centro",
+      "cidade": "Ribeirão Pires",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330903529",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lindoro Farias",
+    "email": "lindoro.farias@example.com",
+    "telefone": "(45) 6923-8336",
+    "cpf": "766.777.539-78",
+    "cnpj": "",
+    "endereco": {
+      "cep": "79003",
+      "logradouro": "Avenida da Legalidade",
+      "numero": "8616",
+      "bairro": "Centro",
+      "cidade": "Belo Horizonte",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330904087",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Penha Moreira",
+    "email": "penha.moreira@example.com",
+    "telefone": "(39) 3566-4058",
+    "cpf": "340.570.648-21",
+    "cnpj": "",
+    "endereco": {
+      "cep": "12905",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "6870",
+      "bairro": "Centro",
+      "cidade": "Viamão",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330904433",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vita da Rocha",
+    "email": "vita.darocha@example.com",
+    "telefone": "(88) 0268-4450",
+    "cpf": "992.236.045-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "59386",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "5977",
+      "bairro": "Centro",
+      "cidade": "Teófilo Otoni",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330904773",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marília Vieira",
+    "email": "marilia.vieira@example.com",
+    "telefone": "(39) 6919-6755",
+    "cpf": "450.223.551-31",
+    "cnpj": "",
+    "endereco": {
+      "cep": "35710",
+      "logradouro": "Rua Paraná ",
+      "numero": "1963",
+      "bairro": "Centro",
+      "cidade": "Suzano",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330905091",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Toni Moreira",
+    "email": "toni.moreira@example.com",
+    "telefone": "(16) 0861-0486",
+    "cpf": "197.199.723-16",
+    "cnpj": "",
+    "endereco": {
+      "cep": "43865",
+      "logradouro": "Rua Alagoas ",
+      "numero": "8393",
+      "bairro": "Centro",
+      "cidade": "Vila Velha",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330905414",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Valgi Vieira",
+    "email": "valgi.vieira@example.com",
+    "telefone": "(62) 2339-5317",
+    "cpf": "944.172.466-56",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51183",
+      "logradouro": "Rua Pará ",
+      "numero": "904",
+      "bairro": "Centro",
+      "cidade": "Caxias",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330905754",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ódin Pires",
+    "email": "odin.pires@example.com",
+    "telefone": "(60) 9323-4568",
+    "cpf": "818.139.780-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "19986",
+      "logradouro": "Rua Principal",
+      "numero": "4200",
+      "bairro": "Centro",
+      "cidade": "São Carlos",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330906159",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Haydée da Cunha",
+    "email": "haydee.dacunha@example.com",
+    "telefone": "(83) 7033-4035",
+    "cpf": "071.025.859-00",
+    "cnpj": "",
+    "endereco": {
+      "cep": "33102",
+      "logradouro": "Rua Vinte E Um",
+      "numero": "7465",
+      "bairro": "Centro",
+      "cidade": "Teixeira de Freitas",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330906502",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ruby Costa",
+    "email": "ruby.costa@example.com",
+    "telefone": "(20) 6649-9162",
+    "cpf": "207.824.261-76",
+    "cnpj": "",
+    "endereco": {
+      "cep": "28827",
+      "logradouro": "Rua Dezessete ",
+      "numero": "2674",
+      "bairro": "Centro",
+      "cidade": "Caxias",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330906864",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Risiele Alves",
+    "email": "risiele.alves@example.com",
+    "telefone": "(67) 1134-0257",
+    "cpf": "511.611.286-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "84039",
+      "logradouro": "Rua Santos Dumont ",
+      "numero": "7815",
+      "bairro": "Centro",
+      "cidade": "Teófilo Otoni",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330907249",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Eneias Gonçalves",
+    "email": "eneias.goncalves@example.com",
+    "telefone": "(54) 5713-1835",
+    "cpf": "097.115.321-18",
+    "cnpj": "",
+    "endereco": {
+      "cep": "19569",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "124",
+      "bairro": "Centro",
+      "cidade": "Rio Claro",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330907603",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Anísio Teixeira",
+    "email": "anisio.teixeira@example.com",
+    "telefone": "(78) 0127-9043",
+    "cpf": "224.279.479-23",
+    "cnpj": "",
+    "endereco": {
+      "cep": "41678",
+      "logradouro": "Avenida Brasil ",
+      "numero": "8724",
+      "bairro": "Centro",
+      "cidade": "São José de Ribamar",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330907918",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Higino Farias",
+    "email": "higino.farias@example.com",
+    "telefone": "(65) 1129-7564",
+    "cpf": "700.676.538-68",
+    "cnpj": "",
+    "endereco": {
+      "cep": "22839",
+      "logradouro": "Rua Bela Vista ",
+      "numero": "7763",
+      "bairro": "Centro",
+      "cidade": "Castanhal",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330908652",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Josiane Araújo",
+    "email": "josiane.araujo@example.com",
+    "telefone": "(44) 6701-5087",
+    "cpf": "388.028.105-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "46918",
+      "logradouro": "Rua Santa Maria ",
+      "numero": "9430",
+      "bairro": "Centro",
+      "cidade": "Jundiaí",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330909159",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marinara Fernandes",
+    "email": "marinara.fernandes@example.com",
+    "telefone": "(96) 0846-2029",
+    "cpf": "615.394.439-23",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55991",
+      "logradouro": "Rua São Francisco ",
+      "numero": "6942",
+      "bairro": "Centro",
+      "cidade": "Mossoró",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330909640",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Osvaldo da Rocha",
+    "email": "osvaldo.darocha@example.com",
+    "telefone": "(20) 1060-2545",
+    "cpf": "354.899.052-21",
+    "cnpj": "",
+    "endereco": {
+      "cep": "93377",
+      "logradouro": "Rua São João ",
+      "numero": "9382",
+      "bairro": "Centro",
+      "cidade": "Sumaré",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330909988",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ciro da Costa",
+    "email": "ciro.dacosta@example.com",
+    "telefone": "(02) 3082-2522",
+    "cpf": "066.590.047-14",
+    "cnpj": "",
+    "endereco": {
+      "cep": "45021",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "6815",
+      "bairro": "Centro",
+      "cidade": "Serra",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330910305",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Caterina Melo",
+    "email": "caterina.melo@example.com",
+    "telefone": "(57) 1119-4889",
+    "cpf": "663.910.547-12",
+    "cnpj": "",
+    "endereco": {
+      "cep": "67789",
+      "logradouro": "Rua Dois",
+      "numero": "7631",
+      "bairro": "Centro",
+      "cidade": "Juazeiro",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330910648",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Liliane Melo",
+    "email": "liliane.melo@example.com",
+    "telefone": "(88) 6215-7409",
+    "cpf": "085.468.744-82",
+    "cnpj": "",
+    "endereco": {
+      "cep": "64768",
+      "logradouro": "Rua Dezessete ",
+      "numero": "871",
+      "bairro": "Centro",
+      "cidade": "Garanhuns",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330911047",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Régia da Luz",
+    "email": "regia.daluz@example.com",
+    "telefone": "(69) 9458-3592",
+    "cpf": "818.221.605-87",
+    "cnpj": "",
+    "endereco": {
+      "cep": "70865",
+      "logradouro": "Rua São José ",
+      "numero": "342",
+      "bairro": "Centro",
+      "cidade": "Petrópolis",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330911399",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aderico Oliveira",
+    "email": "aderico.oliveira@example.com",
+    "telefone": "(35) 9355-6834",
+    "cpf": "215.640.554-41",
+    "cnpj": "",
+    "endereco": {
+      "cep": "65752",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "4661",
+      "bairro": "Centro",
+      "cidade": "Teófilo Otoni",
+      "uf": "Pernambuco"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330911721",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lindalva Teixeira",
+    "email": "lindalva.teixeira@example.com",
+    "telefone": "(94) 7053-5254",
+    "cpf": "291.475.003-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "41521",
+      "logradouro": "Rua Piauí ",
+      "numero": "3485",
+      "bairro": "Centro",
+      "cidade": "Porto Alegre",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330912066",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alcibíades Pereira",
+    "email": "alcibiades.pereira@example.com",
+    "telefone": "(27) 2393-5757",
+    "cpf": "385.067.608-10",
+    "cnpj": "",
+    "endereco": {
+      "cep": "83241",
+      "logradouro": "Rua Doze ",
+      "numero": "9071",
+      "bairro": "Centro",
+      "cidade": "Linhares",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330912495",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Corinta da Mota",
+    "email": "corinta.damota@example.com",
+    "telefone": "(81) 0997-0789",
+    "cpf": "234.702.131-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "87435",
+      "logradouro": "Rua Alagoas ",
+      "numero": "4040",
+      "bairro": "Centro",
+      "cidade": "Jaú",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330912849",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Brenda Monteiro",
+    "email": "brenda.monteiro@example.com",
+    "telefone": "(00) 2413-7926",
+    "cpf": "047.369.030-86",
+    "cnpj": "",
+    "endereco": {
+      "cep": "18271",
+      "logradouro": "Rua Pernambuco ",
+      "numero": "5259",
+      "bairro": "Centro",
+      "cidade": "Bragança",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330913163",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Olvani da Conceição",
+    "email": "olvani.daconceicao@example.com",
+    "telefone": "(92) 9109-7247",
+    "cpf": "228.063.310-35",
+    "cnpj": "",
+    "endereco": {
+      "cep": "58294",
+      "logradouro": "Rua Amazonas ",
+      "numero": "8898",
+      "bairro": "Centro",
+      "cidade": "Vitória",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330913469",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rapaz Martins",
+    "email": "rapaz.martins@example.com",
+    "telefone": "(38) 9990-5448",
+    "cpf": "645.041.715-71",
+    "cnpj": "",
+    "endereco": {
+      "cep": "14020",
+      "logradouro": "Rua Belo Horizonte ",
+      "numero": "3127",
+      "bairro": "Centro",
+      "cidade": "Blumenau",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330913789",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Olinto Castro",
+    "email": "olinto.castro@example.com",
+    "telefone": "(67) 1576-5658",
+    "cpf": "869.335.381-22",
+    "cnpj": "",
+    "endereco": {
+      "cep": "57844",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "2766",
+      "bairro": "Centro",
+      "cidade": "Pouso Alegre",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330914291",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Pérsio Ramos",
+    "email": "persio.ramos@example.com",
+    "telefone": "(86) 2808-9064",
+    "cpf": "846.696.713-41",
+    "cnpj": "",
+    "endereco": {
+      "cep": "41390",
+      "logradouro": "Rua Dezessete ",
+      "numero": "893",
+      "bairro": "Centro",
+      "cidade": "Vespasiano",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330914677",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vílson Rodrigues",
+    "email": "vilson.rodrigues@example.com",
+    "telefone": "(38) 9491-3445",
+    "cpf": "947.941.781-64",
+    "cnpj": "",
+    "endereco": {
+      "cep": "69057",
+      "logradouro": "Rua Quatro",
+      "numero": "1261",
+      "bairro": "Centro",
+      "cidade": "Blumenau",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330915018",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Waldinélia Freitas",
+    "email": "waldinelia.freitas@example.com",
+    "telefone": "(13) 6848-0380",
+    "cpf": "091.945.758-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "29728",
+      "logradouro": "Rua São João ",
+      "numero": "4595",
+      "bairro": "Centro",
+      "cidade": "Trindade",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330915315",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Olivar Cardoso",
+    "email": "olivar.cardoso@example.com",
+    "telefone": "(75) 8861-1161",
+    "cpf": "402.221.135-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "99862",
+      "logradouro": "Rua Amazonas ",
+      "numero": "4354",
+      "bairro": "Centro",
+      "cidade": "Ilhéus",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330915778",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Leidemere Rezende",
+    "email": "leidemere.rezende@example.com",
+    "telefone": "(40) 4480-9852",
+    "cpf": "429.457.060-01",
+    "cnpj": "",
+    "endereco": {
+      "cep": "63278",
+      "logradouro": "Rua São João ",
+      "numero": "3046",
+      "bairro": "Centro",
+      "cidade": "Varginha",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330916421",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Úrsula Nunes",
+    "email": "ursula.nunes@example.com",
+    "telefone": "(51) 3311-2306",
+    "cpf": "384.425.752-78",
+    "cnpj": "",
+    "endereco": {
+      "cep": "62144",
+      "logradouro": "Rua Maranhão ",
+      "numero": "4486",
+      "bairro": "Centro",
+      "cidade": "Castanhal",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330916743",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Gervásia Moreira",
+    "email": "gervasia.moreira@example.com",
+    "telefone": "(87) 1972-8332",
+    "cpf": "488.806.156-58",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51502",
+      "logradouro": "Rua Tiradentes ",
+      "numero": "6401",
+      "bairro": "Centro",
+      "cidade": "Teresina",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330917082",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Argemira Dias",
+    "email": "argemira.dias@example.com",
+    "telefone": "(38) 3544-5240",
+    "cpf": "649.830.254-31",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51567",
+      "logradouro": "Rua Alagoas ",
+      "numero": "5270",
+      "bairro": "Centro",
+      "cidade": "Pinhais",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330917403",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Taiara Pereira",
+    "email": "taiara.pereira@example.com",
+    "telefone": "(57) 2148-0826",
+    "cpf": "555.993.685-11",
+    "cnpj": "",
+    "endereco": {
+      "cep": "63407",
+      "logradouro": "Rua Pernambuco ",
+      "numero": "8172",
+      "bairro": "Centro",
+      "cidade": "Jacareí",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330917726",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lana Pereira",
+    "email": "lana.pereira@example.com",
+    "telefone": "(15) 9976-9622",
+    "cpf": "378.934.541-68",
+    "cnpj": "",
+    "endereco": {
+      "cep": "98054",
+      "logradouro": "Rua Dois",
+      "numero": "6730",
+      "bairro": "Centro",
+      "cidade": "Abaetetuba",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330918046",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Xênia Caldeira",
+    "email": "xenia.caldeira@example.com",
+    "telefone": "(25) 8774-9303",
+    "cpf": "084.712.338-48",
+    "cnpj": "",
+    "endereco": {
+      "cep": "37865",
+      "logradouro": "Rua Santa Maria ",
+      "numero": "1111",
+      "bairro": "Centro",
+      "cidade": "Francisco Morato",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330918373",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Odila Oliveira",
+    "email": "odila.oliveira@example.com",
+    "telefone": "(72) 8228-6289",
+    "cpf": "836.689.843-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "49374",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "7012",
+      "bairro": "Centro",
+      "cidade": "Camaçari",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330919003",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Bibiano das Neves",
+    "email": "bibiano.dasneves@example.com",
+    "telefone": "(92) 9487-1786",
+    "cpf": "045.873.214-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "21701",
+      "logradouro": "Rua João Xxiii",
+      "numero": "8954",
+      "bairro": "Centro",
+      "cidade": "Ibirité",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330919315",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Olivier Cardoso",
+    "email": "olivier.cardoso@example.com",
+    "telefone": "(44) 2395-1236",
+    "cpf": "341.136.299-37",
+    "cnpj": "",
+    "endereco": {
+      "cep": "16029",
+      "logradouro": "Rua Bela Vista ",
+      "numero": "4394",
+      "bairro": "Centro",
+      "cidade": "Franco da Rocha",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330919636",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aldo Carvalho",
+    "email": "aldo.carvalho@example.com",
+    "telefone": "(55) 5259-7557",
+    "cpf": "654.601.679-30",
+    "cnpj": "",
+    "endereco": {
+      "cep": "67906",
+      "logradouro": "Travessa dos Martírios",
+      "numero": "5632",
+      "bairro": "Centro",
+      "cidade": "Araras",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330920002",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Jamim Silva",
+    "email": "jamim.silva@example.com",
+    "telefone": "(52) 2205-8086",
+    "cpf": "401.054.638-56",
+    "cnpj": "",
+    "endereco": {
+      "cep": "63404",
+      "logradouro": "Rua Santa Rita ",
+      "numero": "9789",
+      "bairro": "Centro",
+      "cidade": "Ibirité",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330920375",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Rosemerie Farias",
+    "email": "rosemerie.farias@example.com",
+    "telefone": "(49) 7094-1794",
+    "cpf": "617.651.794-28",
+    "cnpj": "",
+    "endereco": {
+      "cep": "66781",
+      "logradouro": "Rua Minas Gerais ",
+      "numero": "4739",
+      "bairro": "Centro",
+      "cidade": "Marabá",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330920748",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Reginaldo Melo",
+    "email": "reginaldo.melo@example.com",
+    "telefone": "(26) 8112-9485",
+    "cpf": "431.847.775-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "71102",
+      "logradouro": "Rua São José ",
+      "numero": "98",
+      "bairro": "Centro",
+      "cidade": "Muriaé",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330921068",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Gentil Cavalcanti",
+    "email": "gentil.cavalcanti@example.com",
+    "telefone": "(73) 4398-8868",
+    "cpf": "188.120.514-55",
+    "cnpj": "",
+    "endereco": {
+      "cep": "70538",
+      "logradouro": "Avenida Brasil ",
+      "numero": "2564",
+      "bairro": "Centro",
+      "cidade": "Umuarama",
+      "uf": "Pará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330921387",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vílmar de Souza",
+    "email": "vilmar.desouza@example.com",
+    "telefone": "(75) 8581-9977",
+    "cpf": "049.983.055-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "95768",
+      "logradouro": "Rua Dois",
+      "numero": "925",
+      "bairro": "Centro",
+      "cidade": "Paranaguá",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330921727",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Crispiana Nunes",
+    "email": "crispiana.nunes@example.com",
+    "telefone": "(89) 0428-6749",
+    "cpf": "965.566.633-66",
+    "cnpj": "",
+    "endereco": {
+      "cep": "99569",
+      "logradouro": "Rua São Sebastiao ",
+      "numero": "786",
+      "bairro": "Centro",
+      "cidade": "Santana",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330922091",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Clélia Novaes",
+    "email": "clelia.novaes@example.com",
+    "telefone": "(69) 1533-9569",
+    "cpf": "242.451.063-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "37868",
+      "logradouro": "Rua Onze ",
+      "numero": "5405",
+      "bairro": "Centro",
+      "cidade": "São João de Meriti",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330922672",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Berenice da Costa",
+    "email": "berenice.dacosta@example.com",
+    "telefone": "(84) 3735-8888",
+    "cpf": "439.569.981-40",
+    "cnpj": "",
+    "endereco": {
+      "cep": "43440",
+      "logradouro": "Rua Pernambuco ",
+      "numero": "4700",
+      "bairro": "Centro",
+      "cidade": "São Lourenço da Mata",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330922990",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Dositeu da Cunha",
+    "email": "dositeu.dacunha@example.com",
+    "telefone": "(14) 1949-5760",
+    "cpf": "698.189.841-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "39472",
+      "logradouro": "Rua Das Flores ",
+      "numero": "399",
+      "bairro": "Centro",
+      "cidade": "Imperatriz",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330923300",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Cecília Nunes",
+    "email": "cecilia.nunes@example.com",
+    "telefone": "(24) 3989-2038",
+    "cpf": "331.110.760-02",
+    "cnpj": "",
+    "endereco": {
+      "cep": "22332",
+      "logradouro": "Avenida Brasil ",
+      "numero": "6679",
+      "bairro": "Centro",
+      "cidade": "Francisco Morato",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330923618",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Jofre da Conceição",
+    "email": "jofre.daconceicao@example.com",
+    "telefone": "(77) 0257-8689",
+    "cpf": "621.679.304-87",
+    "cnpj": "",
+    "endereco": {
+      "cep": "23675",
+      "logradouro": "Rua São Francisco ",
+      "numero": "7902",
+      "bairro": "Centro",
+      "cidade": "Campos dos Goytacazes",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330923950",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aureliano Cavalcanti",
+    "email": "aureliano.cavalcanti@example.com",
+    "telefone": "(98) 4320-5403",
+    "cpf": "713.452.277-66",
+    "cnpj": "",
+    "endereco": {
+      "cep": "42583",
+      "logradouro": "Travessa dos Açorianos",
+      "numero": "685",
+      "bairro": "Centro",
+      "cidade": "Aparecida de Goiânia",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330924263",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aliciane Nascimento",
+    "email": "aliciane.nascimento@example.com",
+    "telefone": "(36) 5334-4089",
+    "cpf": "752.407.938-18",
+    "cnpj": "",
+    "endereco": {
+      "cep": "90014",
+      "logradouro": "Rua Paraná ",
+      "numero": "3289",
+      "bairro": "Centro",
+      "cidade": "Bragança Paulista",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330924589",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Eloísa Porto",
+    "email": "eloisa.porto@example.com",
+    "telefone": "(28) 1569-8396",
+    "cpf": "071.181.398-57",
+    "cnpj": "",
+    "endereco": {
+      "cep": "46750",
+      "logradouro": "Rua Dezessete ",
+      "numero": "3609",
+      "bairro": "Centro",
+      "cidade": "Porto Velho",
+      "uf": "Espírito Santo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330924968",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Laurindo da Cruz",
+    "email": "laurindo.dacruz@example.com",
+    "telefone": "(47) 6416-9772",
+    "cpf": "340.015.743-55",
+    "cnpj": "",
+    "endereco": {
+      "cep": "38938",
+      "logradouro": "Rua Dois",
+      "numero": "4642",
+      "bairro": "Centro",
+      "cidade": "Anápolis",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330925291",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Deusa de Souza",
+    "email": "deusa.desouza@example.com",
+    "telefone": "(42) 2459-7195",
+    "cpf": "651.987.929-83",
+    "cnpj": "",
+    "endereco": {
+      "cep": "91711",
+      "logradouro": "Rua Carlos Gomes",
+      "numero": "1186",
+      "bairro": "Centro",
+      "cidade": "Nova Iguaçu",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330925593",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Inesita de Souza",
+    "email": "inesita.desouza@example.com",
+    "telefone": "(86) 0116-6140",
+    "cpf": "862.192.255-40",
+    "cnpj": "",
+    "endereco": {
+      "cep": "86830",
+      "logradouro": "Rua Três",
+      "numero": "9561",
+      "bairro": "Centro",
+      "cidade": "Alvorada",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330925996",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Sonialange Santos",
+    "email": "sonialange.santos@example.com",
+    "telefone": "(72) 1728-9198",
+    "cpf": "767.642.830-30",
+    "cnpj": "",
+    "endereco": {
+      "cep": "33247",
+      "logradouro": "Rua Carlos Gomes",
+      "numero": "4189",
+      "bairro": "Centro",
+      "cidade": "Rondonópolis",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330926353",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Berilo Barros",
+    "email": "berilo.barros@example.com",
+    "telefone": "(42) 1412-1515",
+    "cpf": "072.069.370-64",
+    "cnpj": "",
+    "endereco": {
+      "cep": "77682",
+      "logradouro": "Rua Maranhão ",
+      "numero": "114",
+      "bairro": "Centro",
+      "cidade": "Passo Fundo",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330926676",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Janique da Luz",
+    "email": "janique.daluz@example.com",
+    "telefone": "(00) 5688-3595",
+    "cpf": "334.680.881-26",
+    "cnpj": "",
+    "endereco": {
+      "cep": "99049",
+      "logradouro": "Rua Maranhão ",
+      "numero": "7560",
+      "bairro": "Centro",
+      "cidade": "Ribeirão Preto",
+      "uf": "Rio Grande do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330927167",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Albana Jesus",
+    "email": "albana.jesus@example.com",
+    "telefone": "(63) 7299-2366",
+    "cpf": "333.360.898-27",
+    "cnpj": "",
+    "endereco": {
+      "cep": "22622",
+      "logradouro": "Rua Tiradentes ",
+      "numero": "7811",
+      "bairro": "Centro",
+      "cidade": "Marília",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330927484",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Eliana Lima",
+    "email": "eliana.lima@example.com",
+    "telefone": "(24) 3697-3534",
+    "cpf": "400.525.413-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "92155",
+      "logradouro": "Rua Tiradentes ",
+      "numero": "2600",
+      "bairro": "Centro",
+      "cidade": "Cabo Frio",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330927823",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Xénon Ferreira",
+    "email": "xenon.ferreira@example.com",
+    "telefone": "(02) 2478-2198",
+    "cpf": "130.189.172-65",
+    "cnpj": "",
+    "endereco": {
+      "cep": "30382",
+      "logradouro": "Rua Amazonas ",
+      "numero": "6588",
+      "bairro": "Centro",
+      "cidade": "Santa Bárbara D'Oeste",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330928146",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marisvalda Teixeira",
+    "email": "marisvalda.teixeira@example.com",
+    "telefone": "(05) 3914-9811",
+    "cpf": "489.088.732-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "32102",
+      "logradouro": "Rua Belo Horizonte ",
+      "numero": "6694",
+      "bairro": "Centro",
+      "cidade": "João Pessoa",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330928498",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Monique da Cruz",
+    "email": "monique.dacruz@example.com",
+    "telefone": "(94) 2104-1735",
+    "cpf": "564.613.227-38",
+    "cnpj": "",
+    "endereco": {
+      "cep": "62439",
+      "logradouro": "Rua Paraná ",
+      "numero": "1141",
+      "bairro": "Centro",
+      "cidade": "Cametá",
+      "uf": "Pará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330928827",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Franklim Pires",
+    "email": "franklim.pires@example.com",
+    "telefone": "(76) 6904-4049",
+    "cpf": "535.405.850-42",
+    "cnpj": "",
+    "endereco": {
+      "cep": "82692",
+      "logradouro": "Rua Vinte de Setembro",
+      "numero": "7437",
+      "bairro": "Centro",
+      "cidade": "Ipatinga",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330929171",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ermitério da Costa",
+    "email": "ermiterio.dacosta@example.com",
+    "telefone": "(37) 3763-2376",
+    "cpf": "071.853.772-34",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17960",
+      "logradouro": "Rua Maranhão ",
+      "numero": "1841",
+      "bairro": "Centro",
+      "cidade": "Londrina",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330929496",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Cristiane Rodrigues",
+    "email": "cristiane.rodrigues@example.com",
+    "telefone": "(69) 5510-3368",
+    "cpf": "569.932.075-01",
+    "cnpj": "",
+    "endereco": {
+      "cep": "37046",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "6692",
+      "bairro": "Centro",
+      "cidade": "Araçatuba",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330929857",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Beatriz Caldeira",
+    "email": "beatriz.caldeira@example.com",
+    "telefone": "(22) 2085-5308",
+    "cpf": "991.778.271-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "60035",
+      "logradouro": "Rua Vinte E Um",
+      "numero": "5569",
+      "bairro": "Centro",
+      "cidade": "São Paulo",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330930169",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Nilson da Paz",
+    "email": "nilson.dapaz@example.com",
+    "telefone": "(38) 4695-7982",
+    "cpf": "049.742.705-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "90392",
+      "logradouro": "Rua Santa Rita ",
+      "numero": "9702",
+      "bairro": "Centro",
+      "cidade": "Criciúma",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330930508",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Severiano da Mata",
+    "email": "severiano.damata@example.com",
+    "telefone": "(99) 5347-7590",
+    "cpf": "337.400.442-64",
+    "cnpj": "",
+    "endereco": {
+      "cep": "29411",
+      "logradouro": "Rua João Xxiii",
+      "numero": "2431",
+      "bairro": "Centro",
+      "cidade": "Palhoça",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330930829",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Wanner da Conceição",
+    "email": "wanner.daconceicao@example.com",
+    "telefone": "(04) 4782-1297",
+    "cpf": "433.581.439-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "22391",
+      "logradouro": "Rua Castro Alves ",
+      "numero": "2617",
+      "bairro": "Centro",
+      "cidade": "Salvador",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330931180",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Fulgêncio Pinto",
+    "email": "fulgencio.pinto@example.com",
+    "telefone": "(65) 9249-5846",
+    "cpf": "744.162.373-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "46877",
+      "logradouro": "Rua Belo Horizonte ",
+      "numero": "5407",
+      "bairro": "Centro",
+      "cidade": "Porto Velho",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330931479",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Robim Almeida",
+    "email": "robim.almeida@example.com",
+    "telefone": "(07) 4513-3164",
+    "cpf": "274.621.169-12",
+    "cnpj": "",
+    "endereco": {
+      "cep": "90801",
+      "logradouro": "Rua Belo Horizonte ",
+      "numero": "8321",
+      "bairro": "Centro",
+      "cidade": "Trindade",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330931881",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Nelson Pinto",
+    "email": "nelson.pinto@example.com",
+    "telefone": "(95) 7975-5634",
+    "cpf": "361.988.689-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "97426",
+      "logradouro": "Rua Alagoas ",
+      "numero": "3629",
+      "bairro": "Centro",
+      "cidade": "Santana de Parnaíba",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330932201",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Garibaldo Teixeira",
+    "email": "garibaldo.teixeira@example.com",
+    "telefone": "(47) 6990-8731",
+    "cpf": "779.069.418-65",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55549",
+      "logradouro": "Avenida Brasil ",
+      "numero": "7480",
+      "bairro": "Centro",
+      "cidade": "Almirante Tamandaré",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330932728",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Basílio Pereira",
+    "email": "basilio.pereira@example.com",
+    "telefone": "(61) 2755-0074",
+    "cpf": "410.654.789-24",
+    "cnpj": "",
+    "endereco": {
+      "cep": "98930",
+      "logradouro": "Rua São João ",
+      "numero": "3827",
+      "bairro": "Centro",
+      "cidade": "Belém",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330933037",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Elisah Rocha",
+    "email": "elisah.rocha@example.com",
+    "telefone": "(46) 1632-0525",
+    "cpf": "836.207.122-87",
+    "cnpj": "",
+    "endereco": {
+      "cep": "91304",
+      "logradouro": "Avenida da Legalidade",
+      "numero": "8725",
+      "bairro": "Centro",
+      "cidade": "Belém",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330933382",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Abrão Aragão",
+    "email": "abrao.aragao@example.com",
+    "telefone": "(38) 4965-8712",
+    "cpf": "129.477.778-68",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51298",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "8776",
+      "bairro": "Centro",
+      "cidade": "Pouso Alegre",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330933773",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Jesualdo Aragão",
+    "email": "jesualdo.aragao@example.com",
+    "telefone": "(56) 9121-8423",
+    "cpf": "214.687.561-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "64571",
+      "logradouro": "Rua Vinte E Um",
+      "numero": "9929",
+      "bairro": "Centro",
+      "cidade": "Angra dos Reis",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330934097",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Albino Sales",
+    "email": "albino.sales@example.com",
+    "telefone": "(51) 5762-6391",
+    "cpf": "655.312.766-10",
+    "cnpj": "",
+    "endereco": {
+      "cep": "10365",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "6190",
+      "bairro": "Centro",
+      "cidade": "Natal",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330934401",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Belmiro Moura",
+    "email": "belmiro.moura@example.com",
+    "telefone": "(39) 2622-9579",
+    "cpf": "567.130.715-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "37469",
+      "logradouro": "Rua São Luiz ",
+      "numero": "1996",
+      "bairro": "Centro",
+      "cidade": "Vespasiano",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330934775",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Romário Ramos",
+    "email": "romario.ramos@example.com",
+    "telefone": "(31) 9113-9564",
+    "cpf": "382.891.731-27",
+    "cnpj": "",
+    "endereco": {
+      "cep": "76627",
+      "logradouro": "Rua Onze ",
+      "numero": "5425",
+      "bairro": "Centro",
+      "cidade": "Ilhéus",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330935082",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Josilene Pereira",
+    "email": "josilene.pereira@example.com",
+    "telefone": "(00) 8948-1952",
+    "cpf": "939.693.028-53",
+    "cnpj": "",
+    "endereco": {
+      "cep": "26360",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "8459",
+      "bairro": "Centro",
+      "cidade": "Olinda",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330935394",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ramberto Farias",
+    "email": "ramberto.farias@example.com",
+    "telefone": "(97) 3358-2003",
+    "cpf": "649.186.593-25",
+    "cnpj": "",
+    "endereco": {
+      "cep": "74766",
+      "logradouro": "Rua Sete de Setembro ",
+      "numero": "8776",
+      "bairro": "Centro",
+      "cidade": "Cubatão",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330935858",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Cassandra Almeida",
+    "email": "cassandra.almeida@example.com",
+    "telefone": "(60) 4964-1905",
+    "cpf": "596.669.194-01",
+    "cnpj": "",
+    "endereco": {
+      "cep": "74676",
+      "logradouro": "Rua Vinte de Setembro",
+      "numero": "8723",
+      "bairro": "Centro",
+      "cidade": "Itabuna",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330936244",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Maurício Ferreira",
+    "email": "mauricio.ferreira@example.com",
+    "telefone": "(81) 8968-0108",
+    "cpf": "959.817.670-63",
+    "cnpj": "",
+    "endereco": {
+      "cep": "26904",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "8888",
+      "bairro": "Centro",
+      "cidade": "Mesquita",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330936557",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Melchior Silva",
+    "email": "melchior.silva@example.com",
+    "telefone": "(68) 8202-8746",
+    "cpf": "685.824.223-83",
+    "cnpj": "",
+    "endereco": {
+      "cep": "88804",
+      "logradouro": "Rua São Pedro ",
+      "numero": "3271",
+      "bairro": "Centro",
+      "cidade": "Cubatão",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330936908",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Geraldo Cardoso",
+    "email": "geraldo.cardoso@example.com",
+    "telefone": "(74) 5505-2772",
+    "cpf": "377.923.727-26",
+    "cnpj": "",
+    "endereco": {
+      "cep": "70675",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "5902",
+      "bairro": "Centro",
+      "cidade": "Belford Roxo",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330937225",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Franklino Silveira",
+    "email": "franklino.silveira@example.com",
+    "telefone": "(58) 0774-3217",
+    "cpf": "182.969.209-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "81598",
+      "logradouro": "Rua São Luiz ",
+      "numero": "4263",
+      "bairro": "Centro",
+      "cidade": "Marituba",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330937537",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Eleonara Aragão",
+    "email": "eleonara.aragao@example.com",
+    "telefone": "(09) 3946-6367",
+    "cpf": "998.016.894-22",
+    "cnpj": "",
+    "endereco": {
+      "cep": "73839",
+      "logradouro": "Rua José Bonifácio ",
+      "numero": "5904",
+      "bairro": "Centro",
+      "cidade": "Vila Velha",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330937858",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Edileusa Campos",
+    "email": "edileusa.campos@example.com",
+    "telefone": "(45) 5077-1752",
+    "cpf": "526.086.664-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "50574",
+      "logradouro": "Rua Piauí ",
+      "numero": "334",
+      "bairro": "Centro",
+      "cidade": "Mogi das Cruzes",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330938208",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Gissele Porto",
+    "email": "gissele.porto@example.com",
+    "telefone": "(15) 0247-9189",
+    "cpf": "656.687.169-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "34383",
+      "logradouro": "Rua Quinze de Novembro ",
+      "numero": "8824",
+      "bairro": "Centro",
+      "cidade": "Araguari",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330938568",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Cícero da Mota",
+    "email": "cicero.damota@example.com",
+    "telefone": "(55) 2971-0387",
+    "cpf": "819.230.168-67",
+    "cnpj": "",
+    "endereco": {
+      "cep": "41363",
+      "logradouro": "Rua Dezesseis de Maio",
+      "numero": "7205",
+      "bairro": "Centro",
+      "cidade": "São Lourenço da Mata",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330938888",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Haroldo da Cruz",
+    "email": "haroldo.dacruz@example.com",
+    "telefone": "(45) 5704-3252",
+    "cpf": "193.442.710-22",
+    "cnpj": "",
+    "endereco": {
+      "cep": "76908",
+      "logradouro": "Rua Pernambuco ",
+      "numero": "3630",
+      "bairro": "Centro",
+      "cidade": "Salvador",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330939203",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Antonieta Jesus",
+    "email": "antonieta.jesus@example.com",
+    "telefone": "(08) 5704-3667",
+    "cpf": "699.038.031-31",
+    "cnpj": "",
+    "endereco": {
+      "cep": "19167",
+      "logradouro": "Rua Paraíba ",
+      "numero": "7200",
+      "bairro": "Centro",
+      "cidade": "São José do Rio Preto",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330939781",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lupicino Vieira",
+    "email": "lupicino.vieira@example.com",
+    "telefone": "(54) 1183-8372",
+    "cpf": "146.853.465-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17492",
+      "logradouro": "Rua Duque de Caxias ",
+      "numero": "1285",
+      "bairro": "Centro",
+      "cidade": "Chapecó",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330940104",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Clélia de Souza",
+    "email": "clelia.desouza@example.com",
+    "telefone": "(26) 9245-9849",
+    "cpf": "164.916.173-00",
+    "cnpj": "",
+    "endereco": {
+      "cep": "36407",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "4429",
+      "bairro": "Centro",
+      "cidade": "Parintins",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330940417",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Hernâni Cavalcanti",
+    "email": "hernani.cavalcanti@example.com",
+    "telefone": "(10) 1809-6124",
+    "cpf": "518.454.278-10",
+    "cnpj": "",
+    "endereco": {
+      "cep": "45888",
+      "logradouro": "Rua São Francisco ",
+      "numero": "4844",
+      "bairro": "Centro",
+      "cidade": "Rio Verde",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330940760",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Dírio Oliveira",
+    "email": "dirio.oliveira@example.com",
+    "telefone": "(87) 3780-2266",
+    "cpf": "410.052.597-05",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51461",
+      "logradouro": "Rua João Xxiii",
+      "numero": "8097",
+      "bairro": "Centro",
+      "cidade": "Diadema",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330941342",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Fortunato Fogaça",
+    "email": "fortunato.fogaca@example.com",
+    "telefone": "(68) 3456-0704",
+    "cpf": "682.427.889-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "48654",
+      "logradouro": "Rua Rui Barbosa ",
+      "numero": "213",
+      "bairro": "Centro",
+      "cidade": "Luziânia",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330941649",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Maristela Dias",
+    "email": "maristela.dias@example.com",
+    "telefone": "(55) 1141-4455",
+    "cpf": "264.794.685-52",
+    "cnpj": "",
+    "endereco": {
+      "cep": "22064",
+      "logradouro": "Rua São Pedro ",
+      "numero": "8842",
+      "bairro": "Centro",
+      "cidade": "Foz do Iguaçu",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330942260",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Sário da Cruz",
+    "email": "sario.dacruz@example.com",
+    "telefone": "(27) 6006-7453",
+    "cpf": "398.168.607-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "98147",
+      "logradouro": "Rua Boa Vista ",
+      "numero": "9813",
+      "bairro": "Centro",
+      "cidade": "Caucaia",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330942570",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Filinto Martins",
+    "email": "filinto.martins@example.com",
+    "telefone": "(44) 3088-1632",
+    "cpf": "058.503.475-64",
+    "cnpj": "",
+    "endereco": {
+      "cep": "98332",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "9367",
+      "bairro": "Centro",
+      "cidade": "Teresina",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330942905",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Geni da Costa",
+    "email": "geni.dacosta@example.com",
+    "telefone": "(20) 3079-0352",
+    "cpf": "191.222.523-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "59997",
+      "logradouro": "Rua Rio de Janeiro ",
+      "numero": "6060",
+      "bairro": "Centro",
+      "cidade": "Petrolina",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330943210",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Floriana Carvalho",
+    "email": "floriana.carvalho@example.com",
+    "telefone": "(12) 7462-1491",
+    "cpf": "959.510.381-26",
+    "cnpj": "",
+    "endereco": {
+      "cep": "95563",
+      "logradouro": "Rua Piauí ",
+      "numero": "3527",
+      "bairro": "Centro",
+      "cidade": "Maceió",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330943585",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Leopoldo Ramos",
+    "email": "leopoldo.ramos@example.com",
+    "telefone": "(94) 0902-7261",
+    "cpf": "490.696.394-01",
+    "cnpj": "",
+    "endereco": {
+      "cep": "42180",
+      "logradouro": "Rua Das Flores ",
+      "numero": "4546",
+      "bairro": "Centro",
+      "cidade": "Niterói",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330943897",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Apolo Costa",
+    "email": "apolo.costa@example.com",
+    "telefone": "(73) 0530-5230",
+    "cpf": "735.410.267-87",
+    "cnpj": "",
+    "endereco": {
+      "cep": "49407",
+      "logradouro": "Rua Tiradentes ",
+      "numero": "2516",
+      "bairro": "Centro",
+      "cidade": "Macaé",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330944223",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Bartolomeu da Mota",
+    "email": "bartolomeu.damota@example.com",
+    "telefone": "(44) 4116-6496",
+    "cpf": "160.324.044-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "20798",
+      "logradouro": "Rua Pará ",
+      "numero": "3321",
+      "bairro": "Centro",
+      "cidade": "Caucaia",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330944557",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Higina Aragão",
+    "email": "higina.aragao@example.com",
+    "telefone": "(34) 8965-0792",
+    "cpf": "122.966.345-86",
+    "cnpj": "",
+    "endereco": {
+      "cep": "22511",
+      "logradouro": "Rua Rio de Janeiro ",
+      "numero": "5700",
+      "bairro": "Centro",
+      "cidade": "Sabará",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330944875",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Esmeraldo Fogaça",
+    "email": "esmeraldo.fogaca@example.com",
+    "telefone": "(36) 4066-4444",
+    "cpf": "308.079.704-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "59976",
+      "logradouro": "Rua Das Flores ",
+      "numero": "2050",
+      "bairro": "Centro",
+      "cidade": "Araucária",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330945228",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Sinara Campos",
+    "email": "sinara.campos@example.com",
+    "telefone": "(92) 0307-8357",
+    "cpf": "891.815.795-41",
+    "cnpj": "",
+    "endereco": {
+      "cep": "20346",
+      "logradouro": "Rua São Jorge ",
+      "numero": "1302",
+      "bairro": "Centro",
+      "cidade": "Cametá",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330945568",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Claro Almeida",
+    "email": "claro.almeida@example.com",
+    "telefone": "(58) 1373-2999",
+    "cpf": "009.000.202-43",
+    "cnpj": "",
+    "endereco": {
+      "cep": "44929",
+      "logradouro": "Rua Santa Luzia ",
+      "numero": "3456",
+      "bairro": "Centro",
+      "cidade": "Nova Friburgo",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330945883",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Edinéia Campos",
+    "email": "edineia.campos@example.com",
+    "telefone": "(46) 1190-9959",
+    "cpf": "941.085.012-81",
+    "cnpj": "",
+    "endereco": {
+      "cep": "75331",
+      "logradouro": "Rua José Bonifácio ",
+      "numero": "772",
+      "bairro": "Centro",
+      "cidade": "São Mateus",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330946202",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Valdomiro Novaes",
+    "email": "valdomiro.novaes@example.com",
+    "telefone": "(64) 7870-2127",
+    "cpf": "710.895.582-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "15766",
+      "logradouro": "Rua São Pedro ",
+      "numero": "5282",
+      "bairro": "Centro",
+      "cidade": "Jequié",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330946517",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Irineu da Rosa",
+    "email": "irineu.darosa@example.com",
+    "telefone": "(07) 9337-7808",
+    "cpf": "206.664.743-86",
+    "cnpj": "",
+    "endereco": {
+      "cep": "44829",
+      "logradouro": "Rua Santos Dumont ",
+      "numero": "1408",
+      "bairro": "Centro",
+      "cidade": "Campo Largo",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330946839",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vanda Ribeiro",
+    "email": "vanda.ribeiro@example.com",
+    "telefone": "(79) 1179-0402",
+    "cpf": "160.404.914-42",
+    "cnpj": "",
+    "endereco": {
+      "cep": "18882",
+      "logradouro": "Rua Carlos Gomes",
+      "numero": "4219",
+      "bairro": "Centro",
+      "cidade": "Itajaí",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330947171",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Bartolomeu Perestrelo Lopes",
+    "email": "bartolomeuperestrelo.lopes@example.com",
+    "telefone": "(42) 6346-3444",
+    "cpf": "854.428.146-76",
+    "cnpj": "",
+    "endereco": {
+      "cep": "80920",
+      "logradouro": "Rua Dezenove de Outubro",
+      "numero": "388",
+      "bairro": "Centro",
+      "cidade": "Coronel Fabriciano",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330947505",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Andréa Lopes",
+    "email": "andrea.lopes@example.com",
+    "telefone": "(87) 2089-8291",
+    "cpf": "463.586.452-30",
+    "cnpj": "",
+    "endereco": {
+      "cep": "93345",
+      "logradouro": "Rua Mato Grosso ",
+      "numero": "964",
+      "bairro": "Centro",
+      "cidade": "Bagé",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330947862",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marialba Duarte",
+    "email": "marialba.duarte@example.com",
+    "telefone": "(61) 2702-6937",
+    "cpf": "930.291.660-35",
+    "cnpj": "",
+    "endereco": {
+      "cep": "18990",
+      "logradouro": "Rua Vinte de Setembro",
+      "numero": "2220",
+      "bairro": "Centro",
+      "cidade": "Itabira",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330948165",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aires Nunes",
+    "email": "aires.nunes@example.com",
+    "telefone": "(84) 2312-8129",
+    "cpf": "721.775.426-26",
+    "cnpj": "",
+    "endereco": {
+      "cep": "73925",
+      "logradouro": "Rua São Luiz ",
+      "numero": "6328",
+      "bairro": "Centro",
+      "cidade": "Ribeirão das Neves",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330948488",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Camilo Gonçalves",
+    "email": "camilo.goncalves@example.com",
+    "telefone": "(25) 9778-4159",
+    "cpf": "779.648.475-71",
+    "cnpj": "",
+    "endereco": {
+      "cep": "89329",
+      "logradouro": "Rua Rui Barbosa ",
+      "numero": "6696",
+      "bairro": "Centro",
+      "cidade": "Sobral",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330948793",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Aquil Jesus",
+    "email": "aquil.jesus@example.com",
+    "telefone": "(80) 0425-8893",
+    "cpf": "429.310.482-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "16776",
+      "logradouro": "Rua Dezessete ",
+      "numero": "3712",
+      "bairro": "Centro",
+      "cidade": "Votorantim",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330949099",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Liliano Costa",
+    "email": "liliano.costa@example.com",
+    "telefone": "(59) 7196-3381",
+    "cpf": "405.157.584-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "91064",
+      "logradouro": "Rua Pará ",
+      "numero": "1504",
+      "bairro": "Centro",
+      "cidade": "Viamão",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330949409",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Efigênia Nunes",
+    "email": "efigenia.nunes@example.com",
+    "telefone": "(60) 8953-8453",
+    "cpf": "503.538.543-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "92163",
+      "logradouro": "Rua Vinte E Um",
+      "numero": "6460",
+      "bairro": "Centro",
+      "cidade": "Santa Bárbara D'Oeste",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330949708",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Oliveiros Aragão",
+    "email": "oliveiros.aragao@example.com",
+    "telefone": "(36) 5370-3405",
+    "cpf": "295.601.762-65",
+    "cnpj": "",
+    "endereco": {
+      "cep": "20366",
+      "logradouro": "Rua Paraíba ",
+      "numero": "9661",
+      "bairro": "Centro",
+      "cidade": "Simões Filho",
+      "uf": "Amazonas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330950015",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Déborah Monteiro",
+    "email": "deborah.monteiro@example.com",
+    "telefone": "(32) 0766-8770",
+    "cpf": "458.949.651-87",
+    "cnpj": "",
+    "endereco": {
+      "cep": "55111",
+      "logradouro": "Rua São Francisco ",
+      "numero": "7652",
+      "bairro": "Centro",
+      "cidade": "Sorocaba",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330950590",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lolita Rocha",
+    "email": "lolita.rocha@example.com",
+    "telefone": "(13) 5908-0614",
+    "cpf": "124.310.711-66",
+    "cnpj": "",
+    "endereco": {
+      "cep": "60963",
+      "logradouro": "Avenida Brasil ",
+      "numero": "3053",
+      "bairro": "Centro",
+      "cidade": "Ribeirão Pires",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330951069",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Elóides Viana",
+    "email": "eloides.viana@example.com",
+    "telefone": "(81) 5055-6470",
+    "cpf": "769.047.517-03",
+    "cnpj": "",
+    "endereco": {
+      "cep": "62293",
+      "logradouro": "Rua Maranhão ",
+      "numero": "3953",
+      "bairro": "Centro",
+      "cidade": "Criciúma",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330951537",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Elisabeth Silveira",
+    "email": "elisabeth.silveira@example.com",
+    "telefone": "(79) 1037-2599",
+    "cpf": "730.924.010-40",
+    "cnpj": "",
+    "endereco": {
+      "cep": "91071",
+      "logradouro": "Rua Maranhão ",
+      "numero": "134",
+      "bairro": "Centro",
+      "cidade": "Aracaju",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330951880",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Graciela da Luz",
+    "email": "graciela.daluz@example.com",
+    "telefone": "(83) 9257-9234",
+    "cpf": "658.497.268-46",
+    "cnpj": "",
+    "endereco": {
+      "cep": "97381",
+      "logradouro": "Rua Dom Pedro Ii ",
+      "numero": "9813",
+      "bairro": "Centro",
+      "cidade": "Araguaína",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330952197",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Eder da Mota",
+    "email": "eder.damota@example.com",
+    "telefone": "(67) 8609-2042",
+    "cpf": "527.214.098-81",
+    "cnpj": "",
+    "endereco": {
+      "cep": "23956",
+      "logradouro": "Rua Paraíba ",
+      "numero": "1220",
+      "bairro": "Centro",
+      "cidade": "Cuiabá",
+      "uf": "Ceará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330952514",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Ercília Gomes",
+    "email": "ercilia.gomes@example.com",
+    "telefone": "(96) 7537-2099",
+    "cpf": "087.210.319-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51049",
+      "logradouro": "Rua São José ",
+      "numero": "6028",
+      "bairro": "Centro",
+      "cidade": "Itaboraí",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330952858",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Sancho da Costa",
+    "email": "sancho.dacosta@example.com",
+    "telefone": "(34) 0192-9829",
+    "cpf": "207.916.792-42",
+    "cnpj": "",
+    "endereco": {
+      "cep": "96643",
+      "logradouro": "Avenida da Legalidade",
+      "numero": "788",
+      "bairro": "Centro",
+      "cidade": "Porto Seguro",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330953173",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Betina Fogaça",
+    "email": "betina.fogaca@example.com",
+    "telefone": "(46) 5216-9089",
+    "cpf": "735.134.868-82",
+    "cnpj": "",
+    "endereco": {
+      "cep": "66544",
+      "logradouro": "Rua Paraíba ",
+      "numero": "9744",
+      "bairro": "Centro",
+      "cidade": "São Mateus",
+      "uf": "Amapá"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330953489",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Brás Sales",
+    "email": "bras.sales@example.com",
+    "telefone": "(24) 2301-2166",
+    "cpf": "328.119.224-65",
+    "cnpj": "",
+    "endereco": {
+      "cep": "96515",
+      "logradouro": "Rua Pará ",
+      "numero": "5297",
+      "bairro": "Centro",
+      "cidade": "Boa Vista",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330953819",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Evita Lima",
+    "email": "evita.lima@example.com",
+    "telefone": "(74) 1200-7680",
+    "cpf": "589.457.401-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "74551",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "3011",
+      "bairro": "Centro",
+      "cidade": "Canoas",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330954126",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Dera da Conceição",
+    "email": "dera.daconceicao@example.com",
+    "telefone": "(60) 3781-7597",
+    "cpf": "960.233.045-50",
+    "cnpj": "",
+    "endereco": {
+      "cep": "84159",
+      "logradouro": "Rua Santo Antônio ",
+      "numero": "63",
+      "bairro": "Centro",
+      "cidade": "Apucarana",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330954606",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Darlene Martins",
+    "email": "darlene.martins@example.com",
+    "telefone": "(81) 3548-3122",
+    "cpf": "030.336.649-65",
+    "cnpj": "",
+    "endereco": {
+      "cep": "83254",
+      "logradouro": "Rua Santa Catarina ",
+      "numero": "5203",
+      "bairro": "Centro",
+      "cidade": "Betim",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330954914",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Natão Novaes",
+    "email": "natao.novaes@example.com",
+    "telefone": "(28) 4925-4725",
+    "cpf": "398.633.420-16",
+    "cnpj": "",
+    "endereco": {
+      "cep": "39614",
+      "logradouro": "Rua Das Flores ",
+      "numero": "7579",
+      "bairro": "Centro",
+      "cidade": "Parintins",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330955210",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Airumã da Costa",
+    "email": "airuma.dacosta@example.com",
+    "telefone": "(70) 5212-9966",
+    "cpf": "074.195.523-66",
+    "cnpj": "",
+    "endereco": {
+      "cep": "91160",
+      "logradouro": "Rua Vinte E Quatro de Outubro",
+      "numero": "9485",
+      "bairro": "Centro",
+      "cidade": "Teófilo Otoni",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330955524",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Delmano Dias",
+    "email": "delmano.dias@example.com",
+    "telefone": "(41) 0870-7671",
+    "cpf": "447.239.252-53",
+    "cnpj": "",
+    "endereco": {
+      "cep": "12661",
+      "logradouro": "Avenida da Legalidade",
+      "numero": "1576",
+      "bairro": "Centro",
+      "cidade": "São Luís",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330955821",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marizete da Mota",
+    "email": "marizete.damota@example.com",
+    "telefone": "(32) 1754-7412",
+    "cpf": "995.190.490-53",
+    "cnpj": "",
+    "endereco": {
+      "cep": "35110",
+      "logradouro": "Rua Santos Dumont ",
+      "numero": "4150",
+      "bairro": "Centro",
+      "cidade": "Barretos",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330956140",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Flávio Santos",
+    "email": "flavio.santos@example.com",
+    "telefone": "(29) 0356-3679",
+    "cpf": "354.990.608-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "95265",
+      "logradouro": "Beco dos Namorados",
+      "numero": "88",
+      "bairro": "Centro",
+      "cidade": "Jundiaí",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330956473",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Suzane Gomes",
+    "email": "suzane.gomes@example.com",
+    "telefone": "(00) 3944-2644",
+    "cpf": "295.511.233-47",
+    "cnpj": "",
+    "endereco": {
+      "cep": "69197",
+      "logradouro": "Rua Quinze de Novembro ",
+      "numero": "9680",
+      "bairro": "Centro",
+      "cidade": "Chapecó",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330956788",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Luzia das Neves",
+    "email": "luzia.dasneves@example.com",
+    "telefone": "(51) 5663-2186",
+    "cpf": "372.577.439-52",
+    "cnpj": "",
+    "endereco": {
+      "cep": "12156",
+      "logradouro": "Beco dos Namorados",
+      "numero": "9697",
+      "bairro": "Centro",
+      "cidade": "Angra dos Reis",
+      "uf": "Maranhão"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330957096",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Sinara Araújo",
+    "email": "sinara.araujo@example.com",
+    "telefone": "(49) 0817-9064",
+    "cpf": "722.031.772-44",
+    "cnpj": "",
+    "endereco": {
+      "cep": "29502",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "2715",
+      "bairro": "Centro",
+      "cidade": "Campos dos Goytacazes",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330957401",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Iolita Duarte",
+    "email": "iolita.duarte@example.com",
+    "telefone": "(41) 5128-3849",
+    "cpf": "827.610.037-50",
+    "cnpj": "",
+    "endereco": {
+      "cep": "64885",
+      "logradouro": "Rua Dezessete ",
+      "numero": "1361",
+      "bairro": "Centro",
+      "cidade": "Queimados",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330957705",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Martim Ribeiro",
+    "email": "martim.ribeiro@example.com",
+    "telefone": "(72) 4922-5183",
+    "cpf": "476.274.153-41",
+    "cnpj": "",
+    "endereco": {
+      "cep": "86369",
+      "logradouro": "Rua Quatro",
+      "numero": "3800",
+      "bairro": "Centro",
+      "cidade": "Betim",
+      "uf": "Rondônia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330958049",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vanessa Silva",
+    "email": "vanessa.silva@example.com",
+    "telefone": "(06) 3787-1797",
+    "cpf": "508.571.589-60",
+    "cnpj": "",
+    "endereco": {
+      "cep": "16586",
+      "logradouro": "Rua Doze ",
+      "numero": "681",
+      "bairro": "Centro",
+      "cidade": "São Leopoldo",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330958341",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Inesita Almeida",
+    "email": "inesita.almeida@example.com",
+    "telefone": "(34) 0374-1114",
+    "cpf": "701.232.907-43",
+    "cnpj": "",
+    "endereco": {
+      "cep": "58603",
+      "logradouro": "Rua Dezenove de Outubro",
+      "numero": "5249",
+      "bairro": "Centro",
+      "cidade": "São José de Ribamar",
+      "uf": "Piauí"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330958662",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Edilaine Caldeira",
+    "email": "edilaine.caldeira@example.com",
+    "telefone": "(63) 2092-9503",
+    "cpf": "554.237.296-74",
+    "cnpj": "",
+    "endereco": {
+      "cep": "36398",
+      "logradouro": "Rua São Pedro ",
+      "numero": "4590",
+      "bairro": "Centro",
+      "cidade": "Gravataí",
+      "uf": "Goiás"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330958979",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Pio Costa",
+    "email": "pio.costa@example.com",
+    "telefone": "(83) 2019-5298",
+    "cpf": "930.302.535-25",
+    "cnpj": "",
+    "endereco": {
+      "cep": "35521",
+      "logradouro": "Rua Paraná ",
+      "numero": "2229",
+      "bairro": "Centro",
+      "cidade": "Garanhuns",
+      "uf": "Alagoas"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330959277",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Elzira Rodrigues",
+    "email": "elzira.rodrigues@example.com",
+    "telefone": "(35) 9592-7232",
+    "cpf": "357.832.630-75",
+    "cnpj": "",
+    "endereco": {
+      "cep": "53897",
+      "logradouro": "Rua Santa Maria ",
+      "numero": "7712",
+      "bairro": "Centro",
+      "cidade": "São Lourenço da Mata",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330959588",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Lia Viana",
+    "email": "lia.viana@example.com",
+    "telefone": "(15) 8903-2726",
+    "cpf": "839.096.892-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "45284",
+      "logradouro": "Rua São Pedro ",
+      "numero": "5852",
+      "bairro": "Centro",
+      "cidade": "Campos dos Goytacazes",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330960097",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Zaide Gomes",
+    "email": "zaide.gomes@example.com",
+    "telefone": "(98) 3315-1892",
+    "cpf": "230.705.168-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "53756",
+      "logradouro": "Rua da Saudade",
+      "numero": "1881",
+      "bairro": "Centro",
+      "cidade": "Patos de Minas",
+      "uf": "Paraná"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330960400",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Tamara Aragão",
+    "email": "tamara.aragao@example.com",
+    "telefone": "(38) 5006-4589",
+    "cpf": "447.657.653-05",
+    "cnpj": "",
+    "endereco": {
+      "cep": "27558",
+      "logradouro": "Rua Santa Rita ",
+      "numero": "2970",
+      "bairro": "Centro",
+      "cidade": "Londrina",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330960725",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Luzineide Cavalcanti",
+    "email": "luzineide.cavalcanti@example.com",
+    "telefone": "(24) 1602-5387",
+    "cpf": "101.167.180-17",
+    "cnpj": "",
+    "endereco": {
+      "cep": "29245",
+      "logradouro": "Avenida da Legalidade",
+      "numero": "5878",
+      "bairro": "Centro",
+      "cidade": "Cachoeiro de Itapemirim",
+      "uf": "Pará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330961042",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Angelita Araújo",
+    "email": "angelita.araujo@example.com",
+    "telefone": "(52) 6511-8935",
+    "cpf": "821.849.564-34",
+    "cnpj": "",
+    "endereco": {
+      "cep": "15344",
+      "logradouro": "Rua Três",
+      "numero": "1418",
+      "bairro": "Centro",
+      "cidade": "Itajaí",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330961421",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Arquimino Rodrigues",
+    "email": "arquimino.rodrigues@example.com",
+    "telefone": "(65) 6593-0104",
+    "cpf": "921.156.538-41",
+    "cnpj": "",
+    "endereco": {
+      "cep": "11961",
+      "logradouro": "Rua Minas Gerais ",
+      "numero": "4652",
+      "bairro": "Centro",
+      "cidade": "Abaetetuba",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330961760",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Idálio Silveira",
+    "email": "idalio.silveira@example.com",
+    "telefone": "(47) 9140-6734",
+    "cpf": "218.533.706-18",
+    "cnpj": "",
+    "endereco": {
+      "cep": "87162",
+      "logradouro": "Rua Belo Horizonte ",
+      "numero": "5977",
+      "bairro": "Centro",
+      "cidade": "Rio Verde",
+      "uf": "Mato Grosso"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330962131",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Marinalda da Mota",
+    "email": "marinalda.damota@example.com",
+    "telefone": "(76) 1321-4662",
+    "cpf": "008.423.200-08",
+    "cnpj": "",
+    "endereco": {
+      "cep": "31105",
+      "logradouro": "Rua Boa Vista ",
+      "numero": "3572",
+      "bairro": "Centro",
+      "cidade": "Formosa",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330962448",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Giani Peixoto",
+    "email": "giani.peixoto@example.com",
+    "telefone": "(08) 9903-1518",
+    "cpf": "409.140.318-10",
+    "cnpj": "",
+    "endereco": {
+      "cep": "60757",
+      "logradouro": "Rua Treze de Maio ",
+      "numero": "3345",
+      "bairro": "Centro",
+      "cidade": "Votorantim",
+      "uf": "Santa Catarina"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330962859",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Edvino da Luz",
+    "email": "edvino.daluz@example.com",
+    "telefone": "(06) 2959-2847",
+    "cpf": "897.390.985-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "26720",
+      "logradouro": "Rua São José ",
+      "numero": "497",
+      "bairro": "Centro",
+      "cidade": "Maranguape",
+      "uf": "Minas Gerais"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330963446",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Natália Teixeira",
+    "email": "natalia.teixeira@example.com",
+    "telefone": "(74) 4523-6854",
+    "cpf": "672.522.326-23",
+    "cnpj": "",
+    "endereco": {
+      "cep": "33762",
+      "logradouro": "Avenida Vinícius de Morais",
+      "numero": "1815",
+      "bairro": "Centro",
+      "cidade": "Nova Friburgo",
+      "uf": "Sergipe"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330963840",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Letícia Souza",
+    "email": "leticia.souza@example.com",
+    "telefone": "(95) 9679-1076",
+    "cpf": "260.470.101-63",
+    "cnpj": "",
+    "endereco": {
+      "cep": "61754",
+      "logradouro": "Rua Santa Catarina ",
+      "numero": "7235",
+      "bairro": "Centro",
+      "cidade": "Piracicaba",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330964317",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Cecílio da Paz",
+    "email": "cecilio.dapaz@example.com",
+    "telefone": "(63) 3541-3119",
+    "cpf": "585.949.456-48",
+    "cnpj": "",
+    "endereco": {
+      "cep": "52017",
+      "logradouro": "Rua Vinte E Quatro de Outubro",
+      "numero": "9136",
+      "bairro": "Centro",
+      "cidade": "São José dos Campos",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330964688",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Joselindo Caldeira",
+    "email": "joselindo.caldeira@example.com",
+    "telefone": "(97) 9628-2787",
+    "cpf": "272.072.949-67",
+    "cnpj": "",
+    "endereco": {
+      "cep": "11497",
+      "logradouro": "Rua Pará ",
+      "numero": "4888",
+      "bairro": "Centro",
+      "cidade": "Vespasiano",
+      "uf": "Rio de Janeiro"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330965076",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Adelmo Sales",
+    "email": "adelmo.sales@example.com",
+    "telefone": "(90) 1091-5344",
+    "cpf": "679.730.342-50",
+    "cnpj": "",
+    "endereco": {
+      "cep": "44855",
+      "logradouro": "Avenida da Democracia",
+      "numero": "8544",
+      "bairro": "Centro",
+      "cidade": "Santa Rita",
+      "uf": "Pará"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330965420",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Romário Lopes",
+    "email": "romario.lopes@example.com",
+    "telefone": "(51) 8632-2914",
+    "cpf": "801.301.693-61",
+    "cnpj": "",
+    "endereco": {
+      "cep": "32124",
+      "logradouro": "Rua Espirito Santo ",
+      "numero": "7967",
+      "bairro": "Centro",
+      "cidade": "Imperatriz",
+      "uf": "Paraíba"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330965724",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Catiúcia Fogaça",
+    "email": "catiucia.fogaca@example.com",
+    "telefone": "(59) 2055-7542",
+    "cpf": "199.322.404-26",
+    "cnpj": "",
+    "endereco": {
+      "cep": "35211",
+      "logradouro": "Avenida D. Pedro Ii",
+      "numero": "8723",
+      "bairro": "Centro",
+      "cidade": "Governador Valadares",
+      "uf": "Acre"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330966051",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Alina Oliveira",
+    "email": "alina.oliveira@example.com",
+    "telefone": "(45) 6925-4868",
+    "cpf": "289.516.627-14",
+    "cnpj": "",
+    "endereco": {
+      "cep": "51357",
+      "logradouro": "Rua Sete de Setembro ",
+      "numero": "4157",
+      "bairro": "Centro",
+      "cidade": "Sete Lagoas",
+      "uf": "Bahia"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330966440",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Mércia Rezende",
+    "email": "mercia.rezende@example.com",
+    "telefone": "(66) 5259-4380",
+    "cpf": "798.025.086-28",
+    "cnpj": "",
+    "endereco": {
+      "cep": "11434",
+      "logradouro": "Rua São Pedro ",
+      "numero": "6584",
+      "bairro": "Centro",
+      "cidade": "Corumbá",
+      "uf": "Tocantins"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330966760",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Vidal Peixoto",
+    "email": "vidal.peixoto@example.com",
+    "telefone": "(69) 5455-1021",
+    "cpf": "486.722.070-24",
+    "cnpj": "",
+    "endereco": {
+      "cep": "41848",
+      "logradouro": "Rua Dois",
+      "numero": "2854",
+      "bairro": "Centro",
+      "cidade": "Marabá",
+      "uf": "Pernambuco"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330967146",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Luca Dias",
+    "email": "luca.dias@example.com",
+    "telefone": "(22) 0479-9846",
+    "cpf": "154.525.359-50",
+    "cnpj": "",
+    "endereco": {
+      "cep": "44805",
+      "logradouro": "Rua Primeiro de Maio ",
+      "numero": "8246",
+      "bairro": "Centro",
+      "cidade": "Sapucaia do Sul",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330967489",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Fabíola Lima",
+    "email": "fabiola.lima@example.com",
+    "telefone": "(68) 5538-7278",
+    "cpf": "270.025.090-36",
+    "cnpj": "",
+    "endereco": {
+      "cep": "14667",
+      "logradouro": "Rua São João ",
+      "numero": "2230",
+      "bairro": "Centro",
+      "cidade": "Praia Grande",
+      "uf": "São Paulo"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330967832",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Godofreda Lopes",
+    "email": "godofreda.lopes@example.com",
+    "telefone": "(47) 6024-0337",
+    "cpf": "147.300.321-80",
+    "cnpj": "",
+    "endereco": {
+      "cep": "60499",
+      "logradouro": "Rua Rui Barbosa ",
+      "numero": "6937",
+      "bairro": "Centro",
+      "cidade": "Cametá",
+      "uf": "Roraima"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330968211",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Bértil Nogueira",
+    "email": "bertil.nogueira@example.com",
+    "telefone": "(44) 3875-3288",
+    "cpf": "366.948.019-84",
+    "cnpj": "",
+    "endereco": {
+      "cep": "42568",
+      "logradouro": "Rua Paraíba ",
+      "numero": "6730",
+      "bairro": "Centro",
+      "cidade": "Toledo",
+      "uf": "Mato Grosso do Sul"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330968507",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Adrião Rodrigues",
+    "email": "adriao.rodrigues@example.com",
+    "telefone": "(63) 6879-3563",
+    "cpf": "511.721.348-33",
+    "cnpj": "",
+    "endereco": {
+      "cep": "66121",
+      "logradouro": "Travessa dos Açorianos",
+      "numero": "2733",
+      "bairro": "Centro",
+      "cidade": "Ribeirão das Neves",
+      "uf": "Distrito Federal"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  },
+  {
+    "id": "1725330968860",
+    "tipoCliente": "Pessoa Física",
+    "nome": "Édina Rocha",
+    "email": "edina.rocha@example.com",
+    "telefone": "(86) 8464-6703",
+    "cpf": "497.173.766-23",
+    "cnpj": "",
+    "endereco": {
+      "cep": "66465",
+      "logradouro": "Rua Santos Dumont ",
+      "numero": "2900",
+      "bairro": "Centro",
+      "cidade": "Criciúma",
+      "uf": "Rio Grande do Norte"
+    },
+    "dataCadastro": "9/3/2024, 2:30:46 AM"
+  }
+]

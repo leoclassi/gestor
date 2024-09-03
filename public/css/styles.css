@@ -1,0 +1,73 @@
+:root {
+    --sidebar-bg: #f8f9fa;
+    --sidebar-color: #333;
+    --sidebar-hover: #e9ecef;
+}
+
+.dark-theme {
+    --sidebar-bg: #212222;
+    --sidebar-color: #ecf0f1;
+    --sidebar-hover: #34495e;
+}
+
+body {
+    transition: background-color 0.3s ease;
+}
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.sidebar-header h3 {
+    color: var(--sidebar-color);
+    margin-bottom: 0;
+}
+
+.sidebar hr {
+    border-top: 1px solid var(--sidebar-color);
+    margin: 10px 0;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--sidebar-color);
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: var(--sidebar-hover);
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.sidebar a .arrow {
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.sidebar a[aria-expanded="true"] .arrow {
+    transform: rotate(90deg);
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}

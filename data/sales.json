@@ -1,0 +1,74 @@
+[
+  {
+    "numero": "222",
+    "cliente": "Augusta",
+    "situacao": "Concretizada",
+    "data": "2024-09-02",
+    "prazoEntrega": "",
+    "produtos": [
+      {
+        "produto": "Palanque - 6,00 metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 22.5,
+        "desconto": 0,
+        "subtotal": 22.5
+      },
+      {
+        "produto": "Palanque - 3,20 metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 30,
+        "desconto": 0,
+        "subtotal": 30
+      }
+    ],
+    "id": "1725305815019"
+  },
+  {
+    "numero": "2421",
+    "cliente": "Arcanjo Oliveira",
+    "situacao": "Concretizada",
+    "data": "2024-09-02",
+    "prazoEntrega": "",
+    "produtos": [
+      {
+        "produto": "HTC Smart Bed Imenso Quantum Marrom 2020 (Modelo 3207)",
+        "quantidade": 3,
+        "valor": 1220,
+        "desconto": 50,
+        "subtotal": 3610
+      }
+    ],
+    "id": "1725332012679"
+  },
+  {
+    "numero": "432",
+    "cliente": "Adelmo Sales",
+    "situacao": "Concretizada",
+    "data": "2024-10-04",
+    "prazoEntrega": "",
+    "produtos": [
+      {
+        "produto": "Google Fogão Pequeno Bluetooth Cinza 2024 (Modelo 1454)",
+        "quantidade": 2,
+        "valor": 1713,
+        "desconto": 0,
+        "subtotal": 3426
+      },
+      {
+        "produto": "Asus Aquecedor Pequeno Grande Digital Bege 2023 (Modelo 7059)",
+        "quantidade": 1,
+        "valor": 1468,
+        "desconto": 0,
+        "subtotal": 1468
+      },
+      {
+        "produto": "Realme Batedeira Mega Slim Lavanda 2022 (Modelo 9907)",
+        "quantidade": 45,
+        "valor": 1783,
+        "desconto": 0,
+        "subtotal": 80235
+      }
+    ],
+    "id": "1725332967339"
+  }
+]
