@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
 const path = require('path');
-const fetch = require('node-fetch');
-
 const app = express();
 const PORT = 3000;
 
@@ -166,18 +164,6 @@ app.get('/api/sales/:id', async (req, res) => {
         res.json(sale);
     } else {
         res.status(404).json({ error: 'Sale not found' });
-    }
-});
-
-// Rota para buscar dados do CNPJ
-app.get('/api/cnpj/:cnpj', async (req, res) => {
-    const cnpj = req.params.cnpj;
-    try {
-        const response = await fetch(`https://www.receitaws.com.br/v1/cnpj/${cnpj}`);
-        const data = await response.json();
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao buscar dados do CNPJ' });
     }
 });
 
