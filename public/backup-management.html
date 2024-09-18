@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Backup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <style>
+        /* Estilos existentes... */
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Sidebar existente... -->
+        <a href="#backupSubmenu" data-toggle="collapse" aria-expanded="false">
+            💾 Backup <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="backupSubmenu">
+            <li>
+                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+            </li>
+        </ul>
+        <!-- Resto da sidebar... -->
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <h1 class="mb-4">💾 Gerenciamento de Backup</h1>
+            <div id="loginMessage" class="alert alert-warning" style="display: none;">
+                Você precisa estar logado para acessar esta página. 
+                <a href="login.html" class="alert-link">Clique aqui para fazer login</a>.
+            </div>
+            <div id="backupContent" style="display: none;">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Backup Manual</h5>
+                        <p class="card-text">Clique no botão abaixo para realizar um backup manual dos dados do sistema.</p>
+                        <button id="backupButton" class="btn btn-primary">
+                            <i class="fas fa-download mr-2"></i>Realizar Backup Manual
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-4" id="backupStatus"></div>
+                
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Backups Disponíveis</h5>
+                        <ul id="backupList" class="list-group">
+                            <!-- Lista de backups será preenchida aqui -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const backupButton = document.getElementById('backupButton');
+        const backupStatus = document.getElementById('backupStatus');
+        const backupList = document.getElementById('backupList');
+        const loginMessage = document.getElementById('loginMessage');
+        const backupContent = document.getElementById('backupContent');
+
+        function checkAuthentication() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                loginMessage.style.display = 'block';
+                backupContent.style.display = 'none';
+            } else {
+                loginMessage.style.display = 'none';
+                backupContent.style.display = 'block';
+                updateBackupList();
+            }
+        }
+
+        function updateBackupList() {
+            const token = localStorage.getItem('token'); // Obter o token armazenado
+
+            fetch('/api/backups', {
+                headers: {
+                    'Authorization': `Bearer ${token}` // Incluir o token no header
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Falha na autenticação');
+                }
+                return response.json();
+            })
+            .then(files => {
+                backupList.innerHTML = '';
+                files.forEach(file => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.innerHTML = `
+                        ${file}
+                        <a href="/backups/${file}" download class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    `;
+                    backupList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao listar backups:', error);
+                backupList.innerHTML = '<li class="list-group-item text-danger">Erro ao listar backups</li>';
+                if (error.message === 'Falha na autenticação') {
+                    checkAuthentication();
+                }
+            });
+        }
+
+        backupButton.addEventListener('click', async () => {
+            try {
+                backupButton.disabled = true;
+                backupStatus.innerHTML = '<div class="alert alert-info">Realizando backup...</div>';
+                
+                const token = localStorage.getItem('token'); // Obter o token armazenado
+                const response = await fetch('/api/backup', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Incluir o token no header
+                    }
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    backupStatus.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                    updateBackupList();
+                } else {
+                    backupStatus.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                }
+            } catch (error) {
+                console.error('Erro ao realizar backup:', error);
+                if (error.message === 'Falha na autenticação') {
+                    backupStatus.innerHTML = '<div class="alert alert-danger">Sessão expirada. Por favor, faça login novamente.</div>';
+                    checkAuthentication();
+                } else {
+                    backupStatus.innerHTML = '<div class="alert alert-danger">Erro ao realizar backup. Verifique o console para mais detalhes.</div>';
+                }
+            } finally {
+                backupButton.disabled = false;
+            }
+        });
+
+        checkAuthentication();
+    });
+    </script>
+</body>
+</html>

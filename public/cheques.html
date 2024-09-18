@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Cheques</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <style>
+        .form-row {
+            margin-bottom: 1rem;
+        }
+        .btn-group {
+            margin-top: 1rem;
+        }
+        .input-group-text {
+            background-color: #f8f9fa;
+            border-right: none;
+        }
+        .form-control.valor {
+            border-left: none;
+        }
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--sidebar-color);
+        }
+        .btn-logout {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: transparent;
+            color: var(--sidebar-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-logout:hover {
+            background-color: var(--sidebar-hover);
+            color: #dc3545;
+        }
+        .btn-logout i {
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+
+            // Adicionar evento de clique ao botão Cancelar
+            document.getElementById('cancelarBtn').addEventListener('click', () => {
+                window.location.href = 'cheques-management.html';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>🌲 Portugal Madeiras</h3>
+            <hr>
+        </div>
+        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="productsSubmenu">
+            <li>
+                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+            </li>
+        </ul>
+        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="clientsSubmenu">
+            <li>
+                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+            </li>
+        </ul>
+        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="salesSubmenu">
+            <li>
+                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+            </li>
+            <li>
+                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+            </li>
+        </ul>
+        <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="chequesSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>💰 Gerenciamento de Cheques</h1>
+                <a href="cheques-management.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left mr-2"></i>Voltar
+                </a>
+            </div>
+            <form id="chequeForm">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-money-check mr-2"></i>Dados do Cheque
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="numeroCheque">Número do Cheque</label>
+                                <input type="text" class="form-control" id="numeroCheque" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="banco">Banco</label>
+                                <input type="text" class="form-control" id="banco" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="agencia">Agência</label>
+                                <input type="text" class="form-control" id="agencia" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="contaCorrente">Conta Corrente</label>
+                                <input type="text" class="form-control" id="contaCorrente" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="valor">Valor</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control valor" id="valor" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="dataEmissao">Data de Emissão</label>
+                                <input type="date" class="form-control" id="dataEmissao" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="remetente">Nome do Remetente</label>
+                                <input type="text" class="form-control" id="remetente" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="dataCompensacao">Data de Compensação</label>
+                                <input type="date" class="form-control" id="dataCompensacao" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success mr-2">
+                        <i class="fas fa-save mr-2"></i>Salvar Cheque
+                    </button>
+                    <button type="button" class="btn btn-secondary mr-2" id="cancelarBtn">
+                        <i class="fas fa-times mr-2"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-warning mr-2" id="limparBtn">
+                        <i class="fas fa-eraser mr-2"></i>Limpar
+                    </button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#autoPreencherModal">
+                        <i class="fas fa-magic mr-2"></i>Auto Preencher
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Auto Preenchimento -->
+    <div class="modal fade" id="autoPreencherModal" tabindex="-1" aria-labelledby="autoPreencherModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoPreencherModalLabel">Auto Preencher Cheque</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="chequeJson">Insira os dados do cheque em formato JSON:</label>
+                        <textarea class="form-control" id="chequeJson" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="preencherCheque">Preencher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successPopup" class="popup">
+        <div class="popup-content">
+            <i class="fas fa-check-circle"></i>
+            <p>Cheque salvo com sucesso!</p>
+        </div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/cheques.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Vendas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+    <style>
+        /* ... (estilos existentes) ... */
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--sidebar-color);
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: transparent;
+            color: var(--sidebar-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background-color: var(--sidebar-hover);
+            color: #dc3545;
+        }
+
+        .btn-logout i {
+            margin-right: 10px;
+        }
+
+        #themeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>🌲 Portugal Madeiras</h3>
+            <hr>
+        </div>
+        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="productsSubmenu">
+            <li>
+                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+            </li>
+        </ul>
+        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="clientsSubmenu">
+            <li>
+                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+            </li>
+        </ul>
+        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="salesSubmenu">
+            <li>
+                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+            </li>
+            <li>
+                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+            </li>
+        </ul>
+        <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="chequesSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <h1 class="mb-4">📊 Gerenciamento de Vendas</h1>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <input type="text" id="search" class="form-control w-50" placeholder="🔍 Buscar por Cliente">
+                <input type="text" id="searchByNumber" class="form-control w-25 ml-2" placeholder="🔍 Buscar por Número da Compra">
+                <a href="sales.html" class="btn btn-success ml-2">
+                    🛒 Nova Venda
+                </a>
+            </div>
+            <div class="mb-3">
+                <strong>Soma das vendas selecionadas: </strong>
+                <span id="somaVendas">R$ 0,00</span>
+            </div>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center align-middle">
+                            <input type="checkbox" id="selectAllSales">
+                        </th>
+                        <th>🔢 Número</th>
+                        <th>👤 Cliente</th>
+                        <th>📋 Situação</th>
+                        <th>📅 Data</th>
+                        <th>⏳ Prazo de Entrega</th>
+                        <th>💰 Valor Total</th>
+                        <th>⚙️ Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTable">
+                    <!-- As vendas serão inseridas aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Botão para alternar entre temas -->
+    <button id="themeToggle" class="btn btn-sm">🌓</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/sales-management.js"></script>
+</body>
+</html>

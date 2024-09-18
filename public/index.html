@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Produtos</title>
+    <title>Gerenciamento de Produtos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -126,7 +126,48 @@
             border-color: #80bdff;
             box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
         }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--sidebar-color);
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: transparent;
+            color: var(--sidebar-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background-color: var(--sidebar-hover);
+            color: #dc3545;
+        }
+
+        .btn-logout i {
+            margin-right: 10px;
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -155,9 +196,25 @@
         </a>
         <ul class="collapse list-unstyled" id="salesSubmenu">
             <li>
-                <a href="sales.html" class="pl-5">Adicionar Venda</a>
+                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+            </li>
+            <li>
+                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
             </li>
         </ul>
+        <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="chequesSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
     </div>
 
     <div class="content">
@@ -172,7 +229,8 @@
                         <th><input type="checkbox" id="selectAll"></th>
                         <th>🆔 Código</th>
                         <th>📦 Nome</th>
-                        <th>💲 Valor</th>
+                        <th>💲 Valor Simples</th>
+                        <th>💰 Valor Especial</th>
                         <th>📦 Estoque</th>
                         <th>📅 Cadastrado em</th>
                         <th>⚙️ Ações</th>
@@ -189,7 +247,7 @@
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="addProductModalLabel">
                         <i class="fas fa-box-open mr-2"></i>Adicionar Produto
                     </h5>
@@ -199,47 +257,82 @@
                 </div>
                 <div class="modal-body">
                     <form id="addProductForm">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="codigo">Código</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="codigo" required>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" id="generateCode">
-                                                <i class="fas fa-random"></i> Gerar
-                                            </button>
-                                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="codigo">Código</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="codigo" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="generateCode">
+                                            <i class="fas fa-random"></i> Gerar
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" id="nome" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="valor">Valor</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">R$</span>
-                                        </div>
-                                        <input type="number" class="form-control" id="valor" step="0.01" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="estoque">Estoque</label>
-                                    <input type="number" class="form-control" id="estoque" required>
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" id="nome" required>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save mr-2"></i>Salvar
-                            </button>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="valor">Valor Simples</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="valor" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="valorEspecial">Valor Especial</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="valorEspecial" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="estoque">Estoque</label>
+                                <input type="number" class="form-control" id="estoque" required>
+                            </div>
                         </div>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#autoPreencherModal">
+                        <i class="fas fa-magic"></i> Auto Preencher
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="addProductForm" class="btn btn-success">
+                        <i class="fas fa-save mr-2"></i>Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Auto Preenchimento -->
+    <div class="modal fade" id="autoPreencherModal" tabindex="-1" aria-labelledby="autoPreencherModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoPreencherModalLabel">Auto Preencher Produto(s)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="produtoJson">Insira os dados do(s) produto(s) em formato JSON:</label>
+                        <textarea class="form-control" id="produtoJson" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="preencherProduto">Preencher</button>
+                    <button type="button" class="btn btn-success" id="adicionarTodosProdutos">Adicionar Todos</button>
                 </div>
             </div>
         </div>
@@ -251,5 +344,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
+
+    <!-- Adicione este botão onde for apropriado na sua interface -->
+    <button id="backupButton" class="btn btn-secondary">Realizar Backup Manual</button>
+
+    <!-- Adicione este script no final do body -->
+    <script>
+    document.getElementById('backupButton').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/api/backup', { method: 'POST' });
+            const data = await response.json();
+            alert(data.message);
+        } catch (error) {
+            console.error('Erro ao realizar backup:', error);
+            alert('Erro ao realizar backup. Verifique o console para mais detalhes.');
+        }
+    });
+    </script>
 </body>
 </html>

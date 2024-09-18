@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Cheques</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+
+            // Função para verificar a senha
+            async function checkPassword() {
+                const passwordInput = document.getElementById('passwordInput');
+                const passwordError = document.getElementById('passwordError');
+                const password = passwordInput.value;
+
+                try {
+                    const response = await fetch('/api/verify-password', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ password })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        $('#passwordModal').modal('hide');
+                        document.getElementById('pageContent').style.display = 'block';
+                    } else {
+                        passwordInput.classList.add('input-error', 'shake');
+                        passwordError.style.display = 'block';
+                        setTimeout(() => {
+                            passwordInput.classList.remove('shake');
+                        }, 820);
+                    }
+                } catch (error) {
+                    console.error('Erro ao verificar a senha:', error);
+                    alert('Ocorreu um erro ao verificar a senha. Por favor, tente novamente.');
+                }
+            }
+
+            // Evento para o botão de enviar senha
+            document.getElementById('submitPassword').addEventListener('click', checkPassword);
+
+            // Evento para permitir o envio da senha com a tecla Enter
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+
+            // Limpar o erro quando o usuário começar a digitar novamente
+            document.getElementById('passwordInput').addEventListener('input', function() {
+                this.classList.remove('input-error');
+                document.getElementById('passwordError').style.display = 'none';
+            });
+
+            // Exibir o modal de senha ao carregar a página
+            $('#passwordModal').modal('show');
+        });
+    </script>
+    <style>
+        /* ... (estilos existentes) ... */
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--sidebar-color);
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: transparent;
+            color: var(--sidebar-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background-color: var(--sidebar-hover);
+            color: #dc3545;
+        }
+
+        .btn-logout i {
+            margin-right: 10px;
+        }
+
+        #themeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* Adicionando estilos para melhorar a visibilidade */
+        .sidebar a:hover,
+        .btn-logout:hover,
+        .table-hover tbody tr:hover {
+            background-color: var(--hover-bg-color);
+            color: var(--sidebar-color) !important; /* Mantém a cor original */
+        }
+
+        /* Definindo variáveis de cor para temas claro e escuro */
+        :root {
+            --text-color: #333;
+            --hover-bg-color: rgba(0, 0, 0, 0.1); /* Fundo levemente escurecido no hover */
+        }
+
+        [data-theme="dark"] {
+            --text-color: #f8f9fa;
+            --hover-bg-color: rgba(255, 255, 255, 0.1); /* Fundo levemente clareado no hover para o tema escuro */
+        }
+
+        /* Estilos para os botões na tabela de cheques */
+        .table .btn {
+            width: 38px;
+            height: 38px;
+            padding: 6px;
+            margin: 2px;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 4px;
+        }
+
+        .table .btn i {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Ajuste para o botão de cheque depositado */
+        .table .btn-success.deposited {
+            width: auto;
+            padding: 6px 12px;
+        }
+
+        .table .btn-success.deposited i {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .table-sm th,
+        .table-sm td {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .table-sm .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            max-width: calc(100% - 250px);
+        }
+
+        .container {
+            max-width: 1300px;
+            padding: 0 20px;
+        }
+
+        /* Ajuste o tamanho dos emojis nos cabeçalhos */
+        .table th {
+            font-size: 1rem;
+        }
+
+        /* Adicione mais espaço entre as linhas da tabela */
+        .table-sm tr {
+            line-height: 1.5;
+        }
+
+        /* Aumentar o tamanho do cabeçalho da tabela */
+        .table-sm thead th {
+            padding: 0.75rem;  /* Aumentado de 0.5rem para 0.75rem */
+            font-size: 1.1rem;  /* Aumentado de 1rem para 1.1rem */
+            font-weight: bold;
+        }
+
+        /* Mantenha as letras brancas no hover */
+        .sidebar a:hover,
+        .btn-logout:hover {
+            background-color: var(--sidebar-hover);
+            color: var(--sidebar-color) !important;
+        }
+
+        /* Defina a cor do texto da sidebar */
+        .sidebar a,
+        .btn-logout {
+            color: var(--sidebar-color);
+        }
+
+        /* ... (outros estilos) ... */
+
+        #pageContent {
+            display: none;
+        }
+
+        .password-error {
+            color: #dc3545;
+            margin-top: 5px;
+            display: none;
+        }
+        .input-error {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+        .shake {
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        /* Estilos para o modal de senha */
+        .modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 3.5rem);
+        }
+
+        .modal-dialog {
+            max-width: 300px;
+            margin: auto;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+            border-color: #545b62;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .password-message {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal de Senha -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Insira a Senha</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="password" id="passwordInput" class="form-control" placeholder="Digite a senha">
+                    <div id="passwordError" class="password-error">Senha incorreta. Tente novamente.</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submitPassword">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageContent">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>🌲 Portugal Madeiras</h3>
+                <hr>
+            </div>
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="salesSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+                </li>
+            </ul>
+            <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="chequesSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="logoutButton" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container">
+                <h1 class="mb-4">💰 Gerenciamento de Cheques</h1>
+                
+                <!-- Adicione esta div para exibir a soma dos cheques selecionados -->
+                <div class="mb-3">
+                    <strong>Soma dos cheques selecionados: </strong>
+                    <span id="somaCheques">R$ 0,00</span>
+                </div>
+
+                <!-- Barra de ferramentas -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" id="search" class="form-control" placeholder="🔍 Buscar por Remetente">
+                            <input type="text" id="searchByNumber" class="form-control ml-2" placeholder="🔍 Buscar por Nº Cheque">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button id="newChequeBtn" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Novo Cheque
+                        </button>
+                        <button id="selectNonCompensatedBtn" class="btn btn-info ml-2">
+                            <i class="fas fa-check-square"></i> Selecionar Não Compensados
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabela de cheques -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center align-middle">
+                                    <input type="checkbox" id="selectAllCheckbox">
+                                </th>
+                                <th class="text-center align-middle">🔢 Nº Cheque</th>
+                                <th class="text-center align-middle">💰 Valor</th>
+                                <th class="text-center align-middle">👤 Remetente</th>
+                                <th class="text-center align-middle">📆 Data Comp.</th>
+                                <th class="text-center align-middle">💼 Status</th>
+                                <th class="text-center align-middle">📝 Anotações</th>
+                                <th class="text-center align-middle">⚙️ Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="chequesTable">
+                            <!-- Os cheques serão inseridos aqui pelo JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginação -->
+                <nav aria-label="Navegação de página">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <!-- Elementos de paginação serão adicionados dinamicamente -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirmar Ação</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza de que deseja marcar este cheque como depositado?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="confirmButton">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação de Exclusão -->
+        <div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteConfirmModalLabel">Confirmar Exclusão</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja excluir este cheque?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edição de Cheque -->
+        <div class="modal fade" id="editChequeModal" tabindex="-1" role="dialog" aria-labelledby="editChequeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editChequeModalLabel">Editar Cheque</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editChequeForm">
+                            <input type="hidden" id="editChequeId">
+                            <div class="form-group">
+                                <label for="editNumeroCheque">Número do Cheque</label>
+                                <input type="text" class="form-control" id="editNumeroCheque" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editValor">Valor</label>
+                                <input type="number" class="form-control" id="editValor" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editRemetente">Remetente</label>
+                                <input type="text" class="form-control" id="editRemetente" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDataCompensacao">Data de Compensação</label>
+                                <input type="date" class="form-control" id="editDataCompensacao" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editCompensado">Compensado</label>
+                                <select class="form-control" id="editCompensado">
+                                    <option value="false">Não</option>
+                                    <option value="true">Sim</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="saveEditCheque">Salvar Alterações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Anotações -->
+        <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notesModalLabel">Anotações do Cheque</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="chequeNotes" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="saveNotes">Salvar Anotações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão para alternar entre temas -->
+        <button id="themeToggle" class="btn btn-sm">🌓</button>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="js/cheques-management.js"></script>
+    </div>
+</body>
+</html>

@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const codigo = document.getElementById('codigo').value;
             const nome = document.getElementById('nome').value;
             const valor = parseFloat(document.getElementById('valor').value);
+            const valorEspecial = parseFloat(document.getElementById('valorEspecial').value);
             const estoque = parseInt(document.getElementById('estoque').value);
 
             const newProduct = {
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 codigo,
                 nome,
                 valor,
+                valorEspecial,
                 estoque,
                 dataCadastro: editingProduct ? editingProduct.dataCadastro : new Date().toLocaleString()
             };
@@ -105,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <td><input type="checkbox" class="select-product" value="${product.id}"></td>
             <td>${product.codigo}</td>
             <td>${product.nome}</td>
-            <td>R$ ${product.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>R$ ${(product.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>R$ ${(product.valorEspecial || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td>${product.estoque}</td>
             <td>${product.dataCadastro}</td>
             <td>
@@ -119,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('codigo').value = product.codigo;
             document.getElementById('nome').value = product.nome;
             document.getElementById('valor').value = product.valor;
+            document.getElementById('valorEspecial').value = product.valorEspecial;
             document.getElementById('estoque').value = product.estoque;
             $('#addProductModal').modal('show');
         });
@@ -145,7 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td><input type="checkbox" class="select-product" value="${product.id}"></td>
                 <td>${product.codigo}</td>
                 <td>${product.nome}</td>
-                <td>R$ ${product.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td>R$ ${(product.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td>R$ ${(product.valorEspecial || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 <td>${product.estoque}</td>
                 <td>${product.dataCadastro}</td>
                 <td>
@@ -159,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('codigo').value = product.codigo;
                 document.getElementById('nome').value = product.nome;
                 document.getElementById('valor').value = product.valor;
+                document.getElementById('valorEspecial').value = product.valorEspecial;
                 document.getElementById('estoque').value = product.estoque;
                 $('#addProductModal').modal('show');
             });
@@ -219,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             product.codigo.toLowerCase().includes(searchTerm) ||
             product.nome.toLowerCase().includes(searchTerm) ||
             product.valor.toString().includes(searchTerm) ||
+            product.valorEspecial.toString().includes(searchTerm) ||
             product.estoque.toString().includes(searchTerm)
         );
         renderProductTable(filteredProducts);
@@ -229,5 +236,78 @@ document.addEventListener('DOMContentLoaded', () => {
         products.forEach(product => {
             addProductToTable(product);
         });
+    }
+
+    const preencherProdutoBtn = document.getElementById('preencherProduto');
+    const adicionarTodosProdutosBtn = document.getElementById('adicionarTodosProdutos');
+    const produtoJsonTextarea = document.getElementById('produtoJson');
+
+    preencherProdutoBtn.addEventListener('click', () => {
+        try {
+            const produtoData = JSON.parse(produtoJsonTextarea.value);
+            if (Array.isArray(produtoData) && produtoData.length > 0) {
+                const produto = produtoData[0];
+                preencherFormularioProduto(produto);
+                $('#autoPreencherModal').modal('hide');
+            } else {
+                throw new Error('Formato JSON inválido');
+            }
+        } catch (error) {
+            alert('Erro ao processar o JSON. Verifique o formato e tente novamente.');
+        }
+    });
+
+    adicionarTodosProdutosBtn.addEventListener('click', () => {
+        try {
+            const produtoData = JSON.parse(produtoJsonTextarea.value);
+            if (Array.isArray(produtoData) && produtoData.length > 0) {
+                adicionarMultiplosProdutos(produtoData);
+                $('#autoPreencherModal').modal('hide');
+            } else {
+                throw new Error('Formato JSON inválido');
+            }
+        } catch (error) {
+            alert('Erro ao processar o JSON. Verifique o formato e tente novamente.');
+        }
+    });
+
+    function preencherFormularioProduto(produto) {
+        document.getElementById('codigo').value = produto.codigo || '';
+        document.getElementById('nome').value = produto.nome || '';
+        document.getElementById('valor').value = produto.valor ? parseFloat(produto.valor).toFixed(2) : '';
+        document.getElementById('valorEspecial').value = produto.valorEspecial ? parseFloat(produto.valorEspecial).toFixed(2) : '';
+        document.getElementById('estoque').value = produto.estoque || '';
+    }
+
+    function adicionarMultiplosProdutos(produtos) {
+        produtos.forEach(produto => {
+            const newProduct = {
+                id: Date.now().toString(),
+                codigo: produto.codigo,
+                nome: produto.nome,
+                valor: parseFloat(produto.valor),
+                valorEspecial: parseFloat(produto.valorEspecial),
+                estoque: parseInt(produto.estoque),
+                dataCadastro: new Date().toLocaleString()
+            };
+
+            fetch('/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newProduct)
+            })
+            .then(response => response.json())
+            .then(addedProduct => {
+                products.push(addedProduct);
+                addProductToTable(addedProduct);
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar produto:', error);
+            });
+        });
+
+        alert(`${produtos.length} produto(s) adicionado(s) com sucesso!`);
     }
 });

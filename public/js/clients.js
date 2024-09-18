@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Show/hide CPF and CNPJ fields based on client type
-    tipoClienteSelect.addEventListener('change', () => {
+    // Função para mostrar/esconder campos CPF e CNPJ
+    function toggleDocumentFields() {
         if (tipoClienteSelect.value === 'Pessoa Física') {
             cpfField.style.display = 'block';
             cnpjField.style.display = 'none';
@@ -40,7 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cpfField.style.display = 'none';
             cnpjField.style.display = 'none';
         }
-    });
+    }
+
+    // Adicionar evento de mudança ao select de tipo de cliente
+    tipoClienteSelect.addEventListener('change', toggleDocumentFields);
+
+    // Chamar a função inicialmente para configurar o estado correto
+    toggleDocumentFields();
 
     // Fetch existing clients from the server
     fetch('/api/clients')
@@ -67,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const bairro = document.getElementById('bairro').value;
             const cidade = document.getElementById('cidade').value;
             const uf = document.getElementById('uf').value;
+
+            if (!nome.trim()) {
+                alert('Por favor, preencha o campo Nome.');
+                return;
+            }
 
             const newClient = {
                 id: editingClient ? editingClient.id : Date.now().toString(),
@@ -316,7 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Adicione estas novas funções
     function formatDocument(input) {
         let value = input.value.replace(/\D/g, '');
         let formattedValue = '';

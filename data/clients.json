@@ -5416,5 +5416,95 @@
       "uf": "SP"
     },
     "dataCadastro": "03/09/2024, 17:00:50"
+  },
+  {
+    "id": "1725394171943",
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MUNICIPIO DE SAO PAULO",
+    "email": "alpalmieri@prefeitura.sp.gov.br",
+    "telefone": "(11) 3113-8438/ (11) 3113-8437",
+    "cpf": "",
+    "cnpj": "46.395.000/0001-39",
+    "endereco": {
+      "cep": "01.002-020",
+      "logradouro": "VD DO CHA",
+      "numero": "15",
+      "bairro": "CENTRO",
+      "cidade": "SAO PAULO",
+      "uf": "SP"
+    },
+    "dataCadastro": "03/09/2024, 17:09:31"
+  },
+  {
+    "id": "1725394185242",
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "VALDECI BATISTA PIRES",
+    "email": "regional@aonet.com.br",
+    "telefone": "(14) 3282-1989 / (14) 3282-4700 / (14) 3282-1989",
+    "cpf": "",
+    "cnpj": "08.643.961/0001-26",
+    "endereco": {
+      "cep": "17.470-000",
+      "logradouro": "RODOVIA LOURENCO LOZANO",
+      "numero": "S/N",
+      "bairro": "SERROTE",
+      "cidade": "DUARTINA",
+      "uf": "SP"
+    },
+    "dataCadastro": "03/09/2024, 17:09:45"
+  },
+  {
+    "id": "1725422016302",
+    "tipoCliente": "Pessoa Física",
+    "nome": "gadsgda",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "04/09/2024, 00:53:36"
+  },
+  {
+    "id": "1725426079280",
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MUNICIPIO DE SAO PAULO",
+    "email": "alpalmieri@prefeitura.sp.gov.br",
+    "telefone": "(11) 3113-8438/ (11) 3113-8437",
+    "cpf": "",
+    "cnpj": "46.395.000/0001-39",
+    "endereco": {
+      "cep": "01.002-020",
+      "logradouro": "VD DO CHA",
+      "numero": "15",
+      "bairro": "CENTRO",
+      "cidade": "SAO PAULO",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/09/2024, 02:01:19"
+  },
+  {
+    "id": "1725426092530",
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MUNICIPIO DE DUARTINA",
+    "email": "alpalmieri@prefeitura.sp.gov.br",
+    "telefone": "(11) 3113-8438/ (11) 3113-8437",
+    "cpf": "",
+    "cnpj": "46.395.000/0001-39",
+    "endereco": {
+      "cep": "01.002-020",
+      "logradouro": "VD DO CHA",
+      "numero": "15",
+      "bairro": "CENTRO",
+      "cidade": "SAO PAULO",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/09/2024, 02:01:32"
   }
 ]
