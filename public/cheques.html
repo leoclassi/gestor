@@ -67,6 +67,38 @@
     </script>
 </head>
 <body>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const requiredPermission = 'cheques';
+        try {
+            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (!data.hasPermission) {
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.querySelector('.content').style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Erro ao verificar permissão:', error);
+            document.getElementById('accessDeniedMessage').innerHTML = `
+                <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+            `;
+            document.getElementById('accessDeniedMessage').style.display = 'block';
+            document.querySelector('.content').style.display = 'none';
+        }
+    });
+    </script>
+
     <div class="sidebar">
         <div class="sidebar-header">
             <h3>🌲 Portugal Madeiras</h3>
@@ -105,6 +137,17 @@
         <ul class="collapse list-unstyled" id="chequesSubmenu">
             <li>
                 <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
+        </ul>
+        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="adminSubmenu">
+            <li>
+                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+            </li>
+            <li>
+                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
             </li>
         </ul>
         <div class="sidebar-footer">
@@ -216,18 +259,31 @@
         </div>
     </div>
 
-    <div id="successPopup" class="popup">
-        <div class="popup-content">
-            <i class="fas fa-check-circle"></i>
-            <p>Cheque salvo com sucesso!</p>
-        </div>
-    </div>
-
     <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/cheques.js"></script>
+
+    <!-- Adicione este elemento HTML no final do body, antes dos scripts -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <style>
+        #accessDeniedMessage {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        .dark-theme #accessDeniedMessage {
+            background-color: #4d4d00;
+            color: #ffff99;
+            border-color: #666600;
+        }
+    </style>
 </body>
 </html>

@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const salesTableBody = document.querySelector('#salesTable');
+    const budgetsTableBody = document.querySelector('#budgetsTable');
     const searchInput = document.getElementById('search');
     const searchByNumberInput = document.getElementById('searchByNumber');
     const monthYearSelector = document.getElementById('monthYearSelector');
     const themeToggle = document.getElementById('themeToggle');
-    const selectAllCheckbox = document.getElementById('selectAllSales');
-    const totalSelectedDisplay = document.getElementById('somaVendas');
+    const selectAllCheckbox = document.getElementById('selectAllBudgets');
+    const totalSelectedDisplay = document.getElementById('somaOrcamentos');
     const paginationContainer = document.getElementById('pagination');
-    let sales = [];
+    let budgets = [];
     let currentPage = 1;
-    const salesPerPage = 100;
+    const budgetsPerPage = 100;
     let selectedMonthYear = '';
 
     // Aplicar tema escuro se estiver armazenado no localStorage
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const [month, year] = dateStr.split('/');
             selectedMonthYear = `${year}-${month}`;
             currentPage = 1;
-            renderSalesTable();
+            renderBudgetsTable();
         }
     });
 
@@ -61,33 +61,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Função para buscar as vendas
-    function fetchSales() {
-        fetch('/api/sales')
+    // Função para buscar os orçamentos
+    function fetchBudgets() {
+        fetch('/api/budgets')
             .then(response => response.json())
             .then(data => {
-                sales = data.sort((a, b) => new Date(b.data) - new Date(a.data));
-                organizeSalesByMonthYear();
+                budgets = data.sort((a, b) => new Date(b.data) - new Date(a.data));
+                organizeBudgetsByMonthYear();
                 if (!selectedMonthYear) {
                     setCurrentMonthYear(); // Apenas define o mês atual se nenhum mês estiver selecionado
                 }
-                renderSalesTable();
+                renderBudgetsTable();
             })
-            .catch(error => console.error('Erro ao buscar vendas:', error));
+            .catch(error => console.error('Erro ao buscar orçamentos:', error));
     }
 
-    // Função para organizar as vendas por mês e ano
-    function organizeSalesByMonthYear() {
-        const salesByMonthYear = {};
-        sales.forEach(sale => {
-            const [year, month] = sale.data.split('-');
+    // Função para organizar os orçamentos por mês e ano
+    function organizeBudgetsByMonthYear() {
+        const budgetsByMonthYear = {};
+        budgets.forEach(budget => {
+            const [year, month] = budget.data.split('-');
             const key = `${year}-${month}`;
-            if (!salesByMonthYear[key]) {
-                salesByMonthYear[key] = [];
+            if (!budgetsByMonthYear[key]) {
+                budgetsByMonthYear[key] = [];
             }
-            salesByMonthYear[key].push(sale);
+            budgetsByMonthYear[key].push(budget);
         });
-        sales = salesByMonthYear;
+        budgets = budgetsByMonthYear;
     }
 
     // Função para definir o mês e ano atuais no seletor
@@ -100,32 +100,32 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedMonthYear = currentMonthYear;
     }
 
-    // Função para filtrar as vendas do mês e ano selecionados
-    function getSelectedMonthYearSales() {
+    // Função para filtrar os orçamentos do mês e ano selecionados
+    function getSelectedMonthYearBudgets() {
         if (!selectedMonthYear) {
-            return Object.values(sales).flat();
+            return Object.values(budgets).flat();
         }
-        return sales[selectedMonthYear] || [];
+        return budgets[selectedMonthYear] || [];
     }
 
-    // Função para paginar as vendas
-    function paginateSales(salesArray, page) {
-        const startIndex = (page - 1) * salesPerPage;
-        return salesArray.slice(startIndex, startIndex + salesPerPage);
+    // Função para paginar os orçamentos
+    function paginateBudgets(budgetsArray, page) {
+        const startIndex = (page - 1) * budgetsPerPage;
+        return budgetsArray.slice(startIndex, startIndex + budgetsPerPage);
     }
 
-    // Função para renderizar a tabela de vendas
-    function renderSalesTable() {
-        const filteredSales = filterSales(getSelectedMonthYearSales());
-        const paginatedSales = paginateSales(filteredSales, currentPage);
-        const tableBody = document.getElementById('salesTable');
+    // Função para renderizar a tabela de orçamentos
+    function renderBudgetsTable() {
+        const filteredBudgets = filterBudgets(getSelectedMonthYearBudgets());
+        const paginatedBudgets = paginateBudgets(filteredBudgets, currentPage);
+        const tableBody = document.getElementById('budgetsTable');
         tableBody.innerHTML = '';
 
-        paginatedSales.forEach(sale => {
+        paginatedBudgets.forEach(budget => {
             const row = document.createElement('tr');
             
             // Calcular o valor total com desconto dos produtos
-            const valorTotalProdutos = sale.produtos.reduce((total, produto) => {
+            const valorTotalProdutos = budget.produtos.reduce((total, produto) => {
                 let subtotal = produto.quantidade * produto.valor;
                 if (produto.descontoTipo === 'percentage') {
                     subtotal *= (1 - produto.desconto / 100);
@@ -135,22 +135,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return total + subtotal;
             }, 0);
 
-            // Aplicar o desconto total da venda
+            // Aplicar o desconto total do orçamento
             let valorFinal = valorTotalProdutos;
-            if (sale.descontoTotal) {
-                if (sale.descontoTotal.tipo === 'percentage') {
-                    valorFinal *= (1 - sale.descontoTotal.valor / 100);
+            if (budget.descontoTotal) {
+                if (budget.descontoTotal.tipo === 'percentage') {
+                    valorFinal *= (1 - budget.descontoTotal.valor / 100);
                 } else {
-                    valorFinal -= sale.descontoTotal.valor;
+                    valorFinal -= budget.descontoTotal.valor;
                 }
             }
 
             // Determinar a situação e o estilo com base no status de pagamento
-            let situacao = sale.situacao;
+            let situacao = budget.situacao;
             let situacaoStyle = '';
 
-            if (sale.paga) {
-                situacao = 'Recebido'; // Alterado de 'Concretizada' para 'Paga'
+            if (budget.paga) {
+                situacao = 'Recebido';
                 situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
             } else if (situacao === 'Concretizada') {
                 situacaoStyle = 'background-color: #dc3545; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
@@ -158,24 +158,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             row.innerHTML = `
                 <td class="text-center align-middle">
-                    <input type="checkbox" class="sale-checkbox" data-valor="${valorFinal.toFixed(2)}">
+                    <input type="checkbox" class="budget-checkbox" data-valor="${valorFinal.toFixed(2)}">
                 </td>
-                <td>${sale.numero}</td>
-                <td>${sale.cliente}</td>
+                <td>${budget.numero}</td>
+                <td>${budget.cliente}</td>
                 <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
-                <td>${formatDate(sale.data)}</td>
+                <td>${formatDate(budget.data)}</td>
                 <td>${formatarMoeda(valorFinal)}</td>
                 <td>
-                    <a href="view-sale.html?id=${sale.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
+                    <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>
-                    <button class="btn btn-sm btn-outline-success mark-paid" data-id="${sale.id}" title="${sale.paga ? 'Desmarcar como Paga' : 'Marcar como Paga'}">
-                        <i class="fas ${sale.paga ? 'fa-money-bill-wave' : 'fa-hand-holding-usd'}"></i>
+                    <button class="btn btn-sm btn-outline-success mark-paid" data-id="${budget.id}" title="${budget.paga ? 'Desmarcar como Paga' : 'Marcar como Paga'}">
+                        <i class="fas ${budget.paga ? 'fa-money-bill-wave' : 'fa-hand-holding-usd'}"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-primary edit-sale" data-id="${sale.id}" title="Editar">
+                    <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-danger delete-sale" data-id="${sale.id}" title="Excluir">
+                    <button class="btn btn-sm btn-outline-danger delete-budget" data-id="${budget.id}" title="Excluir">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         addEventListeners();
         setupCheckboxes();
-        renderPagination(filteredSales.length);
+        renderPagination(filteredBudgets.length);
     }
 
     // Função para formatar a data considerando o fuso horário do Brasil (GMT-3)
@@ -206,24 +206,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }).format(valor);
     }
 
-    // Função para calcular o valor total da venda
+    // Função para calcular o valor total do orçamento
     function calculateTotalValue(produtos) {
         return produtos.reduce((total, produto) => total + (produto.valor * produto.quantidade), 0);
     }
 
-    // Função para filtrar as vendas
-    function filterSales(salesArray) {
+    // Função para filtrar os orçamentos
+    function filterBudgets(budgetsArray) {
         const searchTerm = searchInput.value.toLowerCase();
         const searchNumber = searchByNumberInput.value.toLowerCase();
-        return salesArray.filter(sale => 
-            sale.cliente.toLowerCase().includes(searchTerm) &&
-            sale.numero.toLowerCase().includes(searchNumber)
+        return budgetsArray.filter(budget => 
+            budget.cliente.toLowerCase().includes(searchTerm) &&
+            budget.numero.toLowerCase().includes(searchNumber)
         );
     }
 
     // Função para renderizar a paginação
-    function renderPagination(totalSales) {
-        const totalPages = Math.ceil(totalSales / salesPerPage);
+    function renderPagination(totalBudgets) {
+        const totalPages = Math.ceil(totalBudgets / budgetsPerPage);
         paginationContainer.innerHTML = '';
 
         for (let i = 1; i <= totalPages; i++) {
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pageButton.classList.toggle('btn-outline-primary', i !== currentPage);
             pageButton.addEventListener('click', () => {
                 currentPage = i;
-                renderSalesTable();
+                renderBudgetsTable();
             });
             paginationContainer.appendChild(pageButton);
         }
@@ -243,51 +243,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listeners
     searchInput.addEventListener('input', () => {
         currentPage = 1;
-        renderSalesTable();
+        renderBudgetsTable();
     });
 
     searchByNumberInput.addEventListener('input', () => {
         currentPage = 1;
-        renderSalesTable();
+        renderBudgetsTable();
     });
 
     // Função para adicionar event listeners aos botões de editar e excluir
     function addEventListeners() {
         // Remova o event listener para o botão de visualização, pois agora é um link <a>
-        document.querySelectorAll('.edit-sale').forEach(button => {
+        document.querySelectorAll('.edit-budget').forEach(button => {
             button.addEventListener('click', () => {
-                const saleId = button.getAttribute('data-id');
-                window.location.href = `sales.html?id=${saleId}`;
+                const budgetId = button.getAttribute('data-id');
+                window.location.href = `budgets.html?id=${budgetId}`;
             });
         });
 
-        document.querySelectorAll('.delete-sale').forEach(button => {
+        document.querySelectorAll('.delete-budget').forEach(button => {
             button.addEventListener('click', () => {
-                const saleId = button.getAttribute('data-id');
-                if (confirm('Tem certeza que deseja excluir esta venda?')) {
-                    deleteSale(saleId);
+                const budgetId = button.getAttribute('data-id');
+                if (confirm('Tem certeza que deseja excluir este orçamento?')) {
+                    deleteBudget(budgetId);
                 }
             });
         });
 
         document.querySelectorAll('.mark-paid').forEach(button => {
             button.addEventListener('click', () => {
-                const saleId = button.getAttribute('data-id');
-                markSaleAsPaid(saleId);
+                const budgetId = button.getAttribute('data-id');
+                markBudgetAsPaid(budgetId);
             });
         });
 
         // Remova o event listener para o botão de visualização
     }
 
-    // Função para excluir uma venda
-    function deleteSale(id) {
-        fetch(`/api/sales/${id}`, { method: 'DELETE' })
+    // Função para excluir um orçamento
+    function deleteBudget(id) {
+        fetch(`/api/budgets/${id}`, { method: 'DELETE' })
             .then(response => {
                 if (response.ok) {
-                    fetchSales(); // Atualiza a lista de vendas após a exclusão
+                    fetchBudgets(); // Atualiza a lista de orçamentos após a exclusão
                 } else {
-                    throw new Error('Erro ao excluir a venda');
+                    throw new Error('Erro ao excluir o orçamento');
                 }
             })
             .catch(error => console.error('Erro:', error));
@@ -295,35 +295,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para configurar os checkboxes
     function setupCheckboxes() {
-        const saleCheckboxes = document.querySelectorAll('.sale-checkbox');
+        const budgetCheckboxes = document.querySelectorAll('.budget-checkbox');
 
         selectAllCheckbox.addEventListener('change', function() {
-            saleCheckboxes.forEach(checkbox => {
+            budgetCheckboxes.forEach(checkbox => {
                 checkbox.checked = this.checked;
             });
             updateTotalSelected();
         });
 
-        saleCheckboxes.forEach(checkbox => {
+        budgetCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updateTotalSelected);
         });
     }
 
-    // Função para atualizar a soma das vendas selecionadas
+    // Função para atualizar a soma dos orçamentos selecionados
     function updateTotalSelected() {
-        const saleCheckboxes = document.querySelectorAll('.sale-checkbox:checked');
-        const totalSelected = Array.from(saleCheckboxes)
+        const budgetCheckboxes = document.querySelectorAll('.budget-checkbox:checked');
+        const totalSelected = Array.from(budgetCheckboxes)
             .reduce((total, checkbox) => total + parseFloat(checkbox.dataset.valor), 0);
         totalSelectedDisplay.textContent = formatarMoeda(totalSelected);
     }
 
-    // Função para marcar a venda como paga
-    function markSaleAsPaid(saleId) {
-        const button = document.querySelector(`button.mark-paid[data-id="${saleId}"]`);
+    // Função para marcar o orçamento como pago
+    function markBudgetAsPaid(budgetId) {
+        const button = document.querySelector(`button.mark-paid[data-id="${budgetId}"]`);
         const icon = button.querySelector('i');
         const isPaga = icon.classList.contains('fa-money-bill-wave');
 
-        fetch(`/api/sales/${saleId}/pay`, {
+        fetch(`/api/budgets/${budgetId}/pay`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -336,17 +336,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.toggle('fa-money-bill-wave');
                 icon.classList.toggle('fa-hand-holding-usd');
                 button.title = isPaga ? 'Marcar como Paga' : 'Desmarcar como Paga';
-                fetchSales(); // Recarrega a lista de vendas sem redefinir o mês
+                fetchBudgets(); // Recarrega a lista de orçamentos sem redefinir o mês
             } else {
                 throw new Error(data.message);
             }
         })
         .catch(error => {
-            console.error('Erro ao atualizar o estado da venda:', error);
-            alert('Ocorreu um erro ao atualizar o estado da venda. Por favor, tente novamente.');
+            console.error('Erro ao atualizar o estado do orçamento:', error);
+            alert('Ocorreu um erro ao atualizar o estado do orçamento. Por favor, tente novamente.');
         });
     }
 
     // Inicializar a página
-    fetchSales();
+    fetchBudgets();
 });

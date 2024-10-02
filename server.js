@@ -10,17 +10,33 @@ const axios = require('axios');
 const crypto = require('crypto');
 const schedule = require('node-schedule');
 const { performBackup } = require('./backup');
+const multer = require('multer');
+const AdmZip = require('adm-zip');
+const moment = require('moment-timezone');
+
+const upload = multer({ dest: 'uploads/' });
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(express.json());
 
 const productsFile = path.join(__dirname, 'data', 'products.json');
 const clientsFile = path.join(__dirname, 'data', 'clients.json');
 const salesFile = path.join(__dirname, 'data', 'sales.json');
-const usersFile = path.join(__dirname, 'data', 'users.json');
 const chequesFile = path.join(__dirname, 'data', 'cheques.json');
 require('dotenv').config();
 const SECRET_KEY = process.env.SECRET_KEY;
+
+// Adicione esta função auxiliar no início do arquivo
+function formatDate(date) {
+    return date.toLocaleString('pt-BR', { 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+}
 
 // Função auxiliar para ler arquivo JSON
 async function readJSONFile(filePath) {
@@ -220,12 +236,23 @@ app.get('/api/clients/:id', async (req, res) => {
 
 // Rota para obter uma venda específica
 app.get('/api/sales/:id', async (req, res) => {
-    const sales = await readJSONFile(salesFile);
-    const sale = sales.find(s => s.id === req.params.id);
-    if (sale) {
-        res.json(sale);
-    } else {
-        res.status(404).json({ error: 'Sale not found' });
+    try {
+        const sales = await readJSONFile(salesFile);
+        const sale = sales.find(s => s.id === req.params.id);
+        if (sale) {
+            // Buscar informações detalhadas do cliente
+            const clients = await readJSONFile(clientsFile);
+            const clientInfo = clients.find(c => c.nome.trim().toLowerCase() === sale.cliente.trim().toLowerCase());
+            if (clientInfo) {
+                sale.clienteInfo = clientInfo;
+            }
+            res.json(sale);
+        } else {
+            res.status(404).json({ error: 'Venda não encontrada' });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar venda:', error);
+        res.status(500).json({ error: 'Erro ao buscar a venda' });
     }
 });
 
@@ -253,54 +280,139 @@ app.get('/api/next-sale-number', async (req, res) => {
 });
 
 // Rota de registro
-app.post('/api/register', async (req, res) => {
-    const { username, password } = req.body;
-    const users = await readJSONFile(usersFile);
+app.post('/api/register', authenticateToken, isAdmin, async (req, res) => {
+    const { username, password, isAdmin, permissions } = req.body;
 
-    const userExists = users.find(user => user.username === username);
-    if (userExists) {
-        return res.status(400).json({ error: 'Usuário já existe' });
+    try {
+        const users = await readJSONFile(usersFile);
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = {
+            id: Date.now().toString(),
+            username,
+            password: hashedPassword,
+            isAdmin,
+            permissions
+        };
+
+        users.push(newUser);
+        await writeJSONFile(usersFile, users);
+
+        res.status(201).json({ message: 'Usuário criado com sucesso' });
+    } catch (error) {
+        console.error('Erro ao criar usuário:', error);
+        res.status(500).json({ error: 'Erro ao criar usuário' });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = { id: Date.now().toString(), username, password: hashedPassword };
-    users.push(newUser);
-    await writeJSONFile(usersFile, users);
-
-    res.status(201).json({ message: 'Usuário registrado com sucesso' });
 });
 
 // Rota de login
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    const users = await readJSONFile(usersFile);
 
-    const user = users.find(user => user.username === username);
-    if (!user) {
-        return res.status(400).json({ error: 'Usuário não encontrado' });
+    try {
+        const users = await readJSONFile(usersFile);
+        const user = users.find(u => u.username === username);
+
+        if (user && await bcrypt.compare(password, user.password)) {
+            const token = jwt.sign(
+                { 
+                    id: user.id, 
+                    username: user.username, 
+                    isAdmin: user.isAdmin,
+                    permissions: user.permissions 
+                }, 
+                SECRET_KEY, 
+                { expiresIn: '100y' }
+            );
+
+            res.json({ 
+                success: true, 
+                message: 'Autenticação bem-sucedida', 
+                token: token,
+                redirectTo: '/sales-management.html'
+            });
+        } else {
+            res.status(401).json({ success: false, message: 'Credenciais inválidas' });
+        }
+    } catch (error) {
+        console.error('Erro durante o login:', error);
+        res.status(500).json({ success: false, message: 'Erro interno do servidor' });
     }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-        return res.status(400).json({ error: 'Senha incorreta' });
-    }
-
-    const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
-    res.json({ token });
 });
+
+async function getPublicIP(req) {
+    // Tenta obter o IP do cabeçalho X-Forwarded-For primeiro
+    const forwardedFor = req.headers['x-forwarded-for'];
+    if (forwardedFor) {
+        return forwardedFor.split(',')[0].trim();
+    }
+
+    // Se não houver X-Forwarded-For, usa o IP remoto
+    const remoteIP = req.connection.remoteAddress;
+    if (remoteIP && remoteIP !== '::1' && remoteIP !== '127.0.0.1') {
+        return remoteIP;
+    }
+
+    // Se ainda não tiver um IP válido, usa um serviço externo
+    try {
+        const response = await axios.get('https://api.ipify.org?format=json');
+        return response.data.ip;
+    } catch (error) {
+        console.error('Erro ao obter IP público:', error);
+        return 'IP não disponível';
+    }
+}
+
+async function sendLogToDiscord(username, ip) {
+    const webhookUrl = 'https://discord.com/api/webhooks/1290425536727748660/W_Hzzz1ffmHanIa9NvcmXZR1ZDpkWwRS9q1gaE20zMMMcxOVwPklSWyoUffN9M1tl-94';
+    const currentTime = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss');
+    
+    const message = {
+        embeds: [{
+            title: "Novo Login Detectado",
+            color: 3447003,  // Cor azul
+            fields: [
+                { name: "Usuário", value: username, inline: true },
+                { name: "IP", value: ip, inline: true },
+                { name: "Horário", value: `${currentTime} (Brasília)`, inline: false }
+            ],
+            footer: { text: "Sistema de Logs - Portugal Madeiras" }
+        }]
+    };
+
+    try {
+        await axios.post(webhookUrl, message);
+        console.log('Log enviado para o Discord com sucesso.');
+    } catch (error) {
+        console.error('Erro ao enviar log para o Discord:', error);
+    }
+}
 
 // Middleware de autenticação
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Extrai o token após 'Bearer'
+    const token = authHeader && authHeader.split(' ')[1];
 
-    if (!token) return res.sendStatus(401); // Não autorizado
+    if (!token) return res.sendStatus(401);
 
     jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403); // Proibido
-        req.user = user;
+        if (err) return res.sendStatus(403);
+        req.user = {
+            id: user.id,
+            username: user.username,
+            isAdmin: user.isAdmin,
+            permissions: user.permissions || [] // Garante que sempre haverá um array de permissões
+        };
         next();
     });
+}
+
+// Middleware para verificar se o usuário é admin
+function isAdmin(req, res, next) {
+    if (req.user && req.user.isAdmin) {
+        next();
+    } else {
+        res.status(403).json({ error: 'Acesso negado. Apenas administradores podem acessar esta rota.' });
+    }
 }
 
 // Exemplo de rota protegida
@@ -451,7 +563,10 @@ app.post('/api/backup', authenticateToken, async (req, res) => {
     try {
         const result = await performBackup();
         if (result.success) {
-            res.json({ message: result.message });
+            const config = await readConfig();
+            config.lastBackupDate = formatDate(new Date());
+            await fs.writeFile(path.join(__dirname, 'data', 'config.json'), JSON.stringify(config, null, 2));
+            res.json({ message: result.message, lastBackupDate: config.lastBackupDate });
         } else {
             res.status(500).json({ error: result.message });
         }
@@ -499,6 +614,370 @@ async function ensureBackupDir() {
 // Chame esta função no início do seu servidor
 ensureBackupDir().catch(console.error);
 
+// Rota para marcar uma venda como paga ou não paga
+app.post('/api/sales/:id/pay', async (req, res) => {
+    try {
+        const saleId = req.params.id;
+        const { paga } = req.body;
+        console.log(`Tentando atualizar venda ${saleId} para paga=${paga}`);
+
+        const sales = await readJSONFile(salesFile);
+        console.log(`Número de vendas lidas: ${sales.length}`);
+
+        const saleIndex = sales.findIndex(sale => sale.id === saleId);
+        console.log(`Índice da venda encontrada: ${saleIndex}`);
+
+        if (saleIndex === -1) {
+            console.log(`Venda ${saleId} não encontrada`);
+            return res.status(404).json({ success: false, message: 'Venda não encontrada' });
+        }
+
+        sales[saleIndex].paga = paga;
+        console.log(`Status de pagamento atualizado para ${paga}`);
+
+        await writeJSONFile(salesFile, sales);
+        console.log('Arquivo de vendas atualizado com sucesso');
+
+        res.json({ success: true, sale: sales[saleIndex] });
+    } catch (error) {
+        console.error('Erro ao atualizar o status de pagamento da venda:', error);
+        res.status(500).json({ success: false, message: 'Erro interno do servidor' });
+    }
+});
+
+// Adicione esta rota ao seu arquivo server.js
+app.get('/api/admin/users', authenticateToken, isAdmin, async (req, res) => {
+    try {
+        const users = await readJSONFile(usersFile);
+        // Remova as senhas antes de enviar os dados
+        const safeUsers = users.map(user => ({
+            id: user.id,
+            username: user.username,
+            isAdmin: user.isAdmin // Incluímos esta informação para o frontend
+        }));
+        res.json(safeUsers);
+    } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+app.put('/api/users/:id', authenticateToken, async (req, res) => {
+    const { username, password, isAdmin, permissions } = req.body;
+    const userId = req.params.id;
+
+    if (!/^[a-zA-Z0-9]+$/.test(username)) {
+        return res.status(400).json({ error: 'O nome de usuário deve conter apenas caracteres alfanuméricos.' });
+    }
+
+    try {
+        const users = await readJSONFile(usersFile);
+        const userIndex = users.findIndex(user => user.id === userId);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+
+        users[userIndex].username = username;
+        users[userIndex].isAdmin = isAdmin;
+        users[userIndex].permissions = permissions;
+
+        if (password) {
+            if (password.length < 5) {
+                return res.status(400).json({ error: 'A senha deve ter no mínimo 5 caracteres.' });
+            }
+            const hashedPassword = await bcrypt.hash(password, 10);
+            users[userIndex].password = hashedPassword;
+        }
+
+        await writeJSONFile(usersFile, users);
+        res.json({ message: 'Usuário atualizado com sucesso' });
+    } catch (error) {
+        console.error('Erro ao atualizar usuário:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+app.get('/api/users/:id', authenticateToken, async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const users = await readJSONFile(usersFile);
+        const user = users.find(u => u.id === userId);
+        if (user) {
+            const { password, ...userWithoutPassword } = user;
+            res.json(userWithoutPassword);
+        } else {
+            res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar usuário:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+const usersFile = path.join(__dirname, 'data', 'users.json');
+
+async function readUsers() {
+    try {
+        const data = await fs.readFile(usersFile, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Erro ao ler o arquivo de usuários:', error);
+        return [];
+    }
+}
+
+// Adicione esta rota após as outras rotas de usuário
+app.delete('/api/users/:id', authenticateToken, isAdmin, async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const users = await readJSONFile(usersFile);
+        const updatedUsers = users.filter(user => user.id !== userId);
+        
+        if (users.length === updatedUsers.length) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+
+        await writeJSONFile(usersFile, updatedUsers);
+        res.json({ message: 'Usuário excluído com sucesso' });
+    } catch (error) {
+        console.error('Erro ao excluir usuário:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+// Adicione uma nova rota para verificar permissões
+app.get('/api/check-permission', authenticateToken, (req, res) => {
+    const { permission } = req.query;
+    if (req.user.isAdmin || (req.user.permissions && (req.user.permissions.includes(permission) || req.user.permissions.includes('all')))) {
+        res.json({ hasPermission: true });
+    } else {
+        res.json({ hasPermission: false });
+    }
+});
+
+async function ensureUserPermissions() {
+    const users = await readJSONFile(usersFile);
+    let updated = false;
+    users.forEach(user => {
+        if (!user.permissions) {
+            user.permissions = [];
+            updated = true;
+        }
+    });
+    if (updated) {
+        await writeJSONFile(usersFile, users);
+    }
+}
+
+// Chame esta função quando o servidor iniciar
+ensureUserPermissions().catch(console.error);
+
+// Adicione esta nova rota
+app.post('/api/backup-config', authenticateToken, async (req, res) => {
+    try {
+        const { frequency } = req.body;
+        const config = await readConfig();
+        config.backupFrequency = frequency;
+        await fs.writeFile(path.join(__dirname, 'data', 'config.json'), JSON.stringify(config, null, 2));
+        res.json({ message: 'Configuração de backup salva com sucesso' });
+    } catch (error) {
+        console.error('Erro ao salvar configuração de backup:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+// Adicione também uma rota para obter a configuração atual
+app.get('/api/backup-config', authenticateToken, async (req, res) => {
+    try {
+        const config = await readConfig();
+        res.json({ 
+            frequency: config.backupFrequency || 'daily',
+            lastBackupDate: config.lastBackupDate || 'Nenhum backup realizado'
+        });
+    } catch (error) {
+        console.error('Erro ao obter configuração de backup:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+app.post('/api/restore-backup', authenticateToken, upload.single('backupFile'), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'Nenhum arquivo foi enviado.' });
+    }
+
+    try {
+        const zip = new AdmZip(req.file.path);
+        const zipEntries = zip.getEntries();
+
+        for (const entry of zipEntries) {
+            if (!entry.isDirectory) {
+                const fileName = path.basename(entry.entryName);
+                const filePath = path.join(__dirname, 'data', fileName);
+                zip.extractEntryTo(entry, path.dirname(filePath), false, true);
+            }
+        }
+
+        // Limpar o arquivo temporário
+        await fs.unlink(req.file.path);
+
+        res.json({ message: 'Backup restaurado com sucesso.' });
+    } catch (error) {
+        console.error('Erro ao restaurar backup:', error);
+        res.status(500).json({ error: 'Erro ao restaurar backup.' });
+    }
+});
+
+// Adicione esta nova rota
+app.get('/api/cep/:cep', async (req, res) => {
+    const cep = req.params.cep;
+    try {
+        const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Erro ao buscar dados do CEP:', error.response ? error.response.data : error.message);
+        res.status(error.response ? error.response.status : 500).json({ error: 'Erro ao buscar dados do CEP' });
+    }
+});
+
+// Endpoint para buscar cidades
+app.get('/api/cidades', async (req, res) => {
+    const { termo } = req.query;
+    console.log("Termo recebido:", termo); // Adicione este log
+    try {
+        const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios`);
+        const cidades = response.data
+            .filter(cidade => cidade.nome.toLowerCase().includes(termo.toLowerCase()))
+            .map(cidade => ({
+                nome: cidade.nome,
+                uf: cidade.microrregiao.mesorregiao.UF.sigla
+            }));
+        console.log("Cidades encontradas:", cidades.length); // Adicione este log
+        res.json(cidades);
+    } catch (error) {
+        console.error('Erro ao buscar cidades:', error);
+        res.status(500).json({ error: 'Erro ao buscar cidades' });
+    }
+});
+
+// {{ edit_1: Adicionar rotas para Orçamentos }}
+const budgetsRouter = express.Router();
+const budgetsFile = path.join(__dirname, 'data', 'budgets.json');
+
+// Função para garantir que o arquivo de orçamentos exista
+async function ensureBudgetsFile() {
+    try {
+        await fs.access(budgetsFile);
+    } catch (error) {
+        // Se o arquivo não existir, criar com um array vazio
+        await writeJSONFile(budgetsFile, []);
+    }
+}
+ensureBudgetsFile();
+
+// GET /api/budgets - Obter todos os orçamentos
+budgetsRouter.get('/', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        res.json(budgets);
+    } catch (error) {
+        console.error('Erro ao buscar os orçamentos:', error);
+        res.status(500).json({ error: 'Erro ao buscar os orçamentos' });
+    }
+});
+
+// GET /api/budgets/:id - Obter um orçamento específico por ID
+budgetsRouter.get('/:id', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        const budget = budgets.find(b => b.id === req.params.id);
+        if (budget) {
+            res.json(budget);
+        } else {
+            res.status(404).json({ error: 'Orçamento não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar o orçamento:', error);
+        res.status(500).json({ error: 'Erro ao buscar o orçamento' });
+    }
+});
+
+// POST /api/budgets - Criar um novo orçamento
+budgetsRouter.post('/', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        const newBudget = {
+            id: Date.now().toString(),
+            ...req.body,
+            paga: false // Definir como não paga por padrão
+        };
+        budgets.push(newBudget);
+        await writeJSONFile(budgetsFile, budgets);
+        res.status(201).json(newBudget);
+    } catch (error) {
+        console.error('Erro ao criar o orçamento:', error);
+        res.status(500).json({ error: 'Erro ao criar o orçamento' });
+    }
+});
+
+// PUT /api/budgets/:id - Atualizar um orçamento existente
+budgetsRouter.put('/:id', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        const index = budgets.findIndex(b => b.id === req.params.id);
+        if (index !== -1) {
+            budgets[index] = { ...budgets[index], ...req.body };
+            await writeJSONFile(budgetsFile, budgets);
+            res.json(budgets[index]);
+        } else {
+            res.status(404).json({ error: 'Orçamento não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar o orçamento:', error);
+        res.status(500).json({ error: 'Erro ao atualizar o orçamento' });
+    }
+});
+
+// DELETE /api/budgets/:id - Excluir um orçamento
+budgetsRouter.delete('/:id', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        const index = budgets.findIndex(b => b.id === req.params.id);
+        if (index !== -1) {
+            const deletedBudget = budgets.splice(index, 1);
+            await writeJSONFile(budgetsFile, budgets);
+            res.json(deletedBudget[0]);
+        } else {
+            res.status(404).json({ error: 'Orçamento não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao excluir o orçamento:', error);
+        res.status(500).json({ error: 'Erro ao excluir o orçamento' });
+    }
+});
+
+// POST /api/budgets/:id/pay - Marcar/Desmarcar um orçamento como pago
+budgetsRouter.post('/:id/pay', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        const budget = budgets.find(b => b.id === req.params.id);
+        if (budget) {
+            budget.paga = req.body.paga;
+            await writeJSONFile(budgetsFile, budgets);
+            res.json({ success: true, budget });
+        } else {
+            res.status(404).json({ error: 'Orçamento não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao marcar o orçamento como pago:', error);
+        res.status(500).json({ error: 'Erro ao atualizar o orçamento' });
+    }
+});
+
+// Associar as rotas de orçamentos ao caminho /api/budgets
+app.use('/api/budgets', budgetsRouter);
+// {{ edit_1 ends }}

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/dark-theme.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('token');
@@ -51,9 +52,52 @@
         .btn-logout i {
             margin-right: 10px;
         }
+
+        #themeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const requiredPermission = 'clientes';
+        try {
+            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (!data.hasPermission) {
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.querySelector('.content').style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Erro ao verificar permissão:', error);
+            document.getElementById('accessDeniedMessage').innerHTML = `
+                <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+            `;
+            document.getElementById('accessDeniedMessage').style.display = 'block';
+            document.querySelector('.content').style.display = 'none';
+        }
+    });
+    </script>
+
     <div class="sidebar">
         <div class="sidebar-header">
             <h3>🌲 Portugal Madeiras</h3>
@@ -82,16 +126,28 @@
             <li>
                 <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
             </li>
+        </ul>
+        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="financeiroSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
             <li>
                 <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
             </li>
         </ul>
-        <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+        <!-- Novo código de Admin -->
+        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
         </a>
-        <ul class="collapse list-unstyled" id="chequesSubmenu">
+        <ul class="collapse list-unstyled" id="adminSubmenu">
             <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+            </li>
+            <li>
+                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
             </li>
         </ul>
         <div class="sidebar-footer">
@@ -103,7 +159,7 @@
 
     <div class="content">
         <div class="container">
-            <h1 class="mb-4">👥 Clientes</h1>
+            <h1 class="mb-4">👥 Gerenciamento de Clientes</h1>
             <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addClientModal">➕ Adicionar Cliente</button>
             <button class="btn btn-danger mb-3" id="deleteSelected" style="display: none;">🗑️ Excluir Selecionados</button>
             <input type="text" id="search" class="form-control mb-3" placeholder="🔍 Buscar">
@@ -185,25 +241,21 @@
                                     <label for="logradouro">Logradouro</label>
                                     <input type="text" class="form-control" id="logradouro">
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="numero">Número</label>
-                                        <input type="text" class="form-control" id="numero">
-                                    </div>
-                                    <div class="form-group col-md-8">
-                                        <label for="bairro">Bairro</label>
-                                        <input type="text" class="form-control" id="bairro">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="numero">Número</label>
+                                    <input type="text" class="form-control" id="numero">
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-8">
-                                        <label for="cidade">Cidade</label>
-                                        <input type="text" class="form-control" id="cidade">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="uf">UF</label>
-                                        <input type="text" class="form-control" id="uf">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" id="cidade" name="cidade" class="form-control" placeholder="Cidade">
+                                </div>
+                                <div class="form-group">
+                                    <label for="uf">UF</label>
+                                    <input type="text" id="uf" name="uf" class="form-control" placeholder="UF">
                                 </div>
                             </div>
                         </div>
@@ -219,9 +271,63 @@
 
     <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Seus scripts personalizados -->
     <script src="js/clients.js"></script>
+
+    <!-- Adicione este elemento HTML no final do body, antes dos scripts -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const requiredPermission = 'clientes';
+        try {
+            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (!data.hasPermission) {
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.querySelector('.content').style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Erro ao verificar permissão:', error);
+            document.getElementById('accessDeniedMessage').innerHTML = `
+                <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+            `;
+            document.getElementById('accessDeniedMessage').style.display = 'block';
+            document.querySelector('.content').style.display = 'none';
+        }
+    });
+    </script>
+
+    <style>
+        #accessDeniedMessage {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        .dark-theme #accessDeniedMessage {
+            background-color: #4d4d00;
+            color: #ffff99;
+            border-color: #666600;
+        }
+    </style>
 </body>
 </html>

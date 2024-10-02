@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${product.nome}</td>
             <td>R$ ${(product.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td>R$ ${(product.valorEspecial || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td>${product.estoque}</td>
-            <td>${product.dataCadastro}</td>
+            <!-- Removido Estoque -->
+            <!-- Removido Data de Cadastro -->
             <td>
                 <button class="btn btn-primary btn-sm edit-btn">✏️ Editar</button>
                 <button class="btn btn-danger btn-sm delete-btn">🗑️ Excluir</button>
@@ -151,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${product.nome}</td>
                 <td>R$ ${(product.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 <td>R$ ${(product.valorEspecial || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                <td>${product.estoque}</td>
-                <td>${product.dataCadastro}</td>
+                <!-- Removido Estoque -->
+                <!-- Removido Data de Cadastro -->
                 <td>
                     <button class="btn btn-primary btn-sm edit-btn">✏️ Editar</button>
                     <button class="btn btn-danger btn-sm delete-btn">🗑️ Excluir</button>

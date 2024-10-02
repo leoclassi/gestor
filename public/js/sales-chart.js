@@ -11,13 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function processSalesData(sales) {
         const monthlySales = {};
+        const monthlyPaidSales = {};
 
         sales.forEach(sale => {
-            const date = new Date(sale.data);
+            // Parse da data para garantir que é tratada como local
+            const parts = sale.data.split('-');
+            const date = new Date(parts[0], parts[1] - 1, parts[2]);
             const monthYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
 
             if (!monthlySales[monthYear]) {
                 monthlySales[monthYear] = 0;
+                monthlyPaidSales[monthYear] = 0;
             }
 
             let valorTotalProdutos = sale.produtos.reduce((total, produto) => {
@@ -39,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             monthlySales[monthYear] += valorTotalProdutos;
+
+            if (sale.paga) {
+                monthlyPaidSales[monthYear] += valorTotalProdutos;
+            }
         });
 
         const labels = Object.keys(monthlySales).sort((a, b) => {
@@ -48,8 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const values = labels.map(label => monthlySales[label]);
+        const paidValues = labels.map(label => monthlyPaidSales[label]);
 
-        return { labels, values };
+        return { labels, values, paidValues };
     }
 
     function formatarMoeda(valor) {
@@ -63,24 +72,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderChart(salesData) {
         const isDarkTheme = document.body.classList.contains('dark-theme');
-        const textColor = isDarkTheme ? '#e0e0e0' : '#333333';
+        const textColor = isDarkTheme ? '#ffffff' : '#000000';
         const gridColor = isDarkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+        const barColor = isDarkTheme ? 'rgba(75, 192, 192, 1)' : 'rgba(75, 192, 192, 1)';
+        const lineColor = 'rgba(255, 0, 0, 1)'; // Cor sólida para a linha de vendas pagas
 
         new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: salesData.labels,
-                datasets: [{
-                    label: 'Vendas Mensais (R$)',
-                    data: salesData.values,
-                    backgroundColor: isDarkTheme ? 'rgba(75, 192, 192, 0.5)' : 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
+                datasets: [
+                    {
+                        label: 'Vendas Mensais (R$)',
+                        data: salesData.values,
+                        backgroundColor: barColor,
+                        borderColor: barColor,
+                        borderWidth: 1,
+                        barPercentage: 0.8,
+                        categoryPercentage: 0.9,
+                        order: 2 // Define a ordem de renderização (2 = atrás)
+                    },
+                    {
+                        label: 'Vendas Pagas (R$)',
+                        data: salesData.paidValues,
+                        type: 'line',
+                        backgroundColor: lineColor,
+                        borderColor: lineColor,
+                        borderWidth: 2,
+                        tension: 0.1,
+                        fill: false, // Remove o preenchimento abaixo da linha
+                        order: 1 // Define a ordem de renderização (1 = na frente)
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 scales: {
+                    x: {
+                        ticks: {
+                            color: textColor,
+                            autoSkip: false
+                        },
+                        grid: {
+                            color: gridColor
+                        }
+                    },
                     y: {
                         beginAtZero: true,
                         ticks: {
@@ -88,15 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             callback: function(value) {
                                 return formatarMoeda(value);
                             }
-                        },
-                        grid: {
-                            color: gridColor
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: textColor,
-                            autoSkip: false
                         },
                         grid: {
                             color: gridColor

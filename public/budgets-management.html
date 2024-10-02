@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Vendas</title>
+    <title>Gerenciamento de Orçamentos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -121,6 +121,14 @@
             </li>
         </ul>
         <!-- Fim do novo submenu Admin -->
+        <a href="#budgetsSubmenu" data-toggle="collapse" aria-expanded="false">
+            📄 Orçamentos <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="budgetsSubmenu">
+            <li>
+                <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+            </li>
+        </ul>
         <div class="sidebar-footer">
             <button id="logoutButton" class="btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Sair
@@ -130,20 +138,20 @@
 
     <div class="content">
         <div class="container">
-            <h1 class="mb-4">📊 Gerenciamento de Vendas</h1>
+            <h1 class="mb-4">📊 Gerenciamento de Orçamentos</h1>
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <input type="text" id="search" class="form-control w-50" placeholder="🔍 Buscar por Cliente">
                 <input type="text" id="searchByNumber" class="form-control w-25 ml-2" placeholder="🔍 Buscar por Nº">
                 <input type="text" id="monthYearSelector" class="form-control w-25 ml-2" placeholder="Selecione o Mês e Ano">
-                <a href="sales.html" class="btn btn-success ml-2 btn-nova-venda">
-                    🛒 Nova Venda
+                <a href="budgets.html" class="btn btn-success ml-2 btn-novo-orcamento">
+                    📄 Novo Orçamento
                 </a>
             </div>
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
                         <th class="text-center align-middle">
-                            <input type="checkbox" id="selectAllSales">
+                            <input type="checkbox" id="selectAllBudgets">
                         </th>
                         <th>🔢 Nº</th>
                         <th>👤 Cliente</th>
@@ -153,11 +161,11 @@
                         <th>⚙️ Ações</th>
                     </tr>
                 </thead>
-                <tbody id="salesTable">
-                    <!-- As vendas serão inseridas aqui pelo JavaScript -->
+                <tbody id="budgetsTable">
+                    <!-- Os orçamentos serão inseridos aqui pelo JavaScript -->
                 </tbody>
             </table>
-            <!-- Adicione isso após a tabela de vendas -->
+            <!-- Adicione isso após a tabela de orçamentos -->
             <div id="pagination" class="d-flex justify-content-center mt-3"></div>
         </div>
     </div>
@@ -170,7 +178,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
-    <script src="js/sales-management.js"></script>
+    <script src="js/budgets-management.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -180,7 +188,7 @@
                 return;
             }
 
-            const requiredPermission = 'vendas';
+            const requiredPermission = 'orcamentos';
             try {
                 const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
                     headers: {

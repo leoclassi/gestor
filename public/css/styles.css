@@ -15,6 +15,8 @@ body {
 }
 
 .sidebar {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -116,17 +118,17 @@ body {
 /* Ajuste para a coluna de ações */
 .table-sm td:last-child {
     white-space: nowrap;
-    padding: 0.2rem;
-    min-width: 180px; /* Aumentado para garantir espaço para todos os botões */
+    padding: 0.25rem;
+    min-width: 190px; /* Aumentado um pouco para acomodar os botões maiores */
 }
 
 /* Estilo para os botões de ação */
 .table-sm .btn {
-    padding: 0.15rem 0.25rem;
-    font-size: 0.7rem;
+    padding: 0.2rem 0.3rem;
+    font-size: 0.75rem;
     margin: 0 1px;
-    width: 26px; /* Reduzido ligeiramente */
-    height: 26px; /* Reduzido ligeiramente */
+    width: 28px; /* Aumentado ligeiramente */
+    height: 28px; /* Aumentado ligeiramente */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -170,13 +172,181 @@ body {
     }
     
     .table-sm .btn {
-        padding: 0.1rem;
-        font-size: 0.6rem;
-        width: 22px;
-        height: 22px;
+        padding: 0.15rem;
+        font-size: 0.65rem;
+        width: 24px; /* Aumentado ligeiramente para telas menores */
+        height: 24px; /* Aumentado ligeiramente para telas menores */
+    }
+
+    .table-sm .btn i {
+        font-size: 0.8rem; /* Ajustado para telas menores */
     }
 
     .table-sm td:last-child {
-        min-width: 160px; /* Ajustado para telas menores */
+        min-width: 170px; /* Ajustado para telas menores */
     }
+}
+
+/* Estilo para o botão "Nova Venda" */
+.btn-nova-venda {
+    padding: 0.375rem 0.75rem; /* Mesmo padding do form-control do Bootstrap */
+    font-size: 1rem; /* Mesmo tamanho de fonte do form-control */
+    line-height: 1.5; /* Mesma altura de linha do form-control */
+    height: 38px; /* Altura padrão do form-control do Bootstrap */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+/* Ajuste para alinhar o botão com os inputs */
+.d-flex.justify-content-between.align-items-center {
+    align-items: stretch !important;
+}
+
+.d-flex.justify-content-between.align-items-center > * {
+    display: flex;
+    align-items: center;
+}
+
+/* Ajuste para garantir que todos os elementos tenham a mesma altura */
+.d-flex.justify-content-between.align-items-center > .form-control,
+.d-flex.justify-content-between.align-items-center > .btn {
+    height: 38px; /* Altura padrão do form-control do Bootstrap */
+}
+
+/* Estilos para o botão de sair */
+.btn-logout {
+    width: 100%;
+    padding: 10px 25px; /* Reduzido o padding vertical */
+    text-align: left;
+    background-color: transparent;
+    color: var(--sidebar-color);
+    border: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}
+
+.btn-logout:hover {
+    background-color: var(--sidebar-hover);
+    color: #dc3545;
+    text-decoration: none;
+}
+
+.btn-logout i {
+    margin-right: 10px;
+}
+
+.sidebar-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 20px; /* Aumentado o padding inferior */
+}
+
+.sidebar-footer {
+    padding: 0;
+    margin-top: auto;
+}
+
+.sidebar-footer hr {
+    margin: 0 0 10px 0; /* Adicionada margem inferior */
+    border-top: 1px solid var(--sidebar-color);
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 10px 25px; /* Reduzido o padding vertical */
+    text-align: left;
+    background-color: transparent;
+    color: var(--sidebar-color);
+    border: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}
+
+.btn-logout:hover {
+    background-color: var(--sidebar-hover);
+    color: #dc3545;
+    text-decoration: none;
+}
+
+.btn-logout i {
+    margin-right: 10px;
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+}
+
+.popup-content p {
+    margin: 0;
+}
+
+/* Melhorar a visibilidade e interatividade dos botões */
+.btn-edit, .btn-delete {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+.ui-autocomplete {
+    z-index: 2000; /* Garante que o autocomplete fique acima do modal */
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute !important; /* Muda de fixed para absolute */
+    top: 100%; /* Posiciona logo abaixo do input */
+    left: 0;
+    width: 100%; /* Garante que a largura seja a mesma do input */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adiciona sombra para melhor visibilidade */
+    border-top: none; /* Remove a borda superior para uma transição suave do input para a lista */
+}
+
+/* Estilos para o dark mode */
+.dark-theme .ui-autocomplete {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.dark-theme .ui-autocomplete .ui-menu-item-wrapper {
+    color: #fff;
+}
+
+.dark-theme .ui-autocomplete .ui-menu-item-wrapper.ui-state-active {
+    background-color: #555;
+    color: #fff;
 }

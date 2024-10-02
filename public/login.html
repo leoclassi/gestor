@@ -126,7 +126,7 @@
             </button>
         </form>
         <div class="register-link animate__animated animate__fadeInUp">
-            <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
+            <p>Acesso restrito a usuários autorizados.</p>
         </div>
     </div>
 
@@ -134,36 +134,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginForm = document.getElementById('loginForm');
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-
-                try {
-                    const response = await fetch('/api/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ username, password })
-                    });
-
-                    const data = await response.json();
-                    if (response.ok) {
-                        localStorage.setItem('token', data.token);
-                        window.location.href = 'index.html';
-                    } else {
-                        alert(data.error);
-                    }
-                } catch (error) {
-                    console.error('Erro ao fazer login:', error);
-                    alert('Erro ao fazer login. Por favor, tente novamente.');
-                }
-            });
-        });
-    </script>
 </body>
 </html>

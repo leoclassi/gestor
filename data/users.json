@@ -1,17 +1,29 @@
 [
   {
-    "id": "1726028011722",
-    "username": "admin",
-    "password": "$2b$10$Dt99YrW.9nNXP7.3YOevF.dyDfl7fEYW.S9pAcwVifEO1K3I0Qfme"
+    "id": "1727703095780",
+    "username": "Leonardo",
+    "password": "$2b$10$Mmi6b775i3mqAq4vOlkX7eqEiMhBSVdgV/UAi7BBemBIxk55O4re6",
+    "isAdmin": true,
+    "permissions": [
+      "all"
+    ]
   },
   {
-    "id": "1726595608056",
-    "username": "\"",
-    "password": "$2b$10$.PsGconrEa4DBgXd1GWvG.ThC9/COHW3cPhoG1RfdcSYpCaxFGnXm"
+    "id": "1727743672100",
+    "username": "Augusta",
+    "password": "$2b$10$if.CjaJyZfbx.eoV3I3i5ez.diKgEfeUsBzVIfaKN8Bd4unqsCkKC",
+    "isAdmin": false,
+    "permissions": [
+      "cheques"
+    ]
   },
   {
-    "id": "1726595740049",
-    "username": "\\/\"Pablo Marçal\\\"",
-    "password": "$2b$10$Eq88mp5naegiI2p7a7Q42e.nZZf9OHJKLm2pbcn/u2Cd25oGczJgm"
+    "id": "1727744557350",
+    "username": "Henrique",
+    "password": "$2b$10$i5brQdcvHmGSYuuKrqjCH.UXE0SBM4.3j6.OSRE17J15hRQGvodq6",
+    "isAdmin": true,
+    "permissions": [
+      "all"
+    ]
   }
 ]

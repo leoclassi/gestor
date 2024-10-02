@@ -3,155 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Backup</title>
+    <title>Gerenciameeeento de Backup</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/dark-theme.css">
     <style>
-        /* Estilos existentes... */
+        .backup-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .backup-card {
+            background-color: var(--modal-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .backup-title {
+            color: var(--modal-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .backup-info {
+            color: var(--modal-color);
+            margin-bottom: 10px;
+        }
+        .backup-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .backup-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: var(--input-bg);
+            color: var(--input-color);
+        }
+        .btn-backup {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <!-- Sidebar existente... -->
-        <a href="#backupSubmenu" data-toggle="collapse" aria-expanded="false">
-            💾 Backup <i class="fas fa-chevron-right arrow"></i>
+        <div class="sidebar-header">
+            <h3>🌲 Portugal Madeiras</h3>
+            <hr>
+        </div>
+        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
         </a>
-        <ul class="collapse list-unstyled" id="backupSubmenu">
+        <ul class="collapse list-unstyled" id="productsSubmenu">
+            <li>
+                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+            </li>
+        </ul>
+        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="clientsSubmenu">
+            <li>
+                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+            </li>
+        </ul>
+        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="salesSubmenu">
+            <li>
+                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+            </li>
+        </ul>
+        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="financeiroSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
+            <li>
+                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+            </li>
+        </ul>
+        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="adminSubmenu">
+            <li>
+                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+            </li>
             <li>
                 <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
             </li>
         </ul>
-        <!-- Resto da sidebar... -->
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
     </div>
 
     <div class="content">
         <div class="container">
             <h1 class="mb-4">💾 Gerenciamento de Backup</h1>
-            <div id="loginMessage" class="alert alert-warning" style="display: none;">
-                Você precisa estar logado para acessar esta página. 
-                <a href="login.html" class="alert-link">Clique aqui para fazer login</a>.
-            </div>
-            <div id="backupContent" style="display: none;">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Backup Manual</h5>
-                        <p class="card-text">Clique no botão abaixo para realizar um backup manual dos dados do sistema.</p>
-                        <button id="backupButton" class="btn btn-primary">
+            <div class="backup-container">
+                <div class="backup-card">
+                    <h2 class="backup-title">Backup Manual</h2>
+                    <p class="backup-info">Realize um backup manual dos dados do sistema.</p>
+                    <div class="backup-actions">
+                        <button id="backupButton" class="btn btn-primary btn-backup">
                             <i class="fas fa-download mr-2"></i>Realizar Backup Manual
                         </button>
+                        <span id="lastBackupTime" class="text-muted">Último backup: Nunca</span>
                     </div>
+                    <div id="backupStatus" class="backup-status mt-3" style="display: none;"></div>
                 </div>
-                <div class="mt-4" id="backupStatus"></div>
-                
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Backups Disponíveis</h5>
-                        <ul id="backupList" class="list-group">
-                            <!-- Lista de backups será preenchida aqui -->
-                        </ul>
+
+                <div class="backup-card">
+                    <h2 class="backup-title">Backup Automático</h2>
+                    <p class="backup-info">Configure a frequência dos backups automáticos.</p>
+                    <div class="form-group">
+                        <label for="backupFrequency">Frequência de Backup:</label>
+                        <select id="backupFrequency" class="form-control">
+                            <option value="daily">Diário</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensal</option>
+                        </select>
                     </div>
+                    <button id="saveBackupConfig" class="btn btn-success">
+                        <i class="fas fa-save mr-2"></i>Salvar Configuração
+                    </button>
+                </div>
+
+                <div class="backup-card mt-4">
+                    <h2 class="backup-title">Restaurar Backup</h2>
+                    <p class="backup-info">Selecione um arquivo de backup (.zip) para restaurar.</p>
+                    <div class="backup-actions">
+                        <input type="file" id="backupFile" accept=".zip" class="form-control-file mb-2">
+                        <button id="restoreBackupButton" class="btn btn-warning">
+                            <i class="fas fa-upload mr-2"></i>Restaurar Backup
+                        </button>
+                    </div>
+                    <div id="restoreStatus" class="mt-3" style="display: none;"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const backupButton = document.getElementById('backupButton');
-        const backupStatus = document.getElementById('backupStatus');
-        const backupList = document.getElementById('backupList');
-        const loginMessage = document.getElementById('loginMessage');
-        const backupContent = document.getElementById('backupContent');
+        document.addEventListener('DOMContentLoaded', async () => {
+            const backupButton = document.getElementById('backupButton');
+            const backupStatus = document.getElementById('backupStatus');
+            const lastBackupTime = document.getElementById('lastBackupTime');
+            const saveBackupConfig = document.getElementById('saveBackupConfig');
+            const backupFrequency = document.getElementById('backupFrequency');
+            const lastBackupDate = document.getElementById('lastBackupTime'); // Alterado para 'lastBackupTime'
 
-        function checkAuthentication() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                loginMessage.style.display = 'block';
-                backupContent.style.display = 'none';
-            } else {
-                loginMessage.style.display = 'none';
-                backupContent.style.display = 'block';
-                updateBackupList();
-            }
-        }
+            // Atualizar a função de realizar backup
+            backupButton.addEventListener('click', async () => {
+                backupButton.disabled = true;
+                showBackupMessage('Realizando backup...', 'info');
 
-        function updateBackupList() {
-            const token = localStorage.getItem('token'); // Obter o token armazenado
+                try {
+                    const response = await fetch('/api/backup', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
 
-            fetch('/api/backups', {
-                headers: {
-                    'Authorization': `Bearer ${token}` // Incluir o token no header
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Falha na autenticação');
-                }
-                return response.json();
-            })
-            .then(files => {
-                backupList.innerHTML = '';
-                files.forEach(file => {
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                    li.innerHTML = `
-                        ${file}
-                        <a href="/backups/${file}" download class="btn btn-sm btn-outline-primary">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    `;
-                    backupList.appendChild(li);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao listar backups:', error);
-                backupList.innerHTML = '<li class="list-group-item text-danger">Erro ao listar backups</li>';
-                if (error.message === 'Falha na autenticação') {
-                    checkAuthentication();
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    showBackupMessage('Backup realizado com sucesso!', 'success');
+                    if (lastBackupDate) {
+                        lastBackupDate.textContent = data.lastBackupDate;
+                    }
+                } catch (error) {
+                    console.error('Erro ao realizar backup:', error);
+                    showBackupMessage(`Erro ao realizar backup: ${error.message}`, 'danger');
+                } finally {
+                    backupButton.disabled = false;
                 }
             });
-        }
 
-        backupButton.addEventListener('click', async () => {
-            try {
-                backupButton.disabled = true;
-                backupStatus.innerHTML = '<div class="alert alert-info">Realizando backup...</div>';
-                
-                const token = localStorage.getItem('token'); // Obter o token armazenado
-                const response = await fetch('/api/backup', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}` // Incluir o token no header
+            // Função para exibir mensagens
+            function showBackupMessage(message, type) {
+                const backupStatus = document.getElementById('backupStatus');
+                if (backupStatus) {
+                    backupStatus.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+                    backupStatus.style.display = 'block';
+                } else {
+                    console.warn('Elemento backupStatus não encontrado');
+                }
+            }
+
+            // Carregar a configuração atual
+            async function loadBackupConfig() {
+                try {
+                    const response = await fetch('/api/backup-config', {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+                    const data = await response.json();
+                    backupFrequency.value = data.frequency;
+                    if (lastBackupDate) {
+                        lastBackupDate.textContent = data.lastBackupDate;
+                    } else {
+                        console.warn('Elemento lastBackupTime não encontrado');
                     }
-                });
-                const data = await response.json();
-                
-                if (response.ok) {
-                    backupStatus.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                    updateBackupList();
-                } else {
-                    backupStatus.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                } catch (error) {
+                    console.error('Erro ao carregar configuração de backup:', error);
+                    showBackupMessage('Erro ao carregar configuração de backup', true);
                 }
-            } catch (error) {
-                console.error('Erro ao realizar backup:', error);
-                if (error.message === 'Falha na autenticação') {
-                    backupStatus.innerHTML = '<div class="alert alert-danger">Sessão expirada. Por favor, faça login novamente.</div>';
-                    checkAuthentication();
-                } else {
-                    backupStatus.innerHTML = '<div class="alert alert-danger">Erro ao realizar backup. Verifique o console para mais detalhes.</div>';
+            }
+
+            // Salvar a configuração
+            saveBackupConfig.addEventListener('click', async () => {
+                const frequency = backupFrequency.value;
+                try {
+                    const response = await fetch('/api/backup-config', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify({ frequency })
+                    });
+                    const data = await response.json();
+                    showMessage(data.message, false);
+                } catch (error) {
+                    console.error('Erro ao salvar configuração de backup:', error);
+                    showMessage('Erro ao salvar configuração de backup', true);
                 }
-            } finally {
-                backupButton.disabled = false;
+            });
+
+            // Carregar a configuração ao iniciar a página
+            loadBackupConfig();
+
+            // Verificação de autenticação e permissões
+            const checkAuthentication = async () => {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/check-permission?permission=admin', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    const data = await response.json();
+                    if (!data.hasPermission) {
+                        document.getElementById('accessDeniedMessage').style.display = 'block';
+                        document.querySelector('.content').style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Erro ao verificar permissão:', error);
+                    document.getElementById('accessDeniedMessage').innerHTML = `
+                        <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                        <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+                    `;
+                    document.getElementById('accessDeniedMessage').style.display = 'block';
+                    document.querySelector('.content').style.display = 'none';
+                }
+            };
+
+            checkAuthentication();
+
+            // Botão de alternância de tema
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+
+            // Função para aplicar o tema
+            function applyTheme(theme) {
+                body.className = theme; // Aplica a classe diretamente ao body
+            }
+
+            // Aplicar tema salvo ao carregar a página
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // Função para exibir mensagens
+            function showMessage(message, isError = false) {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = message;
+                messageElement.className = `alert ${isError ? 'alert-danger' : 'alert-success'} mt-3`;
+                document.querySelector('.backup-container').appendChild(messageElement);
+                setTimeout(() => messageElement.remove(), 3000);
+            }
+
+            // Adicione este código no final do script existente
+            document.getElementById('restoreBackupButton').addEventListener('click', async () => {
+                const fileInput = document.getElementById('backupFile');
+                const file = fileInput.files[0];
+                if (!file) {
+                    showMessage('Por favor, selecione um arquivo de backup.', 'warning');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('backupFile', file);
+
+                try {
+                    const response = await fetch('/api/restore-backup', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    showMessage(result.message, 'success');
+                } catch (error) {
+                    console.error('Erro ao restaurar backup:', error);
+                    showMessage('Erro ao restaurar backup. Por favor, tente novamente.', 'danger');
+                }
+            });
+
+            function showMessage(message, type) {
+                const statusElement = document.getElementById('restoreStatus');
+                statusElement.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+                statusElement.style.display = 'block';
+                setTimeout(() => {
+                    statusElement.style.display = 'none';
+                }, 5000);
             }
         });
-
-        checkAuthentication();
-    });
     </script>
+
+    <!-- Mensagem de acesso negado -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
 </body>
 </html>

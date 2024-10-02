@@ -256,3 +256,48 @@ body.dark-theme .btn-success {
     background-color: #28a745;
     border-color: #28a745;
 }
+
+/* Estilos para o tema escuro das parcelas geradas */
+.dark-theme #parcelasGeradas {
+    background-color: #1E1E1E;
+    color: #fff;
+}
+
+.dark-theme #listaParcelas .list-group-item {
+    background-color: #444444;
+    color: #fff;
+    border-color: #555;
+}
+
+.dark-theme #listaParcelas .list-group-item:hover {
+    background-color: #555;
+}
+
+.dark-theme #btnGerarParcelas {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.dark-theme #btnGerarParcelas:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.dark-theme #parceladoFields input,
+.dark-theme #parceladoFields select {
+    background-color: #444;
+    color: #fff;
+    border-color: #555;
+}
+
+.dark-theme #parceladoFields input:focus,
+.dark-theme #parceladoFields select:focus {
+    background-color: #555;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.dark-theme #parceladoFields label {
+    color: #fff;
+}

@@ -156,10 +156,36 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             const token = localStorage.getItem('token');
             if (!token) {
                 window.location.href = 'login.html';
+                return;
+            }
+
+            const requiredPermission = 'vendas'; // Ajuste conforme necessário para cada página
+            try {
+                const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                if (!data.hasPermission) {
+                    // Em vez de usar alert, mostramos a mensagem personalizada
+                    document.getElementById('accessDeniedMessage').style.display = 'block';
+                    // Ocultar o conteúdo principal da página
+                    document.querySelector('.content').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erro ao verificar permissão:', error);
+                // Também podemos usar a mensagem personalizada para erros
+                document.getElementById('accessDeniedMessage').innerHTML = `
+                    <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                    <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+                `;
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.querySelector('.content').style.display = 'none';
             }
 
             document.getElementById('logoutButton').addEventListener('click', () => {
@@ -198,16 +224,28 @@
             <li>
                 <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
             </li>
+        </ul>
+        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="financeiroSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
             <li>
                 <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
             </li>
         </ul>
-        <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+        <!-- Novo código de Admin -->
+        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
         </a>
-        <ul class="collapse list-unstyled" id="chequesSubmenu">
+        <ul class="collapse list-unstyled" id="adminSubmenu">
             <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+            </li>
+            <li>
+                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
             </li>
         </ul>
         <div class="sidebar-footer">
@@ -231,8 +269,8 @@
                         <th>📦 Nome</th>
                         <th>💲 Valor Simples</th>
                         <th>💰 Valor Especial</th>
-                        <th>📦 Estoque</th>
-                        <th>📅 Cadastrado em</th>
+                        <!-- Removido 📦 Estoque -->
+                        <!-- Removido 📅 Cadastrado em -->
                         <th>⚙️ Ações</th>
                     </tr>
                 </thead>
@@ -349,17 +387,86 @@
     <button id="backupButton" class="btn btn-secondary">Realizar Backup Manual</button>
 
     <!-- Adicione este script no final do body -->
+    <div id="backupMessage" class="alert" style="display: none;"></div>
+
     <script>
     document.getElementById('backupButton').addEventListener('click', async () => {
         try {
             const response = await fetch('/api/backup', { method: 'POST' });
             const data = await response.json();
-            alert(data.message);
+            showBackupMessage(data.message, false);
         } catch (error) {
             console.error('Erro ao realizar backup:', error);
-            alert('Erro ao realizar backup. Verifique o console para mais detalhes.');
+            showBackupMessage('Erro ao realizar backup. Verifique o console para mais detalhes.', true);
+        }
+    });
+
+    function showBackupMessage(message, isError = false) {
+        const messageElement = document.getElementById('backupMessage');
+        messageElement.textContent = message;
+        messageElement.className = isError ? 'alert alert-danger' : 'alert alert-success';
+        messageElement.style.display = 'block';
+        setTimeout(() => {
+            messageElement.style.display = 'none';
+        }, 3000);
+    }
+    </script>
+
+    <!-- Adicione este elemento HTML no final do body, antes dos scripts -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const requiredPermission = 'vendas'; // Ajuste conforme necessário para cada página
+        try {
+            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (!data.hasPermission) {
+                // Em vez de usar alert, mostramos a mensagem personalizada
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                // Ocultar o conteúdo principal da página
+                document.querySelector('.content').style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Erro ao verificar permissão:', error);
+            // Também podemos usar a mensagem personalizada para erros
+            document.getElementById('accessDeniedMessage').innerHTML = `
+                <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+            `;
+            document.getElementById('accessDeniedMessage').style.display = 'block';
+            document.querySelector('.content').style.display = 'none';
         }
     });
     </script>
+
+    <style>
+        /* Estilos para o tema claro */
+        #accessDeniedMessage {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        /* Estilos para o tema escuro */
+        .dark-theme #accessDeniedMessage {
+            background-color: #4d4d00;
+            color: #ffff99;
+            border-color: #666600;
+        }
+    </style>
 </body>
 </html>

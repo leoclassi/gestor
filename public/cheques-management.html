@@ -17,8 +17,49 @@
 
             document.getElementById('logoutButton').addEventListener('click', () => {
                 localStorage.removeItem('token');
+                deleteCookie('cheques_auth');
                 window.location.href = 'login.html';
             });
+
+            // Adicionar evento de clique para o botão de deletar cookie
+            document.getElementById('deleteCookieButton').addEventListener('click', () => {
+                deleteCookie('cheques_auth');
+                $('#cookieDeletedModal').modal('show');
+                $('#cookieDeletedModal').on('hidden.bs.modal', function (e) {
+                    window.location.reload(); // Recarrega a página após fechar o modal
+                });
+            });
+
+            // Função para verificar se o cookie existe e é válido
+            function checkAuthCookie() {
+                const cookie = getCookie('cheques_auth');
+                if (cookie === 'authenticated') {
+                    document.getElementById('pageContent').style.display = 'block';
+                    return true;
+                }
+                return false;
+            }
+
+            // Função para definir o cookie
+            function setAuthCookie() {
+                const expirationMinutes = 30; // Cookie expira em 30 minutos
+                const date = new Date();
+                date.setTime(date.getTime() + (expirationMinutes * 60 * 1000));
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = "cheques_auth=authenticated; " + expires + "; path=/";
+            }
+
+            // Função para obter o valor de um cookie
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            // Função para deletar um cookie
+            function deleteCookie(name) {
+                document.cookie = name + '=; Max-Age=-99999999; path=/';
+            }
 
             // Função para verificar a senha
             async function checkPassword() {
@@ -41,6 +82,7 @@
                     if (data.success) {
                         $('#passwordModal').modal('hide');
                         document.getElementById('pageContent').style.display = 'block';
+                        setAuthCookie(); // Define o cookie após autenticação bem-sucedida
                     } else {
                         passwordInput.classList.add('input-error', 'shake');
                         passwordError.style.display = 'block';
@@ -50,7 +92,7 @@
                     }
                 } catch (error) {
                     console.error('Erro ao verificar a senha:', error);
-                    alert('Ocorreu um erro ao verificar a senha. Por favor, tente novamente.');
+                    showMessage('Ocorreu um erro ao verificar a senha. Por favor, tente novamente.', true);
                 }
             }
 
@@ -70,21 +112,14 @@
                 document.getElementById('passwordError').style.display = 'none';
             });
 
-            // Exibir o modal de senha ao carregar a página
-            $('#passwordModal').modal('show');
+            // Verificar o cookie antes de exibir o modal de senha
+            if (!checkAuthCookie()) {
+                $('#passwordModal').modal('show');
+            }
         });
     </script>
     <style>
         /* ... (estilos existentes) ... */
-
-        .sidebar-footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            padding: 15px;
-            background-color: var(--sidebar-bg);
-            border-top: 1px solid var(--sidebar-color);
-        }
 
         .btn-logout {
             width: 100%;
@@ -310,9 +345,105 @@
         .password-message {
             margin-bottom: 10px;
         }
+
+        .btn-sidebar {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: transparent;
+            color: var(--sidebar-color);
+            border: none;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .btn-sidebar:hover {
+            background-color: var(--sidebar-hover);
+            color: #ffc107; /* Cor amarela para destacar */
+        }
+
+        .btn-sidebar i {
+            margin-right: 10px;
+        }
+
+        #deleteCookieButton {
+            background-color: #dc3545; /* Vermelho */
+            color: white;
+            border: none;
+        }
+
+        #deleteCookieButton:hover {
+            background-color: #c82333; /* Vermelho mais escuro */
+            color: #fff;
+        }
+
+        #newChequeBtn {
+            background-color: #2ed122;
+            border-color: #2ed122;
+            color: white; /* Para melhor contraste com o fundo verde claro */
+        }
+
+        #newChequeBtn:hover {
+            background-color: #2ed122; /* Uma tonalidade ligeiramente mais escura para o efeito hover */
+            border-color: #2ed122;
+        }
+
+        #cookieDeletedModal .modal-dialog {
+            max-width: 400px; /* Ajuste este valor conforme necessário para a largura desejada */
+        }
+
+        #cookieDeletedModal .modal-body {
+            font-size: 1.1rem; /* Aumenta ligeiramente o tamanho da fonte */
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .sidebar-content {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-footer {
+            padding: 15px;
+            border-top: 1px solid var(--sidebar-color);
+        }
     </style>
 </head>
 <body>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const requiredPermission = 'cheques';
+        try {
+            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (!data.hasPermission) {
+                showMessage('Você não tem permissão para acessar esta página.', true);
+                window.location.href = 'index.html';
+            }
+        } catch (error) {
+            console.error('Erro ao verificar permissão:', error);
+            showMessage('Erro ao verificar permissões. Por favor, faça login novamente.', true);
+            window.location.href = 'login.html';
+        }
+    });
+    </script>
+
+    <!-- Resto do conteúdo da página -->
+
     <!-- Modal de Senha -->
     <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -337,41 +468,56 @@
                 <h3>🌲 Portugal Madeiras</h3>
                 <hr>
             </div>
-            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
-                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
-            </a>
-            <ul class="collapse list-unstyled" id="productsSubmenu">
-                <li>
-                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
-                </li>
-            </ul>
-            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
-                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
-            </a>
-            <ul class="collapse list-unstyled" id="clientsSubmenu">
-                <li>
-                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
-                </li>
-            </ul>
-            <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-                🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
-            </a>
-            <ul class="collapse list-unstyled" id="salesSubmenu">
-                <li>
-                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
-                </li>
-                <li>
-                    <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
-                </li>
-            </ul>
-            <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
-                💰 Cheques <i class="fas fa-chevron-right arrow"></i>
-            </a>
-            <ul class="collapse list-unstyled" id="chequesSubmenu">
-                <li>
-                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
-                </li>
-            </ul>
+            <div class="sidebar-content">
+                <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                    📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+                </a>
+                <ul class="collapse list-unstyled" id="productsSubmenu">
+                    <li>
+                        <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                    </li>
+                </ul>
+                <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                    👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+                </a>
+                <ul class="collapse list-unstyled" id="clientsSubmenu">
+                    <li>
+                        <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                    </li>
+                </ul>
+                <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+                    🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+                </a>
+                <ul class="collapse list-unstyled" id="salesSubmenu">
+                    <li>
+                        <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                    </li>
+                </ul>
+                <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                    💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+                </a>
+                <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                    <li>
+                        <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                    </li>
+                    <li>
+                        <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+                    </li>
+                </ul>
+                <!-- Novo submenu Admin -->
+                <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                    🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+                </a>
+                <ul class="collapse list-unstyled" id="adminSubmenu">
+                    <li>
+                        <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                    </li>
+                    <li>
+                        <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                    </li>
+                </ul>
+                <!-- Fim do novo submenu Admin -->
+            </div>
             <div class="sidebar-footer">
                 <button id="logoutButton" class="btn-logout">
                     <i class="fas fa-sign-out-alt"></i> Sair
@@ -400,6 +546,9 @@
                     <div class="col-md-6 text-right">
                         <button id="newChequeBtn" class="btn btn-primary">
                             <i class="fas fa-plus-circle"></i> Novo Cheque
+                        </button>
+                        <button id="deleteCookieButton" class="btn btn-danger ml-2">
+                            <i class="fas fa-cookie-bite"></i> Deletar Cookie
                         </button>
                         <button id="selectNonCompensatedBtn" class="btn btn-info ml-2">
                             <i class="fas fa-check-square"></i> Selecionar Não Compensados
@@ -556,5 +705,93 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="js/cheques-management.js"></script>
     </div>
+
+    <!-- Adicione este código antes do fechamento da tag </body> -->
+    <div class="modal fade" id="cookieDeletedModal" tabindex="-1" role="dialog" aria-labelledby="cookieDeletedModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cookieDeletedModalLabel">Cookie Deletado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    Você precisará inserir a senha novamente na próxima vez que acessar esta página.
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicione este elemento HTML no final do body, antes dos scripts -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const requiredPermission = 'cheques';
+        try {
+            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (!data.hasPermission) {
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.getElementById('pageContent').style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Erro ao verificar permissão:', error);
+            document.getElementById('accessDeniedMessage').innerHTML = `
+                <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+            `;
+            document.getElementById('accessDeniedMessage').style.display = 'block';
+            document.getElementById('pageContent').style.display = 'none';
+        }
+    });
+    </script>
+
+    <style>
+        #accessDeniedMessage {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        .dark-theme #accessDeniedMessage {
+            background-color: #4d4d00;
+            color: #ffff99;
+            border-color: #666600;
+        }
+    </style>
+
+    <!-- Substitua qualquer uso de alert() por uma mensagem no DOM -->
+    <div id="messageContainer" class="alert" style="display: none;"></div>
+
+    <script>
+    // Substitua todas as ocorrências de alert() por esta função
+    function showMessage(message, isError = false) {
+        const messageContainer = document.getElementById('messageContainer');
+        messageContainer.textContent = message;
+        messageContainer.className = isError ? 'alert alert-danger' : 'alert alert-success';
+        messageContainer.style.display = 'block';
+        setTimeout(() => {
+            messageContainer.style.display = 'none';
+        }, 3000);
+    }
+    </script>
 </body>
 </html>

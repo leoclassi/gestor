@@ -23,7 +23,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-09-19",
     "id": "1726430707835",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-24T17:08:51.463Z"
   },
   {
     "numeroCheque": "1980",
@@ -35,7 +36,8 @@
     "remetente": "Levi Antonio Graciano",
     "dataCompensacao": "2024-09-25",
     "id": "1726430713943",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-25T23:12:38.164Z"
   },
   {
     "numeroCheque": "32",
@@ -47,7 +49,8 @@
     "remetente": "Maria Votproa Ferreora Scarmeloto",
     "dataCompensacao": "2024-09-27",
     "id": "1726430720535",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:56.319Z"
   },
   {
     "numeroCheque": "850937",
@@ -59,7 +62,8 @@
     "remetente": "Gisela Cristina Saoldaro Sabino",
     "dataCompensacao": "2024-09-28",
     "id": "1726430731140",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:57.114Z"
   },
   {
     "numeroCheque": "850393",
@@ -71,7 +75,8 @@
     "remetente": "C. A. Juliao Pinezi",
     "dataCompensacao": "2024-09-29",
     "id": "1726430742593",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:59.059Z"
   },
   {
     "numeroCheque": "976757",
@@ -96,7 +101,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-09-30",
     "id": "1726430757147",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:59.671Z"
   },
   {
     "numeroCheque": "208",
@@ -285,7 +291,9 @@
     "dataEmissao": "2024-09-06",
     "remetente": "VERTISEC COM EXP E REPRES COMERCIAL LTDA",
     "dataCompensacao": "2024-09-23",
-    "id": "1726432005524"
+    "id": "1726432005524",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-24T17:08:52.115Z"
   },
   {
     "numeroCheque": "823",
@@ -354,7 +362,9 @@
     "dataEmissao": "2024-09-26",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-09-26",
-    "id": "1726432407128"
+    "id": "1726432407128",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:54.898Z"
   },
   {
     "numeroCheque": "3756",
@@ -431,7 +441,9 @@
     "dataEmissao": "2024-09-28",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-09-28",
-    "id": "1726432502835"
+    "id": "1726432502835",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:57.655Z"
   },
   {
     "numeroCheque": "3755",
@@ -443,5 +455,96 @@
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-13",
     "id": "1726432747349"
+  },
+  {
+    "numeroCheque": "850456",
+    "banco": null,
+    "agencia": "6723",
+    "contaCorrente": "7217-6",
+    "valor": 330,
+    "dataEmissao": "2024-09-21",
+    "remetente": "C. De Oliveira Peças - ME",
+    "dataCompensacao": "2024-11-21",
+    "id": "1727553862280",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "850455",
+    "banco": "1",
+    "agencia": "6723",
+    "contaCorrente": "7217-6",
+    "valor": 330,
+    "dataEmissao": "2024-08-21",
+    "remetente": "C. De Oliveira Peças - ME",
+    "dataCompensacao": "2024-10-21",
+    "id": "1727553937128"
+  },
+  {
+    "numeroCheque": "194",
+    "banco": "33",
+    "agencia": "396",
+    "contaCorrente": "1108",
+    "valor": 360,
+    "dataEmissao": "2024-09-28",
+    "remetente": "Marcos Roberto Furlanetto",
+    "dataCompensacao": "2024-10-17",
+    "id": "1727553996233"
+  },
+  {
+    "numeroCheque": "851819",
+    "banco": "1",
+    "agencia": "505",
+    "contaCorrente": "23806-6",
+    "valor": 7150,
+    "dataEmissao": "2024-09-28",
+    "remetente": "José Luiz Quarteiro",
+    "dataCompensacao": "2024-09-28",
+    "id": "1727554039910",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-09-30T16:39:58.347Z"
+  },
+  {
+    "numeroCheque": "3806",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 10000,
+    "dataEmissao": "2024-10-15",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-10-15",
+    "id": "1727554128142"
+  },
+  {
+    "numeroCheque": "3807",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-10-12",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-10-12",
+    "id": "1727554161154"
+  },
+  {
+    "numeroCheque": "25",
+    "banco": "237",
+    "agencia": "2430",
+    "contaCorrente": "12594",
+    "valor": 19180,
+    "dataEmissao": "2024-09-28",
+    "remetente": "VERTISEC COM EXP E REPRES COMERCIAL LTDA",
+    "dataCompensacao": "2024-10-28",
+    "id": "1727554222554"
+  },
+  {
+    "numeroCheque": "26",
+    "banco": "237",
+    "agencia": "2430",
+    "contaCorrente": "12594",
+    "valor": 19180,
+    "dataEmissao": "2024-09-28",
+    "remetente": "VERTISEC COM EXP E REPRES COMERCIAL LTDA",
+    "dataCompensacao": "2024-10-13",
+    "id": "1727554243801"
   }
 ]

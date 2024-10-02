@@ -371,4 +371,172 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cnpjInput) {
         cnpjInput.addEventListener('input', () => formatDocument(cnpjInput));
     }
+
+    // Adicione esta função no início do arquivo
+    function buscarCEP(cep) {
+        fetch(`/api/cep/${cep}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    alert('CEP não encontrado');
+                } else {
+                    document.getElementById('logradouro').value = data.logradouro || '';
+                    document.getElementById('bairro').value = data.bairro || '';
+                    document.getElementById('cidade').value = data.localidade || '';
+                    document.getElementById('uf').value = data.uf || '';
+                    
+                    // Limpar o campo número, já que a API não fornece essa informação
+                    document.getElementById('numero').value = '';
+                    
+                    // Focar no campo número para que o usuário possa preenchê-lo
+                    document.getElementById('numero').focus();
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar CEP:', error);
+                alert('Erro ao buscar CEP. Por favor, tente novamente.');
+            });
+    }
+
+    // Adicione este event listener após a declaração da variável 'form'
+    const cepInput = document.getElementById('cep');
+    cepInput.addEventListener('blur', () => {
+        const cep = cepInput.value.replace(/\D/g, '');
+        if (cep.length === 8) {
+            buscarCEP(cep);
+        }
+    });
+
+    function formatCEP(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 5) {
+            value = value.slice(0, 5) + '-' + value.slice(5, 8);
+        }
+        input.value = value;
+    }
+
+    cepInput.addEventListener('input', () => formatCEP(cepInput));
+
+    const cidadeInput = document.getElementById('cidade');
+    const ufInput = document.getElementById('uf');
+
+    if (cidadeInput) {
+        $(cidadeInput).autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/api/cidades",
+                    dataType: "json",
+                    data: {
+                        termo: request.term
+                    },
+                    success: function(data) {
+                        console.log("Dados recebidos:", data);
+                        response(data.map(item => ({
+                            label: `${item.nome} - ${item.uf}`,
+                            value: item.nome,
+                            uf: item.uf
+                        })));
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Erro na requisição:", error);
+                    }
+                });
+            },
+            minLength: 3,
+            select: function(event, ui) {
+                cidadeInput.value = ui.item.value;
+                if (ufInput) {
+                    ufInput.value = ui.item.uf;
+                }
+                return false;
+            },
+            open: function() {
+                $(this).autocomplete('widget').css('z-index', 2000);
+                
+                // Aplicar o tema escuro se necessário
+                if (document.body.classList.contains('dark-theme')) {
+                    $(this).autocomplete('widget').addClass('dark-theme');
+                } else {
+                    $(this).autocomplete('widget').removeClass('dark-theme');
+                }
+
+                // Posicionar o menu de autocompletar
+                const inputOffset = $(this).offset();
+                const inputHeight = $(this).outerHeight();
+                $(this).autocomplete('widget').css({
+                    'top': inputOffset.top + inputHeight + 'px',
+                    'left': inputOffset.left + 'px',
+                    'width': $(this).outerWidth() + 'px'
+                });
+            }
+        }).autocomplete("instance")._renderItem = function(ul, item) {
+            return $("<li>")
+                .append(`<div>${item.label}</div>`)
+                .appendTo(ul);
+        };
+    }
+
+    // Adicione este evento para debug
+    if (cidadeInput) {
+        cidadeInput.addEventListener('input', function() {
+            console.log("Valor atual:", this.value);
+        });
+    }
+
+    // Atualizar o tema do autocomplete quando o tema geral for alterado
+    themeToggle.addEventListener('click', () => {
+        // ... (código existente para alternar o tema) ...
+
+        // Atualizar o tema do autocomplete
+        if (cidadeInput) {
+            const autocompleteWidget = $(cidadeInput).autocomplete('widget');
+            if (body.classList.contains('dark-theme')) {
+                autocompleteWidget.addClass('dark-theme');
+            } else {
+                autocompleteWidget.removeClass('dark-theme');
+            }
+        }
+    });
+
+    const editButtons = document.querySelectorAll('.edit-btn');
+    editButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const clientId = button.getAttribute('data-id');
+            editingClient = clients.find(client => client.id === clientId);
+            if (editingClient) {
+                document.getElementById('tipoCliente').value = editingClient.tipoCliente;
+                document.getElementById('nome').value = editingClient.nome;
+                document.getElementById('email').value = editingClient.email;
+                document.getElementById('telefone').value = editingClient.telefone;
+                document.getElementById('cpf').value = editingClient.cpf;
+                document.getElementById('cnpj').value = editingClient.cnpj;
+                document.getElementById('cep').value = editingClient.endereco.cep;
+                document.getElementById('logradouro').value = editingClient.endereco.logradouro;
+                document.getElementById('numero').value = editingClient.endereco.numero;
+                document.getElementById('bairro').value = editingClient.endereco.bairro;
+                document.getElementById('cidade').value = editingClient.endereco.cidade;
+                document.getElementById('uf').value = editingClient.endereco.uf;
+                
+                // Use JavaScript puro para abrir o modal
+                const modal = document.getElementById('addClientModal');
+                modal.style.display = 'block';
+                modal.classList.add('show');
+                document.body.classList.add('modal-open');
+                
+                tipoClienteSelect.dispatchEvent(new Event('change'));
+            }
+        });
+    });
+
+    // Adicione um evento para fechar o modal
+    const closeModalButtons = document.querySelectorAll('[data-dismiss="modal"]');
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.getElementById('addClientModal');
+            modal.style.display = 'none';
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+        });
+    });
 });

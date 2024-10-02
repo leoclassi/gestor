@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Usuários</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <style>
+        /* Estilos específicos para o tema escuro na página de gerenciamento de usuários */
+        .dark-theme {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --table-bg: #1e1e1e;
+            --table-border: #444444;
+            --input-bg: #2c2c2c;
+            --input-border: #444444;
+            --btn-primary-bg: #0056b3;
+            --btn-primary-border: #004085;
+            --btn-danger-bg: #dc3545;
+            --btn-danger-border: #bd2130;
+        }
+
+        body.dark-theme {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .dark-theme .table {
+            color: var(--text-color);
+            background-color: var(--table-bg);
+        }
+
+        .dark-theme .table-bordered,
+        .dark-theme .table-bordered td,
+        .dark-theme .table-bordered th {
+            border-color: var(--table-border);
+        }
+
+        .dark-theme .form-control {
+            background-color: var(--input-bg);
+            border-color: var(--input-border);
+            color: var(--text-color);
+        }
+
+        .dark-theme .btn-primary {
+            background-color: var(--btn-primary-bg);
+            border-color: var(--btn-primary-border);
+        }
+
+        .dark-theme .btn-danger {
+            background-color: var(--btn-danger-bg);
+            border-color: var(--btn-danger-border);
+        }
+
+        .dark-theme .modal-content {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .dark-theme .modal-header,
+        .dark-theme .modal-footer {
+            border-color: var(--table-border);
+        }
+
+        /* Estilo para o botão de alternância de tema */
+        #themeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>🌲 Portugal Madeiras</h3>
+            <hr>
+        </div>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="salesSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+                </li>
+            </ul>
+            <!-- Nova opção Admin no sidebar -->
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <hr>
+            <button id="logoutButton" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <h1 class="mb-4">👥 Gerenciamento de Usuários</h1>
+            <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addUserModal">
+                <i class="fas fa-user-plus"></i> Adicionar Usuário
+            </button>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome de Usuário</th>
+                        <th>Admin</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable">
+                    <!-- Os usuários serão adicionados aqui dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar usuário -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Adicionar Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
+                    <form id="addUserForm">
+                        <div class="form-group">
+                            <label for="username">Nome de Usuário</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <input type="password" class="form-control" id="password">
+                            <small class="form-text text-muted">Deixe em branco para manter a senha atual ao editar.</small>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="isAdmin">
+                            <label class="form-check-label" for="isAdmin">É administrador?</label>
+                        </div>
+                        <div id="permissionsSection">
+                            <h5>Permissões:</h5>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input permission-checkbox" id="permCheques" value="cheques">
+                                <label class="form-check-label" for="permCheques">Cheques</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input permission-checkbox" id="permVendas" value="vendas">
+                                <label class="form-check-label" for="permVendas">Vendas</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input permission-checkbox" id="permProdutos" value="produtos">
+                                <label class="form-check-label" for="permProdutos">Produtos</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input permission-checkbox" id="permClientes" value="clientes">
+                                <label class="form-check-label" for="permClientes">Clientes</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão para alternar entre temas -->
+    <button id="themeToggle" class="btn btn-sm">🌓</button>
+
+    <!-- Substitua o elemento existente de alerta por este -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <!-- Popup personalizado -->
+    <div id="customPopup" class="custom-popup" style="display: none;">
+        <div class="custom-popup-content">
+            <span class="close-popup">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/user-management.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+
+            // Função para mostrar o alerta de acesso negado
+            function showAccessDeniedAlert() {
+                document.getElementById('alertOverlay').style.display = 'flex';
+                document.getElementById('redirectButton').addEventListener('click', () => {
+                    window.location.href = 'index.html';
+                });
+            }
+
+            // Adicione o código para a alternância de tema
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Verifica se há uma preferência de tema salva
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                body.classList.add(currentTheme);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-theme')) {
+                    body.classList.remove('dark-theme');
+                    localStorage.setItem('theme', '');
+                } else {
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark-theme');
+                }
+            });
+
+            // Expor a função showAccessDeniedAlert globalmente
+            window.showAccessDeniedAlert = showAccessDeniedAlert;
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const requiredPermission = 'admin';
+            try {
+                const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                if (!data.hasPermission) {
+                    document.getElementById('accessDeniedMessage').style.display = 'block';
+                    document.querySelector('.container').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erro ao verificar permissão:', error);
+                document.getElementById('accessDeniedMessage').innerHTML = `
+                    <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                    <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+                `;
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.querySelector('.container').style.display = 'none';
+            }
+        });
+    </script>
+    <style>
+        #accessDeniedMessage {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        .dark-theme #accessDeniedMessage {
+            background-color: #4d4d00;
+            color: #ffff99;
+            border-color: #666600;
+        }
+    </style>
+</body>
+</html>

@@ -9,12 +9,86 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/dark-theme.css">
     <style>
-        .chart-container {
-            width: 100%;
-            height: 400px;
-            margin: 50px auto;
+        :root {
+            --sidebar-bg: #f8f9fa;
+            --sidebar-color: #333;
+            --sidebar-hover: #e9ecef;
+            --modal-bg: #ffffff;
+            --modal-color: #333333;
+            --input-bg: #ffffff;
+            --input-color: #495057;
+            --input-border: #ced4da;
+            --body-bg: #ffffff;
+            --body-color: #333333;
         }
-        
+
+        .dark-theme {
+            --sidebar-bg: #212222;
+            --sidebar-color: #ecf0f1;
+            --sidebar-hover: #34495e;
+            --modal-bg: #333333;
+            --modal-color: #ffffff;
+            --input-bg: #444444;
+            --input-color: #ffffff;
+            --input-border: #666666;
+            --body-bg: #121212;
+            --body-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--body-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar-header h3 {
+            color: var(--sidebar-color);
+            margin-bottom: 0;
+        }
+
+        .sidebar hr {
+            border-top: 1px solid var(--sidebar-color);
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--sidebar-color);
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--sidebar-hover);
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--sidebar-color);
+        }
+
         .btn-logout {
             width: 100%;
             padding: 10px;
@@ -33,50 +107,18 @@
         .btn-logout i {
             margin-right: 10px;
         }
-        
-        .sidebar-footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
 
-        hr {
-            margin-top: 0; /* Remove a margem superior para alinhar melhor */
-            border-color: rgba(255, 255, 255, 0.1); /* Define a cor da linha */
+        #themeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                window.location.href = 'login.html';
-            }
-
-            document.getElementById('logoutButton').addEventListener('click', () => {
-                localStorage.removeItem('token');
-                window.location.href = 'login.html';
-            });
-
-            // Aplicar tema escuro se estiver armazenado no localStorage
-            const body = document.body;
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme) {
-                body.classList.add(currentTheme);
-            }
-
-            // Função para alternar entre temas
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', () => {
-                if (body.classList.contains('dark-theme')) {
-                    body.classList.remove('dark-theme');
-                    localStorage.removeItem('theme');
-                } else {
-                    body.classList.add('dark-theme');
-                    localStorage.setItem('theme', 'dark-theme');
-                }
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -107,20 +149,31 @@
             <li>
                 <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
             </li>
+        </ul>
+        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="financeiroSubmenu">
+            <li>
+                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+            </li>
             <li>
                 <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
             </li>
         </ul>
-        <a href="#chequesSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Cheques <i class="fas fa-chevron-right arrow"></i>
+        <!-- Novo código de Admin -->
+        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
         </a>
-        <ul class="collapse list-unstyled" id="chequesSubmenu">
+        <ul class="collapse list-unstyled" id="adminSubmenu">
             <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+            </li>
+            <li>
+                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
             </li>
         </ul>
         <div class="sidebar-footer">
-            <hr>
             <button id="logoutButton" class="btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Sair
             </button>
@@ -130,18 +183,131 @@
     <div class="content">
         <div class="container">
             <h1 class="mb-4">📊 Gráfico de Vendas</h1>
-            <div class="chart-container">
-                <canvas id="salesChart"></canvas>
-            </div>
+            <!-- Adicionar o elemento de canvas para o gráfico -->
+            <canvas id="salesChart"></canvas>
         </div>
     </div>
 
     <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/sales-chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const requiredPermission = 'vendas';
+            try {
+                const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                if (!data.hasPermission) {
+                    document.getElementById('accessDeniedMessage').style.display = 'block';
+                    document.querySelector('.content').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erro ao verificar permissão:', error);
+                document.getElementById('accessDeniedMessage').innerHTML = `
+                    <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                    <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+                `;
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.querySelector('.content').style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            function applyTheme(theme) {
+                body.className = theme; // Aplica a classe diretamente ao body
+                if (window.salesChart) {
+                    updateChartTheme();
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark-theme';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            function updateChartTheme() {
+                if (window.salesChart && window.salesChart.options && window.salesChart.options.scales) {
+                    const isDarkTheme = body.classList.contains('dark-theme');
+                    const chartBackgroundColor = isDarkTheme ? '#333333' : '#ffffff';
+                    const chartTextColor = isDarkTheme ? '#ffffff' : '#333333';
+
+                    window.salesChart.options.scales.x.grid.color = chartTextColor;
+                    window.salesChart.options.scales.y.grid.color = chartTextColor;
+                    window.salesChart.options.scales.x.ticks.color = chartTextColor;
+                    window.salesChart.options.scales.y.ticks.color = chartTextColor;
+                    window.salesChart.options.plugins.legend.labels.color = chartTextColor;
+                    window.salesChart.update();
+                }
+            }
+
+            // Adicione um observador de mutação para detectar quando o gráfico é criado
+            const observer = new MutationObserver((mutations) => {
+                if (window.salesChart) {
+                    updateChartTheme();
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    </script>
+    <!-- Adicione este elemento HTML no final do body, antes dos scripts -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <style>
+        #accessDeniedMessage {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        .dark-theme #accessDeniedMessage {
+            background-color: #4d4d00;
+            color: #ffff99;
+            border-color: #666600;
+        }
+    </style>
+
+    <style>
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #salesChart {
+            background-color: var(--modal-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </body>
 </html>
