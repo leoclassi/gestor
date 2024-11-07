@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório para Impressão</title>
+    <link rel="stylesheet" href="css/relatorio.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Relatório Financeiro</h1>
+            <p class="data-relatorio">Data: <span id="dataAtual"></span></p>
+        </header>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-money-check"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Cheques a Vencer</h2>
+                    <p id="chequesAVencer" class="loading">Carregando...</p>
+                    <p id="valorCheques" class="valor"></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Vendas do Mês</h2>
+                    <select id="mesSelecionado" class="mes-select">
+                        <option value="current">Mês Atual</option>
+                        <option value="previous">Mês Anterior</option>
+                    </select>
+                    <p id="vendasDoMes" class="loading">Carregando...</p>
+                    <p id="valorVendas" class="valor"></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Boletos a Vencer</h2>
+                    <p id="boletosAVencer" class="loading">Carregando...</p>
+                    <p id="valorBoletos" class="valor"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-info">
+            <p>Relatório gerado automaticamente pelo sistema</p>
+        </div>
+    </div>
+    <script src="js/relatorio.js"></script>
+</body>
+</html> 

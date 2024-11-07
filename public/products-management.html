@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⠀</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1, h2 {
+            text-align: center;
+            margin: 0;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+        #printButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+        #printButton:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: white;
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ffff00;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        .price {
+            text-align: center;
+        }
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            #printButton {
+                display: none;
+            }
+            #productTables {
+                padding-top: 2cm; /* Espaço no topo da primeira página */
+                max-width: 95%;
+            }
+            table {
+                page-break-inside: avoid;
+                margin-bottom: 0.8cm; /* Espaço entre as tabelas */
+                width: 95%;
+            }
+            th, td {
+                padding: 4px;
+                font-size: 0.9em;
+            }
+            tbody tr:nth-child(odd) {
+                background-color: #ffff00 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            @page {
+                size: auto;
+                margin: 10mm; /* Ajusta a margem ao redor da página */
+                marks: none; /* Remove marcas de impressão */
+            }
+            body {
+                margin: 0; /* Remove a margem interna do corpo para usar apenas a margem do @page */
+            }
+            @page {
+                margin-bottom: 0cm; /* Reduz a margem inferior */
+            }
+            h1, h2 {
+                page-break-after: avoid;
+            }
+            h1 {
+                margin-top: 0;
+            }
+            thead {
+                display: table-header-group;
+            }
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Portugal Madeiras</h1>
+    <h2>Eucalipto Tratado</h2>
+    <div id="productTables">
+        <!-- As tabelas de produtos serão inseridas aqui dinamicamente -->
+    </div>
+    <button id="printButton">
+        <i class="fas fa-print"></i>
+        Imprimir Tabela
+    </button>
+
+    <!-- Adicione este elemento HTML para a mensagem de acesso negado -->
+    <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <h4 class="alert-heading">Acesso Negado</h4>
+        <p>Você não tem permissão para acessar esta página.</p>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            const numericValue = typeof value === 'string' 
+                ? parseFloat(value.replace(/[^\d,]/g, '').replace(',', '.'))
+                : value;
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(numericValue);
+        }
+
+        function updateSpecialPrice(simpleCell, specialCell) {
+            const simpleValue = parseFloat(simpleCell.textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+            const specialValue = simpleValue * 1.2; // Adiciona 20% ao valor simples
+            specialCell.textContent = formatCurrency(specialValue);
+            saveChanges(specialCell.dataset.id, specialCell.dataset.field, specialCell.textContent);
+        }
+
+        function saveChanges(id, field, value) {
+            fetch('/api/products/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, field, value }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Alteração salva com sucesso');
+                } else {
+                    console.error('Erro ao salvar alteração');
+                }
+            })
+            .catch(error => console.error('Erro ao salvar alteração:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const requiredPermission = 'produtos';
+            try {
+                const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                if (!data.hasPermission) {
+                    document.getElementById('accessDeniedMessage').style.display = 'block';
+                    document.getElementById('productTables').style.display = 'none';
+                    document.getElementById('printButton').style.display = 'none';
+                    return;
+                }
+            } catch (error) {
+                console.error('Erro ao verificar permissão:', error);
+                document.getElementById('accessDeniedMessage').innerHTML = `
+                    <h4 class="alert-heading">Erro ao verificar permissões</h4>
+                    <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
+                `;
+                document.getElementById('accessDeniedMessage').style.display = 'block';
+                document.getElementById('productTables').style.display = 'none';
+                document.getElementById('printButton').style.display = 'none';
+                return;
+            }
+
+            const allowedProducts = [
+                "Caibro - 5x6 cm",
+                "Viga - 6x16 cm",
+                "Viga - 6x12 cm",
+                "Ripa - 5x2 cm",
+                "Ripão - 15x3 cm",
+                "Sarrafo - 3x5 cm",
+                "Balancim 3x4 cm - 1,25 mts [DZ]",
+                "Palanque - 8,50 Metros",
+                "Palanque - 8,00 Metros",
+                "Palanque - 7,50 Metros",
+                "Palanque - 7,00 Metros",
+                "Palanque - 6,50 Metros",
+                "Palanque - 6,00 Metros",
+                "Palanque - 5,50 Metros",
+                "Palanque - 5,00 Metros",
+                "Palanque - 4,50 Metros",
+                "Palanque - 4,00 Metros",
+                "Palanque - 3,50 Metros",
+                "Palanque - 3,20 Metros",
+                "Palanque - 2,50 Metros",
+                "Repique - 2,20 Metros"
+            ];
+
+            fetch('/api/products')
+                .then(response => response.json())
+                .then(products => {
+                    const productTables = document.querySelector('#productTables');
+                    let currentCategory = '';
+                    let currentTable;
+
+                    products.forEach(product => {
+                        if (allowedProducts.some(allowedProduct => product.nome.includes(allowedProduct))) {
+                            const [category, metragem, ...rest] = product.nome.split(' - ');
+                            const description = rest.join(' - ');
+                            const categoryMetragem = `${category} - ${metragem}`;
+
+                            if (categoryMetragem !== currentCategory) {
+                                currentTable = document.createElement('table');
+                                currentTable.innerHTML = `
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">${categoryMetragem}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>DESCRIÇÃO</th>
+                                            <th>Simples</th>
+                                            <th>Especial</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                `;
+                                productTables.appendChild(currentTable);
+                                currentCategory = categoryMetragem;
+                            }
+
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td contenteditable="true" data-id="${product.id}" data-field="nome">${description}</td>
+                                <td class="price" contenteditable="true" data-id="${product.id}" data-field="valor">${formatCurrency(product.valor)}</td>
+                                <td class="price" contenteditable="true" data-id="${product.id}" data-field="valorEspecial">${formatCurrency(product.valorEspecial)}</td>
+                            `;
+
+                            row.querySelectorAll('[contenteditable="true"]').forEach(cell => {
+                                cell.addEventListener('focus', function() {
+                                    if (this.classList.contains('price')) {
+                                        this.textContent = this.textContent.replace(/[^\d,]/g, '');
+                                    }
+                                });
+
+                                cell.addEventListener('blur', function() {
+                                    const id = this.dataset.id;
+                                    const field = this.dataset.field;
+                                    let value = this.textContent.trim();
+
+                                    if (field === 'valor' || field === 'valorEspecial') {
+                                        const numericValue = parseFloat(value.replace(/[^\d,]/g, '').replace(',', '.'));
+                                        value = formatCurrency(numericValue);
+                                        this.textContent = value;
+
+                                        if (field === 'valor') {
+                                            const specialCell = this.nextElementSibling;
+                                            updateSpecialPrice(this, specialCell);
+                                        }
+                                    }
+
+                                    saveChanges(id, field, value);
+                                });
+                            });
+
+                            currentTable.querySelector('tbody').appendChild(row);
+                        }
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar os produtos:', error));
+
+            document.getElementById('printButton').addEventListener('click', () => {
+                window.print();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Portugal Madeiras</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <style>
+        :root {
+            --sidebar-bg: #f8f9fa;
+            --sidebar-color: #333;
+            --sidebar-hover: #f8f9fa;
+            --sidebar-header-bg: #f8f9fa;
+            --sidebar-divider: #dee2e6;
+            --card-bg: #ffffff;
+            --card-text: #333333;
+            --card-title-color: #000000;
+            --list-item-text: #333333; /* Nova variável para o texto dos itens da lista */
+        }
+
+        .dark-theme {
+            --sidebar-bg: #1e1e1e;
+            --sidebar-color: #ecf0f1;
+            --sidebar-hover: #2c3e50;
+            --sidebar-header-bg: #1e1e1e; /* Mesma cor do fundo da sidebar */
+            --sidebar-divider: #333;
+            --card-bg: #333333;
+            --card-text: #ffffff;
+            --card-title-color: #ffffff;
+            --list-item-text: #ffffff; /* Nova variável para o texto dos itens da lista no tema escuro */
+        }
+
+        body {
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 0 10px 20px;
+        }
+
+        .sidebar-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(5px);
+            z-index: 0;
+        }
+
+        .sidebar-logo img {
+            max-width: 80%;
+            height: auto;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+            transition: filter 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            background-color: var(--sidebar-header-bg);
+        }
+
+        .logo-icon {
+            font-size: 3rem; /* Aumentado de 2.5rem para 3rem */
+            margin-bottom: 8px; /* Reduzido de 10px para 8px */
+        }
+
+        .logo-text h2 {
+            margin: 0;
+            color: var(--sidebar-color);
+        }
+
+        .logo-text h2:first-child {
+            font-size: 1.3rem; /* Reduzido de 1.4rem para 1.3rem */
+            font-weight: 500;
+        }
+
+        .logo-text h2:last-child {
+            font-size: 1.1rem; /* Reduzido de 1.2rem para 1.1rem */
+            font-weight: 300;
+            color: var(--sidebar-color);
+            opacity: 0.7;
+        }
+
+        .sidebar-divider {
+            border: 0;
+            height: 1px; /* Reduzido de 2px para 1px para ser mais sutil */
+            background-color: var(--sidebar-divider);
+            margin: 0;
+            box-shadow: none; /* Removida a sombra */
+        }
+
+        .sidebar-content {
+            background-color: var(--sidebar-bg);
+            padding-top: 15px;
+        }
+
+        .sidebar-header h3 {
+            color: var(--sidebar-color);
+            margin-bottom: 0;
+        }
+
+        .sidebar hr {
+            border-top: 1px solid var(--sidebar-color);
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--sidebar-color);
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--sidebar-hover);
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
+        .sidebar a .arrow {
+            float: right;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar a[aria-expanded="true"] .arrow {
+            transform: rotate(90deg);
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Estilos adicionais para o dashboard */
+        .card {
+            border: none;
+            border-radius: 10px; /* Reduzido de 15px para 10px */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reduzida */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--card-text);
+        }
+        .card:hover {
+            transform: translateY(-3px); /* Reduzido de -5px para -3px */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra no hover reduzida */
+        }
+        .card-body {
+            padding: 1rem; /* Reduzido o padding */
+        }
+        .card-title {
+            font-size: 1rem; /* Reduzido o tamanho do título */
+            font-weight: bold;
+            color: var(--card-title-color);
+        }
+        .card-text {
+            font-size: 1.8rem; /* Reduzido de 2.5rem para 1.8rem */
+            font-weight: bold;
+            color: #007bff;
+        }
+        .icon-card {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .list-group-item {
+            border: none;
+            padding: 0.75rem 1.25rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--list-item-text); /* Usar a nova variável aqui */
+            border-color: var(--input-border);
+        }
+        .badge {
+            font-size: 0.9rem;
+            padding: 0.5em 0.7em;
+            color: #ffffff; /* Manter o texto do badge sempre branco */
+        }
+        .chart-container {
+            height: 300px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        /* Ajuste o layout para melhor responsividade */
+        @media (min-width: 768px) {
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        /* Ajustes específicos para o tema escuro */
+        .dark-theme .sidebar-logo {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme .sidebar-logo::before {
+            background: linear-gradient(45deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+        }
+
+        .dark-theme .sidebar-logo img {
+            filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Estilo específico para os cards de Produtos Mais Vendidos e Clientes Mais Ativos */
+        #produtosMaisVendidos .list-group-item,
+        #clientesMaisAtivos .list-group-item {
+            background-color: var(--card-bg);
+            color: var(--list-item-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
+            <hr>
+        </div>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="ordersSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                </li>
+                <li>
+                    <a href="new-dashboard.html" class="pl-5">Dashboard</a>
+                </li>
+            </ul>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container mt-4">
+            <h1 class="mb-4">📊 Dashboard</h1>
+            <div class="dashboard-grid">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">🛒 Total de Vendas</h5>
+                        <p class="card-text" id="totalVendas">0</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">💰 Faturamento Total</h5>
+                        <p class="card-text" id="faturamentoTotal">R$ 0,00</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">⏳ Vendas Pendentes</h5>
+                        <p class="card-text" id="vendasPendentes">0</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">👥 Total de Clientes</h5>
+                        <p class="card-text" id="totalClientes">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Produtos Mais Vendidos</h5>
+                            <ul class="list-group" id="produtosMaisVendidos"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Clientes Mais Ativos</h5>
+                            <ul class="list-group" id="clientesMaisAtivos"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Vendas por Mês</h5>
+                            <div class="chart-container">
+                                <canvas id="vendasPorMes"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gráfico de Vendas</h5>
+                            <div class="chart-container">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-sm position-fixed" style="bottom: 20px; right: 20px; font-size: 24px;">🌓</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/sales-chart.js"></script>
+    <script>
+        function criarGraficoVendasPorMes(dados) {
+            const ctx = document.getElementById('vendasPorMes').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dados.labels,
+                    datasets: [{
+                        label: 'Vendas por Mês',
+                        data: dados.valores,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    // Ajusta o título do tooltip para mostrar o mês e ano completos
+                                    const label = context[0].label.split('/');
+                                    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                                        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                                    return `${monthNames[parseInt(label[0]) - 1]} ${label[1]}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoDistribuicaoProdutos(dados) {
+            const ctx = document.getElementById('distribuicaoProdutos').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: dados.labels,
+                    datasets: [{
+                        data: dados.valores,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function carregarDados() {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                console.error('Token de autenticação não encontrado');
+                document.body.innerHTML = '<div class="container mt-4"><h2 class="text-danger">Erro de autenticação. Por favor, faça login novamente.</h2></div>';
+                return;
+            }
+
+            fetch('/api/dashboard-data', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('totalVendas').textContent = data.totalVendas;
+                document.getElementById('faturamentoTotal').textContent = data.faturamentoTotal;
+                document.getElementById('vendasPendentes').textContent = data.vendasPendentes;
+
+                const produtosList = document.getElementById('produtosMaisVendidos');
+                produtosList.innerHTML = '';
+                if (data.produtosMaisVendidos.length > 0 && data.produtosMaisVendidos[0].nome !== "Nenhum produto identificado nas vendas") {
+                    data.produtosMaisVendidos.forEach(produto => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                        li.innerHTML = `
+                            ${produto.nome}
+                            <span class="badge bg-primary rounded-pill">${produto.quantidade} unidades</span>
+                        `;
+                        produtosList.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item text-center';
+                    li.textContent = 'Nenhum produto identificado nas vendas';
+                    produtosList.appendChild(li);
+                }
+
+                const clientesList = document.getElementById('clientesMaisAtivos');
+                clientesList.innerHTML = '';
+                data.clientesMaisAtivos.forEach(cliente => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.innerHTML = `
+                        ${cliente.nome}
+                        <span class="badge bg-success rounded-pill">${cliente.compras} compras</span>
+                    `;
+                    clientesList.appendChild(li);
+                });
+
+                if (data.vendasPorMes) {
+                    criarGraficoVendasPorMes(data.vendasPorMes);
+                }
+                if (data.distribuicaoProdutos) {
+                    criarGraficoDistribuicaoProdutos(data.distribuicaoProdutos);
+                }
+
+                if (data.totalClientes) {
+                    document.getElementById('totalClientes').textContent = data.totalClientes;
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar dados do dashboard:', error);
+                if (error.message.includes('401')) {
+                    document.body.innerHTML = '<div class="container mt-4"><h2 class="text-danger">Sessão expirada. Por favor, faça login novamente.</h2></div>';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarDados();
+            initializeSalesChart();
+
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            function applyTheme(theme) {
+                body.classList.toggle('dark-theme', theme === 'dark-theme');
+                updateThemeIcon();
+            }
+
+            function toggleTheme() {
+                const currentTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
+                localStorage.setItem('theme', currentTheme);
+                applyTheme(currentTheme);
+                updateChartTheme();
+            }
+
+            themeToggle.addEventListener('click', toggleTheme);
+
+            // Aplicar tema salvo ao carregar a página
+            const savedTheme = localStorage.getItem('theme') || 'light-theme';
+            applyTheme(savedTheme);
+
+            function updateThemeIcon() {
+                themeToggle.textContent = body.classList.contains('dark-theme') ? '🌓' : '🌓';
+            }
+
+            function initializeSalesChart() {
+                const ctx = document.getElementById('salesChart').getContext('2d');
+
+                fetch('/api/sales')
+                    .then(response => response.json())
+                    .then(data => {
+                        const salesData = processSalesData(data);
+                        renderChart(ctx, salesData);
+                    })
+                    .catch(error => console.error('Erro ao buscar dados de vendas:', error));
+            }
+
+            function updateChartTheme() {
+                if (window.salesChart) {
+                    const isDarkTheme = document.body.classList.contains('dark-theme');
+                    const textColor = isDarkTheme ? '#ffffff' : '#000000';
+                    const gridColor = isDarkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+
+                    window.salesChart.options.scales.x.ticks.color = textColor;
+                    window.salesChart.options.scales.y.ticks.color = textColor;
+                    window.salesChart.options.scales.x.grid.color = gridColor;
+                    window.salesChart.options.scales.y.grid.color = gridColor;
+                    window.salesChart.options.plugins.legend.labels.color = textColor;
+                    window.salesChart.options.plugins.title.color = textColor;
+                    window.salesChart.update();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

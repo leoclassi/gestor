@@ -115,78 +115,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Função para renderizar a tabela de orçamentos
-    function renderBudgetsTable() {
-        const filteredBudgets = filterBudgets(getSelectedMonthYearBudgets());
-        const paginatedBudgets = paginateBudgets(filteredBudgets, currentPage);
-        const tableBody = document.getElementById('budgetsTable');
-        tableBody.innerHTML = '';
+// Função para renderizar a tabela de orçamentos
+function renderBudgetsTable() {
+    const filteredBudgets = filterBudgets(getSelectedMonthYearBudgets());
+    const paginatedBudgets = paginateBudgets(filteredBudgets, currentPage);
+    const tableBody = document.getElementById('budgetsTable');
+    tableBody.innerHTML = '';
 
-        paginatedBudgets.forEach(budget => {
-            const row = document.createElement('tr');
-            
-            // Calcular o valor total com desconto dos produtos
-            const valorTotalProdutos = budget.produtos.reduce((total, produto) => {
-                let subtotal = produto.quantidade * produto.valor;
-                if (produto.descontoTipo === 'percentage') {
-                    subtotal *= (1 - produto.desconto / 100);
-                } else {
-                    subtotal -= produto.desconto;
-                }
-                return total + subtotal;
-            }, 0);
-
-            // Aplicar o desconto total do orçamento
-            let valorFinal = valorTotalProdutos;
-            if (budget.descontoTotal) {
-                if (budget.descontoTotal.tipo === 'percentage') {
-                    valorFinal *= (1 - budget.descontoTotal.valor / 100);
-                } else {
-                    valorFinal -= budget.descontoTotal.valor;
-                }
+    paginatedBudgets.forEach(budget => {
+        const row = document.createElement('tr');
+        
+        // Calcular o valor total com desconto dos produtos
+        const valorTotalProdutos = budget.produtos.reduce((total, produto) => {
+            let subtotal = produto.quantidade * produto.valor;
+            if (produto.descontoTipo === 'percentage') {
+                subtotal *= (1 - produto.desconto / 100);
+            } else {
+                subtotal -= produto.desconto;
             }
+            return total + subtotal;
+        }, 0);
 
-            // Determinar a situação e o estilo com base no status de pagamento
-            let situacao = budget.situacao;
-            let situacaoStyle = '';
-
-            if (budget.paga) {
-                situacao = 'Recebido';
-                situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
-            } else if (situacao === 'Concretizada') {
-                situacaoStyle = 'background-color: #dc3545; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+        // Aplicar o desconto total do orçamento
+        let valorFinal = valorTotalProdutos;
+        if (budget.descontoTotal) {
+            if (budget.descontoTotal.tipo === 'percentage') {
+                valorFinal *= (1 - budget.descontoTotal.valor / 100);
+            } else {
+                valorFinal -= budget.descontoTotal.valor;
             }
+        }
 
-            row.innerHTML = `
-                <td class="text-center align-middle">
-                    <input type="checkbox" class="budget-checkbox" data-valor="${valorFinal.toFixed(2)}">
-                </td>
-                <td>${budget.numero}</td>
-                <td>${budget.cliente}</td>
-                <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
-                <td>${formatDate(budget.data)}</td>
-                <td>${formatarMoeda(valorFinal)}</td>
-                <td>
-                    <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
-                        <i class="fas fa-print"></i> 
-                    </a>
-                    <button class="btn btn-sm btn-outline-success mark-paid" data-id="${budget.id}" title="${budget.paga ? 'Desmarcar como Paga' : 'Marcar como Paga'}">
-                        <i class="fas ${budget.paga ? 'fa-money-bill-wave' : 'fa-hand-holding-usd'}"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger delete-budget" data-id="${budget.id}" title="Excluir">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
+        // Determinar a situação e o estilo com base no status de pagamento
+        let situacao = budget.situacao;
+        let situacaoStyle = '';
 
-        addEventListeners();
-        setupCheckboxes();
-        renderPagination(filteredBudgets.length);
-    }
+        if (budget.paga) {
+            situacao = 'Recebido';
+            situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+        } else if (situacao === 'Concretizada') {
+            situacaoStyle = 'background-color: #00dcea; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+        } else if (situacao === 'Em Aberto') {
+            situacaoStyle = 'background-color: #ff8300; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+        } else if (situacao === 'Aprovado') {
+            situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+        } else if (situacao === 'Recusado') {
+            situacaoStyle = 'background-color: #dc3545; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+        }
+
+        row.innerHTML = `
+            <td class="text-center align-middle">
+                <input type="checkbox" class="budget-checkbox" data-valor="${valorFinal.toFixed(2)}">
+            </td>
+            <td>${budget.numero}</td>
+            <td>${budget.cliente}</td>
+            <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
+            <td>${formatDate(budget.data)}</td>
+            <td>${formatarMoeda(valorFinal)}</td>
+            <td>
+                <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
+                    <i class="fas fa-print"></i> 
+                </a>
+                <button class="btn btn-sm btn-outline-warning generate-sale-btn" data-id="${budget.id}" title="Gerar Venda" style="background-color: transparent;">
+                    <i class="fas fa-file-invoice-dollar"></i> 
+                </button>
+                <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger delete-budget" data-id="${budget.id}" title="Excluir">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    addEventListeners();
+    setupCheckboxes();
+    renderPagination(filteredBudgets.length);
+}
 
     // Função para formatar a data considerando o fuso horário do Brasil (GMT-3)
     function formatDate(dateString) {
@@ -277,6 +284,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        document.querySelectorAll('.generate-sale-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const budgetId = button.getAttribute('data-id');
+                generateSale(budgetId);
+            });
+        });
+
         // Remova o event listener para o botão de visualização
     }
 
@@ -344,6 +358,31 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Erro ao atualizar o estado do orçamento:', error);
             alert('Ocorreu um erro ao atualizar o estado do orçamento. Por favor, tente novamente.');
+        });
+    }
+
+    // Função para gerar uma venda a partir de um orçamento
+    function generateSale(budgetId) {
+        fetch(`/api/generate-sale/${budgetId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Venda gerada com sucesso!');
+                // Recarregar a tabela de orçamentos ou atualizar o status do orçamento
+                fetchBudgets();
+            } else {
+                throw new Error(data.message || 'Erro ao gerar venda');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao gerar venda:', error);
+            alert(`Erro ao gerar venda: ${error.message}`);
         });
     }
 

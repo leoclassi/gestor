@@ -411,6 +411,75 @@
             padding: 15px;
             border-top: 1px solid var(--sidebar-color);
         }
+
+        .summary-cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .summary-card {
+            flex: 1;
+            margin: 0 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center; /* Centraliza o texto */
+            transition: all 0.3s ease;
+            display: flex; /* Adiciona display flex */
+            flex-direction: column; /* Organiza os elementos em coluna */
+            justify-content: center; /* Centraliza verticalmente */
+            align-items: center; /* Centraliza horizontalmente */
+        }
+        .summary-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .summary-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .vencidos { background-color: #ffcccb; color: #721c24; }
+        .a-vencer { background-color: #cce5ff; color: #004085; }
+        .depositados { background-color: #d4edda; color: #155724; }
+        .dark-theme .vencidos { background-color: #4a1e1c; color: #ffb3b3; }
+        .dark-theme .a-vencer { background-color: #004085; color: #cce5ff; }
+        .dark-theme .depositados { background-color: #1e4a2e; color: #b3ffb3; }
+
+        /* Ajuste para a coluna de ações */
+        .table th:last-child,
+        .table td:last-child {
+            width: 180px; /* Aumentado de 160px para 180px */
+            max-width: 180px; /* Aumentado de 160px para 180px */
+            white-space: nowrap;
+        }
+
+        /* Ajuste para os botões de ação */
+        .table td:last-child .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-right: 2px;
+        }
+
+        .table td:last-child .btn:last-child {
+            margin-right: 0;
+        }
+
+        /* Ajuste para o ícone dentro dos botões */
+        .table td:last-child .btn i {
+            font-size: 0.8rem;
+        }
+
+        /* Classe para centralizar o conteúdo das células */
+        .text-center-custom {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        /* Ajuste para manter os botões de ação alinhados à esquerda */
+        .actions-column {
+            text-align: left !important;
+        }
     </style>
 </head>
 <body>
@@ -465,7 +534,9 @@
     <div id="pageContent">
         <div class="sidebar">
             <div class="sidebar-header">
-                <h3>🌲 Portugal Madeiras</h3>
+                <h1>🌲</h1>
+                <h3>Portugal</h3>
+                <h4>Madeiras</h4>
                 <hr>
             </div>
             <div class="sidebar-content">
@@ -485,12 +556,15 @@
                         <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
                     </li>
                 </ul>
-                <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-                    🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+                <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                    🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
                 </a>
-                <ul class="collapse list-unstyled" id="salesSubmenu">
+                <ul class="collapse list-unstyled" id="ordersSubmenu">
                     <li>
                         <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                    </li>
+                    <li>
+                        <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
                     </li>
                 </ul>
                 <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -501,10 +575,12 @@
                         <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
                     </li>
                     <li>
-                        <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+                        <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                    </li>
+                    <li>
+                        <a href="new-dashboard.html" class="pl-5">Dashboard</a>
                     </li>
                 </ul>
-                <!-- Novo submenu Admin -->
                 <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
                     🔐 Admin <i class="fas fa-chevron-right arrow"></i>
                 </a>
@@ -516,7 +592,6 @@
                         <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
                     </li>
                 </ul>
-                <!-- Fim do novo submenu Admin -->
             </div>
             <div class="sidebar-footer">
                 <button id="logoutButton" class="btn-logout">
@@ -528,14 +603,22 @@
         <div class="content">
             <div class="container">
                 <h1 class="mb-4">💰 Gerenciamento de Cheques</h1>
-                
-                <!-- Adicione esta div para exibir a soma dos cheques selecionados -->
-                <div class="mb-3">
-                    <strong>Soma dos cheques selecionados: </strong>
-                    <span id="somaCheques">R$ 0,00</span>
+                <!-- Adicione este código logo após a tag <h1> e antes da div com a classe "row mb-3" -->
+                <div class="summary-cards mb-4">
+                    <div class="summary-card vencidos">
+                        <h3>Vencidos</h3>
+                        <div id="somaVencidos" class="value">R$ 0,00</div>
+                    </div>
+                    <div class="summary-card a-vencer">
+                        <h3>A Vencer</h3>
+                        <div id="somaAVencer" class="value">R$ 0,00</div>
+                    </div>
+                    <div class="summary-card depositados">
+                        <h3>Depositados</h3>
+                        <div id="somaDepositados" class="value">R$ 0,00</div>
+                    </div>
                 </div>
-
-                <!-- Barra de ferramentas -->
+                
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="input-group">
@@ -550,9 +633,6 @@
                         <button id="deleteCookieButton" class="btn btn-danger ml-2">
                             <i class="fas fa-cookie-bite"></i> Deletar Cookie
                         </button>
-                        <button id="selectNonCompensatedBtn" class="btn btn-info ml-2">
-                            <i class="fas fa-check-square"></i> Selecionar Não Compensados
-                        </button>
                     </div>
                 </div>
 
@@ -564,7 +644,7 @@
                                 <th class="text-center align-middle">
                                     <input type="checkbox" id="selectAllCheckbox">
                                 </th>
-                                <th class="text-center align-middle">🔢 Nº Cheque</th>
+                                <th class="text-center align-middle">🔢 Nº</th>
                                 <th class="text-center align-middle">💰 Valor</th>
                                 <th class="text-center align-middle">👤 Remetente</th>
                                 <th class="text-center align-middle">📆 Data Comp.</th>

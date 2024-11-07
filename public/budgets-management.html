@@ -65,74 +65,92 @@
             cursor: pointer;
             z-index: 1000;
         }
+
+        .btn-novo-orcamento {
+            white-space: nowrap;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-novo-orcamento::before {
+            content: '📄';
+            margin-right: 5px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .btn-novo-orcamento {
+                font-size: 0.8rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>🌲 Portugal Madeiras</h3>
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
             <hr>
         </div>
-        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
-            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="productsSubmenu">
-            <li>
-                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
-            </li>
-        </ul>
-        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
-            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="clientsSubmenu">
-            <li>
-                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
-            </li>
-        </ul>
-        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="salesSubmenu">
-            <li>
-                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
-            </li>
-        </ul>
-        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="financeiroSubmenu">
-            <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
-            </li>
-            <li>
-                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
-            </li>
-        </ul>
-        <!-- Novo submenu Admin -->
-        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
-            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="adminSubmenu">
-            <li>
-                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
-            </li>
-            <li>
-                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
-            </li>
-        </ul>
-        <!-- Fim do novo submenu Admin -->
-        <a href="#budgetsSubmenu" data-toggle="collapse" aria-expanded="false">
-            📄 Orçamentos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="budgetsSubmenu">
-            <li>
-                <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <button id="logoutButton" class="btn-logout">
-                <i class="fas fa-sign-out-alt"></i> Sair
-            </button>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="ordersSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                </li>
+                <li>
+                    <a href="new-dashboard.html" class="pl-5">Dashboard</a>
+                </li>
+            </ul>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -144,7 +162,7 @@
                 <input type="text" id="searchByNumber" class="form-control w-25 ml-2" placeholder="🔍 Buscar por Nº">
                 <input type="text" id="monthYearSelector" class="form-control w-25 ml-2" placeholder="Selecione o Mês e Ano">
                 <a href="budgets.html" class="btn btn-success ml-2 btn-novo-orcamento">
-                    📄 Novo Orçamento
+                     Novo Orçamento
                 </a>
             </div>
             <table class="table table-bordered">

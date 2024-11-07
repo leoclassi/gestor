@@ -36,13 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             const users = await response.json();
+            console.log('Usuários carregados:', users); // Log para depuração
+
             userTable.innerHTML = users.map(user => `
                 <tr>
-                    <td>${user.id}</td>
+                    <td class="text-center">${user.id}</td>
                     <td>${user.username}</td>
-                    <td>${user.isAdmin ? 'Sim' : 'Não'}</td>
-                    <td>${user.isAdmin ? 'Todas' : (user.permissions ? user.permissions.join(', ') : 'Nenhuma')}</td>
-                    <td>
+                    <td class="text-center">${user.isAdmin ? '✅' : '❌'}</td>
+                    <td>${formatPermissions(user)}</td>
+                    <td class="text-center">
                         <button class="btn btn-sm btn-primary edit-user" data-id="${user.id}">
                             <i class="fas fa-edit"></i> Editar
                         </button>
@@ -53,9 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>
             `).join('');
         } catch (error) {
-            console.error('Erro:', error);
+            console.error('Erro ao carregar usuários:', error);
             alert('Erro ao carregar usuários. Verifique o console para mais detalhes.');
         }
+    }
+
+    function formatPermissions(user) {
+        if (user.isAdmin) {
+            return '<span class="badge badge-success">Todas</span>';
+        }
+        if (user.permissions && Array.isArray(user.permissions) && user.permissions.length > 0) {
+            return user.permissions.map(perm => `<span class="badge badge-info">${perm}</span>`).join(' ');
+        }
+        return '<span class="badge badge-secondary">Nenhuma</span>';
     }
 
     // Carregar usuários ao iniciar a página

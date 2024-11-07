@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
 
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
@@ -26,11 +27,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('Erro de login:', error);
-                // Exiba uma mensagem de erro para o usuário
-                alert('Erro de login: ' + error.message);
+                showError(error.message || 'Erro de login. Por favor, tente novamente.');
+                shakeForm();
             }
         });
-    }
 
-    // Remova o código de registro se não for necessário
+        // Limpar a mensagem de erro quando o usuário começar a digitar
+        document.getElementById('username').addEventListener('input', clearError);
+        document.getElementById('password').addEventListener('input', clearError);
+    }
 });
+
+// Estas funções devem ser definidas globalmente para serem acessíveis
+function showError(message) {
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+    // Removemos o setTimeout para que a mensagem não desapareça automaticamente
+}
+
+function clearError() {
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.style.display = 'none';
+}
+
+function shakeForm() {
+    const form = document.getElementById('loginForm');
+    form.classList.add('shake');
+    setTimeout(() => form.classList.remove('shake'), 820);
+}

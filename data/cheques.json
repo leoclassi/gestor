@@ -114,7 +114,8 @@
     "remetente": "A Medicinal MP",
     "dataCompensacao": "2024-10-02",
     "id": "1726430764430",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-02T18:48:32.950Z"
   },
   {
     "numeroCheque": "3731",
@@ -126,11 +127,13 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-10-04",
     "id": "1726430770790",
-    "compensado": false
+    "compensado": true,
+    "anotacoes": "",
+    "dataHoraCompensacao": "2024-10-08T05:33:58.665Z"
   },
   {
     "numeroCheque": "3702",
-    "banco": "756",
+    "banco": null,
     "agencia": "3041",
     "contaCorrente": "18180-3",
     "valor": 11000,
@@ -138,7 +141,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-10-10",
     "id": "1726430778866",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-14T18:47:21.052Z"
   },
   {
     "numeroCheque": "74",
@@ -150,7 +154,8 @@
     "remetente": "Iago Pereira de Oliveira",
     "dataCompensacao": "2024-10-18",
     "id": "1726430785540",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-18T19:07:54.512Z"
   },
   {
     "numeroCheque": "3732",
@@ -162,7 +167,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-10-25",
     "id": "1726430793804",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:55:25.499Z"
   },
   {
     "numeroCheque": "33",
@@ -174,7 +180,8 @@
     "remetente": "Maria Votproa Ferreora Scarmeloto",
     "dataCompensacao": "2024-10-27",
     "id": "1726430800821",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:55:32.204Z"
   },
   {
     "numeroCheque": "850392",
@@ -186,7 +193,8 @@
     "remetente": "C. A. Juliao Pinezi",
     "dataCompensacao": "2024-10-29",
     "id": "1726430809340",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-30T16:46:09.416Z"
   },
   {
     "numeroCheque": "3703",
@@ -198,7 +206,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-10-30",
     "id": "1726430817885",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-30T16:46:33.647Z"
   },
   {
     "numeroCheque": "3733",
@@ -210,7 +219,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-10-31",
     "id": "1726430827844",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-01T16:04:03.148Z"
   },
   {
     "numeroCheque": "1981",
@@ -221,19 +231,22 @@
     "dataEmissao": "2024-09-08",
     "remetente": "LEVI ANTONIO GRACIANO",
     "dataCompensacao": "2024-10-25",
-    "id": "1726431502712"
+    "id": "1726431502712",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:55:29.290Z"
   },
   {
     "numeroCheque": "851994",
-    "banco": "1",
+    "banco": null,
     "agencia": "2457",
     "contaCorrente": "8.104-3",
     "valor": 6000,
     "dataEmissao": "2024-12-05",
     "remetente": "ALESSANDER GASPARLO - ME",
-    "dataCompensacao": "2024-12-05",
+    "dataCompensacao": "2024-11-05",
     "id": "1726431658323",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-06T19:36:15.570Z"
   },
   {
     "numeroCheque": "851256",
@@ -258,7 +271,9 @@
     "dataEmissao": "2024-08-03",
     "remetente": "EDER VIEIRA DE ARAUJO",
     "dataCompensacao": "2024-10-10",
-    "id": "1726431826436"
+    "id": "1726431826436",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-14T18:46:58.204Z"
   },
   {
     "numeroCheque": "851993",
@@ -269,7 +284,9 @@
     "dataEmissao": "2024-09-03",
     "remetente": "ALEXANDER GASPARELO",
     "dataCompensacao": "2024-10-06",
-    "id": "1726431885673"
+    "id": "1726431885673",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-08T05:33:59.091Z"
   },
   {
     "numeroCheque": "824",
@@ -280,7 +297,9 @@
     "dataEmissao": "2024-08-12",
     "remetente": "GLEDSON CARVALHO DOS REIS",
     "dataCompensacao": "2024-10-16",
-    "id": "1726431949086"
+    "id": "1726431949086",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-18T19:07:48.447Z"
   },
   {
     "numeroCheque": "28",
@@ -318,7 +337,9 @@
     "dataEmissao": "2024-09-06",
     "remetente": "VERTISEC COM EXP E REPRES COMERCIAL LTDA",
     "dataCompensacao": "2024-10-07",
-    "id": "1726432269394"
+    "id": "1726432269394",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-08T05:33:59.864Z"
   },
   {
     "numeroCheque": "3757",
@@ -340,7 +361,9 @@
     "dataEmissao": "2024-10-11",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-11",
-    "id": "1726432375227"
+    "id": "1726432375227",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-14T18:48:56.208Z"
   },
   {
     "numeroCheque": "3771",
@@ -351,7 +374,9 @@
     "dataEmissao": "2024-10-03",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-03",
-    "id": "1726432392057"
+    "id": "1726432392057",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-03T18:53:07.681Z"
   },
   {
     "numeroCheque": "3770",
@@ -375,7 +400,9 @@
     "dataEmissao": "2024-10-28",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-28",
-    "id": "1726432418711"
+    "id": "1726432418711",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-30T16:46:23.494Z"
   },
   {
     "numeroCheque": "3775",
@@ -397,7 +424,9 @@
     "dataEmissao": "2024-10-13",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-13",
-    "id": "1726432454396"
+    "id": "1726432454396",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-14T18:47:36.292Z"
   },
   {
     "numeroCheque": "3773",
@@ -408,7 +437,9 @@
     "dataEmissao": "2024-10-30",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-30",
-    "id": "1726432464743"
+    "id": "1726432464743",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-30T16:46:01.169Z"
   },
   {
     "numeroCheque": "3774",
@@ -430,7 +461,9 @@
     "dataEmissao": "2024-10-06",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-06",
-    "id": "1726432486709"
+    "id": "1726432486709",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-08T05:33:59.475Z"
   },
   {
     "numeroCheque": "3776",
@@ -454,7 +487,9 @@
     "dataEmissao": "2024-10-13",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-10-13",
-    "id": "1726432747349"
+    "id": "1726432747349",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-14T18:47:47.527Z"
   },
   {
     "numeroCheque": "850456",
@@ -477,7 +512,9 @@
     "dataEmissao": "2024-08-21",
     "remetente": "C. De Oliveira Peças - ME",
     "dataCompensacao": "2024-10-21",
-    "id": "1727553937128"
+    "id": "1727553937128",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:54:47.773Z"
   },
   {
     "numeroCheque": "194",
@@ -488,7 +525,9 @@
     "dataEmissao": "2024-09-28",
     "remetente": "Marcos Roberto Furlanetto",
     "dataCompensacao": "2024-10-17",
-    "id": "1727553996233"
+    "id": "1727553996233",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-18T19:07:50.619Z"
   },
   {
     "numeroCheque": "851819",
@@ -512,18 +551,22 @@
     "dataEmissao": "2024-10-15",
     "remetente": "CARVAO GALETO LTDA",
     "dataCompensacao": "2024-10-15",
-    "id": "1727554128142"
+    "id": "1727554128142",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-18T19:07:43.923Z"
   },
   {
     "numeroCheque": "3807",
-    "banco": "756",
+    "banco": null,
     "agencia": "3041",
     "contaCorrente": "18180-3",
     "valor": 12000,
     "dataEmissao": "2024-10-12",
     "remetente": "CARVAO GALETO LTDA",
-    "dataCompensacao": "2024-10-12",
-    "id": "1727554161154"
+    "dataCompensacao": "2024-10-22",
+    "id": "1727554161154",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:55:14.515Z"
   },
   {
     "numeroCheque": "25",
@@ -534,7 +577,9 @@
     "dataEmissao": "2024-09-28",
     "remetente": "VERTISEC COM EXP E REPRES COMERCIAL LTDA",
     "dataCompensacao": "2024-10-28",
-    "id": "1727554222554"
+    "id": "1727554222554",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-30T16:46:15.469Z"
   },
   {
     "numeroCheque": "26",
@@ -545,6 +590,279 @@
     "dataEmissao": "2024-09-28",
     "remetente": "VERTISEC COM EXP E REPRES COMERCIAL LTDA",
     "dataCompensacao": "2024-10-13",
-    "id": "1727554243801"
+    "id": "1727554243801",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-14T18:46:52.016Z"
+  },
+  {
+    "numeroCheque": "3809",
+    "banco": null,
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-11-19",
+    "id": "1728320922297",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3810",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-12-03",
+    "id": "1728320982953"
+  },
+  {
+    "numeroCheque": "3811",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-12-14",
+    "id": "1728321004051"
+  },
+  {
+    "numeroCheque": "3820",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 10000,
+    "dataEmissao": "2024-10-09",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-11-27",
+    "id": "1728498810699"
+  },
+  {
+    "numeroCheque": "3781",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-10-09",
+    "remetente": "MARIA CARREIRA MENDES",
+    "dataCompensacao": "2024-12-11",
+    "id": "1728498855669"
+  },
+  {
+    "numeroCheque": "3782",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-10-09",
+    "remetente": "MARIA CARREIRA MENDES",
+    "dataCompensacao": "2024-12-24",
+    "id": "1728498923459"
+  },
+  {
+    "numeroCheque": "3817",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 13000,
+    "dataEmissao": "2024-10-09",
+    "remetente": "MARIA CARREIRA MENDES",
+    "dataCompensacao": "2024-10-24",
+    "id": "1728585371352",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:55:21.405Z"
+  },
+  {
+    "numeroCheque": "3818",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 13000,
+    "dataEmissao": "2024-10-09",
+    "remetente": "MARIA CARREIRA MENDES",
+    "dataCompensacao": "2024-11-01",
+    "id": "1728585399912",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-01T16:04:07.943Z"
+  },
+  {
+    "numeroCheque": "3819",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 13000,
+    "dataEmissao": "2024-10-09",
+    "remetente": "MARIA CARREIRA MENDES",
+    "dataCompensacao": "2024-11-09",
+    "id": "1728585415591"
+  },
+  {
+    "numeroCheque": "3790",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 10000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-11-02",
+    "id": "1729543053225",
+    "anotacoes": "",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-06T19:36:12.883Z"
+  },
+  {
+    "numeroCheque": "3791",
+    "banco": null,
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 11000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-11-11",
+    "id": "1729543095509",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3792",
+    "banco": null,
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-11-20",
+    "id": "1729543112109",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3793",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 10000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-12-05",
+    "id": "1729543148938"
+  },
+  {
+    "numeroCheque": "3794",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-12-22",
+    "id": "1729543172275"
+  },
+  {
+    "numeroCheque": "3795",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-09-15",
+    "remetente": "Maria Carreira Mendes",
+    "dataCompensacao": "2024-12-31",
+    "id": "1729543198920"
+  },
+  {
+    "numeroCheque": "850200",
+    "banco": null,
+    "agencia": "2034",
+    "contaCorrente": "107346",
+    "valor": 200,
+    "dataEmissao": "2024-10-21",
+    "remetente": "Alberto Pirasosole",
+    "dataCompensacao": "2024-10-21",
+    "id": "1729543239616",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-26T09:54:52.671Z"
+  },
+  {
+    "numeroCheque": "852972",
+    "banco": "1",
+    "agencia": "665",
+    "contaCorrente": "3857",
+    "valor": 1473,
+    "dataEmissao": "2024-10-28",
+    "remetente": "DILMA MARIA RODRIGUES",
+    "dataCompensacao": "2024-11-23",
+    "id": "1730135353592"
+  },
+  {
+    "numeroCheque": "3824",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 10000,
+    "dataEmissao": "2024-10-28",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-11-10",
+    "id": "1730135394231"
+  },
+  {
+    "numeroCheque": "3825",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 13000,
+    "dataEmissao": "2024-10-28",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-11-21",
+    "id": "1730135454017"
+  },
+  {
+    "numeroCheque": "3826",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "valor": 13000,
+    "dataEmissao": "2024-10-28",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-11-29",
+    "id": "1730135490564"
+  },
+  {
+    "numeroCheque": "1054",
+    "banco": "341",
+    "agencia": "9386",
+    "contaCorrente": "1144",
+    "valor": 2850,
+    "dataEmissao": "2024-10-28",
+    "remetente": "MARCOS RODRIGUES FERRAZ FILHO",
+    "dataCompensacao": "2024-10-28",
+    "id": "1730135546801",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-28T17:12:32.025Z"
+  },
+  {
+    "numeroCheque": "852971",
+    "banco": "1",
+    "agencia": "6865",
+    "contaCorrente": "3057",
+    "valor": 1473,
+    "dataEmissao": "2024-10-28",
+    "remetente": "DILMA MARIA RODRIGUES",
+    "dataCompensacao": "2024-10-28",
+    "id": "1730135595971",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-28T17:13:19.717Z"
+  },
+  {
+    "numeroCheque": "3808",
+    "banco": "756",
+    "agencia": "18180-3",
+    "contaCorrente": "18180-3",
+    "valor": 12000,
+    "dataEmissao": "2024-10-30",
+    "remetente": "CARVAO GALETO LTDA",
+    "dataCompensacao": "2024-10-30",
+    "id": "1730368329405",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-10-31T09:54:02.585Z"
   }
 ]

@@ -23,8 +23,6 @@
         });
     </script>
     <style>
-        /* ... (estilos existentes) ... */
-
         .sidebar-footer {
             position: absolute;
             bottom: 0;
@@ -63,6 +61,135 @@
             cursor: pointer;
             z-index: 1000;
         }
+
+        .table td {
+            max-width: 150px; /* Ajuste este valor conforme necessário */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table th {
+            white-space: nowrap;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+        }
+
+        .table td:last-child {
+            white-space: nowrap;
+            width: 140px;
+        }
+
+        .table .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        /* Estilos específicos para os botões na tabela */
+        .table .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .table .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .table .btn-primary:hover, .table .btn-primary:focus {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: white;
+        }
+
+        .table .btn-danger:hover, .table .btn-danger:focus {
+            background-color: #c82333;
+            border-color: #bd2130;
+            color: white;
+        }
+
+        /* Estilos específicos para o tema escuro */
+        .dark-theme .table .btn-primary {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .dark-theme .table .btn-danger {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .dark-theme .table .btn-primary:hover, .dark-theme .table .btn-primary:focus {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .dark-theme .table .btn-danger:hover, .dark-theme .table .btn-danger:focus {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        /* Remova ou comente as seguintes regras */
+        /*
+        .table-hover tbody tr:hover {
+            background-color: #007bff !important;
+        }
+
+        .dark-theme .table-hover tbody tr:hover {
+            background-color: #0056b3 !important;
+        }
+        */
+
+        /* Adicione estas novas regras */
+        .table-hover tbody tr:hover td {
+            color: white !important;
+        }
+
+        .dark-theme .table-hover tbody tr:hover td {
+            color: white !important;
+        }
+
+        /* Mantenha as regras para os botões */
+        .table-hover tbody tr:hover .btn-primary,
+        .table-hover tbody tr:hover .btn-danger {
+            color: white !important;
+        }
+
+        .table-hover tbody tr:hover .btn-primary:hover {
+            background-color: #0056b3 !important;
+        }
+
+        .table-hover tbody tr:hover .btn-danger:hover {
+            background-color: #c82333 !important;
+        }
+
+        /* Estilo para o hover nas células da tabela no tema claro */
+        .table-hover tbody tr:hover td {
+            color: black !important;
+        }
+
+        /* Estilo para o hover nas células da tabela no tema escuro */
+        .dark-theme .table-hover tbody tr:hover td {
+            color: white !important;
+        }
+
+        /* Mantenha as regras para os botões */
+        .table-hover tbody tr:hover .btn-primary,
+        .table-hover tbody tr:hover .btn-danger {
+            color: white !important;
+        }
+
+        .table-hover tbody tr:hover .btn-primary:hover {
+            background-color: #0056b3 !important;
+        }
+
+        .table-hover tbody tr:hover .btn-danger:hover {
+            background-color: #c82333 !important;
+        }
     </style>
 </head>
 <body>
@@ -98,11 +225,14 @@
     });
     </script>
 
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3>🌲 Portugal Madeiras</h3>
-            <hr>
-        </div>
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h1>🌲</h1>
+        <h3>Portugal</h3>
+        <h4>Madeiras</h4>
+        <hr>
+    </div>
+    <div class="sidebar-content">
         <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
             📦 Produtos <i class="fas fa-chevron-right arrow"></i>
         </a>
@@ -119,12 +249,15 @@
                 <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
             </li>
         </ul>
-        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
+        <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+            🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
         </a>
-        <ul class="collapse list-unstyled" id="salesSubmenu">
+        <ul class="collapse list-unstyled" id="ordersSubmenu">
             <li>
                 <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+            </li>
+            <li>
+                <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
             </li>
         </ul>
         <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -135,10 +268,12 @@
                 <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
             </li>
             <li>
-                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
+                <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+            </li>
+            <li>
+                <a href="new-dashboard.html" class="pl-5">Dashboard</a>
             </li>
         </ul>
-        <!-- Novo código de Admin -->
         <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
             🔐 Admin <i class="fas fa-chevron-right arrow"></i>
         </a>
@@ -150,12 +285,8 @@
                 <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
             </li>
         </ul>
-        <div class="sidebar-footer">
-            <button id="logoutButton" class="btn-logout">
-                <i class="fas fa-sign-out-alt"></i> Sair
-            </button>
-        </div>
     </div>
+</div>
 
     <div class="content">
         <div class="container">
@@ -163,22 +294,26 @@
             <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addClientModal">➕ Adicionar Cliente</button>
             <button class="btn btn-danger mb-3" id="deleteSelected" style="display: none;">🗑️ Excluir Selecionados</button>
             <input type="text" id="search" class="form-control mb-3" placeholder="🔍 Buscar">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th><input type="checkbox" id="selectAll"></th>
-                        <th>🆔 ID</th>
-                        <th>👤 Nome</th>
-                        <th>📧 Email</th>
-                        <th>📞 Telefone</th>
-                        <th>📅 Cadastrado em</th>
-                        <th>⚙️ Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="clientTable">
-                    <!-- Clientes serão adicionados aqui -->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th><input type="checkbox" id="selectAll"></th>
+                            <th style="width: 25%;">👤 Nome</th>
+                            <th style="width: 15%;">📞 Telefone</th>
+                            <th style="width: 20%;">🏙️ Cidade</th>
+                            <th style="width: 20%;">🏠 Logradouro</th>
+                            <th style="width: 140px;">⚙️ Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientTable">
+                        <!-- Clientes serão adicionados aqui -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="pagination" class="d-flex justify-content-center mt-3">
+                <!-- Paginação será adicionada aqui -->
+            </div>
         </div>
     </div>
 

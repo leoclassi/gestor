@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cnpjField = document.getElementById('cnpjField');
     let editingClient = null;
     let clients = [];
+    let currentPage = 1;
+    const clientsPerPage = 10;
 
     // Theme toggle functionality
     const body = document.body;
@@ -53,9 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             clients = data;
-            clients.forEach(client => {
-                addClientToTable(client);
-            });
+            renderClientTable(clients);
         });
 
     if (form) {
@@ -134,51 +134,97 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function truncateText(text, maxLength = 20) {
+        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+    }
+
     function addClientToTable(client) {
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
             <td><input type="checkbox" class="select-client" value="${client.id}"></td>
-            <td>${client.id}</td>
-            <td>${client.nome}</td>
-            <td>${client.email}</td>
-            <td>${client.telefone}</td>
-            <td>${client.dataCadastro}</td>
+            <td title="${client.nome}">${truncateText(client.nome, 25)}</td>
+            <td title="${client.telefone || '-'}">${truncateText(client.telefone || '-', 15)}</td>
+            <td title="${client.endereco?.cidade || '-'}">${truncateText(client.endereco?.cidade || '-', 15)}</td>
+            <td title="${client.endereco?.logradouro || '-'}">${truncateText(client.endereco?.logradouro || '-', 15)}</td>
             <td>
-                <button class="btn btn-primary btn-sm edit-btn">✏️ Editar</button>
-                <button class="btn btn-danger btn-sm delete-btn">🗑️ Excluir</button>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary btn-sm edit-btn" data-id="${client.id}">✏️</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${client.id}">🗑️</button>
+                </div>
             </td>
         `;
         clientTable.appendChild(newRow);
 
-        newRow.querySelector('.edit-btn').addEventListener('click', () => {
-            editingClient = client;
-            document.getElementById('tipoCliente').value = client.tipoCliente;
-            document.getElementById('nome').value = client.nome;
-            document.getElementById('email').value = client.email;
-            document.getElementById('telefone').value = client.telefone;
-            document.getElementById('cpf').value = client.cpf;
-            document.getElementById('cnpj').value = client.cnpj;
-            document.getElementById('cep').value = client.endereco.cep;
-            document.getElementById('logradouro').value = client.endereco.logradouro;
-            document.getElementById('numero').value = client.endereco.numero;
-            document.getElementById('bairro').value = client.endereco.bairro;
-            document.getElementById('cidade').value = client.endereco.cidade;
-            document.getElementById('uf').value = client.endereco.uf;
+        newRow.querySelector('.edit-btn').addEventListener('click', () => editClient(client.id));
+        newRow.querySelector('.delete-btn').addEventListener('click', () => deleteClient(client.id));
+        newRow.querySelector('.select-client').addEventListener('change', toggleDeleteSelectedButton);
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('pt-BR');
+    }
+
+    function renderClientTable(clients) {
+        clientTable.innerHTML = '';
+        const startIndex = (currentPage - 1) * clientsPerPage;
+        const endIndex = startIndex + clientsPerPage;
+        const clientsToShow = clients.slice(startIndex, endIndex);
+        clientsToShow.forEach(client => addClientToTable(client));
+        renderPagination(clients.length);
+    }
+
+    function renderPagination(totalClients) {
+        const totalPages = Math.ceil(totalClients / clientsPerPage);
+        const paginationElement = document.getElementById('pagination');
+        paginationElement.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.textContent = i;
+            pageButton.classList.add('btn', 'btn-sm', 'mx-1');
+            pageButton.classList.toggle('btn-primary', i === currentPage);
+            pageButton.classList.toggle('btn-outline-primary', i !== currentPage);
+            pageButton.addEventListener('click', () => {
+                currentPage = i;
+                renderClientTable(clients);
+            });
+            paginationElement.appendChild(pageButton);
+        }
+    }
+
+    function editClient(clientId) {
+        editingClient = clients.find(client => client.id === clientId);
+        if (editingClient) {
+            // Preencha o formulário com os dados do cliente
+            document.getElementById('tipoCliente').value = editingClient.tipoCliente;
+            document.getElementById('nome').value = editingClient.nome;
+            document.getElementById('email').value = editingClient.email;
+            document.getElementById('telefone').value = editingClient.telefone;
+            document.getElementById('cpf').value = editingClient.cpf;
+            document.getElementById('cnpj').value = editingClient.cnpj;
+            document.getElementById('cep').value = editingClient.endereco.cep;
+            document.getElementById('logradouro').value = editingClient.endereco.logradouro;
+            document.getElementById('numero').value = editingClient.endereco.numero;
+            document.getElementById('bairro').value = editingClient.endereco.bairro;
+            document.getElementById('cidade').value = editingClient.endereco.cidade;
+            document.getElementById('uf').value = editingClient.endereco.uf;
+            
             $('#addClientModal').modal('show');
             tipoClienteSelect.dispatchEvent(new Event('change'));
-        });
+        }
+    }
 
-        newRow.querySelector('.delete-btn').addEventListener('click', () => {
-            fetch(`/api/clients/${client.id}`, {
-                method: 'DELETE'
-            })
-            .then(() => {
-                clients = clients.filter(c => c.id !== client.id);
-                clientTable.removeChild(newRow);
-            });
-        });
-
-        newRow.querySelector('.select-client').addEventListener('change', toggleDeleteSelectedButton);
+    function deleteClient(clientId) {
+        if (confirm('Tem certeza que deseja excluir este cliente?')) {
+            fetch(`/api/clients/${clientId}`, { method: 'DELETE' })
+                .then(() => {
+                    clients = clients.filter(c => c.id !== clientId);
+                    renderClientTable(clients);
+                    toggleDeleteSelectedButton();
+                })
+                .catch(error => console.error('Erro ao excluir cliente:', error));
+        }
     }
 
     function updateClientInTable(client) {
@@ -186,45 +232,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (row) {
             row.innerHTML = `
                 <td><input type="checkbox" class="select-client" value="${client.id}"></td>
-                <td>${client.id}</td>
-                <td>${client.nome}</td>
-                <td>${client.email}</td>
-                <td>${client.telefone}</td>
-                <td>${client.dataCadastro}</td>
+                <td title="${client.nome}">${truncateText(client.nome, 25)}</td>
+                <td title="${client.telefone || '-'}">${truncateText(client.telefone || '-', 15)}</td>
+                <td title="${client.endereco?.cidade || '-'}">${truncateText(client.endereco?.cidade || '-', 15)}</td>
+                <td title="${client.endereco?.logradouro || '-'}">${truncateText(client.endereco?.logradouro || '-', 15)}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm edit-btn">✏️ Editar</button>
-                    <button class="btn btn-danger btn-sm delete-btn">🗑️ Excluir</button>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary btn-sm edit-btn" data-id="${client.id}">✏️</button>
+                        <button class="btn btn-danger btn-sm delete-btn" data-id="${client.id}">🗑️</button>
+                    </div>
                 </td>
             `;
 
-            row.querySelector('.edit-btn').addEventListener('click', () => {
-                editingClient = client;
-                document.getElementById('tipoCliente').value = client.tipoCliente;
-                document.getElementById('nome').value = client.nome;
-                document.getElementById('email').value = client.email;
-                document.getElementById('telefone').value = client.telefone;
-                document.getElementById('cpf').value = client.cpf;
-                document.getElementById('cnpj').value = client.cnpj;
-                document.getElementById('cep').value = client.endereco.cep;
-                document.getElementById('logradouro').value = client.endereco.logradouro;
-                document.getElementById('numero').value = client.endereco.numero;
-                document.getElementById('bairro').value = client.endereco.bairro;
-                document.getElementById('cidade').value = client.endereco.cidade;
-                document.getElementById('uf').value = client.endereco.uf;
-                $('#addClientModal').modal('show');
-                tipoClienteSelect.dispatchEvent(new Event('change'));
-            });
-
-            row.querySelector('.delete-btn').addEventListener('click', () => {
-                fetch(`/api/clients/${client.id}`, {
-                    method: 'DELETE'
-                })
-                .then(() => {
-                    clients = clients.filter(c => c.id !== client.id);
-                    clientTable.removeChild(row);
-                });
-            });
-
+            row.querySelector('.edit-btn').addEventListener('click', () => editClient(client.id));
+            row.querySelector('.delete-btn').addEventListener('click', () => deleteClient(client.id));
             row.querySelector('.select-client').addEventListener('change', toggleDeleteSelectedButton);
         }
     }
@@ -268,19 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', () => {
         const searchTerm = searchInput.value.toLowerCase();
         const filteredClients = clients.filter(client =>
+            client.id.toLowerCase().includes(searchTerm) ||
             client.nome.toLowerCase().includes(searchTerm) ||
-            client.email.toLowerCase().includes(searchTerm) ||
-            client.telefone.includes(searchTerm)
+            (client.telefone && client.telefone.includes(searchTerm)) ||
+            (client.endereco?.cidade && client.endereco.cidade.toLowerCase().includes(searchTerm)) ||
+            (client.endereco?.logradouro && client.endereco.logradouro.toLowerCase().includes(searchTerm))
         );
+        currentPage = 1;
         renderClientTable(filteredClients);
     });
-
-    function renderClientTable(clients) {
-        clientTable.innerHTML = '';
-        clients.forEach(client => {
-            addClientToTable(client);
-        });
-    }
 
     document.getElementById('buscarCNPJ').addEventListener('click', buscarDadosCNPJ);
 

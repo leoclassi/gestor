@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Venda</title>
+    <title>Adicionar Orçamento</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
@@ -124,27 +124,27 @@
         }
 
         .ui-autocomplete {
-    background-color: var(--input-bg);
-    color: var(--input-color);
-    border-color: var(--input-border);
-    max-height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: auto !important; /* Importante para ajustar a largura */
-    max-width: 100%; /* Limita a largura máxima */
-}
+            background-color: var(--input-bg);
+            color: var(--input-color);
+            border-color: var(--input-border);
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: auto !important;
+            max-width: 100%;
+        }
 
-.ui-menu-item {
-    padding: 5px 10px;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+        .ui-menu-item {
+            padding: 5px 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-.ui-menu-item:hover {
-    background-color: var(--sidebar-hover);
-}
+        .ui-menu-item:hover {
+            background-color: var(--sidebar-hover);
+        }
 
         .select2-container--bootstrap4 .select2-selection--single {
             height: calc(1.5em + 0.75rem + 2px) !important;
@@ -181,47 +181,44 @@
             margin-right: 10px;
         }
 
-        /* Estilos adicionais para o Select2 no Dark Mode */
         .dark-theme .select2-container--bootstrap4 .select2-selection {
             background-color: var(--input-bg);
-            color: #ffffff; /* Mudando para branco */
+            color: #ffffff;
             border-color: var(--input-border);
         }
 
         .dark-theme .select2-container--bootstrap4 .select2-selection__rendered {
-            color: #ffffff; /* Garantindo que o texto selecionado seja branco */
+            color: #ffffff;
         }
 
         .dark-theme .select2-container--bootstrap4 .select2-results__option {
-            color: #ffffff; /* Texto das opções em branco */
+            color: #ffffff;
             background-color: var(--input-bg);
         }
 
         .dark-theme .select2-container--bootstrap4 .select2-results__option--highlighted[aria-selected] {
             background-color: var(--sidebar-hover);
-            color: #ffffff; /* Mantendo o texto branco quando destacado */
+            color: #ffffff;
         }
 
         .dark-theme .select2-container--bootstrap4 .select2-selection__placeholder {
-            color: #cccccc; /* Placeholder um pouco mais escuro que o branco para distinção */
+            color: #cccccc;
         }
 
         .dark-theme .select2-container--bootstrap4 .select2-dropdown {
             background-color: var(--input-bg);
-            color: #ffffff; /* Garantindo que o texto das opções no dropdown seja branco */
+            color: #ffffff;
         }
 
-        /* Adicionando estilo para o texto dentro do select2-selection__rendered */
         .dark-theme .select2-container--bootstrap4 .select2-selection__rendered {
-            color: #ffffff !important; /* Forçando o texto a ser branco */
+            color: #ffffff !important;
         }
 
-        /* Estilos para a seção de Valor Total da Venda */
         .card-body .row:last-child {
             margin-bottom: 0;
         }
 
-        #valorTotalVenda,
+        #valorTotalOrcamento,
         #valorFinal {
             font-weight: bold;
         }
@@ -231,7 +228,7 @@
         }
 
         #descontoTotalTipo {
-            width: 57px; /* Reduzindo a largura */
+            width: 57px;
             padding-right: 20px;
         }
 
@@ -259,7 +256,6 @@
             color: var(--input-color);
         }
 
-        /* Ajuste para garantir que o dropdown fique sobre outros elementos */
         .input-group {
             position: relative;
             z-index: 1;
@@ -272,8 +268,7 @@
             background-image: none;
         }
 
-        /* Estilos para a seção de Valor Total da Venda */
-        #valorTotalVenda,
+        #valorTotalOrcamento,
         #descontoTotal {
             max-width: 200px;
         }
@@ -291,61 +286,52 @@
             width: 80px;
         }
 
-        /* Adicione este novo estilo para ajustar o layout */
         .form-row > .form-group {
             padding-right: 10px;
         }
 
-        /* Ajuste o tamanho das colunas */
         .produto-col { width: 30%; }
         .quantidade-col { width: 10%; }
         .valor-col { width: 18%; }
         .desconto-col { width: 16%; }
         .subtotal-col { width: 14%; }
 
-        /* Adicione este estilo para reduzir o espaçamento entre as colunas */
         .form-row > .form-group {
             padding-right: 5px;
             padding-left: 5px;
         }
 
-        /* Ajuste o tamanho da fonte para caber melhor */
         .form-group label {
             font-size: 0.9rem;
         }
 
-        /* Reduza o padding dos inputs para economizar espaço */
         .form-control {
             padding: 0.25rem 0.5rem;
         }
 
-        /* Ajuste o tamanho do input de quantidade */
         .quantidade-input {
             width: 100px;
         }
 
-        /* Ajuste o tamanho do dropdown "Simples" e "Especial" */
         .tipo-preco {
-            width: 30px; /* Ajuste este valor conforme necessário */
+            width: 30px;
         }
 
-        /* Ajuste o tamanho do dropdown de desconto */
         .desconto-dropdown {
-            width: 55px; /* Ajuste este valor conforme necessário */
+            width: 55px;
         }
 
         #parceladoFields .form-group {
-            display: inline-block; /* Garante que os elementos sejam tratados como inline-block */
-            vertical-align: top; /* Alinha os elementos ao topo */
-            width: 32%; /* Ajusta a largura para caber 3 em uma linha */
-            margin-right: 1%; /* Adiciona um pequeno espaço entre os campos */
+            display: inline-block;
+            vertical-align: top;
+            width: 32%;
+            margin-right: 1%;
         }
 
         #parceladoFields .form-group:last-child {
-            margin-right: 0; /* Remove a margem do último elemento para evitar quebra de linha */
+            margin-right: 0;
         }
 
-        /* Estilos para o tema escuro na seção de parcelas geradas */
         .dark-theme #parcelasGeradas {
             background-color: var(--input-bg);
             color: var(--input-color);
@@ -361,13 +347,11 @@
             border-color: var(--input-border);
         }
 
-        /* Remover seta do campo de cliente */
         #cliente + .select2-container .select2-selection__arrow,
         #cliente + .ui-autocomplete-input::-webkit-calendar-picker-indicator {
             display: none !important;
         }
 
-        /* Garantir que o input de cliente não tenha aparência de select */
         #cliente {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -375,7 +359,6 @@
             background-image: none;
         }
 
-        /* Remover completamente qualquer seta do campo de cliente */
         #cliente {
             -webkit-appearance: none !important;
             -moz-appearance: none !important;
@@ -383,7 +366,6 @@
             background-image: none !important;
         }
 
-        /* Estilo para o novo botão de cliente */
         .btn-novo-cliente {
             background-color: #007bff;
             border-color: #007bff;
@@ -404,32 +386,28 @@
             margin-right: 5px;
         }
 
-        /* Garantir que o input de cliente não tenha bordas arredondadas à direita */
         #cliente {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
 
-        /* Remover qualquer estilo adicional que possa estar causando a seta */
         #cliente + .select2-container .select2-selection__arrow,
         #cliente + .ui-autocomplete-input::-webkit-calendar-picker-indicator,
         #cliente::-ms-expand {
             display: none !important;
         }
 
-        /* Estilo personalizado para o botão Buscar CNPJ */
         #buscarCNPJ {
-            background-color: #007bff; /* Cor de fundo azul */
+            background-color: #007bff;
             border-color: #007bff;
             color: white;
         }
 
         #buscarCNPJ:hover {
-            background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+            background-color: #0056b3;
             border-color: #0056b3;
         }
 
-        /* Ajuste para o tema escuro */
         .dark-theme #buscarCNPJ {
             background-color: #0056b3;
             border-color: #0056b3;
@@ -439,8 +417,6 @@
             background-color: #003d80;
             border-color: #003d80;
         }
-
-        /* ... outros estilos ... */
 
         .toast-container {
             z-index: 1050;
@@ -457,7 +433,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/sales.js"></script>
+    <script src="js/budgets.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const token = localStorage.getItem('token');
@@ -466,7 +442,7 @@
                 return;
             }
 
-            const requiredPermission = 'vendas';
+            const requiredPermission = 'orcamentos';
             try {
                 const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
                     headers: {
@@ -491,70 +467,73 @@
     </script>
 </head>
 <body>
-
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>🌲 Portugal Madeiras</h3>
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
             <hr>
         </div>
-        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
-            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="productsSubmenu">
-            <li>
-                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
-            </li>
-        </ul>
-        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
-            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="clientsSubmenu">
-            <li>
-                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
-            </li>
-        </ul>
-        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="salesSubmenu">
-            <li>
-                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
-            </li>
-        </ul>
-        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="financeiroSubmenu">
-            <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
-            </li>
-            <li>
-                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
-            </li>
-        </ul>
-        <!-- Novo código de Admin -->
-        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
-            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="adminSubmenu">
-            <li>
-                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
-            </li>
-            <li>
-                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <button id="logoutButton" class="btn-logout">
-                <i class="fas fa-sign-out-alt"></i> Sair
-            </button>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="ordersSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                </li>
+                <li>
+                    <a href="new-dashboard.html" class="pl-5">Dashboard</a>
+                </li>
+            </ul>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
         </div>
     </div>
 
     <div class="content">
         <div class="container">
-            <h1 class="mb-4">Adicionar Venda</h1>
-            <form id="addSaleForm">
+            <h1 class="mb-4">Adicionar Orçamento</h1>
+            <form id="addBudgetForm">
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-edit mr-2"></i>Dados gerais
@@ -562,7 +541,7 @@
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="numero">Número da Venda</label>
+                                <label for="numero">Número do Orçamento</label>
                                 <input type="text" class="form-control" id="numero" readonly>
                             </div>
                             <div class="form-group col-md-4">
@@ -571,7 +550,7 @@
                                     <input type="text" class="form-control" id="cliente" required>
                                     <div class="input-group-append">
                                         <button class="btn btn-primary btn-novo-cliente" type="button" data-toggle="modal" data-target="#addClientModal">
-                                            <i class="fas fa-user-plus"></i> Novo Cliente
+                                            <i class="fas fa-user-plus"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -579,8 +558,9 @@
                             <div class="form-group col-md-4">
                                 <label for="situacao">Situação</label>
                                 <select class="form-control" id="situacao" required>
-                                    <option value="Concretizada">Concretizada</option>
-                                    <option value="Pendente">Pendente</option>
+                                    <option value="Em Aberto">Em Aberto</option>
+                                    <option value="Aprovado">Aprovado</option>
+                                    <option value="Recusado">Recusado</option>
                                 </select>
                             </div>
                         </div>
@@ -611,17 +591,16 @@
                     </div>
                 </div>
 
-                <!-- Nova seção para o Valor Total da Venda (movida para cima) -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-calculator mr-2"></i>Valor Total da Venda
+                        <i class="fas fa-calculator mr-2"></i>Valor Total do Orçamento
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="valorTotalVenda">Valor Total dos Produtos</label>
-                                    <input type="text" class="form-control" id="valorTotalVenda" readonly>
+                                    <label for="valorTotalOrcamento">Valor Total dos Produtos</label>
+                                    <input type="text" class="form-control" id="valorTotalOrcamento" readonly>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -642,7 +621,6 @@
                     </div>
                 </div>
 
-                <!-- Nova seção de Pagamento (movida para baixo) -->
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-money-bill-wave mr-2"></i>Pagamento
@@ -700,7 +678,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success">
-                    <i class="fas fa-save mr-2"></i>Salvar Venda
+                    <i class="fas fa-save mr-2"></i>Salvar Orçamento
                 </button>
             </form>
         </div>
@@ -715,7 +693,6 @@
         });
     </script>
 
-    <!-- Adicione este elemento HTML no final do body, antes dos scripts -->
     <div id="accessDeniedMessage" class="alert alert-warning" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
         <h4 class="alert-heading">Acesso Negado</h4>
         <p>Você não tem permissão para acessar esta página.</p>
@@ -734,8 +711,6 @@
             border-color: #666600;
         }
     </style>
-
-    <!-- Adicione este código antes do fechamento da tag </body> -->
 
     <!-- Modal para adicionar novo cliente -->
     <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
@@ -782,7 +757,7 @@
                                     <input type="email" class="form-control" id="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="telefone">Telefone</label>
+                                    <label for="telefone">telefone                                    </label>
                                     <input type="tel" class="form-control" id="telefone">
                                 </div>
                             </div>
@@ -790,15 +765,15 @@
                                 <h6 class="mb-3">Endereço</h6>
                                 <div class="form-group">
                                     <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" id="cep" maxlength="9">
+                                    <input type="text" class="form-control" id="cep">
                                 </div>
                                 <div class="form-group">
                                     <label for="logradouro">Logradouro</label>
                                     <input type="text" class="form-control" id="logradouro">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero">Número</label>
-                                    <input type="text" class="form-control" id="numero">
+                                    <label for="numeroEndereco">Número</label>
+                                    <input type="text" class="form-control" id="numeroEndereco" name="numeroEndereco">
                                 </div>
                                 <div class="form-group">
                                     <label for="bairro">Bairro</label>
@@ -806,19 +781,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" id="cidade" autocomplete="off">
+                                    <input type="text" class="form-control" id="cidade">
                                 </div>
                                 <div class="form-group">
-                                    <label for="uf">UF</label>
-                                    <input type="text" class="form-control" id="uf" maxlength="2">
+                                    <label for="estado">Estado</label>
+                                    <input type="text" class="form-control" id="estado">
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                        </div>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" form="addClientForm" class="btn btn-primary">Adicionar Cliente</button>
                 </div>
             </div>
         </div>
@@ -826,7 +801,7 @@
 
     <!-- Modal para adicionar novo produto -->
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addProductModalLabel">Adicionar Produto</h5>
@@ -836,45 +811,50 @@
                 </div>
                 <div class="modal-body">
                     <form id="addProductForm">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="codigo">Código</label>
-                                <input type="text" class="form-control" id="codigo" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="nome">Nome</label>
-                                <input type="text" class="form-control" id="nome" required>
+                        <div class="form-group">
+                            <label for="newProductCode">Código</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="newProductCode" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary generate-code" type="button" id="generateCode">
+                                        <i class="fas fa-random"></i> Gerar
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="newProductName">Nome</label>
+                            <input type="text" class="form-control" id="newProductName" required>
+                        </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="valor">Valor Simples</label>
+                            <div class="form-group col-md-6">
+                                <label for="newProductValue">Valor Simples</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="number" class="form-control" id="valor" step="0.01" required>
+                                    <input type="number" class="form-control" id="newProductValue" step="0.01" required>
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="valorEspecial">Valor Especial</label>
+                            <div class="form-group col-md-6">
+                                <label for="newProductValueSpecial">Valor Especial</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="number" class="form-control" id="valorEspecial" step="0.01">
+                                    <input type="number" class="form-control" id="newProductValueSpecial" step="0.01">
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="estoque">Estoque</label>
-                                <input type="number" class="form-control" id="estoque" required>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newProductStock">Estoque</label>
+                            <input type="number" class="form-control" id="newProductStock" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" form="addProductForm" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-success" id="saveNewProduct">Salvar</button>
                 </div>
             </div>
         </div>

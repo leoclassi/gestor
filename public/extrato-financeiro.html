@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo Financeiro</title>
+    <link rel="stylesheet" href="css/extrato.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Resumo Financeiro</h1>
+            <div class="date">
+                <i class="far fa-calendar-alt"></i>
+                <span id="dataAtual"></span>
+            </div>
+            <button onclick="window.print()" class="print-btn no-print">
+                <i class="fas fa-print"></i>
+            </button>
+        </div>
+
+        <div class="content">
+            <div class="row">
+                <div class="label">
+                    <i class="fas fa-money-check"></i>
+                    Cheques
+                </div>
+                <div id="totalCheques" class="value">Carregando...</div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    <i class="fas fa-file-invoice"></i>
+                    Boletos
+                </div>
+                <div id="totalBoletos" class="value">Carregando...</div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    <i class="fas fa-landmark"></i>
+                    Banco do Brasil
+                </div>
+                <div class="value">
+                    <input type="text" id="valorBB" class="value-input" value="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    <i class="fas fa-university"></i>
+                    Bradesco
+                </div>
+                <div class="value">
+                    <input type="text" id="valorBradesco" class="value-input" value="0">
+                </div>
+            </div>
+            <div class="row total">
+                <div class="label">
+                    <i class="fas fa-equals"></i>
+                    Total
+                </div>
+                <div id="totalGeral" class="value">Carregando...</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/extrato.js"></script>
+</body>
+</html> 

@@ -22,7 +22,7 @@ function createBackup() {
     const zip = new AdmZip();
     const formattedDate = getFormattedDate(); // Obter a data formatada
     const outputFile = path.join(__dirname, 'public', 'backups', `Backup_${formattedDate}.zip`); // Novo nome de arquivo
-    const filesToBackup = ['cheques.json', 'products.json', 'clients.json', 'config.json', 'sales.json', 'users.json'];
+    const filesToBackup = ['cheques.json', 'products.json', 'clients.json', 'config.json', 'sales.json', 'users.json', 'budgets.json'];
 
     filesToBackup.forEach(file => {
         const filePath = path.join(__dirname, 'data', file);

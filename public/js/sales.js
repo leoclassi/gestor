@@ -152,12 +152,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add product row
     addProductButton.addEventListener('click', addProductRow);
 
+    // Adicione uma variável global para armazenar a linha de produto atual
+    let currentProductRow = null;
+
     function addProductRow() {
         const productRowHTML = `
             <div class="form-row mb-3 align-items-end">
                 <div class="form-group produto-col">
                     <label for="produto">Produto</label>
-                    <input type="text" class="form-control produto-autocomplete" required>
+                    <div class="input-group">
+                        <input type="text" class="form-control produto-autocomplete" required>
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-primary add-new-product-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group quantidade-col">
                     <label for="quantidade">Quantidade</label>
@@ -206,6 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setupProductAutocomplete($productRow.find('.produto-autocomplete')[0]);
         setupRowEventListeners($productRow);
         updateTotalValue();
+
+        // Adicionar evento de clique para o botão de adicionar novo produto
+        $productRow.find('.add-new-product-btn').on('click', () => {
+            currentProductRow = $productRow[0];
+            if (addProductModal) {
+                addProductModal.show();
+            }
+        });
     }
     function setupRowEventListeners(row) {
         // Add event listener to remove button
@@ -380,6 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
             valorFinal: parseCurrency(document.getElementById('valorTotalVenda').value)
         };
 
+        // Adicionar o campo 'paga' ao objeto newSale
+        newSale.paga = false;
+
         // Adicionar novos campos ao objeto newSale
         if (document.getElementById('parceladoFields').style.display === 'block') {
             newSale.tipoPagamento = 'Parcelado';
@@ -495,7 +516,14 @@ document.addEventListener('DOMContentLoaded', () => {
         productRow.innerHTML = `
             <div class="form-group produto-col">
                 <label for="produto">Produto</label>
-                <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
+                <div class="input-group">
+                    <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary add-new-product-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="form-group quantidade-col">
                 <label for="quantidade">Quantidade</label>
@@ -538,9 +566,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         document.getElementById('productsContainer').appendChild(productRow);
         
-        // Reaplique os event listeners e a funcionalidade de autocomplete
         setupProductAutocomplete(productRow.querySelector('.produto-autocomplete'));
-        setupRowEventListeners($(productRow)); // Converter para objeto jQuery
+        setupRowEventListeners($(productRow));
+        
+        // Adicionar evento de clique para o botão de adicionar novo produto
+        $(productRow).find('.add-new-product-btn').on('click', () => {
+            currentProductRow = productRow;
+            if (addProductModal) {
+                addProductModal.show();
+            }
+        });
+        
         updateTotalValue();
     }
 
@@ -743,7 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
             endereco: {
                 cep: document.getElementById('cep').value,
                 logradouro: document.getElementById('logradouro').value,
-                numero: document.getElementById('numero').value,
+                numero: document.getElementById('numeroEndereco').value, // Corrigido aqui
                 bairro: document.getElementById('bairro').value,
                 cidade: document.getElementById('cidade').value,
                 uf: document.getElementById('uf').value
@@ -762,7 +798,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const savedClient = await response.json();
-                // Remova o alert e adicione esta linha para mostrar o Toast
                 $('#successToast').toast('show');
                 
                 $('#addClientModal').modal('hide');
@@ -784,7 +819,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Erro ao cadastrar cliente:', error);
-            // Substitua o alert por um Toast de erro
             showErrorToast('Erro ao cadastrar cliente. Por favor, tente novamente.');
         }
     }
@@ -850,13 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function buscarCNPJ() {
-        const cnpjInput = document.getElementById('cnpj');
-        if (!cnpjInput) {
-            console.error('Elemento de input CNPJ não encontrado');
-            return;
-        }
-
-        const cnpj = cnpjInput.value.replace(/\D/g, '');
+        const cnpj = document.getElementById('cnpj').value.replace(/\D/g, '');
         if (cnpj.length !== 14) {
             alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 dígitos.');
             return;
@@ -867,37 +895,52 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (data.status === 'ERROR') {
-                alert(data.message);
-                return;
+                throw new Error(data.message);
             }
 
-            // Função auxiliar para definir o valor de um campo se ele existir
-            const setFieldValue = (id, value) => {
-                const field = document.getElementById(id);
-                if (field) {
-                    field.value = value;
-                } else {
-                    console.warn(`Campo ${id} não encontrado`);
-                }
+            // Preenchendo os campos do formulário com os dados da API
+            const fields = {
+                'nome': data.nome,
+                'email': data.email,
+                'telefone': data.telefone,
+                'logradouro': data.logradouro,
+                'numeroEndereco': data.numero,
+                'bairro': data.bairro,
+                'cep': data.cep,
+                'cidade': data.municipio,
+                'estado': data.uf
             };
 
-            setFieldValue('nome', data.nome); // Corrigido para 'nome' que corresponde a "Razão Social"
-            setFieldValue('fantasia', data.fantasia);
-            setFieldValue('logradouro', data.logradouro);
-            // Removido o mapeamento incorreto do número do CNPJ para o número da venda
-            setFieldValue('complemento', data.complemento);
-            setFieldValue('bairro', data.bairro);
-            setFieldValue('cidade', data.municipio);
-            setFieldValue('uf', data.uf); // Corrigido para 'uf' que corresponde a "Estado"
-            setFieldValue('cep', data.cep);
-            setFieldValue('telefone', data.telefone);
-            setFieldValue('email', data.email);
+            for (const [id, value] of Object.entries(fields)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.value = value || '';
+                }
+            }
 
+            // Se 'municipio' e 'uf' não estiverem disponíveis, tente usar 'efr'
+            if (!data.municipio && !data.uf && data.efr) {
+                const parts = data.efr.split('/');
+                if (parts.length === 2) {
+                    const cidadeElement = document.getElementById('cidade');
+                    const estadoElement = document.getElementById('estado');
+                    if (cidadeElement) cidadeElement.value = parts[0].trim();
+                    if (estadoElement) estadoElement.value = parts[1].trim();
+                }
+            }
         } catch (error) {
-            console.error('Erro ao buscar dados do CNPJ:', error);
-            alert('Erro ao buscar dados do CNPJ. Por favor, tente novamente.');
+            console.error('Erro ao buscar CNPJ:', error);
+            alert('Ocorreu um erro ao buscar os dados do CNPJ. Por favor, tente novamente ou preencha manualmente.');
         }
     }
+
+    // Certifique-se de que o botão de busca CNPJ existe e adicione o evento de clique
+    document.addEventListener('DOMContentLoaded', () => {
+        const buscarCNPJButton = document.getElementById('buscarCNPJ');
+        if (buscarCNPJButton) {
+            buscarCNPJButton.addEventListener('click', buscarCNPJ);
+        }
+    });
 
     // Adicione estas novas funções
     function formatCPF(cpf) {
@@ -1174,5 +1217,98 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    }
+
+    const addNewProductBtn = document.getElementById('addNewProductBtn');
+    const saveNewProductBtn = document.getElementById('saveNewProduct');
+    let addProductModal;
+
+    // Mova a inicialização do modal para dentro do evento DOMContentLoaded
+    addProductModal = new bootstrap.Modal(document.getElementById('addProductModal'));
+
+    if (addNewProductBtn) {
+        addNewProductBtn.addEventListener('click', () => {
+            addProductModal.show();
+        });
+    }
+
+    if (saveNewProductBtn) {
+        saveNewProductBtn.addEventListener('click', () => saveNewProduct(currentProductRow));
+    }
+
+    // Adicione o evento para resetar currentProductRow quando o modal for fechado
+    const addProductModalElement = document.getElementById('addProductModal');
+    if (addProductModalElement) {
+        addProductModalElement.addEventListener('hidden.bs.modal', () => {
+            currentProductRow = null;
+        });
+    }
+
+    // Modifique a função saveNewProduct para aceitar um parâmetro que indica a linha de produto
+    function saveNewProduct(productRow) {
+        const newProductName = document.getElementById('newProductName').value;
+        const newProductValue = document.getElementById('newProductValue').value;
+        const newProductValueSpecial = document.getElementById('newProductValueSpecial').value;
+        const newProductCode = document.getElementById('newProductCode').value;
+        const newProductStock = document.getElementById('newProductStock').value;
+
+        const newProduct = {
+            id: Date.now().toString(),
+            codigo: newProductCode,
+            nome: newProductName,
+            valor: parseFloat(newProductValue),
+            valorEspecial: newProductValueSpecial ? parseFloat(newProductValueSpecial) : parseFloat(newProductValue),
+            estoque: parseInt(newProductStock),
+            dataCadastro: new Date().toLocaleString('pt-BR')
+        };
+
+        fetch('/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newProduct)
+        })
+        .then(response => response.json())
+        .then(savedProduct => {
+            products.push(savedProduct);
+            updateProductAutocomplete();
+            addProductModal.hide();
+            document.getElementById('addProductForm').reset();
+            showSuccessToast('Produto adicionado com sucesso!');
+
+            // Preencher o campo de produto na linha correta
+            if (productRow) {
+                const productInput = productRow.querySelector('.produto-autocomplete');
+                if (productInput) {
+                    productInput.value = savedProduct.nome;
+                    const event = new Event('change');
+                    productInput.dispatchEvent(event);
+
+                    // Atualizar o preço e outros campos relacionados ao produto
+                    updateUnitPrice($(productRow), savedProduct);
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao salvar o produto:', error);
+            showErrorToast('Ocorreu um erro ao salvar o produto. Por favor, tente novamente.');
+        });
+    }
+
+    function updateProductAutocomplete() {
+        const productInputs = document.querySelectorAll('.produto-autocomplete');
+        productInputs.forEach(input => {
+            $(input).autocomplete("option", "source", products.map(product => product.nome));
+        });
+    }
+
+    const generateCodeBtn = document.getElementById('generateCode');
+
+    generateCodeBtn.addEventListener('click', generateProductCode);
+
+    function generateProductCode() {
+        const code = Math.floor(1000000000 + Math.random() * 9000000000);
+        document.getElementById('newProductCode').value = code;
     }
 });

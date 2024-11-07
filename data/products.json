@@ -1,37 +1,37 @@
 [
   {
     "id": "1726584012345",
-    "codigo": "1234567890",
+    "codigo": "2660254848",
     "nome": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-    "valor": 13.00,
-    "valorEspecial": 15.60,
+    "valor": 13,
+    "valorEspecial": 15.6,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
   {
     "id": "1726584012346",
-    "codigo": "2345678901",
+    "codigo": "2038138660",
     "nome": "Repique - 2,20 Metros - 6 a 8 cm Ø",
-    "valor": 17.00,
-    "valorEspecial": 20.40,
+    "valor": 17,
+    "valorEspecial": 20.4,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
   {
     "id": "1726584012347",
-    "codigo": "3456789012",
+    "codigo": "2133140355",
     "nome": "Repique - 2,20 Metros - 8 a 10 cm Ø",
-    "valor": 25.00,
-    "valorEspecial": 30.00,
+    "valor": 25,
+    "valorEspecial": 30,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
   {
     "id": "1726584012348",
-    "codigo": "4567890123",
+    "codigo": "9025654276",
     "nome": "Repique - 2,20 Metros - 10 a 13 cm Ø",
-    "valor": 35.00,
-    "valorEspecial": 42.00,
+    "valor": 35,
+    "valorEspecial": 42,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -39,17 +39,26 @@
     "id": "1726584012349",
     "codigo": "5678901234",
     "nome": "Repique - 2,20 Metros - 13 a 16 cm Ø",
-    "valor": 40.00,
-    "valorEspecial": 48.00,
+    "valor": 40,
+    "valorEspecial": 48,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
+  },
+  {
+    "id": "1729186258518",
+    "codigo": "9120333278",
+    "nome": "Palanque - 2,50 Metros - 8 a 10 cm Ø",
+    "valor": 35,
+    "valorEspecial": 35,
+    "estoque": 244234,
+    "dataCadastro": "17/10/2024, 14:30:55"
   },
   {
     "id": "1726584012350",
     "codigo": "6789012345",
     "nome": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
-    "valor": 40.00,
-    "valorEspecial": 48.00,
+    "valor": 40,
+    "valorEspecial": 48,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -57,8 +66,8 @@
     "id": "1726584012351",
     "codigo": "7890123456",
     "nome": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
-    "valor": 60.00,
-    "valorEspecial": 72.00,
+    "valor": 60,
+    "valorEspecial": 72,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -66,8 +75,8 @@
     "id": "1726584012352",
     "codigo": "8901234567",
     "nome": "Palanque - 2,50 Metros - 16 a 20 cm Ø",
-    "valor": 80.00,
-    "valorEspecial": 96.00,
+    "valor": 80,
+    "valorEspecial": 96,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -75,8 +84,8 @@
     "id": "1726584012353",
     "codigo": "9012345678",
     "nome": "Palanque - 2,50 Metros - 20 a 25 cm Ø",
-    "valor": 100.00,
-    "valorEspecial": 120.00,
+    "valor": 100,
+    "valorEspecial": 120,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -84,8 +93,8 @@
     "id": "1726584012354",
     "codigo": "0123456789",
     "nome": "Palanque - 3,20 Metros - 4 a 6 cm Ø",
-    "valor": 22.00,
-    "valorEspecial": 26.40,
+    "valor": 22,
+    "valorEspecial": 26.4,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -93,8 +102,8 @@
     "id": "1726584012355",
     "codigo": "1234567890",
     "nome": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
-    "valor": 29.00,
-    "valorEspecial": 34.80,
+    "valor": 29,
+    "valorEspecial": 34.8,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -102,8 +111,8 @@
     "id": "1726584012356",
     "codigo": "2345678901",
     "nome": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
-    "valor": 40.00,
-    "valorEspecial": 48.00,
+    "valor": 40,
+    "valorEspecial": 48,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -111,8 +120,8 @@
     "id": "1726584012357",
     "codigo": "3456789012",
     "nome": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
-    "valor": 54.00,
-    "valorEspecial": 64.80,
+    "valor": 54,
+    "valorEspecial": 64.8,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -120,8 +129,8 @@
     "id": "1726584012358",
     "codigo": "4567890123",
     "nome": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
-    "valor": 72.00,
-    "valorEspecial": 86.40,
+    "valor": 72,
+    "valorEspecial": 86.4,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -129,8 +138,8 @@
     "id": "1726584012359",
     "codigo": "5678901234",
     "nome": "Palanque - 3,20 Metros - 16 a 20 cm Ø",
-    "valor": 100.00,
-    "valorEspecial": 120.00,
+    "valor": 100,
+    "valorEspecial": 120,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -138,8 +147,8 @@
     "id": "1726584012360",
     "codigo": "6789012345",
     "nome": "Palanque - 3,20 Metros - 20 a 25 cm Ø",
-    "valor": 140.00,
-    "valorEspecial": 168.00,
+    "valor": 140,
+    "valorEspecial": 168,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -147,8 +156,8 @@
     "id": "1726584012361",
     "codigo": "7890123456",
     "nome": "Palanque - 3,50 Metros - 4 a 6 cm Ø",
-    "valor": 26.00,
-    "valorEspecial": 31.20,
+    "valor": 26,
+    "valorEspecial": 31.2,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -156,8 +165,8 @@
     "id": "1726584012362",
     "codigo": "8901234567",
     "nome": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
-    "valor": 33.00,
-    "valorEspecial": 39.60,
+    "valor": 33,
+    "valorEspecial": 39.6,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -165,8 +174,8 @@
     "id": "1726584012363",
     "codigo": "9012345678",
     "nome": "Palanque - 3,50 Metros - 8 a 10 cm Ø",
-    "valor": 44.00,
-    "valorEspecial": 52.80,
+    "valor": 44,
+    "valorEspecial": 52.8,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -174,8 +183,8 @@
     "id": "1726584012364",
     "codigo": "0123456789",
     "nome": "Palanque - 3,50 Metros - 10 a 13 cm Ø",
-    "valor": 58.00,
-    "valorEspecial": 69.60,
+    "valor": 58,
+    "valorEspecial": 69.6,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -183,8 +192,8 @@
     "id": "1726584012365",
     "codigo": "1234567890",
     "nome": "Palanque - 3,50 Metros - 13 a 16 cm Ø",
-    "valor": 80.00,
-    "valorEspecial": 96.00,
+    "valor": 80,
+    "valorEspecial": 96,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -192,8 +201,8 @@
     "id": "1726584012366",
     "codigo": "2345678901",
     "nome": "Palanque - 3,50 Metros - 16 a 20 cm Ø",
-    "valor": 115.00,
-    "valorEspecial": 138.00,
+    "valor": 115,
+    "valorEspecial": 138,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -201,8 +210,8 @@
     "id": "1726584012367",
     "codigo": "3456789012",
     "nome": "Palanque - 3,50 Metros - 20 a 25 cm Ø",
-    "valor": 155.00,
-    "valorEspecial": 186.00,
+    "valor": 155,
+    "valorEspecial": 186,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -210,8 +219,8 @@
     "id": "1726584012368",
     "codigo": "4567890123",
     "nome": "Palanque - 4,00 Metros - 4 a 6 cm Ø",
-    "valor": 30.00,
-    "valorEspecial": 36.00,
+    "valor": 30,
+    "valorEspecial": 36,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -219,8 +228,8 @@
     "id": "1726584012369",
     "codigo": "5678901234",
     "nome": "Palanque - 4,00 Metros - 6 a 8 cm Ø",
-    "valor": 40.00,
-    "valorEspecial": 48.00,
+    "valor": 40,
+    "valorEspecial": 48,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -228,8 +237,8 @@
     "id": "1726584012370",
     "codigo": "6789012345",
     "nome": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
-    "valor": 45.00,
-    "valorEspecial": 54.00,
+    "valor": 45,
+    "valorEspecial": 54,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -237,8 +246,8 @@
     "id": "1726584012371",
     "codigo": "7890123456",
     "nome": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
-    "valor": 72.00,
-    "valorEspecial": 86.40,
+    "valor": 72,
+    "valorEspecial": 86.4,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -246,8 +255,8 @@
     "id": "1726584012372",
     "codigo": "8901234567",
     "nome": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
-    "valor": 100.00,
-    "valorEspecial": 120.00,
+    "valor": 100,
+    "valorEspecial": 120,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -255,8 +264,8 @@
     "id": "1726584012373",
     "codigo": "9012345678",
     "nome": "Palanque - 4,00 Metros - 16 a 20 cm Ø",
-    "valor": 138.00,
-    "valorEspecial": 165.60,
+    "valor": 138,
+    "valorEspecial": 165.6,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -264,8 +273,8 @@
     "id": "1726584012374",
     "codigo": "0123456789",
     "nome": "Palanque - 4,00 Metros - 20 a 25 cm Ø",
-    "valor": 190.00,
-    "valorEspecial": 228.00,
+    "valor": 190,
+    "valorEspecial": 228,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -273,8 +282,8 @@
     "id": "1726584012375",
     "codigo": "1234567890",
     "nome": "Palanque - 4,50 Metros - 4 a 6 cm Ø",
-    "valor": 40.00,
-    "valorEspecial": 40.00,
+    "valor": 40,
+    "valorEspecial": 40,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -282,8 +291,8 @@
     "id": "1726584012376",
     "codigo": "2345678901",
     "nome": "Palanque - 4,50 Metros - 6 a 8 cm Ø",
-    "valor": 52.00,
-    "valorEspecial": 52.00,
+    "valor": 52,
+    "valorEspecial": 52,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -291,8 +300,8 @@
     "id": "1726584012377",
     "codigo": "3456789012",
     "nome": "Palanque - 4,50 Metros - 8 a 10 cm Ø",
-    "valor": 72.80,
-    "valorEspecial": 72.80,
+    "valor": 72.8,
+    "valorEspecial": 72.8,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -300,8 +309,8 @@
     "id": "1726584012378",
     "codigo": "4567890123",
     "nome": "Palanque - 4,50 Metros - 10 a 13 cm Ø",
-    "valor": 100.00,
-    "valorEspecial": 100.00,
+    "valor": 100,
+    "valorEspecial": 100,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -309,8 +318,8 @@
     "id": "1726584012379",
     "codigo": "5678901234",
     "nome": "Palanque - 4,50 Metros - 13 a 16 cm Ø",
-    "valor": 141.00,
-    "valorEspecial": 141.00,
+    "valor": 141,
+    "valorEspecial": 141,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -318,8 +327,8 @@
     "id": "1726584012380",
     "codigo": "6789012345",
     "nome": "Palanque - 4,50 Metros - 16 a 20 cm Ø",
-    "valor": 197.00,
-    "valorEspecial": 197.00,
+    "valor": 197,
+    "valorEspecial": 197,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -327,8 +336,8 @@
     "id": "1726584012381",
     "codigo": "7890123456",
     "nome": "Palanque - 4,50 Metros - 20 a 25 cm Ø",
-    "valor": 276.00,
-    "valorEspecial": 276.00,
+    "valor": 276,
+    "valorEspecial": 276,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -336,8 +345,8 @@
     "id": "1726584012382",
     "codigo": "8901234567",
     "nome": "Palanque - 5,00 Metros - 4 a 6 cm Ø",
-    "valor": 46.00,
-    "valorEspecial": 46.00,
+    "valor": 46,
+    "valorEspecial": 46,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -345,8 +354,8 @@
     "id": "1726584012383",
     "codigo": "9012345678",
     "nome": "Palanque - 5,00 Metros - 6 a 8 cm Ø",
-    "valor": 64.00,
-    "valorEspecial": 64.00,
+    "valor": 64,
+    "valorEspecial": 64,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -354,8 +363,8 @@
     "id": "1726584012384",
     "codigo": "0123456789",
     "nome": "Palanque - 5,00 Metros - 8 a 10 cm Ø",
-    "valor": 89.00,
-    "valorEspecial": 89.00,
+    "valor": 80,
+    "valorEspecial": 80,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -363,8 +372,8 @@
     "id": "1726584012385",
     "codigo": "1234567890",
     "nome": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
-    "valor": 125.00,
-    "valorEspecial": 125.00,
+    "valor": 125,
+    "valorEspecial": 125,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -372,8 +381,8 @@
     "id": "1726584012386",
     "codigo": "2345678901",
     "nome": "Palanque - 5,00 Metros - 13 a 16 cm Ø",
-    "valor": 175.00,
-    "valorEspecial": 175.00,
+    "valor": 175,
+    "valorEspecial": 175,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -381,8 +390,8 @@
     "id": "1726584012387",
     "codigo": "3456789012",
     "nome": "Palanque - 5,00 Metros - 16 a 20 cm Ø",
-    "valor": 245.00,
-    "valorEspecial": 245.00,
+    "valor": 245,
+    "valorEspecial": 245,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -390,17 +399,26 @@
     "id": "1726584012388",
     "codigo": "4567890123",
     "nome": "Palanque - 5,00 Metros - 20 a 25 cm Ø",
-    "valor": 343.00,
-    "valorEspecial": 343.00,
+    "valor": 343,
+    "valorEspecial": 343,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
+  },
+  {
+    "id": "1729271183977",
+    "codigo": "7662489764",
+    "nome": "Palanque - 5,00 Metros - 30 a 35 cm Ø",
+    "valor": 850,
+    "valorEspecial": 850,
+    "estoque": 589748,
+    "dataCadastro": "18/10/2024, 14:06:21"
   },
   {
     "id": "1728584012405",
     "codigo": "1234567890",
     "nome": "Palanque - 5,50 Metros - 6 a 8 cm Ø",
-    "valor": 69.60,
-    "valorEspecial": 69.60,
+    "valor": 70.84,
+    "valorEspecial": 70.84,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -408,8 +426,8 @@
     "id": "1728584012406",
     "codigo": "2345678901",
     "nome": "Palanque - 5,50 Metros - 8 a 10 cm Ø",
-    "valor": 88.80,
-    "valorEspecial": 88.80,
+    "valor": 89,
+    "valorEspecial": 89,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -417,8 +435,8 @@
     "id": "1728584012407",
     "codigo": "3456789012",
     "nome": "Palanque - 5,50 Metros - 10 a 13 cm Ø",
-    "valor": 124.80,
-    "valorEspecial": 124.80,
+    "valor": 137.5,
+    "valorEspecial": 137.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -426,8 +444,8 @@
     "id": "1728584012408",
     "codigo": "4567890123",
     "nome": "Palanque - 5,50 Metros - 13 a 16 cm Ø",
-    "valor": 184.80,
-    "valorEspecial": 184.80,
+    "valor": 192,
+    "valorEspecial": 192,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -435,8 +453,8 @@
     "id": "1728584012409",
     "codigo": "5678901234",
     "nome": "Palanque - 5,50 Metros - 16 a 20 cm Ø",
-    "valor": 264.00,
-    "valorEspecial": 264.00,
+    "valor": 270,
+    "valorEspecial": 270,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -444,8 +462,8 @@
     "id": "1728584012410",
     "codigo": "6789012345",
     "nome": "Palanque - 5,50 Metros - 20 a 25 cm Ø",
-    "valor": 396.00,
-    "valorEspecial": 396.00,
+    "valor": 380,
+    "valorEspecial": 380,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -453,8 +471,8 @@
     "id": "1726584012389",
     "codigo": "5678901234",
     "nome": "Palanque - 6,00 Metros - 6 a 8 cm Ø",
-    "valor": 68.00,
-    "valorEspecial": 68.00,
+    "valor": 68,
+    "valorEspecial": 68,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -462,8 +480,8 @@
     "id": "1726584012390",
     "codigo": "6789012345",
     "nome": "Palanque - 6,00 Metros - 8 a 10 cm Ø",
-    "valor": 95.00,
-    "valorEspecial": 95.00,
+    "valor": 95,
+    "valorEspecial": 95,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -471,8 +489,8 @@
     "id": "1726584012391",
     "codigo": "7890123456",
     "nome": "Palanque - 6,00 Metros - 10 a 13 cm Ø",
-    "valor": 133.00,
-    "valorEspecial": 133.00,
+    "valor": 133,
+    "valorEspecial": 133,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -480,8 +498,8 @@
     "id": "1726584012392",
     "codigo": "8901234567",
     "nome": "Palanque - 6,00 Metros - 13 a 16 cm Ø",
-    "valor": 186.00,
-    "valorEspecial": 186.00,
+    "valor": 186,
+    "valorEspecial": 186,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -489,8 +507,8 @@
     "id": "1726584012393",
     "codigo": "9012345678",
     "nome": "Palanque - 6,00 Metros - 16 a 20 cm Ø",
-    "valor": 300.00,
-    "valorEspecial": 300.00,
+    "valor": 300,
+    "valorEspecial": 300,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -498,8 +516,8 @@
     "id": "1726584012394",
     "codigo": "0123456789",
     "nome": "Palanque - 6,00 Metros - 20 a 25 cm Ø",
-    "valor": 420.00,
-    "valorEspecial": 420.00,
+    "valor": 420,
+    "valorEspecial": 420,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -507,8 +525,8 @@
     "id": "1728584012411",
     "codigo": "7890123456",
     "nome": "Palanque - 6,50 Metros - 6 a 8 cm Ø",
-    "valor": 80.40,
-    "valorEspecial": 80.40,
+    "valor": 76,
+    "valorEspecial": 76,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -516,8 +534,8 @@
     "id": "1728584012412",
     "codigo": "8901234567",
     "nome": "Palanque - 6,50 Metros - 8 a 10 cm Ø",
-    "valor": 110.40,
-    "valorEspecial": 110.40,
+    "valor": 103,
+    "valorEspecial": 103,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -525,8 +543,8 @@
     "id": "1728584012413",
     "codigo": "9012345678",
     "nome": "Palanque - 6,50 Metros - 10 a 13 cm Ø",
-    "valor": 158.40,
-    "valorEspecial": 158.40,
+    "valor": 144,
+    "valorEspecial": 144,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -534,8 +552,8 @@
     "id": "1728584012414",
     "codigo": "0123456789",
     "nome": "Palanque - 6,50 Metros - 13 a 16 cm Ø",
-    "valor": 220.80,
-    "valorEspecial": 220.80,
+    "valor": 202,
+    "valorEspecial": 202,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -543,8 +561,8 @@
     "id": "1728584012415",
     "codigo": "1234567890",
     "nome": "Palanque - 6,50 Metros - 16 a 20 cm Ø",
-    "valor": 331.20,
-    "valorEspecial": 331.20,
+    "valor": 325,
+    "valorEspecial": 325,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -552,8 +570,8 @@
     "id": "1728584012416",
     "codigo": "2345678901",
     "nome": "Palanque - 6,50 Metros - 20 a 25 cm Ø",
-    "valor": 498.00,
-    "valorEspecial": 498.00,
+    "valor": 455,
+    "valorEspecial": 455,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -561,8 +579,8 @@
     "id": "1726584012395",
     "codigo": "1234567890",
     "nome": "Palanque - 7,00 Metros - 8 a 10 cm Ø",
-    "valor": 130.00,
-    "valorEspecial": 130.00,
+    "valor": 130,
+    "valorEspecial": 130,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -570,8 +588,8 @@
     "id": "1726584012396",
     "codigo": "2345678901",
     "nome": "Palanque - 7,00 Metros - 10 a 13 cm Ø",
-    "valor": 184.00,
-    "valorEspecial": 184.00,
+    "valor": 184,
+    "valorEspecial": 184,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -579,8 +597,8 @@
     "id": "1726584012397",
     "codigo": "3456789012",
     "nome": "Palanque - 7,00 Metros - 13 a 16 cm Ø",
-    "valor": 258.00,
-    "valorEspecial": 258.00,
+    "valor": 258,
+    "valorEspecial": 258,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -588,8 +606,8 @@
     "id": "1726584012398",
     "codigo": "4567890123",
     "nome": "Palanque - 7,00 Metros - 16 a 20 cm Ø",
-    "valor": 263.00,
-    "valorEspecial": 263.00,
+    "valor": 350,
+    "valorEspecial": 350,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -597,26 +615,17 @@
     "id": "1726584012399",
     "codigo": "5678901234",
     "nome": "Palanque - 7,00 Metros - 20 a 25 cm Ø",
-    "valor": 307.00,
-    "valorEspecial": 307.00,
+    "valor": 500,
+    "valorEspecial": 500,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
-  },
-  {
-    "id": "1728584012417",
-    "codigo": "3456789012",
-    "nome": "Palanque - 7,50 Metros - 6 a 8 cm Ø",
-    "valor": 93.60,
-    "valorEspecial": 93.60,
-    "estoque": 20,
-    "dataCadastro": "17/10/2024, 11:40:12"
   },
   {
     "id": "1728584012418",
     "codigo": "4567890123",
     "nome": "Palanque - 7,50 Metros - 8 a 10 cm Ø",
-    "valor": 141.60,
-    "valorEspecial": 141.60,
+    "valor": 140,
+    "valorEspecial": 140,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -624,62 +633,53 @@
     "id": "1728584012419",
     "codigo": "5678901234",
     "nome": "Palanque - 7,50 Metros - 10 a 13 cm Ø",
-    "valor": 220.80,
-    "valorEspecial": 220.80,
+    "valor": 197,
+    "valorEspecial": 197,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
   {
     "id": "1728584012420",
-    "codigo": "6789012345",
+    "codigo": "5777674867",
     "nome": "Palanque - 7,50 Metros - 13 a 16 cm Ø",
-    "valor": 321.60,
-    "valorEspecial": 321.60,
+    "valor": 276,
+    "valorEspecial": 276,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
   {
-    "id": "1728584012421",
-    "codigo": "7890123456",
+    "id": "1729271467076",
+    "codigo": "4116726006",
     "nome": "Palanque - 7,50 Metros - 16 a 20 cm Ø",
-    "valor": 435.60,
-    "valorEspecial": 435.60,
-    "estoque": 20,
-    "dataCadastro": "17/10/2024, 11:40:12"
+    "valor": 450,
+    "valorEspecial": 450,
+    "estoque": 858585,
+    "dataCadastro": "18/10/2024, 14:11:04"
   },
   {
-    "id": "1728584012421",
-    "codigo": "7890123456",
+    "id": "1729276899434",
+    "codigo": "7019724811",
     "nome": "Palanque - 7,50 Metros - 20 a 25 cm Ø",
     "valor": 624,
     "valorEspecial": 624,
-    "estoque": 20,
-    "dataCadastro": "17/10/2024, 11:40:12"
-  },
-  {
-    "id": "1726584012400",
-    "codigo": "6789012345",
-    "nome": "Palanque - 8,00 Metros - 8 a 10 cm Ø",
-    "valor": 200.00,
-    "valorEspecial": 200.00,
-    "estoque": 20,
-    "dataCadastro": "17/09/2024, 11:40:12"
+    "estoque": 624,
+    "dataCadastro": "18/10/2024, 15:41:39"
   },
   {
     "id": "1726584012401",
     "codigo": "7890123456",
     "nome": "Palanque - 8,00 Metros - 10 a 13 cm Ø",
-    "valor": 277.00,
-    "valorEspecial": 277.00,
+    "valor": 277,
+    "valorEspecial": 277,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
   {
     "id": "1726584012402",
     "codigo": "8901234567",
-    "nome": "Palanque - 8,00 Metros - 13 a 16 cm Ø",
-    "valor": 388.00,
-    "valorEspecial": 388.00,
+    "nome": "13 a 16 cm Ø",
+    "valor": 388,
+    "valorEspecial": 388,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -687,8 +687,8 @@
     "id": "1726584012403",
     "codigo": "9012345678",
     "nome": "Palanque - 8,00 Metros - 16 a 20 cm Ø",
-    "valor": 543.00,
-    "valorEspecial": 543.00,
+    "valor": 543,
+    "valorEspecial": 543,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -696,26 +696,17 @@
     "id": "1726584012404",
     "codigo": "0123456789",
     "nome": "Palanque - 8,00 Metros - 20 a 25 cm Ø",
-    "valor": 780.00,
-    "valorEspecial": 780.00,
+    "valor": 780,
+    "valorEspecial": 780,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
   {
-    "id": "1728584012422",
-    "codigo": "8901234567",
-    "nome": "Palanque - 8,50 Metros - 8 a 10 cm Ø",
-    "valor": 229.20,
-    "valorEspecial": 229.20,
-    "estoque": 20,
-    "dataCadastro": "17/10/2024, 11:40:12"
-  },
-  {
     "id": "1728584012423",
-    "codigo": "9012345678",
+    "codigo": "1698161437",
     "nome": "Palanque - 8,50 Metros - 10 a 13 cm Ø",
-    "valor": 331.20,
-    "valorEspecial": 331.20,
+    "valor": 294,
+    "valorEspecial": 294,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -723,17 +714,17 @@
     "id": "1728584012424",
     "codigo": "0123456789",
     "nome": "Palanque - 8,50 Metros - 13 a 16 cm Ø",
-    "valor": 482.40,
-    "valorEspecial": 482.40,
+    "valor": 412,
+    "valorEspecial": 412,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
   {
     "id": "1728584012425",
-    "codigo": "1234567890",
+    "codigo": "5389689200",
     "nome": "Palanque - 8,50 Metros - 16 a 20 cm Ø",
-    "valor": 675.60,
-    "valorEspecial": 675.60,
+    "valor": 576,
+    "valorEspecial": 576,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -741,8 +732,8 @@
     "id": "1728584012426",
     "codigo": "2345678901",
     "nome": "Palanque - 8,50 Metros - 20 a 25 cm Ø",
-    "valor": 993.60,
-    "valorEspecial": 993.60,
+    "valor": 828,
+    "valorEspecial": 828,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"
   },
@@ -885,8 +876,8 @@
     "id": "1728584012441",
     "codigo": "7890123456",
     "nome": "Ripa - 5x2 cm - 1,00 metro",
-    "valor": 3.50,
-    "valorEspecial": 3.50,
+    "valor": 3.5,
+    "valorEspecial": 3.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:14"
   },
@@ -903,8 +894,8 @@
     "id": "1728584012443",
     "codigo": "9012345678",
     "nome": "Ripa - 5x2 cm - 3,00 metros",
-    "valor": 10.50,
-    "valorEspecial": 10.50,
+    "valor": 10.5,
+    "valorEspecial": 10.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:14"
   },
@@ -921,8 +912,8 @@
     "id": "1728584012445",
     "codigo": "1234567890",
     "nome": "Ripa - 5x2 cm - 5,00 metros",
-    "valor": 17.50,
-    "valorEspecial": 17.50,
+    "valor": 17.5,
+    "valorEspecial": 17.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:14"
   },
@@ -939,8 +930,8 @@
     "id": "1728584012447",
     "codigo": "3456789012",
     "nome": "Viga - 6x12 cm - 2,50 metros",
-    "valor": 57.50,
-    "valorEspecial": 57.50,
+    "valor": 57.5,
+    "valorEspecial": 57.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:15"
   },
@@ -957,8 +948,8 @@
     "id": "1728584012449",
     "codigo": "5678901234",
     "nome": "Viga - 6x12 cm - 3,50 metros",
-    "valor": 80.50,
-    "valorEspecial": 80.50,
+    "valor": 80.5,
+    "valorEspecial": 80.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:15"
   },
@@ -975,8 +966,8 @@
     "id": "1728584012451",
     "codigo": "7890123456",
     "nome": "Viga - 6x12 cm - 4,50 metros",
-    "valor": 103.50,
-    "valorEspecial": 103.50,
+    "valor": 103.5,
+    "valorEspecial": 103.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:15"
   },
@@ -993,8 +984,8 @@
     "id": "1728584012453",
     "codigo": "9012345678",
     "nome": "Viga - 6x12 cm - 5,50 metros",
-    "valor": 126.50,
-    "valorEspecial": 126.50,
+    "valor": 126.5,
+    "valorEspecial": 126.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:15"
   },
@@ -1037,7 +1028,7 @@
   {
     "id": "1728584012458",
     "codigo": "4567890123",
-    "nome": "Viga - 6x16 cm - 3,50 metros",
+    "nome": "3,50 metros",
     "valor": 119,
     "valorEspecial": 119,
     "estoque": 20,
@@ -1073,7 +1064,7 @@
   {
     "id": "1728584012462",
     "codigo": "8901234567",
-    "nome": "Viga - 6x16 cm - 5,50 metros",
+    "nome": "5,50 metros",
     "valor": 187,
     "valorEspecial": 187,
     "estoque": 20,
@@ -1092,12 +1083,12 @@
     "id": "1728584012464",
     "codigo": "0123456789",
     "nome": "Caibro - 5x6 cm - 1,50 metros",
-    "valor": 19.50,
-    "valorEspecial": 19.50,
+    "valor": 19.5,
+    "valorEspecial": 19.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012465",
     "codigo": "1234567890",
     "nome": "Caibro - 5x6 cm - 2,00 metros",
@@ -1105,17 +1096,17 @@
     "valorEspecial": 26,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012466",
     "codigo": "2345678901",
     "nome": "Caibro - 5x6 cm - 2,50 metros",
-    "valor": 32.50,
-    "valorEspecial": 32.50,
+    "valor": 32.5,
+    "valorEspecial": 32.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012467",
     "codigo": "3456789012",
     "nome": "Caibro - 5x6 cm - 3,00 metros",
@@ -1123,17 +1114,17 @@
     "valorEspecial": 39,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012468",
     "codigo": "4567890123",
     "nome": "Caibro - 5x6 cm - 3,50 metros",
-    "valor": 45.50,
-    "valorEspecial": 45.50,
+    "valor": 45.5,
+    "valorEspecial": 45.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012469",
     "codigo": "5678901234",
     "nome": "Caibro - 5x6 cm - 4,00 metros",
@@ -1141,35 +1132,35 @@
     "valorEspecial": 52,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012470",
     "codigo": "6789012345",
     "nome": "Caibro - 5x6 cm - 4,50 metros",
-    "valor": 58.50,
-    "valorEspecial": 58.50,
+    "valor": 58.5,
+    "valorEspecial": 58.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012471",
     "codigo": "7890123456",
-    "nome": "Caibro - 5x6 cm - 5,00 metros",
+    "nome": "5,00 metros",
     "valor": 65,
     "valorEspecial": 65,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012472",
     "codigo": "8901234567",
     "nome": "Caibro - 5x6 cm - 5,50 metros",
-    "valor": 71.50,
-    "valorEspecial": 71.50,
+    "valor": 71.5,
+    "valorEspecial": 71.5,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-},
-{
+  },
+  {
     "id": "1728584012473",
     "codigo": "9012345678",
     "nome": "Caibro - 5x6 cm - 6,00 metros",
@@ -1177,5 +1168,221 @@
     "valorEspecial": 78,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:16"
-}
+  },
+  {
+    "id": "1728410708795",
+    "codigo": "4062769856",
+    "nome": "Ripão - 20x3 cm - 3,00 metros",
+    "valor": 75,
+    "valorEspecial": 75,
+    "estoque": 234,
+    "dataCadastro": "08/10/2024, 15:05:08"
+  },
+  {
+    "id": "1728494260999",
+    "codigo": "8701134857",
+    "nome": "Ripão - 12x3 cm - 3,00 metros",
+    "valor": 39,
+    "valorEspecial": 39,
+    "estoque": 1231,
+    "dataCadastro": "09/10/2024, 14:17:38"
+  },
+  {
+    "id": "1728494272819",
+    "codigo": "7593269365",
+    "nome": "Ripão - 12x3 cm - 4,00 metros",
+    "valor": 52,
+    "valorEspecial": 52,
+    "estoque": 1854854,
+    "dataCadastro": "09/10/2024, 14:17:50"
+  },
+  {
+    "id": "1728671417159",
+    "codigo": "5861248479",
+    "nome": "Viga - 8x15 cm - 4,50 metros",
+    "valor": 189,
+    "valorEspecial": 189,
+    "estoque": 242452,
+    "dataCadastro": "11/10/2024, 15:30:17"
+  },
+  {
+    "id": "1728671428670",
+    "codigo": "1723072557",
+    "nome": "Viga - 8x25 cm - 4,50 metros",
+    "valor": 279,
+    "valorEspecial": 279,
+    "estoque": 25425,
+    "dataCadastro": "11/10/2024, 15:30:28"
+  },
+  {
+    "id": "1728671441469",
+    "codigo": "4321594807",
+    "nome": "Viga - 8x25 cm - 3,50 metros",
+    "valor": 217,
+    "valorEspecial": 217,
+    "estoque": 242452,
+    "dataCadastro": "11/10/2024, 15:30:41"
+  },
+  {
+    "id": "1728671461109",
+    "codigo": "3476513825",
+    "nome": "Palanque - 1,60 Metros - 13 a 16 cm Ø",
+    "valor": 40,
+    "valorEspecial": 40,
+    "estoque": 35215,
+    "dataCadastro": "11/10/2024, 15:31:01"
+  },
+  {
+    "id": "1728930760937",
+    "codigo": "3341903927",
+    "nome": "Ripão - 10x3 cm - 3,50 metros",
+    "valor": 13,
+    "valorEspecial": 13,
+    "estoque": 21854,
+    "dataCadastro": "14/10/2024, 15:32:40"
+  },
+  {
+    "id": "1729185885137",
+    "codigo": "7104133528",
+    "nome": "Ripão - 20x3 cm - 6,00 metros",
+    "valor": 150,
+    "valorEspecial": 150,
+    "estoque": null,
+    "dataCadastro": "17/10/2024, 14:24:42"
+  },
+  {
+    "id": "1729271037885",
+    "codigo": "9908327754",
+    "nome": "Palanque - 1,50 Metros - 16 a 20 cm Ø",
+    "valor": 54,
+    "valorEspecial": 54,
+    "estoque": 19549,
+    "dataCadastro": "18/10/2024, 14:03:54"
+  },
+  {
+    "id": "1729271067917",
+    "codigo": "6232662309",
+    "nome": "Repique - 1,50 Metros - 6 a 8 cm Ø",
+    "valor": 8,
+    "valorEspecial": 8,
+    "estoque": 48945897,
+    "dataCadastro": "18/10/2024, 14:04:24"
+  },
+  {
+    "id": "1729531932270",
+    "codigo": "2503131998",
+    "nome": "Ripão - 12x3 cm - 4,00 metros",
+    "valor": 56,
+    "valorEspecial": 56,
+    "estoque": 595,
+    "dataCadastro": "21/10/2024, 14:32:06"
+  },
+  {
+    "id": "1729531976623",
+    "codigo": "2330770211",
+    "nome": "Ripão - 10x3 cm - 3,50 metros",
+    "valor": 42,
+    "valorEspecial": 42,
+    "estoque": 8485,
+    "dataCadastro": "21/10/2024, 14:32:50"
+  },
+  {
+    "id": "1729532006113",
+    "codigo": "5181793625",
+    "nome": "Ripão - 10x3 cm - 3,00 metros",
+    "valor": 36,
+    "valorEspecial": 36,
+    "estoque": null,
+    "dataCadastro": "21/10/2024, 14:33:20"
+  },
+  {
+    "id": "1729532085493",
+    "codigo": "3044590650",
+    "nome": "Ripão - 10x3 cm - 4,00 metros",
+    "valor": 48,
+    "valorEspecial": 48,
+    "estoque": 589548,
+    "dataCadastro": "21/10/2024, 14:34:39"
+  },
+  {
+    "id": "1729618347489",
+    "codigo": "3949654986",
+    "nome": "Ripão - 20x3 cm - 5,50 metros",
+    "valor": 137,
+    "valorEspecial": 137,
+    "estoque": null,
+    "dataCadastro": "22/10/2024, 14:32:24"
+  },
+  {
+    "id": "1729704516768",
+    "codigo": "1275026172",
+    "nome": "Ripão - 15x3 cm - 1,70 metros",
+    "valor": 30.6,
+    "valorEspecial": 30.6,
+    "estoque": 85945987974,
+    "dataCadastro": "23/10/2024, 14:28:35"
+  },
+  {
+    "id": "1729791153864",
+    "codigo": "7976061263",
+    "nome": "Repique - 2,70 Metros - 4 a 6 cm Ø",
+    "valor": 30,
+    "valorEspecial": 30,
+    "estoque": 985859,
+    "dataCadastro": "24/10/2024, 14:32:33"
+  },
+  {
+    "id": "1729876904775",
+    "codigo": "8239870391",
+    "nome": "Viga - 6x16 cm - 3,50 metros",
+    "valor": 119,
+    "valorEspecial": 119,
+    "estoque": 487498,
+    "dataCadastro": "25/10/2024, 14:21:42"
+  },
+  {
+    "id": "1729876989175",
+    "codigo": "2778432442",
+    "nome": "Caibro - 8x5 cm - 4,50 metros",
+    "valor": 72,
+    "valorEspecial": 72,
+    "estoque": 785,
+    "dataCadastro": "25/10/2024, 14:23:06"
+  },
+  {
+    "id": "1730136805428",
+    "codigo": "3577147114",
+    "nome": "Ripão - 20x3 cm - 5,00 metros",
+    "valor": 125,
+    "valorEspecial": 125,
+    "estoque": 95984,
+    "dataCadastro": "28/10/2024, 14:33:18"
+  },
+  {
+    "id": "1730137043034",
+    "codigo": "6610801505",
+    "nome": "Ripão - 10x3 cm - 2,00 metros",
+    "valor": 26,
+    "valorEspecial": 26,
+    "estoque": 8923742342,
+    "dataCadastro": "28/10/2024, 14:37:16"
+  },
+  {
+    "id": "1730742749457",
+    "codigo": "2501334366",
+    "nome": "Tratamento - 12,04 metros Ø",
+    "valor": 4214,
+    "valorEspecial": 4214,
+    "estoque": 1,
+    "dataCadastro": "04/11/2024, 14:52:29"
+  },
+  {
+    "id": "1730828994769",
+    "codigo": "5892470034",
+    "nome": "Ripão - 15x3 cm - 1,20 metros",
+    "valor": 21.6,
+    "valorEspecial": 21.6,
+    "estoque": null,
+    "dataCadastro": "05/11/2024, 14:49:52"
+  }
 ]

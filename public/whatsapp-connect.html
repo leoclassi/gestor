@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão WhatsApp - Portugal Madeiras</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .qr-container {
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .qr-code {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .status-indicator {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status-connecting {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-connected {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .connection-steps {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .connection-steps ol {
+            padding-left: 20px;
+        }
+
+        .connection-steps li {
+            margin-bottom: 10px;
+        }
+
+        .refresh-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="qr-container">
+            <h2><i class="fab fa-whatsapp"></i> Conexão WhatsApp</h2>
+            
+            <div id="statusIndicator" class="status-indicator status-disconnected">
+                Desconectado
+            </div>
+
+            <div class="connection-steps">
+                <h4>Como conectar:</h4>
+                <ol>
+                    <li>Abra o WhatsApp no seu celular</li>
+                    <li>Toque em Menu <i class="fas fa-ellipsis-v"></i> ou Configurações <i class="fas fa-cog"></i></li>
+                    <li>Selecione "WhatsApp Web"</li>
+                    <li>Aponte a câmera para o código QR abaixo</li>
+                </ol>
+            </div>
+
+            <div id="qrCode" class="qr-code">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Carregando...</span>
+                </div>
+                <p>Aguardando código QR...</p>
+            </div>
+
+            <button id="refreshButton" class="btn btn-primary refresh-button" style="display: none;">
+                <i class="fas fa-sync-alt"></i> Atualizar QR Code
+            </button>
+        </div>
+    </div>
+
+    <script src="js/whatsapp-connect.js"></script>
+</body>
+</html> 

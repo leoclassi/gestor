@@ -7,6 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let chequeToDelete = null;
 
+function calcularSomas(cheques) {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
+    return cheques.reduce((somas, cheque) => {
+        const valor = parseFloat(cheque.valor);
+        const dataCompensacao = new Date(cheque.dataCompensacao);
+        dataCompensacao.setHours(0, 0, 0, 0);
+
+        if (cheque.compensado) {
+            somas.depositados += valor;
+        } else if (dataCompensacao < hoje) {
+            somas.vencidos += valor;
+        } else {
+            somas.aVencer += valor;
+        }
+
+        return somas;
+    }, { vencidos: 0, aVencer: 0, depositados: 0 });
+}
+
 function loadCheques() {
     fetch('/api/cheques')
         .then(response => {
@@ -29,7 +50,10 @@ function loadCheques() {
                 // Cheques compensados vão para o final
                 if (a.compensado && !b.compensado) return 1;
                 if (!a.compensado && b.compensado) return -1;
-                if (a.compensado && b.compensado) return 0;
+                if (a.compensado && b.compensado) {
+                    // Se ambos são compensados, ordena por data de compensação
+                    return dataA - dataB;
+                }
 
                 // Ordenar por data de compensação
                 const diffA = diffDias(dataA);
@@ -49,6 +73,10 @@ function loadCheques() {
                 const row = createChequeRow(cheque);
                 chequesTable.appendChild(row);
             });
+
+            // Calcular e exibir as somas
+            const somas = calcularSomas(cheques);
+            atualizarSomas(somas);
         })
         .catch(error => {
             console.error('Erro ao carregar cheques:', error);
@@ -64,14 +92,14 @@ function createChequeRow(cheque) {
     const remetenteMaiusculas = (cheque.remetente || '').toUpperCase();
 
     row.innerHTML = `
-        <td><input type="checkbox" class="cheque-checkbox" data-id="${cheque.id}" data-valor="${cheque.valor}"></td>
-        <td>${cheque.numeroCheque || ''}</td>
-        <td>${formatarValor(cheque.valor)}</td>
-        <td>${remetenteMaiusculas}</td>
-        <td>${cheque.dataCompensacao ? formatarDataBrasilia(cheque.dataCompensacao) : ''}</td>
-        <td>${estadoCheque}</td>
-        <td>${temAnotacoes ? '<span title="' + cheque.anotacoes.replace(/"/g, '&quot;') + '">📝 ' + cheque.anotacoes.substring(0, 20) + (cheque.anotacoes.length > 20 ? '...' : '') + '</span>' : ''}</td>
-        <td>
+        <td class="text-center-custom"><input type="checkbox" class="cheque-checkbox" data-id="${cheque.id}" data-valor="${cheque.valor}"></td>
+        <td class="text-center-custom">${cheque.numeroCheque || ''}</td>
+        <td class="text-center-custom">${formatarValor(cheque.valor)}</td>
+        <td class="text-center-custom">${remetenteMaiusculas}</td>
+        <td class="text-center-custom">${cheque.dataCompensacao ? formatarDataBrasilia(cheque.dataCompensacao) : ''}</td>
+        <td class="text-center-custom">${estadoCheque}</td>
+        <td class="text-center-custom">${temAnotacoes ? '<span title="' + cheque.anotacoes.replace(/"/g, '&quot;') + '">📝 ' + cheque.anotacoes.substring(0, 20) + (cheque.anotacoes.length > 20 ? '...' : '') + '</span>' : ''}</td>
+        <td class="actions-column">
             <button class="btn btn-sm btn-outline-${cheque.compensado ? 'success' : 'primary'} deposit-cheque" data-id="${cheque.id}" title="${cheque.compensado ? 'Desmarcar como Compensado' : 'Marcar como Compensado'}">
                 ${cheque.compensado ? '✅' : '💰'}
             </button>
@@ -105,28 +133,45 @@ function setupEventListeners() {
     const searchInput = document.getElementById('search');
     const searchByNumberInput = document.getElementById('searchByNumber');
     const newChequeBtn = document.getElementById('newChequeBtn');
-    const selectNonCompensatedBtn = document.getElementById('selectNonCompensatedBtn');
 
-    searchInput.addEventListener('input', filterCheques);
-    searchByNumberInput.addEventListener('input', filterCheques);
-    newChequeBtn.addEventListener('click', openNewChequeForm);
-    selectNonCompensatedBtn.addEventListener('click', toggleNonCompensatedSelection);
+    if (searchInput) {
+        searchInput.addEventListener('input', filterCheques);
+    }
 
-    document.getElementById('chequesTable').addEventListener('click', (e) => {
-        if (e.target.classList.contains('edit-cheque')) {
-            const chequeId = e.target.getAttribute('data-id');
-            openEditChequeForm(chequeId);
-        } else if (e.target.classList.contains('delete-cheque')) {
-            const chequeId = e.target.getAttribute('data-id');
-            deleteCheque(chequeId);
-        } else if (e.target.classList.contains('deposit-cheque')) {
-            const chequeId = e.target.getAttribute('data-id');
-            markChequeAsDeposited(chequeId);
-        }
-    });
+    if (searchByNumberInput) {
+        searchByNumberInput.addEventListener('input', filterCheques);
+    }
 
-    document.getElementById('confirmDeleteBtn').addEventListener('click', confirmDeleteCheque);
-    document.getElementById('saveEditCheque').addEventListener('click', saveEditedCheque);
+    if (newChequeBtn) {
+        newChequeBtn.addEventListener('click', openNewChequeForm);
+    }
+
+    const chequesTable = document.getElementById('chequesTable');
+    if (chequesTable) {
+        chequesTable.addEventListener('click', (e) => {
+            if (e.target.classList.contains('edit-cheque')) {
+                const chequeId = e.target.getAttribute('data-id');
+                openEditChequeForm(chequeId);
+            } else if (e.target.classList.contains('delete-cheque')) {
+                const chequeId = e.target.getAttribute('data-id');
+                deleteCheque(chequeId);
+            } else if (e.target.classList.contains('deposit-cheque')) {
+                const chequeId = e.target.getAttribute('data-id');
+                markChequeAsDeposited(chequeId);
+            }
+        });
+    }
+
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener('click', confirmDeleteCheque);
+    }
+
+    const saveEditCheque = document.getElementById('saveEditCheque');
+    if (saveEditCheque) {
+        saveEditCheque.addEventListener('click', saveEditedCheque);
+    }
+
     setupNotesEventListeners();
 }
 
@@ -330,25 +375,22 @@ function formatarDataBrasilia(dataISO) {
 
 function setupCheckboxes() {
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-    const selectNonCompensatedBtn = document.getElementById('selectNonCompensatedBtn');
 
-    selectAllCheckbox.addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('.cheque-checkbox');
-        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-        updateSomaCheques();
-        updateSelectNonCompensatedButton();
-    });
-
-    selectNonCompensatedBtn.addEventListener('click', toggleNonCompensatedSelection);
-
-    // Adicionar evento de mudança para cada checkbox individual
-    document.getElementById('chequesTable').addEventListener('change', function(e) {
-        if (e.target.classList.contains('cheque-checkbox')) {
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.cheque-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
             updateSomaCheques();
-            updateSelectAllCheckbox();
-            updateSelectNonCompensatedButton();
-        }
-    });
+        });
+
+        // Adicionar evento de mudança para cada checkbox individual
+        document.getElementById('chequesTable').addEventListener('change', function(e) {
+            if (e.target.classList.contains('cheque-checkbox')) {
+                updateSomaCheques();
+                updateSelectAllCheckbox();
+            }
+        });
+    }
 }
 
 function updateSomaCheques() {
@@ -364,78 +406,30 @@ function updateSelectAllCheckbox() {
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
     const checkboxes = document.querySelectorAll('.cheque-checkbox');
     const checkedCheckboxes = document.querySelectorAll('.cheque-checkbox:checked');
-    selectAllCheckbox.checked = checkboxes.length === checkedCheckboxes.length && checkboxes.length > 0;
-}
-
-function toggleNonCompensatedSelection() {
-    const btn = document.getElementById('selectNonCompensatedBtn');
-    const isSelecting = btn.textContent.includes('Selecionar');
-
-    if (isSelecting) {
-        const anySelected = selectNonCompensatedCheques();
-        if (anySelected) {
-            btn.innerHTML = '<i class="fas fa-times-circle"></i> Desmarcar Seleção';
-            btn.classList.remove('btn-info');
-            btn.classList.add('btn-secondary');
-        }
-    } else {
-        deselectAllCheques();
-        btn.innerHTML = '<i class="fas fa-check-square"></i> Selecionar Não Compensados';
-        btn.classList.remove('btn-secondary');
-        btn.classList.add('btn-info');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.checked = checkboxes.length === checkedCheckboxes.length && checkboxes.length > 0;
     }
-    updateSomaCheques();
 }
 
-function selectNonCompensatedCheques() {
-    const checkboxes = document.querySelectorAll('.cheque-checkbox');
-    let anySelected = false;
-    checkboxes.forEach(checkbox => {
-        const row = checkbox.closest('tr');
-        const depositButton = row.querySelector('.deposit-cheque');
-        const isCompensado = depositButton.textContent.trim() === '✅';
-        checkbox.checked = !isCompensado;
-        if (!isCompensado) {
-            anySelected = true;
-        }
-    });
-    updateSomaCheques();
-    updateSelectAllCheckbox();
-    return anySelected;
-}
-
-function deselectAllCheques() {
-    const checkboxes = document.querySelectorAll('.cheque-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    updateSomaCheques();
-    updateSelectAllCheckbox();
-}
-
-function updateSelectNonCompensatedButton() {
-    const btn = document.getElementById('selectNonCompensatedBtn');
-    const anyChecked = document.querySelector('.cheque-checkbox:checked');
-    if (anyChecked) {
-        btn.innerHTML = '<i class="fas fa-times-circle"></i> Desmarcar Seleção';
-        btn.classList.remove('btn-info');
-        btn.classList.add('btn-secondary');
-    } else {
-        btn.innerHTML = '<i class="fas fa-check-square"></i> Selecionar Não Compensados';
-        btn.classList.remove('btn-secondary');
-        btn.classList.add('btn-info');
-    }
+function formatarValor(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 function setupNotesEventListeners() {
-    document.getElementById('chequesTable').addEventListener('click', (e) => {
-        if (e.target.classList.contains('note-cheque')) {
-            const chequeId = e.target.getAttribute('data-id');
-            openNotesModal(chequeId);
-        }
-    });
+    const chequesTable = document.getElementById('chequesTable');
+    if (chequesTable) {
+        chequesTable.addEventListener('click', (e) => {
+            if (e.target.classList.contains('note-cheque')) {
+                const chequeId = e.target.getAttribute('data-id');
+                openNotesModal(chequeId);
+            }
+        });
+    }
 
-    document.getElementById('saveNotes').addEventListener('click', saveNotes);
+    const saveNotesBtn = document.getElementById('saveNotes');
+    if (saveNotesBtn) {
+        saveNotesBtn.addEventListener('click', saveNotes);
+    }
 }
 
 function openNotesModal(chequeId) {
@@ -482,4 +476,28 @@ function formatDateTime(isoString) {
     if (!isoString) return '';
     const date = new Date(isoString);
     return date.toLocaleString(); // Formata a data e hora no formato local
+}
+
+// Adicione esta nova função para animar a contagem dos números
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const current = Math.floor(progress * (end - start) + start);
+        element.textContent = formatarValor(current);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// Modifique a função atualizarSomas para usar a animação
+function atualizarSomas(somas) {
+    const duration = 1000; // Duração da animação em milissegundos
+
+    animateValue(document.getElementById('somaVencidos'), 0, somas.vencidos, duration);
+    animateValue(document.getElementById('somaAVencer'), 0, somas.aVencer, duration);
+    animateValue(document.getElementById('somaDepositados'), 0, somas.depositados, duration);
 }

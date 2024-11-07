@@ -12,12 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const salesPerPage = 100;
     let selectedMonthYear = '';
 
+    // Declare estas variáveis no escopo global do seu script
+    let countUpTotal, countUpAVencer, countUpPagas;
+
     // Aplicar tema escuro se estiver armazenado no localStorage
     const body = document.body;
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         body.classList.add(currentTheme);
     }
+
+    const toggleAllValuesButton = document.getElementById('toggleAllValues');
+    let allValuesVisible = false;
 
     // Inicializar o flatpickr no campo de entrada
     flatpickr(monthYearSelector, {
@@ -46,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const [month, year] = dateStr.split('/');
             selectedMonthYear = `${year}-${month}`;
             currentPage = 1;
-            renderSalesTable();
+            fetchSales();  // Recarrega as vendas e recalcula as somas para o novo mês selecionado
         }
     });
 
@@ -69,9 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 sales = data.sort((a, b) => new Date(b.data) - new Date(a.data));
                 organizeSalesByMonthYear();
                 if (!selectedMonthYear) {
-                    setCurrentMonthYear(); // Apenas define o mês atual se nenhum mês estiver selecionado
+                    setCurrentMonthYear();
                 }
                 renderSalesTable();
+                // Atualize as tabelas de parcelas que estão abertas
+                document.querySelectorAll('.parcelas-details').forEach(parcelasDetails => {
+                    const saleId = parcelasDetails.closest('tr').id.replace('parcelas-', '');
+                    updateParcelasTable(saleId);
+                });
             })
             .catch(error => console.error('Erro ao buscar vendas:', error));
     }
@@ -105,13 +116,130 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!selectedMonthYear) {
             return Object.values(sales).flat();
         }
-        return sales[selectedMonthYear] || [];
+        const [year, month] = selectedMonthYear.split('-');
+        return Object.values(sales).flat().filter(sale => {
+            const saleDate = new Date(sale.data);
+            saleDate.setDate(saleDate.getDate() + 1); // Adiciona um dia à data da venda
+            return saleDate.getFullYear() === parseInt(year) && saleDate.getMonth() === parseInt(month) - 1;
+        });
     }
 
     // Função para paginar as vendas
     function paginateSales(salesArray, page) {
         const startIndex = (page - 1) * salesPerPage;
         return salesArray.slice(startIndex, startIndex + salesPerPage);
+    }
+
+    // Função para calcular as somas das vendas
+    function calcularSomasVendas(vendas, mesSelecionado, anoSelecionado) {
+        const somas = { total: 0, pendentes: 0, pagas: 0 };
+
+        Object.values(sales).flat().forEach(venda => {
+            const dataVenda = new Date(venda.data);
+            dataVenda.setDate(dataVenda.getDate() + 1); // Adiciona um dia à data da venda
+            const mesVenda = dataVenda.getMonth();
+            const anoVenda = dataVenda.getFullYear();
+
+            // Adiciona ao total de vendas se a venda ocorreu no mês e ano selecionados
+            if (mesVenda === mesSelecionado && anoVenda === anoSelecionado) {
+                somas.total += parseFloat(venda.valorFinal);
+
+                // Verifica se é uma venda à vista
+                if (venda.tipoPagamento === "À Vista") {
+                    if (venda.paga) {
+                        somas.pagas += parseFloat(venda.valorFinal);
+                    } else {
+                        somas.pendentes += parseFloat(venda.valorFinal);
+                    }
+                }
+            }
+
+            // Processa as parcelas, se houver
+            if (venda.parcelas && Array.isArray(venda.parcelas)) {
+                venda.parcelas.forEach(parcela => {
+                    const dataParcela = new Date(parcela.data.replace(/\//g, '-'));
+                    dataParcela.setDate(dataParcela.getDate() + 1); // Adiciona um dia à data da parcela
+                    if (dataParcela.getFullYear() === anoSelecionado && dataParcela.getMonth() === mesSelecionado) {
+                        const valorParcela = parseFloat(parcela.valor);
+                        if (parcela.paga) {
+                            somas.pagas += valorParcela;
+                        } else {
+                            somas.pendentes += valorParcela;
+                        }
+                    }
+                });
+            }
+        });
+
+        return somas;
+    }
+
+    // Função para atualizar a interface com as somas
+    function atualizarSomasVendas(somas) {
+        const options = {
+            decimalPlaces: 2,
+            duration: 1,
+            useEasing: true,
+            useGrouping: true,
+            separator: '.',
+            decimal: ',',
+            prefix: 'R$ '
+        };
+
+        function createOrUpdateCountUp(elementId, endVal) {
+            const element = document.getElementById(elementId);
+            element.setAttribute('data-value', `R$ ${formatarMoeda(endVal)}`);
+            
+            if (!window[elementId + 'CountUp']) {
+                window[elementId + 'CountUp'] = new CountUp(elementId, 0, endVal, 2, 1, options);
+                // Não inicie o CountUp automaticamente
+            } else {
+                window[elementId + 'CountUp'].update(endVal);
+            }
+
+            // Sempre exiba o valor censurado inicialmente
+            element.textContent = 'R$ ********';
+        }
+
+        createOrUpdateCountUp('somaTotalVendas', somas.total);
+        createOrUpdateCountUp('somaVendasPendentes', somas.pendentes);
+        createOrUpdateCountUp('somaVendasPagas', somas.pagas);
+    }
+
+    // Adicione esta função para revelar os valores quando necessário
+    function revelarValoresSoma() {
+        if (allValuesVisible) {
+            ['somaTotalVendas', 'somaVendasPendentes', 'somaVendasPagas'].forEach(id => {
+                const countUp = window[id + 'CountUp'];
+                if (countUp) {
+                    countUp.start();
+                }
+            });
+        }
+    }
+
+    // Modifique a função toggleAllValues para usar a nova função revelarValoresSoma
+    function toggleAllValues(event) {
+        event.stopPropagation();
+        allValuesVisible = !allValuesVisible;
+        const summaryValues = document.querySelectorAll('.summary-card .value');
+
+        summaryValues.forEach(el => {
+            if (allValuesVisible) {
+                revelarValoresSoma();
+            } else {
+                el.textContent = 'R$ ********';
+            }
+        });
+
+        // Atualizar o ícone do botão
+        if (toggleAllValuesButton) {
+            const icon = toggleAllValuesButton.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye', !allValuesVisible);
+                icon.classList.toggle('fa-eye-slash', allValuesVisible);
+            }
+        }
     }
 
     // Função para renderizar a tabela de vendas
@@ -123,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         paginatedSales.forEach(sale => {
             const row = document.createElement('tr');
+            row.setAttribute('data-id', sale.id);
             
             // Calcular o valor total com desconto dos produtos
             const valorTotalProdutos = sale.produtos.reduce((total, produto) => {
@@ -150,10 +279,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let situacaoStyle = '';
 
             if (sale.paga) {
-                situacao = 'Recebido'; // Alterado de 'Concretizada' para 'Paga'
+                situacao = 'Recebido';
                 situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
             } else if (situacao === 'Concretizada') {
-                situacaoStyle = 'background-color: #dc3545; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+                situacaoStyle = 'background-color: #0991cf; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+            } else if (situacao === 'Pendente') {
+                situacaoStyle = 'background-color: #ffa500; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
             }
 
             row.innerHTML = `
@@ -164,7 +295,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${sale.cliente}</td>
                 <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
                 <td>${formatDate(sale.data)}</td>
-                <td>${formatarMoeda(valorFinal)}</td>
+                <td class="valor-total">
+                    R$ ${formatarMoeda(valorFinal).replace('R$ ', '')}
+                </td>
                 <td>
                     <a href="view-sale.html?id=${sale.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
@@ -175,14 +308,56 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn btn-sm btn-outline-primary edit-sale" data-id="${sale.id}" title="Editar">
                         <i class="fas fa-edit"></i>
                     </button>
+                    <button class="btn btn-sm btn-outline-secondary view-parcelas" data-id="${sale.id}" title="Ver Parcelas">
+                        <i class="fas fa-list"></i>
+                    </button>
                     <button class="btn btn-sm btn-outline-danger delete-sale" data-id="${sale.id}" title="Excluir">
                         <i class="fas fa-trash"></i>
                     </button>
+                    <button class="btn btn-sm btn-outline-primary" onclick="showPixModal(${valorFinal})" title="Gerar PIX">
+                        <i class="fas fa-qrcode"></i>
+                    </button>
                 </td>
             `;
+
             tableBody.appendChild(row);
+
+            // Adicionar linha oculta para detalhes das parcelas
+            const parcelasRow = document.createElement('tr');
+            parcelasRow.id = `parcelas-${sale.id}`;
+            parcelasRow.style.display = 'none';
+            parcelasRow.innerHTML = `
+                <td colspan="7">
+                    <div class="parcelas-details">
+                        <h5>Detalhes das Parcelas</h5>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Nº Parcela</th>
+                                    <th>Data Vencimento</th>
+                                    <th>Valor</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${generateParcelasDetails(sale)}
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            `;
+            tableBody.appendChild(parcelasRow);
         });
 
+        // Calcular e atualizar as somas
+        const [selectedYear, selectedMonth] = selectedMonthYear.split('-');
+        const somas = calcularSomasVendas(sales, parseInt(selectedMonth) - 1, parseInt(selectedYear));
+        
+        setTimeout(() => {
+            atualizarSomasVendas(somas);
+        }, 100);
+
+        // Após renderizar a tabela
         addEventListeners();
         setupCheckboxes();
         renderPagination(filteredSales.length);
@@ -190,17 +365,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para formatar a data considerando o fuso horário do Brasil (GMT-3)
     function formatDate(dateString) {
+        if (!dateString) return 'Data inválida';
+
+        // Substitui '/' por '-' para garantir compatibilidade com diferentes navegadores
+        const formattedDateString = dateString.replace(/\//g, '-');
+
+        // Cria a data usando o formato ISO para garantir que seja interpretada corretamente
+        let date = new Date(formattedDateString + 'T00:00:00');
+
+        // Adiciona um dia à data
+        date.setDate(date.getDate() + 1);
+
+        // Verifica se a data é válida
+        if (isNaN(date.getTime())) {
+            return 'Data inválida';
+        }
+
+        // Ajusta para o fuso horário do Brasil (GMT-3)
+        date.setHours(date.getHours() - 3);
+
         const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Sao_Paulo' };
-        // Adiciona 'T00:00:00' para garantir que a data é interpretada como meia-noite no fuso horário local
-        const date = new Date(dateString + 'T00:00:00');
         return date.toLocaleDateString('pt-BR', options);
     }
 
     // Função para formatar o valor monetário
     function formatarMoeda(valor) {
         return new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
+            style: 'decimal',
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         }).format(valor);
@@ -251,33 +442,36 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSalesTable();
     });
 
-    // Função para adicionar event listeners aos botões de editar e excluir
     function addEventListeners() {
-        // Remova o event listener para o botão de visualização, pois agora é um link <a>
-        document.querySelectorAll('.edit-sale').forEach(button => {
-            button.addEventListener('click', () => {
-                const saleId = button.getAttribute('data-id');
-                window.location.href = `sales.html?id=${saleId}`;
-            });
-        });
+        const salesTable = document.getElementById('salesTable');
+        if (salesTable) {
+            salesTable.removeEventListener('click', handleSalesTableClick);
+            salesTable.addEventListener('click', handleSalesTableClick);
+        }
 
-        document.querySelectorAll('.delete-sale').forEach(button => {
-            button.addEventListener('click', () => {
-                const saleId = button.getAttribute('data-id');
-                if (confirm('Tem certeza que deseja excluir esta venda?')) {
-                    deleteSale(saleId);
-                }
-            });
-        });
+        if (toggleAllValuesButton) {
+            toggleAllValuesButton.removeEventListener('click', toggleAllValues);
+            toggleAllValuesButton.addEventListener('click', toggleAllValues);
+        }
+    }
 
-        document.querySelectorAll('.mark-paid').forEach(button => {
-            button.addEventListener('click', () => {
-                const saleId = button.getAttribute('data-id');
-                markSaleAsPaid(saleId);
-            });
-        });
+    function handleSalesTableClick(e) {
+        const target = e.target.closest('button');
+        if (!target) return;
 
-        // Remova o event listener para o botão de visualização
+        const saleId = target.getAttribute('data-id');
+
+        if (target.classList.contains('view-parcelas')) {
+            toggleParcelas(saleId);
+        } else if (target.classList.contains('edit-sale')) {
+            window.location.href = `sales.html?id=${saleId}`;
+        } else if (target.classList.contains('delete-sale')) {
+            if (confirm('Tem certeza que deseja excluir esta venda?')) {
+                deleteSale(saleId);
+            }
+        } else if (target.classList.contains('mark-paid')) {
+            markSaleAsPaid(saleId);
+        }
     }
 
     // Função para excluir uma venda
@@ -346,6 +540,223 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Ocorreu um erro ao atualizar o estado da venda. Por favor, tente novamente.');
         });
     }
+
+    // Modifique a função toggleParcelas para garantir que ela funcione corretamente
+    function toggleParcelas(saleId) {
+        const parcelasRow = document.getElementById(`parcelas-${saleId}`);
+        if (parcelasRow) {
+            parcelasRow.style.display = parcelasRow.style.display === 'none' ? 'table-row' : 'none';
+        }
+    }
+
+    // Adicione esta nova função para carregar os detalhes das parcelas
+    function loadParcelasDetails(saleId) {
+        fetch(`/api/sales/${saleId}`)
+            .then(response => response.json())
+            .then(sale => {
+                const parcelasRow = document.getElementById(`parcelas-${saleId}`);
+                if (parcelasRow) {
+                    parcelasRow.innerHTML = `
+                        <td colspan="7">
+                            <div class="parcelas-details">
+                                <h5>Detalhes das Parcelas</h5>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nº Parcela</th>
+                                            <th>Data Vencimento</th>
+                                            <th>Valor</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${generateParcelasDetails(sale)}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    `;
+                }
+            })
+            .catch(error => console.error('Erro ao carregar detalhes das parcelas:', error));
+    }
+
+    // Adicione esta função para marcar uma parcela como paga
+    function markParcelAsPaid(saleId, parcelIndex) {
+        fetch('/api/mark-parcel-as-paid', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({ saleId: saleId, parcelIndex: parseInt(parcelIndex) })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha ao marcar a parcela como paga');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                updateParcelasTable(saleId);
+                if (data.saleStatus === 'Pago') {
+                    // Atualiza o status da venda na interface
+                    const saleRow = document.querySelector(`tr[data-id="${saleId}"]`);
+                    if (saleRow) {
+                        const statusCell = saleRow.querySelector('td:nth-child(4)');
+                        if (statusCell) {
+                            statusCell.innerHTML = '<span style="background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;">Recebido</span>';
+                        }
+                    }
+                }
+                fetchSales(); // Recarrega todas as vendas para atualizar os totais
+            } else {
+                throw new Error(data.message || 'Erro ao marcar a parcela como paga');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao marcar a parcela como paga: ' + error.message);
+        });
+    }
+
+    // Adicione esta nova função para atualizar apenas a tabela de parcelas
+    function updateParcelasTable(saleId) {
+        fetch(`/api/sales/${saleId}`)
+            .then(response => response.json())
+            .then(sale => {
+                const parcelasTableBody = document.querySelector(`#parcelas-${saleId} .parcelas-details table tbody`);
+                if (parcelasTableBody) {
+                    parcelasTableBody.innerHTML = generateParcelasDetails(sale);
+                    // Reaplique os event listeners para os novos botões
+                    addEventListeners();
+                }
+            })
+            .catch(error => console.error('Erro ao atualizar tabela de parcelas:', error));
+    }
+
+    // Adicione esta função no escopo global
+    window.markParcelAsPaid = function(saleId, parcelIndex) {
+        console.log('Marking parcel as paid:', saleId, parcelIndex);
+        fetch('/api/mark-parcel-as-paid', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({ saleId: saleId, parcelIndex: parseInt(parcelIndex) })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha ao marcar a parcela como paga');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data.success) {
+                updateParcelasTable(saleId);
+                if (data.saleStatus === 'Pago') {
+                    // Atualiza o status da venda na interface
+                    const saleRow = document.querySelector(`tr[data-id="${saleId}"]`);
+                    if (saleRow) {
+                        const statusCell = saleRow.querySelector('td:nth-child(4)');
+                        if (statusCell) {
+                            statusCell.innerHTML = '<span style="background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;">Recebido</span>';
+                        }
+                    }
+                }
+                fetchSales(); // Recarrega todas as vendas para atualizar os totais
+            } else {
+                throw new Error(data.message || 'Erro ao marcar a parcela como paga');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao marcar a parcela como paga: ' + error.message);
+        });
+    };
+
+    function generateParcelasDetails(sale) {
+        // Trata vendas à vista como uma única parcela
+        if (sale.tipoPagamento === "À Vista") {
+            return `
+                <tr>
+                    <td>1</td>
+                    <td>${formatDate(sale.data)}</td>
+                    <td>${formatarMoeda(sale.valorFinal)}</td>
+                    <td>
+                        ${sale.paga ? 
+                            '<span class="badge badge-success">Paga</span>' : 
+                            `<button class="btn btn-success btn-mark-parcel-paid" onclick="markParcelAsPaid('${sale.id}', 0)">Marcar como Paga</button>`
+                        }
+                    </td>
+                </tr>
+            `;
+        } else if (!sale.parcelas || !Array.isArray(sale.parcelas)) {
+            return '<tr><td colspan="4">Não há informações de parcelas disponíveis</td></tr>';
+        }
+        
+        return sale.parcelas.map((parcela, index) => `
+            <tr>
+                <td>${parcela.numero}</td>
+                <td>${formatDate(parcela.data)}</td>
+                <td>${formatarMoeda(parcela.valor)}</td>
+                <td>
+                    ${parcela.paga ? 
+                        '<span class="badge badge-success">Paga</span>' : 
+                        `<button class="btn btn-success btn-mark-parcel-paid" onclick="markParcelAsPaid('${sale.id}', ${index})">Marcar como Paga</button>`
+                    }
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    // Função para gerar o código PIX
+    function generatePixCode(valor) {
+        const pixKey = "14996516567";
+        const merchantName = "Portugal Madeiras";
+        const merchantCity = "CIDADE";
+        
+        // Formata o valor para o padrão PIX (sem pontos ou vírgulas)
+        const formattedValue = valor.toString().replace(/[.,]/g, '').padStart(2, '0');
+        const valorFormatado = formattedValue.slice(0, -2) + "." + formattedValue.slice(-2);
+
+        // Monta o payload do PIX
+        let payload = "";
+        payload += "00020126";
+        payload += "0014br.gov.bcb.pix";
+        payload += "01" + pixKey.length.toString().padStart(2, '0') + pixKey;
+        payload += "52040000";
+        payload += "5303986";
+        payload += "54" + valorFormatado.length.toString().padStart(2, '0') + valorFormatado;
+        payload += "5802BR";
+        payload += "59" + merchantName.length.toString().padStart(2, '0') + merchantName;
+        payload += "60" + merchantCity.length.toString().padStart(2, '0') + merchantCity;
+        payload += "6304";
+
+        return payload;
+    }
+
+    // Função para mostrar o modal do PIX
+    window.showPixModal = function(valor) {
+        document.getElementById('pixValue').textContent = formatarMoeda(valor);
+        document.getElementById('pixCode').textContent = generatePixCode(valor);
+        $('#pixModal').modal('show');
+    };
+
+    // Função para copiar o código PIX
+    window.copyPixCode = function() {
+        const pixCode = document.getElementById('pixCode').textContent;
+        navigator.clipboard.writeText(pixCode).then(() => {
+            const copyButton = document.querySelector('.copy-button');
+            copyButton.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+            setTimeout(() => {
+                copyButton.innerHTML = '<i class="fas fa-copy"></i> Copiar código PIX';
+            }, 2000);
+        });
+    };
 
     // Inicializar a página
     fetchSales();

@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const monthlyPaidSales = {};
 
         sales.forEach(sale => {
-            // Parse da data para garantir que é tratada como local
             const parts = sale.data.split('-');
             const date = new Date(parts[0], parts[1] - 1, parts[2]);
             const monthYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -24,27 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 monthlyPaidSales[monthYear] = 0;
             }
 
-            let valorTotalProdutos = sale.produtos.reduce((total, produto) => {
-                let subtotal = produto.quantidade * produto.valor;
-                if (produto.descontoTipo === 'percentage') {
-                    subtotal *= (1 - produto.desconto / 100);
-                } else {
-                    subtotal -= produto.desconto;
-                }
-                return total + subtotal;
-            }, 0);
-
-            if (sale.descontoTotal) {
-                if (sale.descontoTotal.tipo === 'percentage') {
-                    valorTotalProdutos *= (1 - sale.descontoTotal.valor / 100);
-                } else {
-                    valorTotalProdutos -= sale.descontoTotal.valor;
-                }
-            }
-
+            let valorTotalProdutos = calcularValorTotalVenda(sale);
             monthlySales[monthYear] += valorTotalProdutos;
 
-            if (sale.paga) {
+            // Calcular o valor pago das parcelas
+            if (sale.parcelas && Array.isArray(sale.parcelas)) {
+                sale.parcelas.forEach(parcela => {
+                    if (parcela.paga) {
+                        monthlyPaidSales[monthYear] += parseFloat(parcela.valor);
+                    }
+                });
+            } else if (sale.paga) {
+                // Se não houver parcelas e a venda estiver marcada como paga
                 monthlyPaidSales[monthYear] += valorTotalProdutos;
             }
         });
@@ -59,6 +49,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const paidValues = labels.map(label => monthlyPaidSales[label]);
 
         return { labels, values, paidValues };
+    }
+
+    function calcularValorTotalVenda(sale) {
+        let valorTotalProdutos = sale.produtos.reduce((total, produto) => {
+            let subtotal = produto.quantidade * produto.valor;
+            if (produto.descontoTipo === 'percentage') {
+                subtotal *= (1 - produto.desconto / 100);
+            } else {
+                subtotal -= produto.desconto;
+            }
+            return total + subtotal;
+        }, 0);
+
+        if (sale.descontoTotal) {
+            if (sale.descontoTotal.tipo === 'percentage') {
+                valorTotalProdutos *= (1 - sale.descontoTotal.valor / 100);
+            } else {
+                valorTotalProdutos -= sale.descontoTotal.valor;
+            }
+        }
+
+        return valorTotalProdutos;
     }
 
     function formatarMoeda(valor) {

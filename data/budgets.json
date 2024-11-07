@@ -1,1 +1,1400 @@
-[]
+[
+  {
+    "id": "1728960865866",
+    "numero": "2",
+    "cliente": "CARLINHO",
+    "situacao": "Aprovado",
+    "data": "2024-10-14",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro Parcelado",
+    "produtos": [
+      {
+        "produto": "Palanque 2",
+        "quantidade": 3,
+        "valor": 4234,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 12702
+      }
+    ],
+    "valorTotal": 12702,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 12702,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729015399865",
+    "numero": "3",
+    "cliente": "SIDNEY ZILIO LIMA",
+    "situacao": "Em Aberto",
+    "data": "2024-10-15",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,50 Metros - 8 a 10 cm Ø",
+        "quantidade": 6,
+        "valor": 72.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 436.8
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 8,
+        "valor": 64,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 512
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 4 a 6 cm Ø",
+        "quantidade": 8,
+        "valor": 46,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 368
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 1,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 17
+      }
+    ],
+    "valorTotal": 1333.8,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1333.8,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729348785365",
+    "numero": "8",
+    "cliente": "ANA IZABEL",
+    "situacao": "Em Aberto",
+    "data": "2024-10-17",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 50,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1750
+      },
+      {
+        "produto": "Balancim 3x4 cm - 1,25 mts [DZ]",
+        "quantidade": 13,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 455
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 20 a 25 cm Ø",
+        "quantidade": 8,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 800
+      }
+    ],
+    "valorTotal": 3005,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3005,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729348824107",
+    "numero": "9",
+    "data": "2024-10-18",
+    "cliente": "ALESSANDER GASPARELO",
+    "situacao": "Em Aberto",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 4,
+        "valor": 165.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 662.4
+      },
+      {
+        "produto": "Palanque - 6,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 3,
+        "valor": 186,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 558
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 240
+      },
+      {
+        "produto": "Palanque - 6,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 20,
+        "valor": 133,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2660
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 6,00 metros",
+        "quantidade": 10,
+        "valor": 108,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1080
+      },
+      {
+        "produto": "Sarrafo - 3x5 cm - 5,00 metros",
+        "quantidade": 5,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 150
+      },
+      {
+        "produto": "Caibro - 5x6 cm - 6,00 metros",
+        "quantidade": 2,
+        "valor": 78,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 156
+      }
+    ],
+    "valorTotal": 5506.4,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 5506.4,
+    "tipoPagamento": "À Vista",
+    "formaPagamento": "A Combinar",
+    "paga": false,
+    "prazoEntrega": ""
+  },
+  {
+    "id": "1729348958510",
+    "numero": "6",
+    "data": "2024-10-18",
+    "cliente": "ALESSANDER GASPARELO",
+    "situacao": "Em Aberto",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 30 a 35 cm Ø",
+        "quantidade": 16,
+        "valor": 850,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 13600
+      },
+      {
+        "produto": "Palanque - 7,50 Metros - 20 a 25 cm Ø",
+        "quantidade": 8,
+        "valor": 624,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 4992
+      },
+      {
+        "produto": "Palanque - 8,50 Metros - 20 a 25 cm Ø",
+        "quantidade": 4,
+        "valor": 828,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 3312
+      },
+      {
+        "produto": "Palanque - 8,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 2,
+        "valor": 576,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1152
+      },
+      {
+        "produto": "Palanque - 7,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 4,
+        "valor": 543,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2172
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 16,
+        "valor": 141,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2256
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 8,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 800
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 152,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 19000
+      }
+    ],
+    "valorTotal": 47284,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 47284,
+    "tipoPagamento": "À Vista",
+    "formaPagamento": "A Combinar",
+    "paga": false,
+    "prazoEntrega": ""
+  },
+  {
+    "id": "1729349093114",
+    "numero": "7",
+    "cliente": "CARVALHO & GARCIA - COMERCIO DE MATERIAIS PARA CONSTRUCAO E MADEIRAS LTDA.",
+    "situacao": "Em Aberto",
+    "data": "2024-10-18",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 1,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 1340,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 72360
+      },
+      {
+        "produto": "Repique - 1,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 670,
+        "valor": 8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 5360
+      }
+    ],
+    "valorTotal": 77720,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 77720,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729361785093",
+    "numero": "10",
+    "cliente": "CARLINHO",
+    "situacao": "Em Aberto",
+    "data": "2024-10-01",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 13
+      }
+    ],
+    "valorTotal": 13,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 13,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729705909585",
+    "numero": "11",
+    "cliente": "JOSÉ LUIS",
+    "situacao": "Aprovado",
+    "data": "2024-10-23",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 4,50 metros",
+        "quantidade": 20,
+        "valor": 81,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1620
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 16 a 20 cm Ø",
+        "quantidade": 5,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 500
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 10,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 720
+      }
+    ],
+    "valorTotal": 2840,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2840,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729706341340",
+    "numero": "12",
+    "cliente": "J.N. QUIOSQUES ARTESANAIS LTDA",
+    "situacao": "Aprovado",
+    "data": "2024-10-23",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 7,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 453.6
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 144
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 12,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 360
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 10,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 170
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 2,50 metros",
+        "quantidade": 6,
+        "valor": 45,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 270
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 4,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 259.2
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 1,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 120
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 1,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 72
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 720
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 360
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 4,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 160
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 4,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 216
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 5,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 125
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 13,
+        "valor": 20.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 265.2
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 48
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 8,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 960
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 18,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1555.2
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 8,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 518.4
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 139.2
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 14,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 672
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 1,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 120
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 5,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 270
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 2,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 70
+      }
+    ],
+    "valorTotal": 8047.8,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 8047.8,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729706465756",
+    "numero": "13",
+    "cliente": "SERGIO SERBER",
+    "situacao": "Aprovado",
+    "data": "2024-10-23",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 120
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 14,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 350
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 20,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 800
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 35,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 875
+      }
+    ],
+    "valorTotal": 2145,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2145,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729791271469",
+    "numero": "17",
+    "cliente": "RUBENS",
+    "situacao": "Aprovado",
+    "data": "2024-10-24",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,70 Metros - 4 a 6 cm Ø",
+        "quantidade": 8,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 240
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 13,
+        "valor": 67,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 871
+      },
+      {
+        "produto": "Ripa - 5x2 cm - 3,00 metros",
+        "quantidade": 28,
+        "valor": 10.5,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 294
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 2,
+        "valor": 75,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 150
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 75,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 75
+      }
+    ],
+    "valorTotal": 1548.5,
+    "descontoTotal": {
+      "valor": 5,
+      "tipo": "percentage"
+    },
+    "valorFinal": 1548.5,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729794740167",
+    "numero": "15",
+    "cliente": "AGNALDO MARANHO",
+    "situacao": "Em Aberto",
+    "data": "2024-10-24",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 30,
+        "valor": 37,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1110
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 13,
+        "valor": 57,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 741
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 4,00 metros",
+        "quantidade": 3,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 216
+      },
+      {
+        "produto": "Sarrafo - 3x5 cm - 3,00 metros",
+        "quantidade": 4,
+        "valor": 18,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 72
+      }
+    ],
+    "valorTotal": 2139,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2139,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1729877069063",
+    "numero": "16",
+    "cliente": "TUCA",
+    "situacao": "Em Aberto",
+    "data": "2024-10-25",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Crédito",
+    "produtos": [
+      {
+        "produto": "Viga - 6x12 cm - 4,00 metros",
+        "quantidade": 40,
+        "valor": 96,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 3840
+      },
+      {
+        "produto": "Viga - 6x16 cm - 3,50 metros",
+        "quantidade": 9,
+        "valor": 119,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1071
+      },
+      {
+        "produto": "Caibro - 8x5 cm - 4,50 metros",
+        "quantidade": 5,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 360
+      },
+      {
+        "produto": "Viga - 6x16 cm - 6,00 metros",
+        "quantidade": 1,
+        "valor": 204,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 204
+      },
+      {
+        "produto": "Sarrafo - 3x5 cm - 5,00 metros",
+        "quantidade": 64,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1920
+      }
+    ],
+    "valorTotal": 7395,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 7395,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 3,
+    "dataPrimeiraParcela": "2024-11-25",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/11/25",
+        "valor": 2465
+      },
+      {
+        "numero": 2,
+        "data": "2024/12/25",
+        "valor": 2465
+      },
+      {
+        "numero": 3,
+        "data": "2025/01/24",
+        "valor": 2465
+      }
+    ],
+    "paga": false
+  },
+  {
+    "id": "1730138393930",
+    "numero": "18",
+    "cliente": "CLIENTE",
+    "situacao": "Em Aberto",
+    "data": "2024-10-28",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 50,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1750
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 360
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 3,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 51
+      }
+    ],
+    "valorTotal": 2161,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2161,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730139268563",
+    "numero": "19",
+    "cliente": "DAVI CÉSAR",
+    "situacao": "Em Aberto",
+    "data": "2024-10-28",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 120,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 3000
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 40,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1400
+      }
+    ],
+    "valorTotal": 4400,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 4400,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730223093301",
+    "numero": "20",
+    "cliente": "CARLOS EDUARDO MORAES",
+    "situacao": "Aprovado",
+    "data": "2024-10-29",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 30,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2592
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 4,50 metros",
+        "quantidade": 40,
+        "valor": 81,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 3240
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 20,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1080
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,50 metros",
+        "quantidade": 20,
+        "valor": 63,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1260
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 4,00 metros",
+        "quantidade": 17,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1224
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 5,00 metros",
+        "quantidade": 25,
+        "valor": 90,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2250
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 6,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 720
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 4,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 480
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 8,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 384
+      },
+      {
+        "produto": "Palanque - 6,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 10,
+        "valor": 140,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1400
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 6,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 150
+      }
+    ],
+    "valorTotal": 14780,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 14780,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730395775309",
+    "numero": "21",
+    "cliente": "LUIZ VITORINO",
+    "situacao": "Em Aberto",
+    "data": "2024-10-31",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 96,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 192
+      },
+      {
+        "produto": "Palanque - 7,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 2,
+        "valor": 197,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 394
+      }
+    ],
+    "valorTotal": 586,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 586,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730395891087",
+    "numero": "22",
+    "cliente": "RICARDO PONTES",
+    "situacao": "Em Aberto",
+    "data": "2024-10-31",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 4,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 240
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 240
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 90,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 3150
+      }
+    ],
+    "valorTotal": 3630,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3630,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730396284349",
+    "numero": "23",
+    "cliente": "ALESSANDER GASPARELO",
+    "situacao": "Em Aberto",
+    "data": "2024-10-31",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 6,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 7,
+        "valor": 300,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2100
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 7,
+        "valor": 245,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1715
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 8,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1000
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 10,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1000
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 69.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 208.8
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 259.2
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 1,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 54
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 31,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1488
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 2,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 60
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 16,
+        "valor": 20.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 326.4
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 8 a 10 cm Ø",
+        "quantidade": 12,
+        "valor": 52.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 633.6
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 2,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 69.6
+      }
+    ],
+    "valorTotal": 8914.6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 8914.6,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730740784175",
+    "numero": "24",
+    "cliente": "GIOVANI SANTOS",
+    "situacao": "Aprovado",
+    "data": "2024-11-04",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 4,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 160
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 16,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 560
+      },
+      {
+        "produto": "Balancim 3x4 cm - 1,25 mts [DZ]",
+        "quantidade": 3,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 105
+      }
+    ],
+    "valorTotal": 825,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 825,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730829100822",
+    "numero": "25",
+    "cliente": "STEPHANY OLIVEIRA",
+    "situacao": "Em Aberto",
+    "data": "2024-11-05",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Viga - 6x16 cm - 4,00 metros",
+        "quantidade": 17,
+        "valor": 136,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2312
+      },
+      {
+        "produto": "Viga - 6x16 cm - 5,00 metros",
+        "quantidade": 2,
+        "valor": 170,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 340
+      },
+      {
+        "produto": "Viga - 6x16 cm - 2,00 metros",
+        "quantidade": 2,
+        "valor": 68,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 136
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 20,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1080
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 1,20 metros",
+        "quantidade": 120,
+        "valor": 21.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2592
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 4,00 metros",
+        "quantidade": 6,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 432
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 141,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 846
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 4,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 480
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 4,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 345.6
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 8,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 384
+      }
+    ],
+    "valorTotal": 8947.6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 8947.6,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1730914413409",
+    "numero": "26",
+    "cliente": "HORLANDO",
+    "situacao": "Em Aberto",
+    "data": "2024-11-06",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 5,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 432
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 375
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 8 a 10 cm Ø",
+        "quantidade": 23,
+        "valor": 53,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1219
+      },
+      {
+        "produto": "Ripa - 5x2 cm - 4,00 metros",
+        "quantidade": 40,
+        "valor": 24,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 960
+      }
+    ],
+    "valorTotal": 2836.7,
+    "descontoTotal": {
+      "valor": 5,
+      "tipo": "percentage"
+    },
+    "valorFinal": 2836.7,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  }
+]

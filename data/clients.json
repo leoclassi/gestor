@@ -19,7 +19,7 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "RODRIGO FIOVO",
+    "nome": "FIOVO MARANHO",
     "email": "",
     "telefone": "",
     "cpf": "",
@@ -55,7 +55,7 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "RODOLFO",
+    "nome": "RODOLFO ALOIA GARCIA",
     "email": "",
     "telefone": "(14) 991714213",
     "cpf": "",
@@ -73,16 +73,16 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "PAULO ANTONIO IGNACIO",
+    "nome": "PAULO ANTONIO IGNACIO DA SILVA",
     "email": "",
     "telefone": "(14) 996047314",
     "cpf": "707.304.668-68",
     "cnpj": "",
     "endereco": {
       "cep": "17404-222",
-      "logradouro": "Rua Dom Pedro II - Miguel Mônico",
-      "numero": "5",
-      "bairro": "",
+      "logradouro": "RUA DOM PEDRO II - MIGUEL MÔNICO",
+      "numero": "05",
+      "bairro": "Miguel Monico",
       "cidade": "Garça",
       "uf": "SP"
     },
@@ -109,14 +109,14 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "WAGNER",
+    "nome": "WAGNER MARIUSSO",
     "email": "",
     "telefone": "(14) 997233661",
     "cpf": "",
     "cnpj": "",
     "endereco": {
       "cep": "",
-      "logradouro": "Sítio Pirajuí",
+      "logradouro": "SÍTIO PIRAJUÍ",
       "numero": "7",
       "bairro": "",
       "cidade": "Garça",
@@ -142,5 +142,1715 @@
     },
     "dataCadastro": "01/10/2024, 15:20:02",
     "id": "1727806804147"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RODRIGO GASPAR",
+    "email": "",
+    "telefone": "(14) 997748906",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CHÁCARA ZOIO DE VIDRO",
+      "numero": "9",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "03/10/2024, 14:21:27",
+    "id": "1727976090170"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "PANORAMA MATERIAIS DE CONSTRUCAO LTDA",
+    "email": "mad.panorama@hotmail.com.br",
+    "telefone": "(66) 3573-1664 / (66) 9927-3268 / (66) 3573-1664",
+    "cpf": "",
+    "cnpj": "07.629.809/0001-26",
+    "endereco": {
+      "cep": "78.870-000",
+      "logradouro": "AVENIDA BRASIL",
+      "numero": "11",
+      "bairro": "JARDIM PRIMAVERA",
+      "cidade": "Paranatinga",
+      "uf": "MT"
+    },
+    "dataCadastro": "03/10/2024, 14:25:06",
+    "id": "1727976309670"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JESUS LOPES",
+    "email": "",
+    "telefone": "(14) 996579271",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "12",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "04/10/2024, 14:12:45",
+    "id": "1728061970292"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RICARDO",
+    "email": "",
+    "telefone": "(14) 981398408 ou (13) 991487923",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA CARIMÃ KM 408, PORTEIRA AZUL\t",
+      "numero": "13",
+      "bairro": "",
+      "cidade": "Entre Gália e Garça",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/10/2024, 14:37:48",
+    "id": "1728063472859"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "SEBASTIÃO DE SANTOS FIGUEIREDO",
+    "email": "",
+    "telefone": "(14) 997024492",
+    "cpf": "036.711.118-79",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA SANTA TEREZINHA",
+      "numero": "14",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/10/2024, 14:45:10",
+    "id": "1728063914563"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CARLOS QUATROCI",
+    "email": "",
+    "telefone": "(14) 996339408",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "LARANJEIRAS CASA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/10/2024, 10:03:00",
+    "id": "1728306191713"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "BERGA - ANTONIO CARLOS BERGAMASCHI",
+    "email": "",
+    "telefone": "(14) 3282-5193",
+    "cpf": "",
+    "cnpj": "08.213.622/0001-00",
+    "endereco": {
+      "cep": "17.470-000",
+      "logradouro": "SITIO PALMEIRAS",
+      "numero": "RURAL",
+      "bairro": "CONGONHAS",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/10/2024, 10:04:27",
+    "id": "1728306278103"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MARIO HUSS",
+    "email": "cizotto_cont@hotmail.com",
+    "telefone": "(14) 99748-9800",
+    "cpf": "",
+    "cnpj": "09.472.844/0001-00",
+    "endereco": {
+      "cep": "17.455-000",
+      "logradouro": "SÍTIO JURUNA",
+      "numero": "SN",
+      "bairro": "AGUA DO ARROZ",
+      "cidade": "Fernão",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/10/2024, 10:07:33",
+    "id": "1728306464302"
+  },
+  {
+    "id": "1728307339791",
+    "tipoCliente": "Pessoa Física",
+    "nome": "HENRIQUE MATHEUS BANHARA PIRES",
+    "email": "",
+    "telefone": "(14) 997907161",
+    "cpf": "448.523.178-01",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17470-007",
+      "logradouro": "BENEDITO GEBARA",
+      "numero": "06",
+      "bairro": "Centro",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/10/2024, 10:22:08"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "ROBERTO BARBOZA",
+    "email": "simone@fazreal.com.br",
+    "telefone": "(14) 8176-4943",
+    "cpf": "",
+    "cnpj": "08.006.948/0001-66",
+    "endereco": {
+      "cep": "17.489-899",
+      "logradouro": "FAZENDA REAL",
+      "numero": "S/N",
+      "bairro": "CORRENTE",
+      "cidade": "CABRALIA PAULISTA",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/10/2024, 10:58:18",
+    "id": "1728309498489"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "BRUNO HARAS",
+    "email": "",
+    "telefone": "(14) 981388683",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "07/10/2024, 11:02:39",
+    "id": "1728309759381"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ISRAEL FRANCISCO",
+    "email": "",
+    "telefone": "(14) 996755457",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CHACARA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 14:19:27",
+    "id": "1728407970862"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CRISTIANO",
+    "email": "",
+    "telefone": "(11) 912232587",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CHACARA MARANHO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 14:21:36",
+    "id": "1728408099268"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "ANTONIO APARECIDO TURATO",
+    "email": "aturato20@gmail.com",
+    "telefone": "(14) 3471-1316 / (14) 9728-2212 / (14) 3471-1316",
+    "cpf": "",
+    "cnpj": "08.331.778/0002-76",
+    "endereco": {
+      "cep": "17.400-000",
+      "logradouro": "FAZENDA PARAISO",
+      "numero": "SN",
+      "bairro": "SAO JOSE",
+      "cidade": "Garça",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 14:52:50",
+    "id": "1728409970186"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "BAURU TENIS CLUBE",
+    "email": "expedientecristina@regiacontabil.com.br",
+    "telefone": "(14) 3224-3877",
+    "cpf": "",
+    "cnpj": "45.008.695/0001-96",
+    "endereco": {
+      "cep": "17.053-342",
+      "logradouro": "AVENIDA JOSE VICENTE AIELLO",
+      "numero": "5-176",
+      "bairro": "VILA SERRAO",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 15:01:53",
+    "id": "1728410513846"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JOSE MAURICIO SOARES PARDO",
+    "email": "",
+    "telefone": "(14) 991411136 ou (14) 996146253",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "QUERCIA SITIO PEDRA BRANCA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 15:11:35",
+    "id": "1728411095055"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "MARCOS DEVIDE PAULINO",
+    "email": "",
+    "telefone": "55 14 99682-2946",
+    "cpf": "322.225.908-92",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17499-899",
+      "logradouro": "ÁREA RURAL",
+      "numero": "214",
+      "bairro": "Area Rural de Piratininga",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 15:20:50",
+    "id": "1728411650226"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "SERGIO SERBER",
+    "email": "",
+    "telefone": "(14) 3088-7261",
+    "cpf": "",
+    "cnpj": "41.651.387/0001-23",
+    "endereco": {
+      "cep": "17.109-899",
+      "logradouro": "FAZENDA CASARAO",
+      "numero": "SN",
+      "bairro": "DISTRITO TIBIRICA",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/10/2024, 15:22:01",
+    "id": "1728411721906"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "AGNALDO MARANHO",
+    "email": "",
+    "telefone": "(14) 997211520",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CHACARA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "09/10/2024, 14:11:43",
+    "id": "1728493906089"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "VINICIUS",
+    "email": "",
+    "telefone": "(14) 996506489",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "09/10/2024, 14:16:15",
+    "id": "1728494177699"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CARECA - LARISSA TRINDADE",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "09/10/2024, 15:21:34",
+    "id": "1728498094669"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ALISSON",
+    "email": "",
+    "telefone": "(14) 9988275829",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO DONA CIDA MÃE DO DENER",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "09/10/2024, 15:44:50",
+    "id": "1728499490899"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "JUNIOR - PAULO ROBERTO LOPES JUNIOR",
+    "email": "",
+    "telefone": "(14) 9771-3484 / (14) 9728-8977",
+    "cpf": "",
+    "cnpj": "27.130.109/0001-08",
+    "endereco": {
+      "cep": "17.109-899",
+      "logradouro": "CHACARA SAO JOSE - LELEI BARRACÃO MOITA DE EUCALIPTO ",
+      "numero": "S/N",
+      "bairro": "AREA RURAL DE BAURU",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "10/10/2024, 14:16:26",
+    "id": "1728580589318"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RENATO CAVALO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "11/10/2024, 14:18:39",
+    "id": "1728667122229"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CPFL",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/10/2024, 14:21:03",
+    "id": "1728667266099"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "COTI",
+    "email": "",
+    "telefone": "(14) 99763-2304",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "11/10/2024, 15:02:52",
+    "id": "1728669772619"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MATTOS TRAVENSOLLO & CIA LTDA",
+    "email": "contabilidade@mattostravensollo.com.br",
+    "telefone": "(14) 3282-4605",
+    "cpf": "",
+    "cnpj": "05.962.234/0001-33",
+    "endereco": {
+      "cep": "17.473-302",
+      "logradouro": "ALAMEDA JAYME SIMOES FONTES",
+      "numero": "264",
+      "bairro": "DISTRITO INDUSTRIAL GUERINO MARIANO III",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/10/2024, 15:25:35",
+    "id": "1728671135659"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANTONIO FRASCARELI",
+    "email": "",
+    "telefone": "(14) 99846-4013",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "11/10/2024, 15:33:14",
+    "id": "1728671594969"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CARLOS ALBERTO PEGA",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "12/10/2024, 09:24:15",
+    "id": "1728735858087"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "FRANSCISCO CARLOS VIDOTTI",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "12/10/2024, 09:27:25",
+    "id": "1728736046627"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANTONIO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "14/10/2024, 14:18:00",
+    "id": "1728926287064"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "SIDNEY ZILIO LIMA",
+    "email": "cleuber.bertuzzo@terra.com.br",
+    "telefone": "(14) 3232-2553 / (14) 3222-7101",
+    "cpf": "",
+    "cnpj": "11.121.267/0001-53",
+    "endereco": {
+      "cep": "17.470-000",
+      "logradouro": "RODOVIA BAURU - DUARTINA",
+      "numero": "SN",
+      "bairro": "DUARTINA",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "14/10/2024, 14:35:57",
+    "id": "1728927357669"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANTONIO FORÇA E LUZ",
+    "email": "",
+    "telefone": "(14) 99793-8446",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "14/10/2024, 14:46:13",
+    "id": "1728927973496"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "LUANA CRISTINA MALMONGE",
+    "email": "escritoriorural@uol.com.br",
+    "telefone": "(14) 9760-5789",
+    "cpf": "",
+    "cnpj": "49.094.120/0001-94",
+    "endereco": {
+      "cep": "17.489-899",
+      "logradouro": "SITIO SAO JOSE DO CORRENTE",
+      "numero": "89",
+      "bairro": "CORRENTE",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "14/10/2024, 15:39:28",
+    "id": "1728931168946"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CLIENTE",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "15/10/2024, 14:37:57",
+    "id": "1729013877411"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANGELO JOSE",
+    "email": "",
+    "telefone": "(14) 981313356",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "17/10/2024, 14:15:32",
+    "id": "1729185335701"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "SAMUEL COSTA",
+    "email": "",
+    "telefone": "(14) 997076217",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "RECANTO PASSARO",
+      "numero": "",
+      "bairro": "LOTE 20",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "17/10/2024, 14:18:29",
+    "id": "1729185511869"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "SILVIA ALVES",
+    "email": "",
+    "telefone": "(14) 988128259",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CHACARA AGUA DO PAIOL",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "17/10/2024, 14:23:12",
+    "id": "1729185795188"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANA IZABEL",
+    "email": "",
+    "telefone": "(11) 99915-4242",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA SAO JOAO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Piratininga",
+      "estado": "SP"
+    },
+    "dataCadastro": "17/10/2024, 14:26:44",
+    "id": "1729186007667"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ALBERTO PIRASSOLI",
+    "email": "",
+    "telefone": "(14) 998664577",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SITIO SANTA CECILIA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "17/10/2024, 14:29:30",
+    "id": "1729186173228"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "GONSALO MOISÉS",
+    "email": "",
+    "telefone": "(14) 997618586",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "18/10/2024, 13:53:15",
+    "id": "1729270398116"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "CARVALHO & GARCIA - COMERCIO DE MATERIAIS PARA CONSTRUCAO E MADEIRAS LTDA.",
+    "email": "madflorestabauru@hotmail.com",
+    "telefone": "(14) 3238-1303",
+    "cpf": "",
+    "cnpj": "26.213.863/0001-30",
+    "endereco": {
+      "cep": "17.050-460",
+      "logradouro": "RUA WENCESLAU BRAZ QUADRA",
+      "numero": "11-29",
+      "bairro": "VILA PACIFICO",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/10/2024, 14:03:31",
+    "id": "1729271014637"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "ALESSANDER GASPARELO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "74.362.286/0001-91",
+    "endereco": {
+      "cep": "17.490-001",
+      "logradouro": "RODOVIA ELIAS MIGUEL MALUF KM 01",
+      "numero": "S/N",
+      "bairro": "RURAL",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/10/2024, 14:05:48",
+    "id": "1729271151704"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "GERALDO DA SILVA B JUNIOR",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "19/10/2024, 06:29:53",
+    "id": "1729330195012"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANTONIO CLOVIS RADIGHIERI",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "19/10/2024, 06:52:39",
+    "id": "1729331561293"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIZ HENRIQUE",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA NOVO HORIZONTE",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Paulistânia",
+      "uf": "SP"
+    },
+    "dataCadastro": "21/10/2024, 14:21:36",
+    "id": "1729531302565"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LEVI JUNIOR",
+    "email": "",
+    "telefone": "(19) 999839996",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "21/10/2024, 14:27:24",
+    "id": "1729531650133"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "FABIO BATISTA",
+    "email": "",
+    "telefone": "(14) 996190676",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "ÁGUA DO TURVO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Agudos",
+      "uf": "SP"
+    },
+    "dataCadastro": "21/10/2024, 14:31:50",
+    "id": "1729531916234"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DANIEL MADEIREIRA SANTA ANA",
+    "email": "",
+    "telefone": "(14) 996269251",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "21/10/2024, 14:39:15",
+    "id": "1729532361114"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "SOLANGE INESEA FERREIRA",
+    "email": "",
+    "telefone": "(14) 981283095 ou (14) 981242314",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "21/10/2024, 14:49:22",
+    "id": "1729532968333"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MARCOS RODRIGUES FERRAZ FILHO",
+    "email": "srbauru@uol.com.br",
+    "telefone": "(14) 3236-1167 / (14) 9771-2033 / (14) 3234-2938",
+    "cpf": "",
+    "cnpj": "26.578.791/0001-25",
+    "endereco": {
+      "cep": "17.490-001",
+      "logradouro": "ESTRADA VELHA PIRATININGA A DUARTINA",
+      "numero": "KM18",
+      "bairro": "ZONA RURAL",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "22/10/2024, 14:21:58",
+    "id": "1729617721779"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "NILTON LULA",
+    "email": "",
+    "telefone": "(14) 996716881",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FINAL DA RUA BERNARTINO D CAMPO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "22/10/2024, 14:25:43",
+    "id": "1729617946499"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ZÉ DA MÁQUINA",
+    "email": "",
+    "telefone": "(14) 996707292",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "RUA ROSINHA LOZANO",
+      "numero": "90",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "22/10/2024, 14:28:59",
+    "id": "1729618141839"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ALEXANDRE",
+    "email": "",
+    "telefone": "(14) 991113275",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Lucianópolis",
+      "uf": "SP"
+    },
+    "dataCadastro": "23/10/2024, 14:20:48",
+    "id": "1729704049703"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "JESUE DOMINGOS BRAGATO E OUTROS",
+    "email": "",
+    "telefone": "(14) 3471-1945",
+    "cpf": "",
+    "cnpj": "08.085.448/0001-67",
+    "endereco": {
+      "cep": "17.470-000",
+      "logradouro": "FAZENDA SANTO ANTONIO",
+      "numero": "S/N",
+      "bairro": "CORREGO AGUA BRANCA",
+      "cidade": "DUARTINA",
+      "uf": "SP"
+    },
+    "dataCadastro": "23/10/2024, 14:27:12",
+    "id": "1729704434208"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JOSÉ LUIS",
+    "email": "",
+    "telefone": "(14) 997843131",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "23/10/2024, 14:50:37",
+    "id": "1729705837477"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "J.N. QUIOSQUES ARTESANAIS LTDA",
+    "email": "e.s.luiz@uol.com.br",
+    "telefone": "(14) 3265-1156",
+    "cpf": "",
+    "cnpj": "01.707.763/0001-30",
+    "endereco": {
+      "cep": "17.492-540",
+      "logradouro": "RUA DAS MANGUEIRAS",
+      "numero": "683",
+      "bairro": "REAL VILLAGE",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "23/10/2024, 14:53:37",
+    "id": "1729706017395"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RAFAEL ALEXANDRE GOMES",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "24/10/2024, 06:18:08",
+    "id": "1729761489083"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JADIEL",
+    "email": "",
+    "telefone": "(14) 997823561",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO SANTA CATARINA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Paulistânia",
+      "uf": "SP"
+    },
+    "dataCadastro": "24/10/2024, 14:12:21",
+    "id": "1729789944162"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "CEU AZUL ALIMENTOS LTDA",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "58.852.518/0012-96",
+    "endereco": {
+      "cep": "18.580-000",
+      "logradouro": "EST MUNICIPAL ESTACAO DE PEREIRAS",
+      "numero": "S/N",
+      "bairro": "ESTACAO DE PEREIRAS",
+      "cidade": "Pereiras",
+      "uf": "SP"
+    },
+    "dataCadastro": "24/10/2024, 14:15:36",
+    "id": "1729790138804"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RUBENS",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "RECANTO DOS SONHOS",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "24/10/2024, 14:31:47",
+    "id": "1729791107924"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "KENEDY AZEVEDO MENDONÇA",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "24/10/2024, 14:48:06",
+    "id": "1729792086345"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "TUCA",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/10/2024, 14:19:15",
+    "id": "1729876757697"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RAFAEL",
+    "email": "",
+    "telefone": "(14) 997994784",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "ALBA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/10/2024, 14:28:21",
+    "id": "1729877304115"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "ROSELI BRAMBILLA BISCARO E OUTROS",
+    "email": "expediente@contabilidadeinteligente.com.br",
+    "telefone": "(14) 3235-4242",
+    "cpf": "",
+    "cnpj": "15.728.631/0001-07",
+    "endereco": {
+      "cep": "17.470-000",
+      "logradouro": "RODOVIA LOURENCO LOZANO",
+      "numero": "S/N",
+      "bairro": "ZONA RURAL",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/10/2024, 15:46:51",
+    "id": "1729882011956"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "REGINALDO",
+    "email": "",
+    "telefone": "(14) 997473760",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "PROXIMO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/10/2024, 15:48:42",
+    "id": "1729882122516"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "MARCOS ROBERTO FURLANETO",
+    "email": "",
+    "telefone": "(14) 996525412",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/10/2024, 14:25:16",
+    "id": "1730136323799"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DIEGO BARRACÃO",
+    "email": "",
+    "telefone": "(14) 997928790",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/10/2024, 14:29:27",
+    "id": "1730136574338"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "TONINHO FORÇA CPFL",
+    "email": "",
+    "telefone": "(14) 997938446",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CHÁCARA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/10/2024, 14:32:30",
+    "id": "1730136757058"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "EDIR",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/10/2024, 14:36:35",
+    "id": "1730137002527"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANTONIO FERNANDES",
+    "email": "",
+    "telefone": "(14) 998352642",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/10/2024, 14:38:09",
+    "id": "1730137096704"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "SUELI DA SILVA",
+    "email": "",
+    "telefone": "(14) 996773254",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/10/2024, 14:48:12",
+    "id": "1730137692854"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DAVI CÉSAR",
+    "email": "",
+    "telefone": "(14) 99841-5391",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "28/10/2024, 15:13:30",
+    "id": "1730139210532"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "BARATELLI",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "29/10/2024, 14:11:27",
+    "id": "1730221891969"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ALFREDO RIBAS",
+    "email": "",
+    "telefone": "(14) 99602228",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "29/10/2024, 14:12:28",
+    "id": "1730221951067"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "CARLOS EDUARDO MORAIS",
+    "email": "",
+    "telefone": "(14) 3492-1257",
+    "cpf": "",
+    "cnpj": "29.078.865/0001-52",
+    "endereco": {
+      "cep": "17.560-000",
+      "logradouro": "ESTANCIA MORAIS",
+      "numero": "SN",
+      "bairro": "AGUA DA OLARIA",
+      "cidade": "VERA CRUZ",
+      "uf": "SP"
+    },
+    "dataCadastro": "29/10/2024, 14:27:55",
+    "id": "1730222877355"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "MARCELO DOS SANTOS",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "29/10/2024, 14:47:24",
+    "id": "1730224047306"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "OLEANA RODRIGUES MACIEL DE ANDRADE",
+    "email": "wilsonfborges@hotmail.com",
+    "telefone": "(14) 3232-2262 / (14) 9782-1637 / (14) 3232-2262",
+    "cpf": "",
+    "cnpj": "15.472.026/0001-00",
+    "endereco": {
+      "cep": "17.480-000",
+      "logradouro": "FAZENDA BOM JESUS",
+      "numero": "*",
+      "bairro": "ZONA RURAL",
+      "cidade": "CABRALIA PAULISTA",
+      "uf": "SP"
+    },
+    "dataCadastro": "29/10/2024, 15:12:20",
+    "id": "1730225540733"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "VANESSA FERNANDES",
+    "email": "",
+    "telefone": "(11) 937705201",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "MARGARIDO PIRES",
+      "numero": "5",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "29/10/2024, 15:17:16",
+    "id": "1730225836454"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "ROSANGELA DE CASSIA PEREIRA SANTANA E OUTRO",
+    "email": "escritorioar23@gmail.com",
+    "telefone": "(14) 9707-1428",
+    "cpf": "",
+    "cnpj": "53.498.403/0001-79",
+    "endereco": {
+      "cep": "17.499-899",
+      "logradouro": "SITIO SANTANA- ASSENTAMENTO BRASILIA PAULISTA",
+      "numero": "63",
+      "bairro": "ZONA RURAL",
+      "cidade": "PIRATININGA",
+      "uf": "SP"
+    },
+    "dataCadastro": "31/10/2024, 14:19:01",
+    "id": "1730395144163"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "FILHO DO VARDI",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "31/10/2024, 14:23:01",
+    "id": "1730395384172"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANDRÉ",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "31/10/2024, 14:25:47",
+    "id": "1730395550351"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIZ VITORINO",
+    "email": "",
+    "telefone": "(14) 997023493",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "ALAMEDA DAS ANDORINHAS - DE FRENTE AO POSTE 76",
+      "numero": "840 ",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "31/10/2024, 14:29:24",
+    "id": "1730395767342"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RICARDO PONTES",
+    "email": "",
+    "telefone": "(14) 99866-5289",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "31/10/2024, 14:31:23",
+    "id": "1730395886139"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JOÃO CARLOS FERREIRA BRAGA",
+    "email": "",
+    "telefone": "(14) 981269610",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA CALIFORNIA",
+      "numero": "QUERCIA",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "01/11/2024, 14:05:57",
+    "id": "1730480760000"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "NILTON MICANI",
+    "email": "",
+    "telefone": "(14) 997222496",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "01/11/2024, 14:07:58",
+    "id": "1730480880820"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUCAS",
+    "email": "",
+    "telefone": "(14) 996396033",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/11/2024, 14:08:35",
+    "id": "1730740123190"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DORIVAL ALBERTO SILVA",
+    "email": "",
+    "telefone": "(14) 981222865",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "PORTEIRA DE FERRO AZUL",
+      "numero": "GUARATUBA",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/11/2024, 14:10:11",
+    "id": "1730740217637"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "GIOVANI SANTOS",
+    "email": "",
+    "telefone": "(14) 99756-3812",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "04/11/2024, 14:13:18",
+    "id": "1730740404707"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DERLEI ",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Paulistânia",
+      "uf": "SP"
+    },
+    "dataCadastro": "04/11/2024, 14:53:11",
+    "id": "1730742791957"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RAUL MERCADO MAX",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "04/11/2024, 15:15:49",
+    "id": "1730744149484"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CHICO LEITE",
+    "email": "",
+    "telefone": "(14) 996556035",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "05/11/2024, 14:19:14",
+    "id": "1730827156155"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "STEPHANY OLIVEIRA",
+    "email": "",
+    "telefone": "(14) 99608-5983",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "05/11/2024, 14:48:13",
+    "id": "1730828895940"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "WELINGTON",
+    "email": "",
+    "telefone": "(14) 991206811",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "05/11/2024, 15:21:30",
+    "id": "1730830891169"
+  },
+  {
+    "tipoCliente": "",
+    "nome": "HORLANDO",
+    "email": "",
+    "telefone": "(14) 99686-8969",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "estado": "SP"
+    },
+    "dataCadastro": "06/11/2024, 14:32:00",
+    "id": "1730914323358"
   }
 ]

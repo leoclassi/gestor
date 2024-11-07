@@ -5,6 +5,7 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const app = express();
+const boletosFilePath = path.join(__dirname, 'data', 'boletos.json');
 const PORT = 3000;
 const axios = require('axios');
 const crypto = require('crypto');
@@ -13,12 +14,17 @@ const { performBackup } = require('./backup');
 const multer = require('multer');
 const AdmZip = require('adm-zip');
 const moment = require('moment-timezone');
+const BOLETOS_FILE = path.join(__dirname, 'data', 'boletos.json');
+const SALES_FILE = path.join(__dirname, 'data', 'sales.json');
+const mongoose = require('mongoose');
+const whatsappRoutes = require('./routes/whatsapp');
 
 const upload = multer({ dest: 'uploads/' });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json({limit: '50mb'}));
 app.use(express.static('public'));
-app.use(express.json());
 
 const productsFile = path.join(__dirname, 'data', 'products.json');
 const clientsFile = path.join(__dirname, 'data', 'clients.json');
@@ -26,6 +32,10 @@ const salesFile = path.join(__dirname, 'data', 'sales.json');
 const chequesFile = path.join(__dirname, 'data', 'cheques.json');
 require('dotenv').config();
 const SECRET_KEY = process.env.SECRET_KEY;
+
+// Crie a pasta 'temp' se ela não existir
+const tempDir = path.join(__dirname, 'temp');
+fs.mkdir(tempDir, { recursive: true }).catch(console.error);
 
 // Adicione esta função auxiliar no início do arquivo
 function formatDate(date) {
@@ -62,6 +72,19 @@ async function writeJSONFile(filePath, data) {
 async function readConfig() {
     return JSON.parse(await fs.readFile(path.join(__dirname, 'data', 'config.json'), 'utf8'));
 }
+
+// Defina o esquema e o modelo Sale
+const saleSchema = new mongoose.Schema({
+    // Defina os campos do seu modelo de venda aqui
+    // Por exemplo:
+    numero: String,
+    cliente: String,
+    valorTotal: Number,
+    status: String,
+    // ... outros campos
+});
+
+const Sale = mongoose.model('Sale', saleSchema);
 
 // Rota para verificar a senha
 app.post('/api/verify-password', async (req, res) => {
@@ -167,19 +190,27 @@ app.post('/api/sales', async (req, res) => {
     try {
         const sales = await readJSONFile(salesFile);
         const newSale = req.body;
-        newSale.valorTotal = parseFloat(newSale.valorTotal); // Converte o valor total para número
 
-        if (isNaN(newSale.valorTotal)) {
-            return res.status(400).json({ error: 'Valor total inválido' });
+        // Obter o último número de venda
+        let lastNumber = 0;
+        if (sales.length > 0) {
+            lastNumber = Math.max(...sales.map(sale => parseInt(sale.numero)));
         }
 
+        // Incrementar o número para a nova venda
+        newSale.numero = (lastNumber + 1).toString();
+
+        // Adicionar id e paga à nova venda
         newSale.id = Date.now().toString();
+        newSale.paga = newSale.paga || false;
+
         sales.push(newSale);
         await writeJSONFile(salesFile, sales);
-        res.json(newSale);
+
+        res.status(201).json(newSale);
     } catch (error) {
-        console.error('Erro ao salvar a venda:', error);
-        res.status(500).json({ error: 'Erro ao salvar a venda' });
+        console.error('Erro ao criar venda:', error);
+        res.status(500).json({ error: 'Erro ao criar venda' });
     }
 });
 
@@ -262,8 +293,25 @@ app.get('/api/cnpj/:cnpj', async (req, res) => {
         const response = await axios.get(`https://www.receitaws.com.br/v1/cnpj/${cnpj}`);
         res.json(response.data);
     } catch (error) {
-        console.error('Erro ao buscar dados do CNPJ:', error);
-        res.status(500).json({ error: 'Erro ao buscar dados do CNPJ' });
+        console.error('Erro ao buscar dados do CNPJ:', error.response ? error.response.data : error.message);
+        res.status(error.response ? error.response.status : 500).json({ error: 'Erro ao buscar dados do CNPJ' });
+    }
+});
+
+// Rota para obter o próximo número de venda
+app.get('/api/sales/last-number', async (req, res) => {
+    try {
+        const sales = await readJSONFile(salesFile);
+        let lastNumber = 0;
+
+        if (sales.length > 0) {
+            lastNumber = Math.max(...sales.map(sale => parseInt(sale.numero)));
+        }
+
+        res.json({ lastNumber });
+    } catch (error) {
+        console.error('Erro ao obter o último número de venda:', error);
+        res.status(500).json({ error: 'Erro ao obter o último número de venda' });
     }
 });
 
@@ -276,6 +324,32 @@ app.get('/api/next-sale-number', async (req, res) => {
     } catch (error) {
         console.error('Erro ao obter o próximo número de venda:', error);
         res.status(500).json({ error: 'Erro ao obter o próximo número de venda' });
+    }
+});
+
+app.post('/api/products/update', async (req, res) => {
+    try {
+        const { id, field, value } = req.body;
+        const productsPath = path.join(__dirname, 'data', 'products.json');
+        
+        let products = JSON.parse(await fs.readFile(productsPath, 'utf8'));
+        
+        const productIndex = products.findIndex(p => p.id === id);
+        if (productIndex !== -1) {
+            if (field === 'valor' || field === 'valorEspecial') {
+                products[productIndex][field] = parseFloat(value.replace(/[^\d,]/g, '').replace(',', '.'));
+            } else {
+                products[productIndex][field] = value;
+            }
+            
+            await fs.writeFile(productsPath, JSON.stringify(products, null, 2));
+            res.json({ success: true });
+        } else {
+            res.status(404).json({ success: false, message: 'Produto não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar produto:', error);
+        res.status(500).json({ success: false, message: 'Erro interno do servidor' });
     }
 });
 
@@ -339,40 +413,47 @@ app.post('/login', async (req, res) => {
     }
 });
 
-async function getPublicIP(req) {
-    // Tenta obter o IP do cabeçalho X-Forwarded-For primeiro
-    const forwardedFor = req.headers['x-forwarded-for'];
-    if (forwardedFor) {
-        return forwardedFor.split(',')[0].trim();
-    }
+async function testDiscordWebhook() {
+    const webhookUrl = 'https://discord.com/api/webhooks/1294771376447684615/hc4HetIIxayquuoJOEm8m9JVY9ith2n9n4oQCdmYG47Ryx426-esCuOlX_JV1w9GXWtg';
+    const testMessage = { content: 'Teste de conexão com a webhook do Discord' };
 
-    // Se não houver X-Forwarded-For, usa o IP remoto
-    const remoteIP = req.connection.remoteAddress;
-    if (remoteIP && remoteIP !== '::1' && remoteIP !== '127.0.0.1') {
-        return remoteIP;
-    }
-
-    // Se ainda não tiver um IP válido, usa um serviço externo
     try {
-        const response = await axios.get('https://api.ipify.org?format=json');
-        return response.data.ip;
+        console.log('Enviando mensagem de teste para o Discord...');
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(testMessage),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseText = await response.text();
+        console.log('Teste enviado com sucesso:', response.status, responseText);
     } catch (error) {
-        console.error('Erro ao obter IP público:', error);
-        return 'IP não disponível';
+        console.error('Erro no teste da webhook:', error.message);
     }
 }
 
-async function sendLogToDiscord(username, ip) {
-    const webhookUrl = 'https://discord.com/api/webhooks/1290425536727748660/W_Hzzz1ffmHanIa9NvcmXZR1ZDpkWwRS9q1gaE20zMMMcxOVwPklSWyoUffN9M1tl-94';
+// Chame a função de teste ao iniciar o servidor
+testDiscordWebhook();
+
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
+async function sendLogToDiscord(ip, path) {
+    const webhookUrl = 'https://discord.com/api/webhooks/1294771376447684615/hc4HetIIxayquuoJOEm8m9JVY9ith2n9n4oQCdmYG47Ryx426-esCuOlX_JV1w9GXWtg';
     const currentTime = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss');
     
     const message = {
         embeds: [{
-            title: "Novo Login Detectado",
-            color: 3447003,  // Cor azul
+            title: "Novo Acesso ao Site",
+            color: 3447003,
             fields: [
-                { name: "Usuário", value: username, inline: true },
                 { name: "IP", value: ip, inline: true },
+                { name: "Página Acessada", value: path, inline: true },
                 { name: "Horário", value: `${currentTime} (Brasília)`, inline: false }
             ],
             footer: { text: "Sistema de Logs - Portugal Madeiras" }
@@ -380,11 +461,183 @@ async function sendLogToDiscord(username, ip) {
     };
 
     try {
-        await axios.post(webhookUrl, message);
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(message),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         console.log('Log enviado para o Discord com sucesso.');
     } catch (error) {
-        console.error('Erro ao enviar log para o Discord:', error);
+        console.error('Erro ao enviar log para o Discord:', error.message);
     }
+}
+
+async function testDiscordWebhook() {
+    const webhookUrl = 'https://discord.com/api/webhooks/1294771376447684615/hc4HetIIxayquuoJOEm8m9JVY9ith2n9n4oQCdmYG47Ryx426-esCuOlX_JV1w9GXWtg';
+    const testMessage = { content: 'Teste de conexão com a webhook do Discord' };
+
+    try {
+        console.log('Enviando mensagem de teste para o Discord...');
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(testMessage),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseText = await response.text();
+        console.log('Teste enviado com sucesso:', response.status, responseText);
+    } catch (error) {
+        console.error('Erro no teste da webhook:', error.message);
+    }
+}
+
+// Chame a função de teste ao iniciar o servidor
+testDiscordWebhook();
+
+// Middleware para registrar acessos
+app.use(async (req, res, next) => {
+    if (req.path !== '/favicon.ico') {  // Ignora requisições de favicon
+        try {
+            const ip = await getPublicIP(req);
+            console.log(`Acesso detectado - IP: ${ip}, Página: ${req.path}`);
+            await sendLogToDiscord(ip, req.path);
+        } catch (error) {
+            console.error('Erro ao registrar acesso:', error);
+        }
+    }
+    next();
+});
+
+async function getPublicIP(req) {
+    // Lista de cabeçalhos para verificar, em ordem de prioridade
+    const ipHeaders = [
+        'x-client-ip',
+        'x-forwarded-for',
+        'cf-connecting-ip',    // Cloudflare
+        'fastly-client-ip',    // Fastly CDN
+        'x-real-ip',           // Nginx proxy/FastCGI
+        'x-cluster-client-ip', // Rackspace LB, Riverbed Stingray
+        'x-forwarded',
+        'forwarded-for',
+        'forwarded'
+    ];
+
+    let clientIP;
+
+    // Verifica os cabeçalhos
+    for (const header of ipHeaders) {
+        clientIP = req.headers[header];
+        if (clientIP) {
+            // Se for uma lista de IPs, pega o primeiro
+            const ipList = clientIP.split(',');
+            clientIP = ipList[0].trim();
+            break;
+        }
+    }
+
+    // Se não encontrou nos cabeçalhos, usa o remoteAddress
+    if (!clientIP) {
+        clientIP = req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress;
+    }
+
+    // Remove IPv6 prefix se presente
+    clientIP = clientIP.replace(/^::ffff:/, '');
+
+    // Verifica se é um IPv4 válido
+    const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+    if (!ipv4Regex.test(clientIP)) {
+        // Se não for um IPv4 válido, usa um serviço externo como fallback
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            clientIP = data.ip;
+        } catch (error) {
+            console.error('Erro ao obter IP do serviço externo:', error);
+            clientIP = 'IP não disponível';
+        }
+    }
+
+    return clientIP;
+}
+
+async function sendLogToDiscord(ip, path) {
+    const webhookUrl = 'https://discord.com/api/webhooks/1294771376447684615/hc4HetIIxayquuoJOEm8m9JVY9ith2n9n4oQCdmYG47Ryx426-esCuOlX_JV1w9GXWtg';
+    const currentTime = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss');
+    
+    const message = {
+        embeds: [{
+            title: "Novo Acesso ao Site",
+            color: 3447003,
+            fields: [
+                { name: "IP", value: ip, inline: true },
+                { name: "Página Acessada", value: path, inline: true },
+                { name: "Horário", value: `${currentTime} (Brasília)`, inline: false }
+            ],
+            footer: { text: "Sistema de Logs - Portugal Madeiras" }
+        }]
+    };
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(message),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+        }
+
+        console.log('Log enviado para o Discord com sucesso.');
+    } catch (error) {
+        console.error('Erro ao enviar log para o Discord:', error.message);
+    }
+}
+
+function markParcelAsPaid(saleId, parcelIndex) {
+    fetch(`/api/sales/${saleId}/parcelas/${parcelIndex}/pay`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Falha ao marcar como paga');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Parcela marcada como paga com sucesso');
+            // Atualizar a interface aqui, se necessário
+        } else {
+            throw new Error(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao marcar a parcela como paga. Por favor, tente novamente.');
+    });
 }
 
 // Middleware de autenticação
@@ -396,12 +649,7 @@ function authenticateToken(req, res, next) {
 
     jwt.verify(token, SECRET_KEY, (err, user) => {
         if (err) return res.sendStatus(403);
-        req.user = {
-            id: user.id,
-            username: user.username,
-            isAdmin: user.isAdmin,
-            permissions: user.permissions || [] // Garante que sempre haverá um array de permissões
-        };
+        req.user = user;
         next();
     });
 }
@@ -556,7 +804,7 @@ function formatarDataParaISO(data) {
 }
 
 // Agendar backup diário às 00:00
-schedule.scheduleJob('0 0 * * *', performBackup);
+schedule.scheduleJob('0 21 * * *', performBackup);
 
 // Proteger as rotas de backup
 app.post('/api/backup', authenticateToken, async (req, res) => {
@@ -597,6 +845,33 @@ app.get('/backups/:filename', authenticateToken, (req, res) => {
 });
 
 const backupDir = path.join(__dirname, 'public', 'backups');
+
+// Função para ler o último número de boleto
+async function lerUltimoNumeroBoleto() {
+    try {
+        const response = await fetch('/api/boletos');
+        const data = await response.json();
+        return data.ultimoNumeroBoleto;
+    } catch (error) {
+        console.error('Erro ao ler o último número de boleto:', error);
+        return 199; // Valor padrão caso ocorra um erro
+    }
+}
+
+// Função para atualizar o último número de boleto
+async function atualizarUltimoNumeroBoleto(numero) {
+    try {
+        await fetch('/api/boletos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ultimoNumeroBoleto: numero }),
+        });
+    } catch (error) {
+        console.error('Erro ao atualizar o último número de boleto:', error);
+    }
+}
 
 // Função para verificar e criar o diretório de backups
 async function ensureBackupDir() {
@@ -646,18 +921,18 @@ app.post('/api/sales/:id/pay', async (req, res) => {
 });
 
 // Adicione esta rota ao seu arquivo server.js
-app.get('/api/admin/users', authenticateToken, isAdmin, async (req, res) => {
+app.get('/api/admin/users', authenticateToken, async (req, res) => {
     try {
-        const users = await readJSONFile(usersFile);
-        // Remova as senhas antes de enviar os dados
-        const safeUsers = users.map(user => ({
+        const users = JSON.parse(await fs.readFile('data/users.json', 'utf8'));
+        const sanitizedUsers = users.map(user => ({
             id: user.id,
             username: user.username,
-            isAdmin: user.isAdmin // Incluímos esta informação para o frontend
+            isAdmin: user.isAdmin,
+            permissions: user.permissions || []
         }));
-        res.json(safeUsers);
+        res.json(sanitizedUsers);
     } catch (error) {
-        console.error('Erro ao buscar usuários:', error);
+        console.error('Erro ao carregar usuários:', error);
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
@@ -747,6 +1022,27 @@ app.delete('/api/users/:id', authenticateToken, isAdmin, async (req, res) => {
     } catch (error) {
         console.error('Erro ao excluir usuário:', error);
         res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+app.get('/api/boletos', async (req, res) => {
+    try {
+        const data = await fs.readFile(boletosFilePath, 'utf8');
+        res.json(JSON.parse(data));
+    } catch (error) {
+        console.error('Erro ao ler o arquivo boletos.json:', error);
+        res.status(500).json({ error: 'Erro ao ler o número do boleto' });
+    }
+});
+
+app.post('/api/boletos', async (req, res) => {
+    try {
+        const { ultimoNumeroBoleto } = req.body;
+        await fs.writeFile(boletosFilePath, JSON.stringify({ ultimoNumeroBoleto }, null, 2));
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Erro ao escrever no arquivo boletos.json:', error);
+        res.status(500).json({ error: 'Erro ao atualizar o número do boleto' });
     }
 });
 
@@ -896,12 +1192,18 @@ budgetsRouter.get('/:id', async (req, res) => {
         const budgets = await readJSONFile(budgetsFile);
         const budget = budgets.find(b => b.id === req.params.id);
         if (budget) {
+            // Buscar informações detalhadas do cliente
+            const clients = await readJSONFile(clientsFile);
+            const clientInfo = clients.find(c => c.nome.trim().toLowerCase() === budget.cliente.trim().toLowerCase());
+            if (clientInfo) {
+                budget.clienteInfo = clientInfo;
+            }
             res.json(budget);
         } else {
             res.status(404).json({ error: 'Orçamento não encontrado' });
         }
     } catch (error) {
-        console.error('Erro ao buscar o orçamento:', error);
+        console.error('Erro ao buscar orçamento:', error);
         res.status(500).json({ error: 'Erro ao buscar o orçamento' });
     }
 });
@@ -980,4 +1282,458 @@ budgetsRouter.post('/:id/pay', async (req, res) => {
 
 // Associar as rotas de orçamentos ao caminho /api/budgets
 app.use('/api/budgets', budgetsRouter);
+
+// Adicione esta nova rota após as rotas existentes de orçamentos
+
+// Rota para obter o próximo número de orçamento
+app.get('/api/next-budget-number', async (req, res) => {
+    try {
+        const budgets = await readJSONFile(budgetsFile);
+        const nextNumber = budgets.length > 0 ? Math.max(...budgets.map(b => parseInt(b.numero))) + 1 : 1;
+        res.json({ nextNumber: nextNumber.toString() });
+    } catch (error) {
+        console.error('Erro ao obter o próximo número de orçamento:', error);
+        res.status(500).json({ error: 'Erro ao obter o próximo número de orçamento' });
+    }
+});
+
+// Adicione esta nova rota para o dashboard
+app.get('/api/dashboard-data', authenticateToken, async (req, res) => {
+    try {
+        // Ler vendas do arquivo JSON
+        const vendas = await readJSONFile(salesFile);
+
+        // Calcular total de vendas
+        const totalVendas = vendas.length;
+
+        // Calcular faturamento total
+        const faturamentoTotal = vendas.reduce((total, venda) => total + (venda.valorFinal || 0), 0);
+
+        // Formatar o faturamento total
+        const faturamentoTotalFormatado = faturamentoTotal.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+        // Calcular vendas pendentes
+        const vendasPendentes = vendas.filter(venda => venda.situacao === "Concretizada" && !venda.paga).length;
+
+        // Calcular produtos mais vendidos
+        const produtosPorQuantidade = vendas.flatMap(venda => venda.produtos || [])
+            .reduce((acc, produto) => {
+                if (produto && produto.produto) {
+                    acc[produto.produto] = (acc[produto.produto] || 0) + (produto.quantidade || 1);
+                }
+                return acc;
+            }, {});
+
+        const produtosMaisVendidos = Object.entries(produtosPorQuantidade)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 5)
+            .map(([produto, quantidade]) => ({ nome: produto, quantidade }));
+
+        // Se não houver produtos, adicione uma mensagem
+        if (produtosMaisVendidos.length === 0) {
+            produtosMaisVendidos.push({ nome: "Nenhum produto identificado nas vendas", quantidade: 0 });
+        }
+
+        // Calcular clientes mais ativos
+        const clientesPorCompras = vendas.reduce((acc, venda) => {
+            acc[venda.cliente] = (acc[venda.cliente] || 0) + 1;
+            return acc;
+        }, {});
+
+        const clientesMaisAtivos = Object.entries(clientesPorCompras)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 5)
+            .map(([nome, compras]) => ({ nome, compras }));
+
+        // Calcular vendas por mês
+        const vendasPorMes = vendas.reduce((acc, venda) => {
+            // Use moment para ajustar a data para o fuso horário de Brasília
+            const data = moment(venda.data).tz('America/Sao_Paulo');
+            const mesAno = `${data.format('MM')}/${data.format('YYYY')}`;
+            acc[mesAno] = (acc[mesAno] || 0) + 1;
+            return acc;
+        }, {});
+
+        const vendasPorMesData = {
+            labels: Object.keys(vendasPorMes),
+            valores: Object.values(vendasPorMes)
+        };
+
+        // Calcular distribuição de produtos
+        const distribuicaoProdutos = produtosMaisVendidos.reduce((acc, produto) => {
+            acc.labels.push(produto.nome);
+            acc.valores.push(produto.quantidade);
+            return acc;
+        }, { labels: [], valores: [] });
+
+        // Calcular total de clientes únicos
+        const totalClientes = new Set(vendas.map(venda => venda.cliente)).size;
+
+        res.json({
+            totalVendas,
+            faturamentoTotal: faturamentoTotalFormatado,
+            vendasPendentes,
+            produtosMaisVendidos,
+            clientesMaisAtivos,
+            vendasPorMes: vendasPorMesData,
+            distribuicaoProdutos,
+            totalClientes
+        });
+    } catch (error) {
+        console.error('Erro ao obter dados do dashboard:', error);
+        res.status(500).json({ message: 'Erro ao obter dados do dashboard' });
+    }
+});
+
 // {{ edit_1 ends }}
+
+// Adicione esta nova rota no seu arquivo server.js
+app.post('/api/generate-sale/:id', authenticateToken, async (req, res) => {
+    const budgetId = req.params.id;
+
+    try {
+        // Buscar o orçamento
+        const budgets = await readJSONFile(budgetsFile);
+        const budgetIndex = budgets.findIndex(b => b.id === budgetId);
+
+        if (budgetIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Orçamento não encontrado' });
+        }
+
+        const budget = budgets[budgetIndex];
+
+        // Criar uma nova venda baseada no orçamento
+        const newSale = {
+            id: Date.now().toString(),
+            numero: await generateNextSaleNumber(),
+            data: new Date().toISOString().split('T')[0], // Data atual no formato YYYY-MM-DD
+            cliente: budget.cliente,
+            produtos: budget.produtos,
+            valorTotal: budget.valorTotal,
+            descontoTotal: budget.descontoTotal,
+            valorFinal: budget.valorFinal,
+            tipoPagamento: budget.tipoPagamento,
+            formaPagamento: budget.formaPagamento,
+            parcelas: budget.parcelas,
+            situacao: 'Concretizada',
+            paga: false
+        };
+
+        // Salvar a nova venda
+        const sales = await readJSONFile(salesFile);
+        sales.push(newSale);
+        await writeJSONFile(salesFile, sales);
+
+        // Atualizar o status do orçamento para "Aprovado"
+        budgets[budgetIndex].situacao = 'Aprovado';
+        await writeJSONFile(budgetsFile, budgets);
+
+        res.json({ success: true, message: 'Venda gerada com sucesso', sale: newSale });
+    } catch (error) {
+        console.error('Erro ao gerar venda:', error);
+        res.status(500).json({ success: false, message: 'Erro ao gerar venda' });
+    }
+});
+
+// Função auxiliar para gerar o próximo número de venda
+async function generateNextSaleNumber() {
+    const sales = await readJSONFile(salesFile);
+    const lastSale = sales.reduce((max, sale) => parseInt(sale.numero) > max ? parseInt(sale.numero) : max, 0);
+    return (lastSale + 1).toString();
+}
+
+app.post('/api/mark-parcel-as-paid', async (req, res) => {
+    try {
+        const { saleId, parcelIndex } = req.body;
+        
+        const data = await fs.readFile(SALES_FILE, 'utf8');
+        let sales = JSON.parse(data);
+
+        const saleIndex = sales.findIndex(s => s.id === saleId);
+        if (saleIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Venda não encontrada' });
+        }
+
+        const sale = sales[saleIndex];
+
+        if (sale.tipoPagamento === "À Vista") {
+            // Para vendas à vista, marcar a venda inteira como paga
+            sale.paga = true;
+        } else {
+            // Para vendas parceladas
+            if (!sale.parcelas || !sale.parcelas[parcelIndex]) {
+                return res.status(404).json({ success: false, message: 'Parcela não encontrada' });
+            }
+
+            sale.parcelas[parcelIndex].paga = true;
+
+            // Verificar se todas as parcelas estão pagas
+            const allPaid = sale.parcelas.every(p => p.paga);
+            if (allPaid) {
+                sale.paga = true;
+            }
+        }
+
+        // Salvar as alterações no arquivo
+        await fs.writeFile(SALES_FILE, JSON.stringify(sales, null, 2));
+
+        res.json({ 
+            success: true, 
+            message: 'Venda/parcela marcada como paga com sucesso', 
+            saleStatus: sale.paga ? 'Pago' : 'Pendente'
+        });
+    } catch (error) {
+        console.error('Erro ao marcar venda/parcela como paga:', error);
+        res.status(500).json({ success: false, message: 'Erro interno do servidor' });
+    }
+});
+
+// Adicione esta nova rota para gerar o arquivo de remessa
+app.get('/api/generate-remessa/:saleId', authenticateToken, async (req, res) => {
+    try {
+        const saleId = req.params.saleId;
+        const sales = await readJSONFile(salesFile);
+        const sale = sales.find(s => s.id === saleId);
+
+        if (!sale) {
+            return res.status(404).json({ message: 'Venda não encontrada' });
+        }
+
+        // Aqui você deve implementar a lógica para gerar o conteúdo do arquivo de remessa
+        // Este é apenas um exemplo simples, você precisará ajustar de acordo com as especificaões do seu banco
+        const remessaContent = generateRemessaContent(sale);
+
+        // Crie um arquivo temporário
+        const tempFilePath = path.join(__dirname, 'temp', `remessa_${saleId}.rem`);
+        await fs.writeFile(tempFilePath, remessaContent);
+
+        // Envie o arquivo como resposta
+        res.download(tempFilePath, `remessa_${saleId}.rem`, (err) => {
+            if (err) {
+                console.error('Erro ao enviar arquivo:', err);
+                res.status(500).send('Erro ao gerar arquivo de remessa');
+            }
+            // Remova o arquivo temporário após o envio
+            fs.unlink(tempFilePath).catch(console.error);
+        });
+    } catch (error) {
+        console.error('Erro ao gerar remessa:', error);
+        res.status(500).json({ message: 'Erro ao gerar arquivo de remessa' });
+    }
+});
+
+function generateRemessaContent(sale) {
+    // Implemente a lógica para gerar o conteúdo do arquivo de remessa
+    // Este é apenas um exemplo simples
+    return `REMESSA
+Venda: ${sale.numero}
+Cliente: ${sale.cliente}
+Valor: ${sale.valorFinal}
+Data: ${sale.data}
+// Adicione mais informações conforme necessário
+`;
+}
+
+// Adicione esta rota ao seu arquivo server.js
+app.post('/api/mark-parcel-as-paid', authenticateToken, (req, res) => {
+    const { saleId, parcelIndex } = req.body;
+    console.log('Received request to mark parcel as paid:', saleId, parcelIndex);
+
+    // Lê o arquivo de vendas
+    fs.readFile('data/sales.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading sales file:', err);
+            return res.status(500).json({ success: false, message: 'Erro ao ler o arquivo de vendas' });
+        }
+
+        let sales = JSON.parse(data);
+        const saleIndex = sales.findIndex(sale => sale.id === saleId);
+
+        if (saleIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Venda não encontrada' });
+        }
+
+        const sale = sales[saleIndex];
+
+        if (!sale.parcelas || !Array.isArray(sale.parcelas) || parcelIndex >= sale.parcelas.length) {
+            return res.status(400).json({ success: false, message: 'Parcela inválida' });
+        }
+
+        sale.parcelas[parcelIndex].paga = true;
+
+        // Verifica se todas as parcelas foram pagas
+        const allPaid = sale.parcelas.every(parcela => parcela.paga);
+        if (allPaid) {
+            sale.paga = true;
+            sale.situacao = 'Recebido';
+        }
+
+        // Escreve as alterações de volta no arquivo
+        fs.writeFile('data/sales.json', JSON.stringify(sales, null, 2), (writeErr) => {
+            if (writeErr) {
+                console.error('Error writing sales file:', writeErr);
+                return res.status(500).json({ success: false, message: 'Erro ao atualizar o arquivo de vendas' });
+            }
+
+            res.json({ success: true, saleStatus: sale.situacao });
+        });
+    });
+});
+
+// Adicione este middleware antes das rotas para logar todas as requisições
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+
+// Quando registrar as rotas do WhatsApp
+console.log('Registrando rotas do WhatsApp...');
+app.use('/api/whatsapp', whatsappRoutes);
+console.log('Rotas do WhatsApp registradas');
+
+// MOVA AS NOVAS ROTAS PARA AQUI - ANTES DOS MIDDLEWARES DE ERRO
+
+// Rota para cheques a vencer
+app.get('/api/cheques-a-vencer', async (req, res) => {
+    try {
+        const cheques = await readJSONFile(chequesFile);
+        const hoje = new Date();
+        const chequesAVencer = cheques.filter(cheque => {
+            const dataCompensacao = new Date(cheque.dataCompensacao);
+            return dataCompensacao > hoje && !cheque.compensado;
+        });
+
+        const valorTotal = chequesAVencer.reduce((total, cheque) => total + parseFloat(cheque.valor || 0), 0);
+
+        res.json({
+            count: chequesAVencer.length,
+            valor: valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar cheques a vencer' });
+    }
+});
+
+// Rota para vendas do mês
+app.get('/api/vendas-do-mes/:offset?', async (req, res) => {
+    try {
+        const vendas = await readJSONFile(salesFile);
+        const hoje = new Date();
+        const offset = parseInt(req.params.offset || 0);
+        
+        // Calcular o primeiro e último dia do mês desejado
+        const primeiroDiaMes = new Date(hoje.getFullYear(), hoje.getMonth() - offset, 1);
+        const ultimoDiaMes = new Date(hoje.getFullYear(), hoje.getMonth() - offset + 1, 0);
+
+        const vendasDoMes = vendas.filter(venda => {
+            const dataVenda = new Date(venda.data);
+            return dataVenda >= primeiroDiaMes && dataVenda <= ultimoDiaMes;
+        });
+
+        const valorTotal = vendasDoMes.reduce((total, venda) => total + parseFloat(venda.valorFinal || 0), 0);
+
+        // Adicionar o nome do mês na resposta
+        const nomeMes = primeiroDiaMes.toLocaleString('pt-BR', { month: 'long', year: 'numeric' });
+
+        res.json({
+            count: vendasDoMes.length,
+            valor: valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+            mes: nomeMes
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar vendas do mês' });
+    }
+});
+
+// Rota para boletos a vencer
+app.get('/api/boletos-a-vencer', async (req, res) => {
+    try {
+        const vendas = await readJSONFile(salesFile);
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0); // Zera as horas para comparação apenas da data
+        
+        let boletosAVencer = 0;
+        let valorTotal = 0;
+        let detalhes = []; // Array para armazenar detalhes dos boletos
+
+        // Filtra apenas vendas com formaPagamento "Boleto Bancário"
+        const vendasBoleto = vendas.filter(venda => venda.formaPagamento === "Boleto Bancário");
+
+        vendasBoleto.forEach(venda => {
+            if (venda.parcelas && Array.isArray(venda.parcelas)) {
+                venda.parcelas.forEach(parcela => {
+                    // Converte a data do formato "YYYY/MM/DD" para Date
+                    const [ano, mes, dia] = parcela.data.split('/');
+                    const dataVencimento = new Date(ano, mes - 1, dia);
+                    dataVencimento.setHours(0, 0, 0, 0);
+
+                    // Verifica se o boleto não está pago e a data de vencimento é futura
+                    if (!parcela.paga && dataVencimento >= hoje) {
+                        boletosAVencer++;
+                        const valor = parseFloat(parcela.valor || 0);
+                        valorTotal += valor;
+
+                        // Adiciona detalhes do boleto
+                        detalhes.push({
+                            cliente: venda.cliente,
+                            vencimento: dataVencimento,
+                            valor: valor.toLocaleString('pt-BR', { 
+                                style: 'currency', 
+                                currency: 'BRL' 
+                            }),
+                            numeroParcela: `${parcela.numero}/${venda.quantidadeParcelas}`,
+                            numeroVenda: venda.numero || 'N/A'
+                        });
+                    }
+                });
+            }
+        });
+
+        // Ordena os detalhes por data de vencimento
+        detalhes.sort((a, b) => a.vencimento - b.vencimento);
+
+        // Formata as datas após a ordenação
+        detalhes = detalhes.map(detalhe => ({
+            ...detalhe,
+            vencimento: detalhe.vencimento.toLocaleDateString('pt-BR')
+        }));
+
+        res.json({
+            count: boletosAVencer,
+            valor: valorTotal.toLocaleString('pt-BR', { 
+                style: 'currency', 
+                currency: 'BRL' 
+            }),
+            detalhes: detalhes
+        });
+    } catch (error) {
+        console.error('Erro ao buscar boletos a vencer:', error);
+        res.status(500).json({ error: 'Erro ao buscar boletos a vencer' });
+    }
+});
+
+// DEPOIS DAS ROTAS, ADICIONE OS MIDDLEWARES DE ERRO
+
+// Middleware para lidar com erros de rota não encontrada
+app.use((req, res, next) => {
+    console.log(`Rota não encontrada: ${req.method} ${req.url}`);
+    res.status(404).json({ 
+        error: 'Rota não encontrada',
+        path: req.url,
+        method: req.method
+    });
+});
+
+// Middleware para lidar com erros gerais
+app.use((err, req, res, next) => {
+    console.error('Erro na aplicação:', err);
+    res.status(500).json({ 
+        error: 'Erro interno do servidor',
+        message: err.message
+    });
+});

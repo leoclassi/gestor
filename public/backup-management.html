@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciameeeento de Backup</title>
+    <title>Gerenciamento de Backup</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -52,59 +52,64 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>🌲 Portugal Madeiras</h3>
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
             <hr>
         </div>
-        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
-            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="productsSubmenu">
-            <li>
-                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
-            </li>
-        </ul>
-        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
-            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="clientsSubmenu">
-            <li>
-                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
-            </li>
-        </ul>
-        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="salesSubmenu">
-            <li>
-                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
-            </li>
-        </ul>
-        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="financeiroSubmenu">
-            <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
-            </li>
-            <li>
-                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
-            </li>
-        </ul>
-        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
-            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="adminSubmenu">
-            <li>
-                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
-            </li>
-            <li>
-                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <button id="logoutButton" class="btn-logout">
-                <i class="fas fa-sign-out-alt"></i> Sair
-            </button>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="ordersSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                </li>
+                <li>
+                    <a href="new-dashboard.html" class="pl-5">Dashboard</a>
+                </li>
+            </ul>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -114,7 +119,7 @@
             <div class="backup-container">
                 <div class="backup-card">
                     <h2 class="backup-title">Backup Manual</h2>
-                    <p class="backup-info">Realize um backup manual dos dados do sistema.</p>
+                    <p class="backup-info">Realize um backup manual dos dados do sistema, incluindo orçamentos.</p>
                     <div class="backup-actions">
                         <button id="backupButton" class="btn btn-primary btn-backup">
                             <i class="fas fa-download mr-2"></i>Realizar Backup Manual

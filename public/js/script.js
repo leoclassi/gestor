@@ -16,15 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.add(currentTheme);
     }
 
-    themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-            body.classList.remove('dark-theme');
-            localStorage.setItem('theme', '');
-        } else {
-            body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark-theme');
-        }
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                localStorage.setItem('theme', '');
+            } else {
+                body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark-theme');
+            }
+        });
+    }
 
     // Generate random code functionality
     if (generateCodeBtn) {
@@ -33,7 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateRandomCode() {
         const code = Math.floor(1000000000 + Math.random() * 9000000000);
-        document.getElementById('codigo').value = code;
+        const codigoInput = document.getElementById('codigo');
+        if (codigoInput) {
+            codigoInput.value = code;
+        }
     }
 
     // Fetch existing products from the server
@@ -41,9 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             products = data;
-            products.forEach(product => {
-                addProductToTable(product);
-            });
+            if (productTable) {
+                products.forEach(product => {
+                    addProductToTable(product);
+                });
+            }
         });
 
     if (form) {
@@ -102,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addProductToTable(product) {
+        if (!productTable) return;
+
         const row = document.createElement('tr');
         row.innerHTML = `
             <td><input type="checkbox" class="select-product" value="${product.id}"></td>
@@ -109,8 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${product.nome}</td>
             <td>R$ ${(product.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td>R$ ${(product.valorEspecial || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <!-- Removido Estoque -->
-            <!-- Removido Data de Cadastro -->
             <td>
                 <button class="btn btn-primary btn-sm edit-btn">✏️ Editar</button>
                 <button class="btn btn-danger btn-sm delete-btn">🗑️ Excluir</button>
@@ -143,6 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateProductInTable(product) {
+        if (!productTable) return;
+
         const row = productTable.querySelector(`tr:has(input[value="${product.id}"])`);
         if (row) {
             row.innerHTML = `
@@ -151,8 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${product.nome}</td>
                 <td>R$ ${(product.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                 <td>R$ ${(product.valorEspecial || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                <!-- Removido Estoque -->
-                <!-- Removido Data de Cadastro -->
                 <td>
                     <button class="btn btn-primary btn-sm edit-btn">✏️ Editar</button>
                     <button class="btn btn-danger btn-sm delete-btn">🗑️ Excluir</button>
@@ -184,54 +191,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleDeleteSelectedButton() {
+        if (!deleteSelectedButton) return;
+
         const selectedCheckboxes = document.querySelectorAll('.select-product:checked');
         deleteSelectedButton.style.display = selectedCheckboxes.length > 0 ? 'inline-block' : 'none';
     }
 
-    selectAllCheckbox.addEventListener('change', () => {
-        const checkboxes = document.querySelectorAll('.select-product');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = selectAllCheckbox.checked;
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', () => {
+            const checkboxes = document.querySelectorAll('.select-product');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+            toggleDeleteSelectedButton();
         });
-        toggleDeleteSelectedButton();
-    });
+    }
 
-    deleteSelectedButton.addEventListener('click', () => {
-        const selectedIds = Array.from(document.querySelectorAll('.select-product:checked'))
-            .map(checkbox => checkbox.value);
+    if (deleteSelectedButton) {
+        deleteSelectedButton.addEventListener('click', () => {
+            const selectedIds = Array.from(document.querySelectorAll('.select-product:checked'))
+                .map(checkbox => checkbox.value);
 
-        if (selectedIds.length > 0) {
-            if (confirm(`Tem certeza que deseja excluir ${selectedIds.length} produto(s)?`)) {
-                Promise.all(selectedIds.map(id =>
-                    fetch(`/api/products/${id}`, { method: 'DELETE' })
-                ))
-                .then(() => {
-                    selectedIds.forEach(id => {
-                        const row = productTable.querySelector(`tr:has(input[value="${id}"])`);
-                        if (row) {
-                            productTable.removeChild(row);
-                        }
+            if (selectedIds.length > 0) {
+                if (confirm(`Tem certeza que deseja excluir ${selectedIds.length} produto(s)?`)) {
+                    Promise.all(selectedIds.map(id =>
+                        fetch(`/api/products/${id}`, { method: 'DELETE' })
+                    ))
+                    .then(() => {
+                        selectedIds.forEach(id => {
+                            const row = productTable.querySelector(`tr:has(input[value="${id}"])`);
+                            if (row) {
+                                productTable.removeChild(row);
+                            }
+                        });
+                        products = products.filter(product => !selectedIds.includes(product.id));
+                        toggleDeleteSelectedButton();
                     });
-                    products = products.filter(product => !selectedIds.includes(product.id));
-                    toggleDeleteSelectedButton();
-                });
+                }
             }
-        }
-    });
+        });
+    }
 
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredProducts = products.filter(product =>
-            product.codigo.toLowerCase().includes(searchTerm) ||
-            product.nome.toLowerCase().includes(searchTerm) ||
-            product.valor.toString().includes(searchTerm) ||
-            product.valorEspecial.toString().includes(searchTerm) ||
-            product.estoque.toString().includes(searchTerm)
-        );
-        renderProductTable(filteredProducts);
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                (product.codigo && product.codigo.toLowerCase().includes(searchTerm)) ||
+                (product.nome && product.nome.toLowerCase().includes(searchTerm)) ||
+                (product.valor && product.valor.toString().includes(searchTerm)) ||
+                (product.valorEspecial && product.valorEspecial.toString().includes(searchTerm)) ||
+                (product.estoque && product.estoque.toString().includes(searchTerm))
+            );
+            renderProductTable(filteredProducts);
+        });
+    }
 
     function renderProductTable(products) {
+        if (!productTable) return;
+
         productTable.innerHTML = '';
         products.forEach(product => {
             addProductToTable(product);

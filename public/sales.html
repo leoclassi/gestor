@@ -449,6 +449,104 @@
         .toast {
             min-width: 200px;
         }
+
+        /* Estilos para o modal de adicionar produto */
+        #addProductModal .modal-content {
+            background-color: #333;
+            color: #fff;
+        }
+
+        #addProductModal .modal-header {
+            border-bottom: 1px solid #444;
+        }
+
+        #addProductModal .modal-footer {
+            border-top: 1px solid #444;
+        }
+
+        #addProductModal .close {
+            color: #fff;
+        }
+
+        #addProductModal .form-control {
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #555;
+        }
+
+        #addProductModal .input-group-text {
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #666;
+        }
+
+        #addProductModal .btn-outline-secondary {
+            color: #fff;
+            border-color: #666;
+        }
+
+        #addProductModal .btn-outline-secondary:hover {
+            background-color: #555;
+        }
+
+        #addProductModal .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        #addProductModal .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        #addProductModal .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .generate-code {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .generate-code:hover {
+            color: #fff;
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        .generate-code i {
+            margin-right: 5px;
+        }
+
+        #newProductCode {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .input-group-append {
+            margin-left: -1px;
+        }
+
+        /* Ajustes para o tema escuro */
+        .dark-theme .generate-code {
+            background-color: #495057;
+            border-color: #495057;
+        }
+
+        .dark-theme .generate-code:hover {
+            background-color: #3d4246;
+            border-color: #373b3e;
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css" rel="stylesheet" />
@@ -494,60 +592,64 @@
 
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>🌲 Portugal Madeiras</h3>
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
             <hr>
         </div>
-        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
-            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="productsSubmenu">
-            <li>
-                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
-            </li>
-        </ul>
-        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
-            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="clientsSubmenu">
-            <li>
-                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
-            </li>
-        </ul>
-        <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false">
-            🛒 Vendas <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="salesSubmenu">
-            <li>
-                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
-            </li>
-        </ul>
-        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="financeiroSubmenu">
-            <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
-            </li>
-            <li>
-                <a href="sales-chart.html" class="pl-5">Gráfico de Vendas</a>
-            </li>
-        </ul>
-        <!-- Novo código de Admin -->
-        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
-            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="adminSubmenu">
-            <li>
-                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
-            </li>
-            <li>
-                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <button id="logoutButton" class="btn-logout">
-                <i class="fas fa-sign-out-alt"></i> Sair
-            </button>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="ordersSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                </li>
+                <li>
+                    <a href="new-dashboard.html" class="pl-5">Dashboard</a>
+                </li>
+            </ul>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -571,7 +673,7 @@
                                     <input type="text" class="form-control" id="cliente" required>
                                     <div class="input-group-append">
                                         <button class="btn btn-primary btn-novo-cliente" type="button" data-toggle="modal" data-target="#addClientModal">
-                                            <i class="fas fa-user-plus"></i> Novo Cliente
+                                            <i class="fas fa-user-plus"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -605,7 +707,7 @@
                         <div id="productsContainer">
                             <!-- As linhas de produto serão adicionadas aqui dinamicamente -->
                         </div>
-                        <button type="button" class="btn btn-primary" id="addProduct">
+                        <button type="button" class="btn btn-primary mt-3" id="addProduct">
                             <i class="fas fa-plus"></i> Adicionar produto
                         </button>
                     </div>
@@ -677,7 +779,20 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="quantidadeParcelas">Qnt. parcelas</label>
-                                <input type="number" class="form-control" id="quantidadeParcelas" min="1">
+                                <select class="form-control" id="quantidadeParcelas">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="dataPrimeiraParcela">Data 1ª parcela</label>
@@ -797,8 +912,8 @@
                                     <input type="text" class="form-control" id="logradouro">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero">Número</label>
-                                    <input type="text" class="form-control" id="numero">
+                                    <label for="numeroEndereco">Número</label>
+                                    <input type="text" class="form-control" id="numeroEndereco" name="numeroEndereco">
                                 </div>
                                 <div class="form-group">
                                     <label for="bairro">Bairro</label>
@@ -826,7 +941,7 @@
 
     <!-- Modal para adicionar novo produto -->
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addProductModalLabel">Adicionar Produto</h5>
@@ -836,48 +951,81 @@
                 </div>
                 <div class="modal-body">
                     <form id="addProductForm">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="codigo">Código</label>
-                                <input type="text" class="form-control" id="codigo" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="nome">Nome</label>
-                                <input type="text" class="form-control" id="nome" required>
+                        <div class="form-group">
+                            <label for="newProductCode">Código</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="newProductCode" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary generate-code" type="button" id="generateCode">
+                                        <i class="fas fa-random"></i> Gerar
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="newProductName">Nome</label>
+                            <input type="text" class="form-control" id="newProductName" required>
+                        </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="valor">Valor Simples</label>
+                            <div class="form-group col-md-6">
+                                <label for="newProductValue">Valor Simples</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="number" class="form-control" id="valor" step="0.01" required>
+                                    <input type="number" class="form-control" id="newProductValue" step="0.01" required>
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="valorEspecial">Valor Especial</label>
+                            <div class="form-group col-md-6">
+                                <label for="newProductValueSpecial">Valor Especial</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="number" class="form-control" id="valorEspecial" step="0.01">
+                                    <input type="number" class="form-control" id="newProductValueSpecial" step="0.01">
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="estoque">Estoque</label>
-                                <input type="number" class="form-control" id="estoque" required>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newProductStock">Estoque</label>
+                            <input type="number" class="form-control" id="newProductStock" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" form="addProductForm" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-success" id="saveNewProduct">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('btnParcelado').addEventListener('click', () => {
+            document.getElementById('formaPagamentoRow').style.display = 'block';
+            document.getElementById('parceladoFields').style.display = 'block';
+            // Não é necessário alterar o JavaScript para ler o valor do dropdown, 
+            // a menos que você esteja processando esse valor em outro lugar.
+        });
+
+        document.getElementById('btnGerarParcelas').addEventListener('click', () => {
+            const numParcelas = document.getElementById('quantidadeParcelas').value;
+            console.log(`Número de parcelas selecionado: ${numParcelas}`);
+            // Aqui você pode adicionar o código para gerar as parcelas baseado no número selecionado
+        });
+    </script>
+
+    <script>
+        document.getElementById('intervaloParcelas').addEventListener('input', function() {
+            const intervaloDias = parseInt(this.value);
+            if (!isNaN(intervaloDias)) {
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0); // Resetar a hora para meia-noite para evitar problemas com a mudança de horário de verão
+                const dataPrimeiraParcela = new Date(hoje.getTime() + intervaloDias * 24 * 60 * 60 * 1000);
+                const dataFormatada = dataPrimeiraParcela.toISOString().split('T')[0]; // Formatar a data para o formato apropriado para input[type=date]
+                document.getElementById('dataPrimeiraParcela').value = dataFormatada;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -8,27 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        :root {
-            --primary-color: #4a4a4a;
-            --secondary-color: #6c757d;
-            --accent-color: #007bff;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
-        }
         body {
-            background: linear-gradient(135deg, var(--bg-color), #e9ecef);
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Arial', sans-serif;
-            color: var(--text-color);
         }
         .login-container {
-            background-color: #ffffff;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
             padding: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             max-width: 400px;
             width: 100%;
         }
@@ -36,97 +34,105 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .login-header h2 {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 25px;
+        .login-header img {
+            max-width: 80%;
+            height: auto;
         }
         .form-control {
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 20px;
             padding: 10px 15px;
-            height: auto;
-            transition: all 0.3s ease;
-            border: 1px solid #ced4da;
+            color: #fff;
         }
-        .form-control:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            border-color: var(--accent-color);
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
         .btn-login {
-            background-color: var(--accent-color);
+            background-color: rgba(74, 74, 74, 0.8);
             border: none;
-            border-radius: 4px;
+            border-radius: 20px;
             padding: 10px 20px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            color: white;
+            color: #fff;
         }
         .btn-login:hover {
-            background-color: #0056b3;
-            transform: translateY(-1px);
-        }
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .register-link a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .register-link a:hover {
-            text-decoration: underline;
+            background-color: rgba(51, 51, 51, 0.9);
+            transform: translateY(-2px);
         }
         .input-group-text {
-            background-color: #f8f9fa;
-            border-right: none;
-            border-radius: 4px 0 0 4px;
-            border: 1px solid #ced4da;
+            background-color: transparent;
+            border: none;
+            color: #fff;
         }
-        .input-group .form-control {
-            border-left: none;
-            border-radius: 0 4px 4px 0;
+        .text-muted {
+            color: rgba(255, 255, 255, 0.7) !important;
         }
-        .input-group-prepend .input-group-text {
-            color: var(--secondary-color);
+        .animate__animated.animate__delay-1s {
+            animation-delay: 1s;
+        }
+        .animate__animated.animate__delay-2s {
+            animation-delay: 2s;
+        }
+        .error-message {
+            color: #ff4136;
+            background-color: rgba(255, 65, 54, 0.1);
+            border: 1px solid #ff4136;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .shake {
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
         }
     </style>
 </head>
 <body>
-    <div class="login-container animate__animated animate__fadeIn">
+    <div class="login-container animate__animated animate__fadeIn animate__slower">
         <div class="login-header">
-            <h2 class="animate__animated animate__fadeInDown">Portugal Madeiras</h2>
+            <img src="logo.jpg" alt="Portugal Madeiras" class="animate__animated animate__zoomIn animate__delay-1s">
         </div>
+        <div id="errorMessage" class="error-message"></div>
         <form id="loginForm">
-            <div class="form-group animate__animated animate__fadeInLeft">
+            <div class="form-group animate__animated animate__fadeInLeft animate__delay-1s">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text"><i class="fas fa-user animate__animated animate__pulse animate__infinite"></i></span>
                     </div>
                     <input type="text" class="form-control" id="username" placeholder="Usuário" required>
                 </div>
             </div>
-            <div class="form-group animate__animated animate__fadeInRight">
+            <div class="form-group animate__animated animate__fadeInRight animate__delay-1s">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <span class="input-group-text"><i class="fas fa-lock animate__animated animate__pulse animate__infinite"></i></span>
                     </div>
                     <input type="password" class="form-control" id="password" placeholder="Senha" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block btn-login animate__animated animate__fadeInUp">
+            <button type="submit" class="btn btn-block btn-login animate__animated animate__fadeInUp animate__delay-2s">
                 Entrar <i class="fas fa-sign-in-alt ml-2"></i>
             </button>
         </form>
-        <div class="register-link animate__animated animate__fadeInUp">
-            <p>Acesso restrito a usuários autorizados.</p>
+        <div class="text-center mt-3 animate__animated animate__fadeIn animate__delay-2s">
+            <small class="text-muted">Acesso restrito a usuários autorizados.</small>
         </div>
     </div>
 
@@ -134,5 +140,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/auth.js"></script>
+    <!-- Remova o script inline daqui -->
 </body>
 </html>

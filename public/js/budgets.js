@@ -1,25 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const numeroVendaInput = document.getElementById('numero');
-    let numeroVendaAtual = numeroVendaInput.value;
+    const numeroOrcamentoInput = document.getElementById('numero');
+    let numeroOrcamentoAtual = numeroOrcamentoInput.value;
 
-    // Função para buscar o próximo número de venda
-    async function fetchNextSaleNumber() {
-        if (!numeroVendaAtual) {
+    async function fetchNextBudgetNumber() {
+        if (!numeroOrcamentoAtual) {
             try {
-                const response = await fetch('/api/next-sale-number');
+                const response = await fetch('/api/next-budget-number');
                 const data = await response.json();
-                numeroVendaAtual = data.nextNumber;
-                numeroVendaInput.value = numeroVendaAtual;
+                numeroOrcamentoAtual = data.nextNumber;
+                numeroOrcamentoInput.value = numeroOrcamentoAtual;
             } catch (error) {
-                console.error('Erro ao buscar o próximo número de venda:', error);
+                console.error('Erro ao buscar o próximo número de orçamento:', error);
             }
         }
     }
 
-    // Chame fetchNextSaleNumber() apenas uma vez no carregamento da página
-    fetchNextSaleNumber();
+    fetchNextBudgetNumber();
 
-    const addSaleForm = document.getElementById('addSaleForm');
+    const addBudgetForm = document.getElementById('addBudgetForm');
     const productsContainer = document.getElementById('productsContainer');
     const addProductButton = document.getElementById('addProduct');
     const themeToggle = document.getElementById('themeToggle');
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let products = [];
     let clients = [];
 
-    // Theme toggle functionality
     const body = document.body;
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
@@ -47,12 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Função para aplicar o tema escuro
     function applyDarkTheme() {
         body.classList.add('dark-theme');
         localStorage.setItem('theme', 'dark-theme');
         
-        // Aplicar tema escuro às parcelas geradas
         const parcelasGeradas = document.getElementById('parcelasGeradas');
         const listaParcelas = document.getElementById('listaParcelas');
         const btnGerarParcelas = document.getElementById('btnGerarParcelas');
@@ -64,12 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (parceladoFields) parceladoFields.classList.add('dark-theme');
     }
 
-    // Função para remover o tema escuro
     function removeDarkTheme() {
         body.classList.remove('dark-theme');
         localStorage.setItem('theme', '');
         
-        // Remover tema escuro das parcelas geradas
         const parcelasGeradas = document.getElementById('parcelasGeradas');
         const listaParcelas = document.getElementById('listaParcelas');
         const btnGerarParcelas = document.getElementById('btnGerarParcelas');
@@ -81,12 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (parceladoFields) parceladoFields.classList.remove('dark-theme');
     }
 
-    // Aplicar o tema inicial com base na preferência salva
     if (currentTheme === 'dark-theme') {
         applyDarkTheme();
     }
 
-    // Fetch products and clients
     fetch('/api/products')
         .then(response => response.json())
         .then(data => {
@@ -124,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selectedProduct = products.find(p => p.nome === ui.item.value);
                 if (selectedProduct) {
                     const row = $(this).closest('.form-row');
-                    row.find('input[type="number"]').eq(0).prop('disabled', false); // Habilitar quantidade
-                    row.find('select.tipo-preco').prop('disabled', false); // Habilitar tipo de preço
+                    row.find('input[type="number"]').eq(0).prop('disabled', false);
+                    row.find('select.tipo-preco').prop('disabled', false);
                     updateUnitPrice(row, selectedProduct);
                 }
             }
@@ -137,27 +128,36 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateUnitPrice(row, product) {
         const priceType = row.find('select.tipo-preco').val();
         const price = priceType === 'simples' ? product.valor : product.valorEspecial;
-        row.find('input[type="number"]').eq(1).val(price.toFixed(2)); // Preencher valor com duas casas decimais
-        calculateSubtotal(row); // Passar objeto jQuery
+        row.find('input[type="number"]').eq(1).val(price.toFixed(2));
+        calculateSubtotal(row);
     }
 
     function setupInitialProductRow() {
         const initialRow = productsContainer.querySelector('.form-row');
         if (initialRow) {
             setupProductAutocomplete(initialRow.querySelector('.produto-autocomplete'));
-            setupRowEventListeners($(initialRow)); // Converter para objeto jQuery
+            setupRowEventListeners($(initialRow));
         }
     }
 
-    // Add product row
     addProductButton.addEventListener('click', addProductRow);
+
+    // Adicione uma variável global para armazenar a linha de produto atual
+    let currentProductRow = null;
 
     function addProductRow() {
         const productRowHTML = `
             <div class="form-row mb-3 align-items-end">
                 <div class="form-group produto-col">
                     <label for="produto">Produto</label>
-                    <input type="text" class="form-control produto-autocomplete" required>
+                    <div class="input-group">
+                        <input type="text" class="form-control produto-autocomplete" required>
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-primary add-new-product-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group quantidade-col">
                     <label for="quantidade">Quantidade</label>
@@ -206,15 +206,21 @@ document.addEventListener('DOMContentLoaded', () => {
         setupProductAutocomplete($productRow.find('.produto-autocomplete')[0]);
         setupRowEventListeners($productRow);
         updateTotalValue();
+
+        // Adicionar evento de clique para o botão de adicionar novo produto
+        $productRow.find('.add-new-product-btn').on('click', () => {
+            currentProductRow = $productRow[0];
+            if (addProductModal) {
+                addProductModal.show();
+            }
+        });
     }
     function setupRowEventListeners(row) {
-        // Add event listener to remove button
         row.find('.remove-product').on('click', () => {
             row.remove();
             updateTotalValue();
         });
 
-        // Add event listeners to calculate subtotal
         const quantidadeInput = row.find('input[type="number"]').eq(0);
         const valorInput = row.find('input[type="number"]').eq(1);
         const descontoInput = row.find('.desconto-input');
@@ -225,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const recalculateSubtotal = () => {
-            calculateSubtotal(row); // Passar objeto jQuery
+            calculateSubtotal(row);
             updateTotalValue();
         };
 
@@ -278,16 +284,16 @@ document.addEventListener('DOMContentLoaded', () => {
             total += parseCurrency(subtotalStr);
         });
 
-        const valorTotalVendaInput = document.getElementById('valorTotalVenda');
-        valorTotalVendaInput.value = formatCurrency(total);
-        valorTotalVendaInput.setAttribute('data-valor-original', total.toFixed(2));
+        const valorTotalOrcamentoInput = document.getElementById('valorTotalOrcamento');
+        valorTotalOrcamentoInput.value = formatCurrency(total);
+        valorTotalOrcamentoInput.setAttribute('data-valor-original', total.toFixed(2));
 
         calcularValorTotal();
     }
 
     function calcularValorTotal() {
-        const valorTotalVendaInput = document.getElementById('valorTotalVenda');
-        let valorTotalProdutos = parseFloat(valorTotalVendaInput.getAttribute('data-valor-original')) || 0;
+        const valorTotalOrcamentoInput = document.getElementById('valorTotalOrcamento');
+        let valorTotalProdutos = parseFloat(valorTotalOrcamentoInput.getAttribute('data-valor-original')) || 0;
 
         const descontoTotalInput = document.getElementById('descontoTotal');
         const descontoTotal = parseFloat(descontoTotalInput.value) || 0;
@@ -303,10 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         valorFinal = Math.max(0, valorFinal);
-        document.getElementById('valorTotalVenda').value = formatCurrency(valorFinal);
+        document.getElementById('valorTotalOrcamento').value = formatCurrency(valorFinal);
     }
 
-    // Atualize a função calculateSubtotal para usar a nova formatação
     function calculateSubtotal(row) {
         const quantidade = parseInt(row.find('input[type="number"]').eq(0).val()) || 0;
         const valor = parseFloat(row.find('input[type="number"]').eq(1).val()) || 0;
@@ -328,11 +333,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotalValue();
     }
 
-    // Adicione estes event listeners
     document.getElementById('descontoTotal').addEventListener('input', calcularValorTotal);
     document.getElementById('descontoTotalTipo').addEventListener('change', calcularValorTotal);
 
-    // Remova o event listener 'change' anterior e substitua por este
     document.getElementById('descontoTotal').addEventListener('input', function() {
         if (this.value === '' || parseFloat(this.value) === 0) {
             this.value = '';
@@ -340,8 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calcularValorTotal();
     });
 
-    // Handle form submission
-    addSaleForm.addEventListener('submit', async (e) => {
+    addBudgetForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const numero = document.getElementById('numero').value;
@@ -350,9 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = document.getElementById('data').value;
         const prazoEntrega = document.getElementById('prazoEntrega').value;
         const formaPagamento = formaPagamentoSelect.value;
-        const valorTotalVenda = parseCurrency(document.getElementById('valorTotalVenda').value);
+        const valorTotalOrcamento = parseCurrency(document.getElementById('valorTotalOrcamento').value);
 
-        const saleProducts = [];
+        const budgetProducts = [];
         productsContainer.querySelectorAll('.form-row').forEach(row => {
             const produto = row.querySelector('.produto-autocomplete').value;
             const quantidade = Math.max(1, parseInt(row.querySelector('input[type="number"]').value) || 1);
@@ -361,109 +363,98 @@ document.addEventListener('DOMContentLoaded', () => {
             const descontoTipo = row.querySelector('.desconto-tipo').value;
             const subtotal = parseCurrency(row.querySelector('input[readonly]').value);
 
-            saleProducts.push({ produto, quantidade, valor, desconto, descontoTipo, subtotal });
+            budgetProducts.push({ produto, quantidade, valor, desconto, descontoTipo, subtotal });
         });
 
-        const newSale = {
+        const newBudget = {
             numero,
             cliente,
             situacao,
             data,
             prazoEntrega,
             formaPagamento,
-            produtos: saleProducts,
-            valorTotal: valorTotalVenda,
+            produtos: budgetProducts,
+            valorTotal: valorTotalOrcamento,
             descontoTotal: {
                 valor: parseFloat(document.getElementById('descontoTotal').value) || 0,
                 tipo: document.getElementById('descontoTotalTipo').value
             },
-            valorFinal: parseCurrency(document.getElementById('valorTotalVenda').value)
+            valorFinal: parseCurrency(document.getElementById('valorTotalOrcamento').value)
         };
 
-        // Adicionar novos campos ao objeto newSale
         if (document.getElementById('parceladoFields').style.display === 'block') {
-            newSale.tipoPagamento = 'Parcelado';
-            newSale.intervaloParcelas = parseInt(document.getElementById('intervaloParcelas').value) || 0;
-            newSale.quantidadeParcelas = parseInt(document.getElementById('quantidadeParcelas').value) || 0;
-            newSale.dataPrimeiraParcela = document.getElementById('dataPrimeiraParcela').value || '';
-            newSale.parcelas = window.vendaAtual ? window.vendaAtual.parcelas : [];
+            newBudget.tipoPagamento = 'Parcelado';
+            newBudget.intervaloParcelas = parseInt(document.getElementById('intervaloParcelas').value) || 0;
+            newBudget.quantidadeParcelas = parseInt(document.getElementById('quantidadeParcelas').value) || 0;
+            newBudget.dataPrimeiraParcela = document.getElementById('dataPrimeiraParcela').value || '';
+            newBudget.parcelas = window.orcamentoAtual ? window.orcamentoAtual.parcelas : [];
         } else {
-            newSale.tipoPagamento = 'À Vista';
+            newBudget.tipoPagamento = 'À Vista';
         }
 
-        // Se estiver editando, mantenha o ID original
-        if (saleId) {
-            newSale.id = saleId;
+        if (budgetId) {
+            newBudget.id = budgetId;
         }
 
-        const url = saleId ? `/api/sales/${saleId}` : '/api/sales';
-        const method = saleId ? 'PUT' : 'POST';
+        const url = budgetId ? `/api/budgets/${budgetId}` : '/api/budgets';
+        const method = budgetId ? 'PUT' : 'POST';
 
         fetch(url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newSale)
+            body: JSON.stringify(newBudget)
         })
         .then(response => response.json())
-        .then(sale => {
-            // Remover o alerta e redirecionar para a página de gerenciamento de vendas
-            window.location.href = 'sales-management.html';
+        .then(budget => {
+            window.location.href = 'budgets-management.html';
         })
         .catch(error => {
-            console.error('Erro ao salvar a venda:', error);
-            alert('Ocorreu um erro ao salvar a venda. Por favor, tente novamente.');
+            console.error('Erro ao salvar o orçamento:', error);
+            alert('Ocorreu um erro ao salvar o orçamento. Por favor, tente novamente.');
         });
     });
 
-    // Verificar se há um ID de venda na URL
     const urlParams = new URLSearchParams(window.location.search);
-    const saleId = urlParams.get('id');
+    const budgetId = urlParams.get('id');
 
-    if (saleId) {
-        // Se houver um ID, buscar os detalhes da venda e preencher o formulário
-        fetch(`/api/sales/${saleId}`)
+    if (budgetId) {
+        fetch(`/api/budgets/${budgetId}`)
             .then(response => response.json())
-            .then(sale => {
-                document.getElementById('numero').value = sale.numero; // Usar o número existente
-                document.getElementById('cliente').value = sale.cliente;
-                document.getElementById('situacao').value = sale.situacao;
-                document.getElementById('data').value = sale.data;
-                document.getElementById('prazoEntrega').value = sale.prazoEntrega || '';
+            .then(budget => {
+                document.getElementById('numero').value = budget.numero;
+                document.getElementById('cliente').value = budget.cliente;
+                document.getElementById('situacao').value = budget.situacao;
+                document.getElementById('data').value = budget.data;
+                document.getElementById('prazoEntrega').value = budget.prazoEntrega || '';
                 
-                // Carregar a forma de pagamento
-                if (sale.formaPagamento) {
-                    $(formaPagamentoSelect).val(sale.formaPagamento).trigger('change');
+                if (budget.formaPagamento) {
+                    $(formaPagamentoSelect).val(budget.formaPagamento).trigger('change');
                 }
 
-                // Limpar produtos existentes
                 const productsContainer = document.getElementById('productsContainer');
                 productsContainer.innerHTML = '';
                 
-                // Adicionar produtos da venda
-                sale.produtos.forEach(produto => {
+                budget.produtos.forEach(produto => {
                     adicionarProduto(produto);
                 });
 
-                // Carregar o desconto total
-                if (sale.descontoTotal) {
-                    document.getElementById('descontoTotal').value = sale.descontoTotal.valor;
-                    document.getElementById('descontoTotalTipo').value = sale.descontoTotal.tipo;
+                if (budget.descontoTotal) {
+                    document.getElementById('descontoTotal').value = budget.descontoTotal.valor;
+                    document.getElementById('descontoTotalTipo').value = budget.descontoTotal.tipo;
                 }
 
-                // Carregar os novos campos se a forma de pagamento for "Parcelado"
-                if (sale.tipoPagamento === 'Parcelado') {
+                if (budget.tipoPagamento === 'Parcelado') {
                     updatePaymentSelection('Parcelado');
-                    document.getElementById('intervaloParcelas').value = sale.intervaloParcelas || '';
-                    document.getElementById('quantidadeParcelas').value = sale.quantidadeParcelas || '';
-                    document.getElementById('dataPrimeiraParcela').value = sale.dataPrimeiraParcela || '';
+                    document.getElementById('intervaloParcelas').value = budget.intervaloParcelas || '';
+                    document.getElementById('quantidadeParcelas').value = budget.quantidadeParcelas || '';
+                    document.getElementById('dataPrimeiraParcela').value = budget.dataPrimeiraParcela || '';
                     parceladoFields.style.display = 'block';
 
-                    // Exibir as parcelas geradas
-                    if (sale.parcelas && sale.parcelas.length > 0) {
+                    if (budget.parcelas && budget.parcelas.length > 0) {
                         listaParcelas.innerHTML = '';
-                        sale.parcelas.forEach(parcela => {
+                        budget.parcelas.forEach(parcela => {
                             const li = document.createElement('li');
                             li.className = 'list-group-item';
                             li.textContent = `Parcela ${parcela.numero}: ${formatCurrency(parseFloat(parcela.valor))} - Vencimento: ${formatDate(parcela.data)}`;
@@ -475,27 +466,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     updatePaymentSelection('À Vista');
                 }
 
-                // Atualizar o valor total e final
                 updateTotalValue();
 
-                document.querySelector('button[type="submit"]').textContent = 'Atualizar Venda';
+                document.querySelector('button[type="submit"]').textContent = 'Atualizar Orçamento';
             })
-            .catch(error => console.error('Erro ao buscar detalhes da venda:', error));
+            .catch(error => console.error('Erro ao buscar detalhes do orçamento:', error));
     }
 
-    // Função para formatar a data para o formato aceito pelo input type="date"
     function formatDateForInput(dateString) {
         return dateString ? new Date(dateString).toISOString().split('T')[0] : '';
     }
 
-    // Função para adicionar um produto ao formulário
     function adicionarProduto(produto) {
         const productRow = document.createElement('div');
         productRow.classList.add('form-row', 'mb-3', 'align-items-end');
         productRow.innerHTML = `
             <div class="form-group produto-col">
                 <label for="produto">Produto</label>
+                <div class="input-group">
                 <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary add-new-product-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="form-group quantidade-col">
                 <label for="quantidade">Quantidade</label>
@@ -538,40 +533,42 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         document.getElementById('productsContainer').appendChild(productRow);
         
-        // Reaplique os event listeners e a funcionalidade de autocomplete
         setupProductAutocomplete(productRow.querySelector('.produto-autocomplete'));
-        setupRowEventListeners($(productRow)); // Converter para objeto jQuery
+        setupRowEventListeners($(productRow));
+        
+        // Adicionar evento de clique para o botão de adicionar novo produto
+        $(productRow).find('.add-new-product-btn').on('click', () => {
+            currentProductRow = productRow;
+            if (addProductModal) {
+                addProductModal.show();
+            }
+        });
+        
         updateTotalValue();
     }
 
-    // Mova estas funções para dentro do evento DOMContentLoaded
     function setCurrentDate() {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+        const month = String(today.getMonth() + 1).padStart(2, '0');
         const year = today.getFullYear();
         dataInput.value = `${year}-${month}-${day}`;
     }
 
-    // Definir a data atual no campo de data ao carregar a página
     setCurrentDate();
 
     const formaPagamentoSelect = document.getElementById('formaPagamento');
 
-    // Inicializar o select2 para o campo de forma de pagamento
     $(formaPagamentoSelect).select2({
         placeholder: 'Digite para buscar',
         allowClear: true,
         theme: 'bootstrap4'
     });
 
-    // Chame updateTotalValue() para inicializar o valor total
     updateTotalValue();
 
-    // Adicione uma linha de produto inicial
     addProductRow();
 
-    // Inicialize o autocomplete para todos os campos de produto existentes
     initializeAutocomplete();
 
     function initializeAutocomplete() {
@@ -606,27 +603,25 @@ document.addEventListener('DOMContentLoaded', () => {
     btnAVista.addEventListener('click', () => updatePaymentSelection('À Vista'));
     btnParcelado.addEventListener('click', () => updatePaymentSelection('Parcelado'));
 
-    // Se houver um ID de venda na URL, atualize a seleção de forma de pagamento
-    if (saleId) {
-        fetch(`/api/sales/${saleId}`)
+    if (budgetId) {
+        fetch(`/api/budgets/${budgetId}`)
             .then(response => response.json())
-            .then(sale => {
-                if (sale.tipoPagamento === 'Parcelado') {
+            .then(budget => {
+                if (budget.tipoPagamento === 'Parcelado') {
                     updatePaymentSelection('Parcelado');
-                    document.getElementById('intervaloParcelas').value = sale.intervaloParcelas || '';
-                    document.getElementById('quantidadeParcelas').value = sale.quantidadeParcelas || '';
-                    document.getElementById('dataPrimeiraParcela').value = sale.dataPrimeiraParcela || '';
-                    if (sale.parcelas) {
-                        window.vendaAtual = { parcelas: sale.parcelas };
-                        renderParcelas(sale.parcelas);
+                    document.getElementById('intervaloParcelas').value = budget.intervaloParcelas || '';
+                    document.getElementById('quantidadeParcelas').value = budget.quantidadeParcelas || '';
+                    document.getElementById('dataPrimeiraParcela').value = budget.dataPrimeiraParcela || '';
+                    if (budget.parcelas) {
+                        window.orcamentoAtual = { parcelas: budget.parcelas };
+                        renderParcelas(budget.parcelas);
                     }
                 } else {
                     updatePaymentSelection('À Vista');
                 }
             })
-            .catch(error => console.error('Erro ao buscar detalhes da venda:', error));
+            .catch(error => console.error('Erro ao buscar detalhes do orçamento:', error));
     } else {
-        // Se for uma nova venda, selecionar 'À Vista' por padrão
         updatePaymentSelection('À Vista');
     }
 
@@ -640,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const intervaloParcelas = parseInt(document.getElementById('intervaloParcelas').value);
         const quantidadeParcelas = parseInt(document.getElementById('quantidadeParcelas').value);
         const dataPrimeiraParcela = document.getElementById('dataPrimeiraParcela').value;
-        const valorTotal = parseCurrency(document.getElementById('valorTotalVenda').value);
+        const valorTotal = parseCurrency(document.getElementById('valorTotalOrcamento').value);
 
         if (!intervaloParcelas || !quantidadeParcelas || !dataPrimeiraParcela || isNaN(valorTotal)) {
             alert('Por favor, preencha todos os campos de parcelamento corretamente.');
@@ -654,23 +649,20 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < quantidadeParcelas; i++) {
             parcelas.push({
                 numero: i + 1,
-                data: formatDateWithSlashes(dataAtual.toISOString().split('T')[0]), // Formatar a data com barras
+                data: formatDateWithSlashes(dataAtual.toISOString().split('T')[0]),
                 valor: valorParcela
             });
             dataAtual.setDate(dataAtual.getDate() + intervaloParcelas);
         }
 
-        // Exibir as parcelas geradas
         renderParcelas(parcelas);
 
-        // Armazenar as parcelas no objeto de venda
-        if (!window.vendaAtual) {
-            window.vendaAtual = {};
+        if (!window.orcamentoAtual) {
+            window.orcamentoAtual = {};
         }
-        window.vendaAtual.parcelas = parcelas;
+        window.orcamentoAtual.parcelas = parcelas;
     }
 
-    // Função para renderizar as parcelas
     function renderParcelas(parcelas) {
         listaParcelas.innerHTML = '';
         parcelas.forEach(parcela => {
@@ -682,34 +674,27 @@ document.addEventListener('DOMContentLoaded', () => {
         parcelasGeradas.style.display = 'block';
     }
 
-    // Função auxiliar para formatar a data com barras
     function formatDateWithSlashes(dateString) {
         const [year, month, day] = dateString.split('-');
         return `${year}/${month}/${day}`;
     }
 
-    // Função auxiliar para formatar a data
     function formatDate(dateString) {
         if (dateString.includes('-')) {
-            // Se a data estiver no formato YYYY-MM-DD
             const [year, month, day] = dateString.split('-');
             return `${day}/${month}/${year}`;
         } else {
-            // Se a data estiver no formato YYYY/MM/DD
             const [year, month, day] = dateString.split('/');
             return `${day}/${month}/${year}`;
         }
     }
 
-    // Adicionar evento de mudança ao select de tipo de cliente
     const tipoClienteSelect = document.getElementById('tipoCliente');
     tipoClienteSelect.addEventListener('change', toggleDocumentFields);
 
-    // Adicionar evento de submit ao formulário de cliente
     const addClientForm = document.getElementById('addClientForm');
     addClientForm.addEventListener('submit', handleAddClient);
 
-    // Adicionar evento de clique ao botão de buscar CNPJ
     const buscarCNPJButton = document.getElementById('buscarCNPJ');
     buscarCNPJButton.addEventListener('click', buscarCNPJ);
 
@@ -733,6 +718,9 @@ document.addEventListener('DOMContentLoaded', () => {
     async function handleAddClient(event) {
         event.preventDefault();
 
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}, ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
+
         const newClient = {
             tipoCliente: document.getElementById('tipoCliente').value,
             nome: document.getElementById('nome').value,
@@ -743,367 +731,174 @@ document.addEventListener('DOMContentLoaded', () => {
             endereco: {
                 cep: document.getElementById('cep').value,
                 logradouro: document.getElementById('logradouro').value,
-                numero: document.getElementById('numero').value,
+                numero: document.getElementById('numeroEndereco').value, // Use o ID correto aqui
                 bairro: document.getElementById('bairro').value,
                 cidade: document.getElementById('cidade').value,
-                uf: document.getElementById('uf').value
+                estado: document.getElementById('estado').value
             },
-            dataCadastro: new Date().toLocaleString()
+            dataCadastro: formattedDate
         };
 
         try {
             const response = await fetch('/api/clients', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newClient)
             });
 
             if (response.ok) {
-                const savedClient = await response.json();
-                // Remova o alert e adicione esta linha para mostrar o Toast
-                $('#successToast').toast('show');
-                
+                const client = await response.json();
+                clients.push(client);
+                setupClientAutocomplete();
                 $('#addClientModal').modal('hide');
-                
-                // Atualizar o campo de cliente com o novo cliente
-                const clienteInput = document.getElementById('cliente');
-                clienteInput.value = savedClient.nome;
-                
-                // Adicionar o novo cliente à lista de clientes para o autocomplete
-                clients.push(savedClient);
-                
-                // Atualizar o autocomplete
-                $(clienteInput).autocomplete("option", "source", clients.map(client => client.nome));
-                
-                // Disparar o evento de mudança para atualizar quaisquer listeners
-                $(clienteInput).trigger('change');
+                document.getElementById('cliente').value = client.nome;
+                alert('Cliente adicionado com sucesso!');
             } else {
-                throw new Error('Erro ao cadastrar cliente');
+                throw new Error('Erro ao adicionar cliente');
             }
         } catch (error) {
-            console.error('Erro ao cadastrar cliente:', error);
-            // Substitua o alert por um Toast de erro
-            showErrorToast('Erro ao cadastrar cliente. Por favor, tente novamente.');
+            console.error('Erro ao adicionar cliente:', error);
+            alert('Ocorreu um erro ao adicionar o cliente. Por favor, tente novamente.');
         }
-    }
-
-    // Adicione esta função para mostrar um Toast de sucesso
-    function showSuccessToast(message) {
-        const successToast = `
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-            <div class="toast-header bg-success text-white">
-                <strong class="mr-auto">Sucesso</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                ${message}
-            </div>
-        </div>
-        `;
-
-        showToast(successToast);
-    }
-
-    // Modifique a função showErrorToast para usar a função showToast
-    function showErrorToast(message) {
-        const errorToast = `
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-            <div class="toast-header bg-danger text-white">
-                <strong class="mr-auto">Erro</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                ${message}
-            </div>
-        </div>
-        `;
-
-        showToast(errorToast);
-    }
-
-    // Adicione esta função para mostrar o Toast
-    function showToast(toastHTML) {
-        // Verifique se o container de toast existe, se não, crie-o
-        let toastContainer = document.querySelector('.toast-container');
-        if (!toastContainer) {
-            toastContainer = document.createElement('div');
-            toastContainer.className = 'toast-container position-fixed bottom-0 right-0 p-3';
-            document.body.appendChild(toastContainer);
-        }
-
-        // Adicione o Toast ao container
-        toastContainer.insertAdjacentHTML('beforeend', toastHTML);
-
-        // Mostre o Toast
-        $('.toast:last-child').toast('show');
-
-        // Remova o Toast do DOM após ser ocultado
-        $('.toast:last-child').on('hidden.bs.toast', function () {
-            $(this).remove();
-        });
     }
 
     async function buscarCNPJ() {
-        const cnpjInput = document.getElementById('cnpj');
-        if (!cnpjInput) {
-            console.error('Elemento de input CNPJ não encontrado');
-            return;
-        }
-
-        const cnpj = cnpjInput.value.replace(/\D/g, '');
+        const cnpj = document.getElementById('cnpj').value.replace(/\D/g, '');
         if (cnpj.length !== 14) {
             alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 dígitos.');
             return;
         }
-
+    
         try {
             const response = await fetch(`/api/cnpj/${cnpj}`);
             const data = await response.json();
-
+    
             if (data.status === 'ERROR') {
-                alert(data.message);
-                return;
+                throw new Error(data.message);
             }
-
-            // Função auxiliar para definir o valor de um campo se ele existir
-            const setFieldValue = (id, value) => {
-                const field = document.getElementById(id);
-                if (field) {
-                    field.value = value;
-                } else {
-                    console.warn(`Campo ${id} não encontrado`);
+    
+            // Preenchendo os campos do formulário com os dados da API
+            document.getElementById('nome').value = data.nome || '';
+            document.getElementById('email').value = data.email || '';
+            document.getElementById('telefone').value = data.telefone || '';
+            document.getElementById('logradouro').value = data.logradouro || '';
+            // Alteração aqui: use o ID correto para o número do endereço
+            document.getElementById('numeroEndereco').value = data.numero || ''; 
+            document.getElementById('bairro').value = data.bairro || '';
+            document.getElementById('cep').value = data.cep || '';
+    
+            // Preenchendo cidade e estado
+            document.getElementById('cidade').value = data.municipio || '';
+            document.getElementById('estado').value = data.uf || '';
+    
+            // Se 'municipio' e 'uf' não estiverem disponíveis, tente usar 'efr'
+            if (!data.municipio && !data.uf && data.efr) {
+                const parts = data.efr.split('/');
+                if (parts.length === 2) {
+                    document.getElementById('cidade').value = parts[0].trim();
+                    document.getElementById('estado').value = parts[1].trim();
                 }
-            };
-
-            setFieldValue('nome', data.nome); // Corrigido para 'nome' que corresponde a "Razão Social"
-            setFieldValue('fantasia', data.fantasia);
-            setFieldValue('logradouro', data.logradouro);
-            // Removido o mapeamento incorreto do número do CNPJ para o número da venda
-            setFieldValue('complemento', data.complemento);
-            setFieldValue('bairro', data.bairro);
-            setFieldValue('cidade', data.municipio);
-            setFieldValue('uf', data.uf); // Corrigido para 'uf' que corresponde a "Estado"
-            setFieldValue('cep', data.cep);
-            setFieldValue('telefone', data.telefone);
-            setFieldValue('email', data.email);
-
+            }
         } catch (error) {
-            console.error('Erro ao buscar dados do CNPJ:', error);
-            alert('Erro ao buscar dados do CNPJ. Por favor, tente novamente.');
+            console.error('Erro ao buscar CNPJ:', error);
+            alert('Ocorreu um erro ao buscar os dados do CNPJ. Por favor, tente novamente ou preencha manualmente.');
         }
     }
 
-    // Adicione estas novas funções
-    function formatCPF(cpf) {
-        cpf = cpf.replace(/\D/g, '');
-        if (cpf.length > 11) cpf = cpf.slice(0, 11);
-        return cpf.replace(/^(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2}).*/, function(match, p1, p2, p3, p4) {
-            if (p2) p1 += '.';
-            if (p3) p2 += '.';
-            if (p4) p3 += '-';
-            return [p1, p2, p3, p4].filter(Boolean).join('');
-        });
-    }
-
-    function formatCNPJ(cnpj) {
-        cnpj = cnpj.replace(/\D/g, '');
-        if (cnpj.length > 14) cnpj = cnpj.slice(0, 14);
-        return cnpj.replace(/^(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2}).*/, function(match, p1, p2, p3, p4, p5) {
-            if (p2) p1 += '.';
-            if (p3) p2 += '.';
-            if (p4) p3 += '/';
-            if (p5) p4 += '-';
-            return [p1, p2, p3, p4, p5].filter(Boolean).join('');
-        });
-    }
-
-    function formatDocument(input) {
-        const tipoCliente = document.getElementById('tipoCliente').value;
-        const cursorPos = input.selectionStart;
-        const oldLength = input.value.length;
-        
-        if (tipoCliente === 'Pessoa Física') {
-            input.value = formatCPF(input.value);
-        } else if (tipoCliente === 'Pessoa Jurídica') {
-            input.value = formatCNPJ(input.value);
+    document.getElementById('cep').addEventListener('blur', async function() {
+        const cep = this.value.replace(/\D/g, '');
+        if (cep.length !== 8) {
+            return;
         }
-        
-        const newLength = input.value.length;
-        input.setSelectionRange(cursorPos + (newLength - oldLength), cursorPos + (newLength - oldLength));
-    }
-
-    // Adicione estes event listeners
-    const cpfInput = document.getElementById('cpf');
-    const cnpjInput = document.getElementById('cnpj');
-
-    cpfInput.addEventListener('input', function() {
-        formatDocument(this);
-    });
-
-    cnpjInput.addEventListener('input', function() {
-        formatDocument(this);
-    });
-
-    // Adicionar evento de submit ao formulário de novo produto
-    const addProductForm = document.getElementById('addProductForm');
-    addProductForm.addEventListener('submit', handleAddProduct);
-
-    async function handleAddProduct(event) {
-        event.preventDefault();
-        
-        const newProduct = {
-            codigo: document.getElementById('codigo').value,
-            nome: document.getElementById('nome').value,
-            valor: parseFloat(document.getElementById('valor').value),
-            valorEspecial: parseFloat(document.getElementById('valorEspecial').value) || null,
-            estoque: parseInt(document.getElementById('estoque').value)
-        };
 
         try {
-            const response = await fetch('/api/products', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newProduct)
-            });
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await response.json();
 
-            if (response.ok) {
-                const savedProduct = await response.json();
-                // Adicionar o novo produto à lista de produtos para o autocomplete
-                products.push(savedProduct);
-                
-                // Atualizar o autocomplete
-                updateProductAutocomplete();
-                
-                // Fechar o modal
-                $('#addProductModal').modal('hide');
-                
-                // Limpar o formulário
-                addProductForm.reset();
-                
-                // Mostrar mensagem de sucesso
-                showSuccessToast('Produto adicionado com sucesso!');
-            } else {
-                throw new Error('Erro ao cadastrar produto');
+            if (data.erro) {
+                throw new Error('CEP não encontrado');
             }
+
+            document.getElementById('logradouro').value = data.logradouro;
+            document.getElementById('bairro').value = data.bairro;
+            document.getElementById('cidade').value = data.localidade;
+            document.getElementById('estado').value = data.uf;
+
         } catch (error) {
-            console.error('Erro ao cadastrar produto:', error);
-            showErrorToast('Erro ao cadastrar produto. Por favor, tente novamente.');
+            console.error('Erro ao buscar CEP:', error);
+            alert('Não foi possível encontrar o endereço para este CEP. Por favor, preencha manualmente.');
         }
-    }
+    });
 
-    function updateProductAutocomplete() {
-        // Atualizar o autocomplete com a nova lista de produtos
-        // (Isso depende de como você implementou o autocomplete de produtos)
-    }
-
-    // Função para formatar o CEP
-    function formatCEP(input) {
+    function formatCNPJ(input) {
         let value = input.value.replace(/\D/g, '');
-        if (value.length > 5) {
-            value = value.slice(0, 5) + '-' + value.slice(5, 8);
+        if (value.length > 14) {
+            value = value.slice(0, 14);
+        }
+        value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+        value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+        value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+        value = value.replace(/(\d{4})(\d)/, '$1-$2');
+        input.value = value;
+    }
+
+    document.getElementById('cnpj').addEventListener('input', function() {
+        formatCNPJ(this);
+    });
+
+    function formatCPF(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 11) {
+            value = value.slice(0, 11);
+        }
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        input.value = value;
+    }
+
+    document.getElementById('cpf').addEventListener('input', function() {
+        formatCPF(this);
+    });
+
+    function formatPhone(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 11) {
+            value = value.slice(0, 11);
+        }
+        if (value.length > 10) {
+            value = value.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+        } else if (value.length > 5) {
+            value = value.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+        } else if (value.length > 2) {
+            value = value.replace(/^(\d\d)(\d{0,5})/, '($1) $2');
+        } else {
+            value = value.replace(/^(\d*)/, '($1');
         }
         input.value = value;
     }
 
-    // Função para buscar o CEP
-    function buscarCEP(cep) {
-        fetch(`/api/cep/${cep}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.erro) {
-                    alert('CEP não encontrado');
-                } else {
-                    const setValueIfExists = (id, value) => {
-                        const element = document.getElementById(id);
-                        if (element) {
-                            element.value = value || '';
-                        }
-                    };
+    document.getElementById('telefone').addEventListener('input', function() {
+        formatPhone(this);
+    });
 
-                    setValueIfExists('logradouro', data.logradouro);
-                    setValueIfExists('bairro', data.bairro);
-                    setValueIfExists('cidade', data.localidade);
-                    setValueIfExists('uf', data.uf);
-                    setValueIfExists('numeroEndereco', '');
-
-                    const numeroEnderecoElement = document.getElementById('numeroEndereco');
-                    if (numeroEnderecoElement) {
-                        numeroEnderecoElement.focus();
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar CEP:', error);
-                alert('Erro ao buscar CEP. Por favor, tente novamente.');
-            });
+    function formatCEP(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 8) {
+            value = value.slice(0, 8);
+        }
+        value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+        input.value = value;
     }
 
-    // Adicione estes event listeners
-    const cepInput = document.getElementById('cep');
-    if (cepInput) {
-        cepInput.addEventListener('input', () => formatCEP(cepInput));
-        cepInput.addEventListener('blur', () => {
-            const cep = cepInput.value.replace(/\D/g, '');
-            if (cep.length === 8) {
-                buscarCEP(cep);
-            }
-        });
-    }
-
-    function initializeAutocomplete(inputId, items, displayProperty) {
-        $(`#${inputId}`).autocomplete({
-            source: function(request, response) {
-                var term = request.term.toLowerCase();
-                var matches = items.filter(item => 
-                    item[displayProperty].toLowerCase().includes(term)
-                );
-                response(matches.map(item => ({ label: item[displayProperty], value: item[displayProperty] })));
-            },
-            minLength: 1,
-            select: function(event, ui) {
-                event.preventDefault();
-                $(this).val(ui.item.value);
-            },
-            focus: function(event, ui) {
-                event.preventDefault();
-                $(this).val(ui.item.value);
-            },
-            create: function() {
-                $(this).data("ui-autocomplete")._renderItem = function(ul, item) {
-                    return $("<li>")
-                        .append("<div>" + item.label + "</div>")
-                        .appendTo(ul);
-                };
-            }
-        });
-
-        // Ajusta a largura do menu de sugestões
-        $(`#${inputId}`).on("autocompleteopen", function(event, ui) {
-            var autocomplete = $(this).autocomplete("instance");
-            if (autocomplete) {
-                var menu = autocomplete.menu.element;
-                menu.outerWidth(Math.min(
-                    $(this).outerWidth(),
-                    menu.width("").outerWidth() + 1
-                ));
-            }
-        });
-    }
-
-    // Inicialize o autocomplete para clientes e produtos
-    initializeAutocomplete('cliente', clients, 'nome');
-    initializeAutocomplete('produto', products, 'nome');
+    document.getElementById('cep').addEventListener('input', function() {
+        formatCEP(this);
+    });
 
     const cidadeInput = document.getElementById('cidade');
-    const ufInput = document.getElementById('uf');
+    const estadoInput = document.getElementById('estado');
 
     if (cidadeInput) {
         $(cidadeInput).autocomplete({
@@ -1120,59 +915,122 @@ document.addEventListener('DOMContentLoaded', () => {
                             value: item.nome,
                             uf: item.uf
                         })));
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Erro na requisição:", error);
                     }
                 });
             },
             minLength: 3,
             select: function(event, ui) {
+                event.preventDefault();
                 cidadeInput.value = ui.item.value;
-                if (ufInput) {
-                    ufInput.value = ui.item.uf;
-                }
-                return false;
-            },
-            open: function() {
-                $(this).autocomplete('widget').css('z-index', 2000);
-                
-                // Aplicar o tema escuro se necessário
-                if (document.body.classList.contains('dark-theme')) {
-                    $(this).autocomplete('widget').addClass('dark-theme');
-                } else {
-                    $(this).autocomplete('widget').removeClass('dark-theme');
-                }
-
-                // Posicionar o menu de autocompletar
-                const inputOffset = $(this).offset();
-                const inputHeight = $(this).outerHeight();
-                $(this).autocomplete('widget').css({
-                    'top': inputOffset.top + inputHeight + 'px',
-                    'left': inputOffset.left + 'px',
-                    'width': $(this).outerWidth() + 'px'
-                });
-            }
-        }).autocomplete("instance")._renderItem = function(ul, item) {
-            return $("<li>")
-                .append(`<div>${item.label}</div>`)
-                .appendTo(ul);
-        };
-    }
-
-    // Atualizar o tema do autocomplete quando o tema geral for alterado
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-
-            // Atualizar o tema do autocomplete
-            if (cidadeInput) {
-                const autocompleteWidget = $(cidadeInput).autocomplete('widget');
-                if (document.body.classList.contains('dark-theme')) {
-                    autocompleteWidget.addClass('dark-theme');
-                } else {
-                    autocompleteWidget.removeClass('dark-theme');
-                }
+                estadoInput.value = ui.item.uf;
             }
         });
     }
+
+    const addNewProductBtn = document.getElementById('addNewProductBtn');
+    const saveNewProductBtn = document.getElementById('saveNewProduct');
+    const generateCodeBtn = document.getElementById('generateCode');
+    let addProductModal;
+
+    // Mova a inicialização do modal para dentro do evento DOMContentLoaded
+    addProductModal = new bootstrap.Modal(document.getElementById('addProductModal'));
+
+    if (addNewProductBtn) {
+        addNewProductBtn.addEventListener('click', () => {
+            addProductModal.show();
+        });
+    }
+
+    if (saveNewProductBtn) {
+        saveNewProductBtn.addEventListener('click', () => saveNewProduct(currentProductRow));
+    }
+
+    // Adicione este event listener para o botão de gerar código
+    if (generateCodeBtn) {
+        generateCodeBtn.addEventListener('click', generateProductCode);
+    }
+
+    // Adicione o evento para resetar currentProductRow quando o modal for fechado
+    const addProductModalElement = document.getElementById('addProductModal');
+    if (addProductModalElement) {
+        addProductModalElement.addEventListener('hidden.bs.modal', () => {
+            currentProductRow = null;
+        });
+    }
+
+    // Modifique a função saveNewProduct para aceitar um parâmetro que indica a linha de produto
+    function saveNewProduct(productRow) {
+        const newProductName = document.getElementById('newProductName').value;
+        const newProductValue = document.getElementById('newProductValue').value;
+        const newProductValueSpecial = document.getElementById('newProductValueSpecial').value;
+        const newProductCode = document.getElementById('newProductCode').value;
+        const newProductStock = document.getElementById('newProductStock').value;
+
+        const newProduct = {
+            id: Date.now().toString(),
+            codigo: newProductCode,
+            nome: newProductName,
+            valor: parseFloat(newProductValue),
+            valorEspecial: newProductValueSpecial ? parseFloat(newProductValueSpecial) : parseFloat(newProductValue),
+            estoque: parseInt(newProductStock),
+            dataCadastro: new Date().toLocaleString('pt-BR')
+        };
+
+        fetch('/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newProduct)
+        })
+        .then(response => response.json())
+        .then(savedProduct => {
+            products.push(savedProduct);
+            updateProductAutocomplete();
+            addProductModal.hide();
+            document.getElementById('addProductForm').reset();
+            showSuccessToast('Produto adicionado com sucesso!');
+
+            // Preencher o campo de produto na linha correta
+            if (productRow) {
+                const productInput = productRow.querySelector('.produto-autocomplete');
+                if (productInput) {
+                    productInput.value = savedProduct.nome;
+                    const event = new Event('change');
+                    productInput.dispatchEvent(event);
+
+                    // Atualizar o preço e outros campos relacionados ao produto
+                    updateUnitPrice($(productRow), savedProduct);
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao salvar o produto:', error);
+            showErrorToast('Ocorreu um erro ao salvar o produto. Por favor, tente novamente.');
+        });
+    }
+
+    function generateProductCode() {
+        const code = Math.floor(1000000000 + Math.random() * 9000000000);
+        document.getElementById('newProductCode').value = code;
+    }
+
+    function updateProductAutocomplete() {
+        const productInputs = document.querySelectorAll('.produto-autocomplete');
+        productInputs.forEach(input => {
+            $(input).autocomplete("option", "source", products.map(product => product.nome));
+        });
+    }
 });
+
+// Função para exibir toast de sucesso (se ainda não existir)
+function showSuccessToast(message) {
+    // Implemente a lógica para exibir um toast de sucesso
+    console.log('Sucesso:', message);
+}
+
+// Função para exibir toast de erro (se ainda não existir)
+function showErrorToast(message) {
+    // Implemente a lógica para exibir um toast de erro
+    console.error('Erro:', message);
+}
