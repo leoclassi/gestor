@@ -1384,5 +1384,23 @@
     "valorEspecial": 21.6,
     "estoque": null,
     "dataCadastro": "05/11/2024, 14:49:52"
+  },
+  {
+    "id": "1731000909544",
+    "codigo": "9596633148",
+    "nome": "Sarrafo - 3x5 cm - 4,50 metros",
+    "valor": 27,
+    "valorEspecial": 27,
+    "estoque": 595,
+    "dataCadastro": "07/11/2024, 14:35:09"
+  },
+  {
+    "id": "1731001146056",
+    "codigo": "8652493186",
+    "nome": "Arame - 1000 Metros  Ø",
+    "valor": 600,
+    "valorEspecial": 600,
+    "estoque": 4342,
+    "dataCadastro": "07/11/2024, 14:39:06"
   }
 ]

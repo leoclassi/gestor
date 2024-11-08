@@ -903,7 +903,7 @@
     "tipoCliente": "Pessoa Jurídica",
     "nome": "ALESSANDER GASPARELO",
     "email": "",
-    "telefone": "",
+    "telefone": "(14) 997942780",
     "cpf": "",
     "cnpj": "74.362.286/0001-91",
     "endereco": {
@@ -1852,5 +1852,95 @@
     },
     "dataCadastro": "06/11/2024, 14:32:00",
     "id": "1730914323358"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LEONARDO",
+    "email": "",
+    "telefone": "(14) 997992564",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "06/11/2024, 21:53:17",
+    "id": "1730940797600"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "VERA LUCIA",
+    "email": "",
+    "telefone": "(14) 996778476",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "ALDEIA KOPENOTI",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/11/2024, 14:30:16",
+    "id": "1731000616416"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "AGROPECUARIA TERRA FORTE DE PIRAJUI LTDA",
+    "email": "",
+    "telefone": "(14) 997711100",
+    "cpf": "",
+    "cnpj": "02.947.942/0001-07",
+    "endereco": {
+      "cep": "16.605-000",
+      "logradouro": "AV ORESTES QUERCIA",
+      "numero": "1005",
+      "bairro": "JARDIM PARAISO",
+      "cidade": "PIRAJUI",
+      "uf": "SP"
+    },
+    "dataCadastro": "07/11/2024, 14:33:32",
+    "id": "1731000812017"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ORLANDO GIMENES",
+    "email": "",
+    "telefone": "(14) 99602-2934",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "estado": "SP"
+    },
+    "dataCadastro": "07/11/2024, 14:41:06",
+    "id": "1731001266450"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LEONARDO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "07/11/2024, 21:58:34",
+    "id": "1731027514764"
   }
 ]

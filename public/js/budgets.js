@@ -151,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="form-group produto-col">
                     <label for="produto">Produto</label>
                     <div class="input-group">
+                        <div class="drag-handle" style="cursor: move; padding: 8px; display: flex; align-items: center; color: #666;">
+                            <i class="fas fa-grip-vertical"></i>
+                        </div>
                         <input type="text" class="form-control produto-autocomplete" required>
                         <div class="input-group-append">
                             <button type="button" class="btn btn-primary add-new-product-btn">
@@ -201,11 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         
         const $productRow = $(productRowHTML);
-        $('#productsContainer').append($productRow);
+        productsContainer.appendChild($productRow[0]);
         
         setupProductAutocomplete($productRow.find('.produto-autocomplete')[0]);
         setupRowEventListeners($productRow);
         updateTotalValue();
+        updateItemNumbers();
 
         // Adicionar evento de clique para o botão de adicionar novo produto
         $productRow.find('.add-new-product-btn').on('click', () => {
@@ -484,7 +488,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="form-group produto-col">
                 <label for="produto">Produto</label>
                 <div class="input-group">
-                <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
+                    <div class="drag-handle" style="cursor: move; padding: 8px; display: flex; align-items: center; color: #666;">
+                        <i class="fas fa-grip-vertical"></i>
+                    </div>
+                    <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-primary add-new-product-btn">
                             <i class="fas fa-plus"></i>
@@ -531,10 +538,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button type="button" class="btn btn-danger remove-product">X</button>
             </div>
         `;
-        document.getElementById('productsContainer').appendChild(productRow);
+        productsContainer.appendChild(productRow);
         
         setupProductAutocomplete(productRow.querySelector('.produto-autocomplete'));
         setupRowEventListeners($(productRow));
+        updateItemNumbers();
         
         // Adicionar evento de clique para o botão de adicionar novo produto
         $(productRow).find('.add-new-product-btn').on('click', () => {
@@ -731,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
             endereco: {
                 cep: document.getElementById('cep').value,
                 logradouro: document.getElementById('logradouro').value,
-                numero: document.getElementById('numeroEndereco').value, // Use o ID correto aqui
+                numero: document.getElementById('numeroEndereco').value,
                 bairro: document.getElementById('bairro').value,
                 cidade: document.getElementById('cidade').value,
                 estado: document.getElementById('estado').value
@@ -754,14 +762,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 setupClientAutocomplete();
                 $('#addClientModal').modal('hide');
                 document.getElementById('cliente').value = client.nome;
-                alert('Cliente adicionado com sucesso!');
+                
+                // Substituir o alert por uma notificação mais elegante
+                showNotification('Cliente adicionado com sucesso!', 'success');
+                
+                // Limpar o formulário
+                document.getElementById('addClientForm').reset();
             } else {
                 throw new Error('Erro ao adicionar cliente');
             }
         } catch (error) {
             console.error('Erro ao adicionar cliente:', error);
-            alert('Ocorreu um erro ao adicionar o cliente. Por favor, tente novamente.');
+            showNotification('Ocorreu um erro ao adicionar o cliente. Por favor, tente novamente.', 'error');
         }
+    }
+
+    // Adicione a função showNotification se ainda não existir
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} notification`;
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '9999';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '4px';
+        notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
     }
 
     async function buscarCNPJ() {
@@ -1021,6 +1054,32 @@ document.addEventListener('DOMContentLoaded', () => {
             $(input).autocomplete("option", "source", products.map(product => product.nome));
         });
     }
+
+    // Inicializar o Sortable no container de produtos
+    new Sortable(productsContainer, {
+        animation: 150,
+        handle: '.drag-handle', // Classe que será usada como "alça" para arrastar
+        ghostClass: 'sortable-ghost', // Classe aplicada ao elemento fantasma durante o arrasto
+        chosenClass: 'sortable-chosen', // Classe aplicada ao elemento sendo arrastado
+        dragClass: 'sortable-drag', // Classe aplicada durante o arrasto
+        onEnd: function() {
+            // Atualizar os números dos itens após reordenação
+            updateItemNumbers();
+            // Recalcular totais se necessário
+            updateTotalValue();
+        }
+    });
+
+    // Função para atualizar os números dos itens
+    function updateItemNumbers() {
+        const rows = productsContainer.querySelectorAll('.form-row');
+        rows.forEach((row, index) => {
+            const itemNumberElement = row.querySelector('.item-number');
+            if (itemNumberElement) {
+                itemNumberElement.textContent = (index + 1).toString();
+            }
+        });
+    }
 });
 
 // Função para exibir toast de sucesso (se ainda não existir)
@@ -1034,3 +1093,41 @@ function showErrorToast(message) {
     // Implemente a lógica para exibir um toast de erro
     console.error('Erro:', message);
 }
+
+// Adicione estes estilos no início do arquivo ou onde os outros estilos estão definidos
+const style = document.createElement('style');
+style.textContent = `
+    .drag-handle {
+        color: #666;
+        border-right: 1px solid #ced4da;
+        background-color: #f8f9fa;
+        border-radius: 4px 0 0 4px;
+        transition: color 0.2s, background-color 0.2s;
+    }
+    
+    .drag-handle:hover {
+        color: #333;
+        background-color: #e9ecef;
+    }
+    
+    .input-group {
+        display: flex;
+        align-items: stretch;
+    }
+    
+    .input-group .form-control {
+        border-radius: 0;
+    }
+    
+    .dark-theme .drag-handle {
+        background-color: #2c2c2c;
+        border-color: #444;
+        color: #999;
+    }
+    
+    .dark-theme .drag-handle:hover {
+        background-color: #3c3c3c;
+        color: #fff;
+    }
+`;
+document.head.appendChild(style);

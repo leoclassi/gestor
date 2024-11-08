@@ -121,5 +121,26 @@ router.post('/send-pix-info', async (req, res) => {
     }
 });
 
+// Adicione esta nova rota
+router.post('/send-thank-you', async (req, res) => {
+    try {
+        const { phoneNumber } = req.body;
+        
+        const result = await whatsappManager.sendTextMessage(
+            phoneNumber, 
+            "Agradecemos a preferência em comprar na *Portugal Madeiras*! 🌳\n\n" +
+            "Qualquer dúvida, estamos à disposição! 📞"
+        );
+        
+        res.json(result);
+    } catch (error) {
+        console.error('Erro ao enviar mensagem de agradecimento:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Erro ao enviar mensagem de agradecimento'
+        });
+    }
+});
+
 // Certifique-se de exportar o router
 module.exports = router; 

@@ -14,6 +14,66 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('printButton').addEventListener('click', () => {
         window.print();
     });
+
+    // Adicionar evento para o botão de enviar para cliente
+    document.getElementById('sendToClientButton').addEventListener('click', async () => {
+        try {
+            const clientPhone = document.getElementById('clientPhone').textContent.trim();
+            
+            if (!clientPhone || clientPhone === 'Não informado') {
+                showNotification('Cliente não possui número de telefone cadastrado', 'error');
+                return;
+            }
+
+            const formattedClientPhone = formatPhoneNumber(clientPhone);
+            const element = document.querySelector('.container');
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                logging: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff'
+            });
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            
+            const imgWidth = 210;
+            const pageHeight = 295;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            while (heightLeft >= pageHeight) {
+                position = heightLeft - pageHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
+            const pdfBlob = pdf.output('blob');
+            
+            const budgetNumber = document.getElementById('budgetNumber').textContent;
+            const whatsappService = new WhatsAppService();
+            
+            await whatsappService.sendPdfToWhatsApp(
+                pdfBlob, 
+                formattedClientPhone, 
+                '',
+                `ORCAMENTO_${budgetNumber}`
+            );
+
+            showNotification('Orçamento enviado com sucesso para o cliente!', 'success');
+
+        } catch (error) {
+            console.error('Erro ao processar:', error);
+            showNotification('Erro ao enviar orçamento para o cliente', 'error');
+        }
+    });
 });
 
 function fetchBudgetDetails(budgetId) {
@@ -196,4 +256,30 @@ function formatDocument(doc) {
         return numbers.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     }
     return numbers; // Retorna os números sem formatação se não for CPF nem CNPJ
+}
+
+// Função para formatar o número de telefone
+function formatPhoneNumber(phone) {
+    const numbers = phone.replace(/\D/g, '');
+    if (!numbers.startsWith('55')) {
+        return `55${numbers}`;
+    }
+    return numbers;
+}
+
+// Função para mostrar notificações
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} notification`;
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.zIndex = '9999';
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
 }

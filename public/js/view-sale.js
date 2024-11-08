@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saleId = urlParams.get('id');
 
     if (!saleId) {
-        alert('ID da venda não fornecido');
+        showNotification('ID da venda não fornecido', 'error');
         window.location.href = 'sales-management.html';
         return;
     }
@@ -46,14 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             window.print();
 
-            const phoneNumber = '5514997992564';
+            const phoneNumber = '5514996516567';
+            const clientName = document.getElementById('clientName').textContent.trim();
+            const formattedClientName = clientName.replace(/\s+/g, '_').toUpperCase(); // Formata o nome do cliente para o nome do arquivo
             const saleNumber = document.getElementById('saleNumber').textContent;
             const urlParams = new URLSearchParams(window.location.search);
             const saleId = urlParams.get('id');
 
             const whatsappService = new WhatsAppService();
 
-            await whatsappService.sendPdfToWhatsApp(pdfBlob, phoneNumber, saleNumber, saleId);
+            await whatsappService.sendPdfToWhatsApp(pdfBlob, phoneNumber, saleNumber, `VENDA_${formattedClientName}`);
 
         } catch (error) {
             console.error('Erro ao processar:', error);
@@ -105,18 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const saleNumber = document.getElementById('saleNumber').textContent;
                 
-                // Gerar apenas o código PIX com o novo identificador PEDIDO
                 const pixCode = PixGenerator.generatePix(
                     '14996516567',
                     parseFloat(finalValue),
                     `PEDIDO${saleNumber}`
                 );
 
-                // Enviar primeiro as informações do PIX
                 await whatsappService.sendPixInfo(
                     formattedClientPhone,
                     pixCode
                 );
+            } else {
+                // Se não for PIX, enviar mensagem de agradecimento primeiro
+                await whatsappService.sendThankYouMessage(formattedClientPhone);
             }
 
             // Depois gerar e enviar o PDF

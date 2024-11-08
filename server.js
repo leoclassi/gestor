@@ -804,7 +804,7 @@ function formatarDataParaISO(data) {
 }
 
 // Agendar backup diário às 00:00
-schedule.scheduleJob('0 21 * * *', performBackup);
+schedule.scheduleJob('0 19 * * *', performBackup);
 
 // Proteger as rotas de backup
 app.post('/api/backup', authenticateToken, async (req, res) => {

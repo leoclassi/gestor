@@ -370,6 +370,190 @@
             height: 40px;
             margin-bottom: 15px;
         }
+
+        /* Estilos para o modal de confirmação */
+        .dark-theme #deleteConfirmModal .modal-content {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .dark-theme #deleteConfirmModal .modal-header {
+            border-bottom-color: #444;
+        }
+
+        .dark-theme #deleteConfirmModal .modal-footer {
+            border-top-color: #444;
+        }
+
+        .dark-theme #deleteConfirmModal .close {
+            color: #fff;
+        }
+
+        .dark-theme #deleteConfirmModal .btn-secondary {
+            background-color: #495057;
+            border-color: #495057;
+        }
+
+        .dark-theme #deleteConfirmModal .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        #deleteConfirmModal .modal-header {
+            background-color: #f8f9fa;
+        }
+
+        .dark-theme #deleteConfirmModal .modal-header {
+            background-color: #2c2c2c;
+        }
+
+        /* Estilos PREMIUM para o modal de confirmação 💅 */
+        #deleteConfirmModal .modal-content {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #deleteConfirmModal .warning-icon {
+            font-size: 4rem;
+            color: #dc3545;
+            animation: pulseWarning 1s infinite;
+        }
+
+        #deleteConfirmModal .modal-title {
+            font-weight: 600;
+        }
+
+        #deleteConfirmModal .btn {
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        #deleteConfirmModal .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        #deleteConfirmModal .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            opacity: 0.5;
+            transition: opacity 0.2s ease;
+        }
+
+        #deleteConfirmModal .close:hover {
+            opacity: 1;
+        }
+
+        /* Animação do ícone de aviso */
+        @keyframes pulseWarning {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Ajustes para o tema escuro (agora com mais estilo 😎) */
+        .dark-theme #deleteConfirmModal .modal-content {
+            background-color: #2c2c2c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .dark-theme #deleteConfirmModal .modal-title,
+        .dark-theme #deleteConfirmModal .modal-body {
+            color: #e0e0e0;
+        }
+
+        .dark-theme #deleteConfirmModal .btn-outline-secondary {
+            color: #e0e0e0;
+            border-color: #666;
+        }
+
+        .dark-theme #deleteConfirmModal .btn-outline-secondary:hover {
+            background-color: #444;
+            border-color: #777;
+        }
+
+        .dark-theme #deleteConfirmModal .close {
+            color: #e0e0e0;
+            text-shadow: none;
+        }
+
+        /* Efeito de hover mais suave nos botões */
+        #deleteConfirmModal .btn-outline-secondary:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dark-theme #deleteConfirmModal .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2);
+        }
+
+        .dark-theme #deleteConfirmModal .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        /* Estilos para as informações da venda no modal */
+        #deleteConfirmModal .sale-info {
+            background-color: rgba(0,0,0,0.03);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 0 auto;
+            max-width: 80%;
+        }
+
+        .dark-theme #deleteConfirmModal .sale-info {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        #deleteConfirmModal .sale-number {
+            font-size: 1.1em;
+        }
+
+        #deleteConfirmModal .sale-client {
+            font-size: 1.1em;
+        }
+
+        #deleteConfirmModal .sale-info strong {
+            color: #dc3545;
+        }
+
+        .dark-theme #deleteConfirmModal .sale-info strong {
+            color: #ff6b6b;
+        }
+
+        /* Estilo para o botão de copiar JSON */
+        .copy-json {
+            transition: all 0.2s ease;
+        }
+
+        .copy-json:hover {
+            transform: translateY(-1px);
+        }
+
+        .dark-theme .copy-json {
+            color: #e0e0e0;
+        }
+
+        /* Estilo para a notificação de cópia */
+        .notification {
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -440,9 +624,14 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1>📊 Gerenciamento de Vendas</h1>
-                <button id="toggleAllValues" class="btn btn-sm btn-outline-secondary" title="Mostrar/Ocultar Todos os Valores">
-                    <i class="fas fa-eye"></i>
-                </button>
+                <div>
+                    <button id="importJsonButton" class="btn btn-sm btn-outline-primary mr-2" title="Importar JSON">
+                        <i class="fas fa-file-import"></i> Importar JSON
+                    </button>
+                    <button id="toggleAllValues" class="btn btn-sm btn-outline-secondary" title="Mostrar/Ocultar Todos os Valores">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
             </div>
             
             <!-- Adicionar cards de resumo -->
@@ -592,13 +781,81 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAZVJREFUaIHtmc1Kw0AUhb9pU6WKCC4EQVwIbhTEhQu3PoHv/wQ+g/oAblyJ4EJwIQii4E9FFJS2Md+4qBTamEnuZCbQ88Fw4d47c3JIJneSgKqqWGY2gS1gHegD68CK+TUDTIExMAIGwCnwAPjWwJPCGLgG9oEFh/GXgBPgDvhyiD8HTowPK3aAEfJGm44RsO3S/G9sAB8Jmq87PoBNF+N1DhM2X3fsNTHQdAe6wHmD8ZrQA7rAU90BmqbQEbLQUuMQGWdtNE2hTo3fToDHGr9/AhcOvv7QdAdCxlsHUmMZmE/gK2kKhYy3DqTGHPL6Tg1NIFvjbQP5Nz6B0ASyNd42UFPjbQN5G28TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGP8NMq5FvDud0xoAAAAASUVORK5CYII=" class="pix-icon" alt="PIX">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAZVJREFUaIHtmc1Kw0AUhb9pU6WKCC4EQVwIbhTEhQu3PoHv/wQ+g/oAblyJ4EJwIQii4E9FFJS2Md+4qBTamEnuZCbQ88Fw4d47c3JIJneSgKqqWGY2gS1gHegD68CK+TUDTIExMAIGwCnwAPjWwJPCGLgG9oEFh/GXgBPgDvhyiD8HTowPK3aAEfJGm44RsO3S/G9sAB8Jmq87PoBNF+N1DhM2X3fsNTHQdAe6wHmD8ZrQA7rAU90BmqbQEbLQUuMQGWdtNE2hTo3fToDHGr9/AhcOvv7QdAdCxlsHUmMZmE/gK2kKhYy3DqTGHPL6Tg1NIFvjbQP5Nz6B0ASyNd42UFPjbQN5G28TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGG8TKITxtoFCGP8NMq5FvDud0xoAAAAASUVORK5CYII=" class="pix-icon" alt="PIX">
                     <p>Valor a pagar: <strong id="pixValue">R$ 0,00</strong></p>
                     <div class="pix-code" id="pixCode">
                         <!-- O código PIX será inserido aqui -->
                     </div>
                     <button class="copy-button" onclick="copyPixCode()">
                         <i class="fas fa-copy"></i> Copiar código PIX
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicione o modal no final do body, antes dos scripts -->
+    <div class="modal fade" id="importJsonModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar JSON de Venda</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="jsonInput">Cole o JSON da venda aqui:</label>
+                        <textarea class="form-control" id="jsonInput" rows="10" style="font-family: monospace;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="importJsonConfirm">Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão (Versão Premium 😎) -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center pb-0">
+                    <div class="warning-icon mb-4">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h4 class="modal-title mb-3" id="deleteConfirmModalLabel">
+                        Tem certeza? 🤔
+                    </h4>
+                    <div class="sale-info mb-4">
+                        <div class="sale-number mb-2">
+                            Venda Nº <strong id="deleteModalSaleNumber"></strong>
+                        </div>
+                        <div class="sale-client">
+                            Cliente: <strong id="deleteModalClientName"></strong>
+                        </div>
+                    </div>
+                    <p class="mb-1">Você está prestes a excluir esta venda.</p>
+                    <p class="text-danger mb-4">
+                        <small>
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Esta ação não poderá ser desfeita!
+                        </small>
+                    </p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center pb-4">
+                    <button type="button" class="btn btn-outline-secondary px-4 mr-2" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger px-4" id="confirmDelete">
+                        <i class="fas fa-trash-alt mr-2"></i>Excluir
                     </button>
                 </div>
             </div>

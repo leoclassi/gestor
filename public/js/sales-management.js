@@ -311,11 +311,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn btn-sm btn-outline-secondary view-parcelas" data-id="${sale.id}" title="Ver Parcelas">
                         <i class="fas fa-list"></i>
                     </button>
+                    <button class="btn btn-sm btn-outline-info copy-json" data-sale='${JSON.stringify(sale)}' title="Copiar JSON">
+                        <i class="fas fa-code"></i>
+                    </button>
                     <button class="btn btn-sm btn-outline-danger delete-sale" data-id="${sale.id}" title="Excluir">
                         <i class="fas fa-trash"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-primary" onclick="showPixModal(${valorFinal})" title="Gerar PIX">
-                        <i class="fas fa-qrcode"></i>
                     </button>
                 </td>
             `;
@@ -449,11 +449,39 @@ document.addEventListener('DOMContentLoaded', () => {
             salesTable.addEventListener('click', handleSalesTableClick);
         }
 
+        // Adicionar listeners para os botões de copiar JSON
+        document.querySelectorAll('.copy-json').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const saleData = button.getAttribute('data-sale');
+                
+                try {
+                    const sale = JSON.parse(saleData);
+                    // Formatar o JSON para ficar mais legível
+                    const formattedJson = JSON.stringify(sale, null, 2);
+                    
+                    // Copiar para a área de transferência
+                    navigator.clipboard.writeText(formattedJson).then(() => {
+                        showNotification('JSON copiado com sucesso!', 'success');
+                    }).catch(err => {
+                        console.error('Erro ao copiar:', err);
+                        showNotification('Erro ao copiar JSON', 'error');
+                    });
+                } catch (error) {
+                    console.error('Erro ao processar JSON:', error);
+                    showNotification('Erro ao processar JSON', 'error');
+                }
+            });
+        });
+
         if (toggleAllValuesButton) {
             toggleAllValuesButton.removeEventListener('click', toggleAllValues);
             toggleAllValuesButton.addEventListener('click', toggleAllValues);
         }
     }
+
+    // Variável global para armazenar o ID da venda a ser excluída
+    let saleToDeleteId = null;
 
     function handleSalesTableClick(e) {
         const target = e.target.closest('button');
@@ -466,9 +494,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (target.classList.contains('edit-sale')) {
             window.location.href = `sales.html?id=${saleId}`;
         } else if (target.classList.contains('delete-sale')) {
-            if (confirm('Tem certeza que deseja excluir esta venda?')) {
-                deleteSale(saleId);
-            }
+            // Encontrar a linha da venda
+            const saleRow = target.closest('tr');
+            const saleNumber = saleRow.querySelector('td:nth-child(2)').textContent;
+            const clientName = saleRow.querySelector('td:nth-child(3)').textContent;
+            
+            // Atualizar o modal com as informações da venda
+            document.getElementById('deleteModalSaleNumber').textContent = saleNumber;
+            document.getElementById('deleteModalClientName').textContent = clientName;
+            
+            // Armazena o ID da venda a ser excluída
+            saleToDeleteId = saleId;
+            // Mostra o modal de confirmação
+            $('#deleteConfirmModal').modal('show');
         } else if (target.classList.contains('mark-paid')) {
             markSaleAsPaid(saleId);
         }
@@ -537,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erro ao atualizar o estado da venda:', error);
-            alert('Ocorreu um erro ao atualizar o estado da venda. Por favor, tente novamente.');
+            showNotification('Ocorreu um erro ao atualizar o estado da venda. Por favor, tente novamente.', 'error');
         });
     }
 
@@ -617,7 +655,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Erro ao marcar a parcela como paga: ' + error.message);
+            showNotification('Erro ao marcar a parcela como paga: ' + error.message, 'error');
         });
     }
 
@@ -674,7 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Erro ao marcar a parcela como paga: ' + error.message);
+            showNotification('Erro ao marcar a parcela como paga: ' + error.message, 'error');
         });
     };
 
@@ -713,51 +751,107 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // Função para gerar o código PIX
-    function generatePixCode(valor) {
-        const pixKey = "14996516567";
-        const merchantName = "Portugal Madeiras";
-        const merchantCity = "CIDADE";
-        
-        // Formata o valor para o padrão PIX (sem pontos ou vírgulas)
-        const formattedValue = valor.toString().replace(/[.,]/g, '').padStart(2, '0');
-        const valorFormatado = formattedValue.slice(0, -2) + "." + formattedValue.slice(-2);
+    // Adicione a função showNotification se ainda não existir
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} notification`;
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '9999';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '4px';
+        notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        notification.textContent = message;
 
-        // Monta o payload do PIX
-        let payload = "";
-        payload += "00020126";
-        payload += "0014br.gov.bcb.pix";
-        payload += "01" + pixKey.length.toString().padStart(2, '0') + pixKey;
-        payload += "52040000";
-        payload += "5303986";
-        payload += "54" + valorFormatado.length.toString().padStart(2, '0') + valorFormatado;
-        payload += "5802BR";
-        payload += "59" + merchantName.length.toString().padStart(2, '0') + merchantName;
-        payload += "60" + merchantCity.length.toString().padStart(2, '0') + merchantCity;
-        payload += "6304";
+        document.body.appendChild(notification);
 
-        return payload;
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
     }
-
-    // Função para mostrar o modal do PIX
-    window.showPixModal = function(valor) {
-        document.getElementById('pixValue').textContent = formatarMoeda(valor);
-        document.getElementById('pixCode').textContent = generatePixCode(valor);
-        $('#pixModal').modal('show');
-    };
-
-    // Função para copiar o código PIX
-    window.copyPixCode = function() {
-        const pixCode = document.getElementById('pixCode').textContent;
-        navigator.clipboard.writeText(pixCode).then(() => {
-            const copyButton = document.querySelector('.copy-button');
-            copyButton.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-            setTimeout(() => {
-                copyButton.innerHTML = '<i class="fas fa-copy"></i> Copiar código PIX';
-            }, 2000);
-        });
-    };
 
     // Inicializar a página
     fetchSales();
+
+    // Adicionar listener para o botão de importar JSON
+    document.getElementById('importJsonButton').addEventListener('click', () => {
+        $('#importJsonModal').modal('show');
+    });
+
+    // Adicionar listener para o botão de confirmar importação
+    document.getElementById('importJsonConfirm').addEventListener('click', importSaleFromJson);
+
+    // Adicionar listener para o botão de confirmar exclusão no modal
+    document.getElementById('confirmDelete').addEventListener('click', () => {
+        if (saleToDeleteId) {
+            deleteSale(saleToDeleteId);
+            $('#deleteConfirmModal').modal('hide');
+            saleToDeleteId = null; // Limpa o ID após a exclusão
+        }
+    });
 });
+
+async function importSaleFromJson() {
+    try {
+        const jsonInput = document.getElementById('jsonInput').value;
+        
+        // Validar se o input está vazio
+        if (!jsonInput.trim()) {
+            showNotification('Por favor, insira um JSON válido', 'warning');
+            return;
+        }
+
+        // Tentar fazer o parse do JSON
+        let saleData;
+        try {
+            saleData = JSON.parse(jsonInput);
+        } catch (e) {
+            showNotification('JSON inválido. Por favor, verifique o formato', 'error');
+            return;
+        }
+
+        // Buscar o próximo número de venda disponível
+        const nextNumberResponse = await fetch('/api/sales/next-number');
+        const { nextNumber } = await nextNumberResponse.json();
+
+        // Preparar os dados da venda
+        const newSale = {
+            ...saleData,
+            id: undefined, // Remover ID para que um novo seja gerado
+            numero: nextNumber,
+            data: new Date().toISOString().split('T')[0], // Data atual
+            situacao: 'Pendente',
+            paga: false
+        };
+
+        // Enviar a nova venda para o servidor
+        const response = await fetch('/api/sales', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newSale)
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao importar venda');
+        }
+
+        // Fechar o modal
+        $('#importJsonModal').modal('hide');
+
+        // Limpar o textarea
+        document.getElementById('jsonInput').value = '';
+
+        // Mostrar notificação de sucesso
+        showNotification('Venda importada com sucesso!', 'success');
+        
+        // Recarregar a lista de vendas
+        fetchSales();
+
+    } catch (error) {
+        console.error('Erro ao importar venda:', error);
+        showNotification('Erro ao importar venda. Por favor, verifique os dados e tente novamente.', 'error');
+    }
+}

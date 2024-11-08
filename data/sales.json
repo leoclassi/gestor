@@ -1073,7 +1073,8 @@
       {
         "numero": 1,
         "data": "2024/11/05",
-        "valor": 418
+        "valor": 418,
+        "paga": true
       },
       {
         "numero": 2,
@@ -4237,7 +4238,7 @@
     "tipoPagamento": "À Vista",
     "formaPagamento": "Cartão de Crédito",
     "situacao": "Concretizada",
-    "paga": false,
+    "paga": true,
     "prazoEntrega": ""
   },
   {
@@ -4761,5 +4762,158 @@
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1730914212630"
+  },
+  {
+    "numero": "217",
+    "cliente": "VERA LUCIA",
+    "situacao": "Concretizada",
+    "data": "2024-11-07",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 8,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 518.4
+      },
+      {
+        "produto": "Palanque - 6,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 1,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 100
+      },
+      {
+        "produto": "Palanque - 6,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 8,
+        "valor": 76,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 608
+      }
+    ],
+    "valorTotal": 1226.4,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1226.4,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731000655297"
+  },
+  {
+    "numero": "218",
+    "cliente": "AGROPECUARIA TERRA FORTE DE PIRAJUI LTDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-07",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 16 a 20 cm Ø",
+        "quantidade": 15,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1500
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 15,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1080
+      },
+      {
+        "produto": "Balancim 3x4 cm - 1,25 mts [DZ]",
+        "quantidade": 10,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 350
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 36,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1440
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 10,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 540
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,50 metros",
+        "quantidade": 10,
+        "valor": 63,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 630
+      },
+      {
+        "produto": "Sarrafo - 3x5 cm - 4,50 metros",
+        "quantidade": 36,
+        "valor": 27,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 972
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 60,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1500
+      }
+    ],
+    "valorTotal": 6810.2,
+    "descontoTotal": {
+      "valor": 15,
+      "tipo": "percentage"
+    },
+    "valorFinal": 6810.2,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731000945382"
+  },
+  {
+    "numero": "219",
+    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-07",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 100,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1300
+      }
+    ],
+    "valorTotal": 1300,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1300,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731020930209"
   }
 ]

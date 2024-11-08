@@ -425,6 +425,33 @@
         .toast {
             min-width: 200px;
         }
+
+        /* Atualize os estilos do drag-handle no tema escuro */
+        .dark-theme .drag-handle {
+            background-color: #444; /* Cor de fundo mais escura */
+            color: #fff; /* Texto em branco */
+            border-right: 1px solid #666; /* Borda mais escura */
+        }
+
+        .dark-theme .drag-handle:hover {
+            background-color: #555; /* Cor de hover um pouco mais clara */
+            color: #fff;
+        }
+
+        /* Ajuste para a linha de produto inteira no tema escuro */
+        .dark-theme .sortable-ghost {
+            opacity: 0.4;
+            background-color: #444;
+        }
+
+        .dark-theme .sortable-chosen {
+            background-color: #333;
+        }
+
+        .dark-theme .sortable-drag {
+            background-color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css" rel="stylesheet" />
@@ -433,6 +460,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
     <script src="js/budgets.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {

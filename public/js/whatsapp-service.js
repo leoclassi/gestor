@@ -1,12 +1,4 @@
 class WhatsAppService {
-    constructor() {
-        // Token de acesso da API do WhatsApp Business
-        this.accessToken = 'SEU_TOKEN_AQUI';
-        this.apiVersion = 'v17.0';
-        this.phoneNumberId = 'SEU_PHONE_NUMBER_ID';
-        this.baseUrl = `https://graph.facebook.com/${this.apiVersion}/${this.phoneNumberId}`;
-    }
-
     async sendPdfToWhatsApp(pdfBlob, phoneNumber, caption, fileName) {
         try {
             // Converter o Blob para base64
@@ -63,4 +55,27 @@ class WhatsAppService {
             throw error;
         }
     }
-} 
+
+    async sendThankYouMessage(phoneNumber) {
+        try {
+            const response = await fetch('/api/whatsapp/send-thank-you', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phoneNumber
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao enviar mensagem de agradecimento');
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao enviar mensagem de agradecimento:', error);
+            throw error;
+        }
+    }
+}

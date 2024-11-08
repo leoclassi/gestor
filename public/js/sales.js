@@ -161,6 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="form-group produto-col">
                     <label for="produto">Produto</label>
                     <div class="input-group">
+                        <div class="drag-handle" style="cursor: move; padding: 8px; display: flex; align-items: center; color: #666;">
+                            <i class="fas fa-grip-vertical"></i>
+                        </div>
                         <input type="text" class="form-control produto-autocomplete" required>
                         <div class="input-group-append">
                             <button type="button" class="btn btn-primary add-new-product-btn">
@@ -211,13 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         
         const $productRow = $(productRowHTML);
-        $('#productsContainer').append($productRow);
+        productsContainer.appendChild($productRow[0]);
         
         setupProductAutocomplete($productRow.find('.produto-autocomplete')[0]);
         setupRowEventListeners($productRow);
         updateTotalValue();
+        updateItemNumbers();
 
-        // Adicionar evento de clique para o botão de adicionar novo produto
         $productRow.find('.add-new-product-btn').on('click', () => {
             currentProductRow = $productRow[0];
             if (addProductModal) {
@@ -517,6 +520,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="form-group produto-col">
                 <label for="produto">Produto</label>
                 <div class="input-group">
+                    <div class="drag-handle" style="cursor: move; padding: 8px; display: flex; align-items: center; color: #666;">
+                        <i class="fas fa-grip-vertical"></i>
+                    </div>
                     <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-primary add-new-product-btn">
@@ -564,12 +570,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button type="button" class="btn btn-danger remove-product">X</button>
             </div>
         `;
-        document.getElementById('productsContainer').appendChild(productRow);
+        productsContainer.appendChild(productRow);
         
         setupProductAutocomplete(productRow.querySelector('.produto-autocomplete'));
         setupRowEventListeners($(productRow));
+        updateItemNumbers();
         
-        // Adicionar evento de clique para o botão de adicionar novo produto
         $(productRow).find('.add-new-product-btn').on('click', () => {
             currentProductRow = productRow;
             if (addProductModal) {
@@ -886,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function buscarCNPJ() {
         const cnpj = document.getElementById('cnpj').value.replace(/\D/g, '');
         if (cnpj.length !== 14) {
-            alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 dígitos.');
+            alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 d��gitos.');
             return;
         }
 
@@ -1311,4 +1317,79 @@ document.addEventListener('DOMContentLoaded', () => {
         const code = Math.floor(1000000000 + Math.random() * 9000000000);
         document.getElementById('newProductCode').value = code;
     }
+
+    // Inicializar o Sortable no container de produtos
+    new Sortable(productsContainer, {
+        animation: 150,
+        handle: '.drag-handle',
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: function() {
+            updateItemNumbers();
+            updateTotalValue();
+        }
+    });
+
+    // Função para atualizar os números dos itens
+    function updateItemNumbers() {
+        const rows = productsContainer.querySelectorAll('.form-row');
+        rows.forEach((row, index) => {
+            const itemNumberElement = row.querySelector('.item-number');
+            if (itemNumberElement) {
+                itemNumberElement.textContent = (index + 1).toString();
+            }
+        });
+    }
+
+    // Adicione estes estilos
+    const style = document.createElement('style');
+    style.textContent = `
+        .drag-handle {
+            color: #666;
+            border-right: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            border-radius: 4px 0 0 4px;
+            transition: color 0.2s, background-color 0.2s;
+        }
+        
+        .drag-handle:hover {
+            color: #333;
+            background-color: #e9ecef;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: stretch;
+        }
+        
+        .input-group .form-control {
+            border-radius: 0;
+        }
+        
+        .dark-theme .drag-handle {
+            background-color: #2c2c2c;
+            border-color: #444;
+            color: #999;
+        }
+        
+        .dark-theme .drag-handle:hover {
+            background-color: #3c3c3c;
+            color: #fff;
+        }
+
+        .sortable-ghost {
+            opacity: 0.4;
+        }
+
+        .sortable-chosen {
+            background-color: #f8f9fa;
+        }
+
+        .sortable-drag {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    `;
+    document.head.appendChild(style);
 });

@@ -103,9 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para filtrar os orçamentos do mês e ano selecionados
     function getSelectedMonthYearBudgets() {
         if (!selectedMonthYear) {
-            return Object.values(budgets).flat();
+            const allBudgets = Object.values(budgets).flat().filter(budget => budget);
+            return allBudgets;
         }
-        return budgets[selectedMonthYear] || [];
+        return (budgets[selectedMonthYear] || []).filter(budget => budget);
     }
 
     // Função para paginar os orçamentos
@@ -115,85 +116,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Função para renderizar a tabela de orçamentos
-// Função para renderizar a tabela de orçamentos
-function renderBudgetsTable() {
-    const filteredBudgets = filterBudgets(getSelectedMonthYearBudgets());
-    const paginatedBudgets = paginateBudgets(filteredBudgets, currentPage);
-    const tableBody = document.getElementById('budgetsTable');
-    tableBody.innerHTML = '';
+    function renderBudgetsTable() {
+        const filteredBudgets = filterBudgets(getSelectedMonthYearBudgets());
+        const paginatedBudgets = paginateBudgets(filteredBudgets, currentPage);
+        const tableBody = document.getElementById('budgetsTable');
+        tableBody.innerHTML = '';
 
-    paginatedBudgets.forEach(budget => {
-        const row = document.createElement('tr');
-        
-        // Calcular o valor total com desconto dos produtos
-        const valorTotalProdutos = budget.produtos.reduce((total, produto) => {
-            let subtotal = produto.quantidade * produto.valor;
-            if (produto.descontoTipo === 'percentage') {
-                subtotal *= (1 - produto.desconto / 100);
-            } else {
-                subtotal -= produto.desconto;
+        paginatedBudgets.forEach(budget => {
+            const row = document.createElement('tr');
+            
+            // Calcular o valor total com desconto dos produtos
+            const valorTotalProdutos = budget.produtos.reduce((total, produto) => {
+                let subtotal = produto.quantidade * produto.valor;
+                if (produto.descontoTipo === 'percentage') {
+                    subtotal *= (1 - produto.desconto / 100);
+                } else {
+                    subtotal -= produto.desconto;
+                }
+                return total + subtotal;
+            }, 0);
+
+            // Aplicar o desconto total do orçamento
+            let valorFinal = valorTotalProdutos;
+            if (budget.descontoTotal) {
+                if (budget.descontoTotal.tipo === 'percentage') {
+                    valorFinal *= (1 - budget.descontoTotal.valor / 100);
+                } else {
+                    valorFinal -= budget.descontoTotal.valor;
+                }
             }
-            return total + subtotal;
-        }, 0);
 
-        // Aplicar o desconto total do orçamento
-        let valorFinal = valorTotalProdutos;
-        if (budget.descontoTotal) {
-            if (budget.descontoTotal.tipo === 'percentage') {
-                valorFinal *= (1 - budget.descontoTotal.valor / 100);
-            } else {
-                valorFinal -= budget.descontoTotal.valor;
+            // Determinar a situação e o estilo com base no status de pagamento
+            let situacao = budget.situacao;
+            let situacaoStyle = '';
+
+            if (budget.paga) {
+                situacao = 'Recebido';
+                situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+            } else if (situacao === 'Concretizada') {
+                situacaoStyle = 'background-color: #00dcea; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+            } else if (situacao === 'Em Aberto') {
+                situacaoStyle = 'background-color: #ff8300; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+            } else if (situacao === 'Aprovado') {
+                situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
+            } else if (situacao === 'Recusado') {
+                situacaoStyle = 'background-color: #dc3545; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
             }
-        }
 
-        // Determinar a situação e o estilo com base no status de pagamento
-        let situacao = budget.situacao;
-        let situacaoStyle = '';
+            row.innerHTML = `
+                <td class="text-center align-middle">
+                    <input type="checkbox" class="budget-checkbox" data-valor="${valorFinal.toFixed(2)}">
+                </td>
+                <td>${budget.numero}</td>
+                <td>${budget.cliente}</td>
+                <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
+                <td>${formatDate(budget.data)}</td>
+                <td>${formatarMoeda(valorFinal)}</td>
+                <td>
+                    <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
+                        <i class="fas fa-print"></i> 
+                    </a>
+                    <button class="btn btn-sm btn-outline-warning generate-sale-btn" data-id="${budget.id}" title="Gerar Venda" style="background-color: transparent;">
+                        <i class="fas fa-file-invoice-dollar"></i> 
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-info copy-json" data-budget='${JSON.stringify(budget)}' title="Copiar JSON">
+                        <i class="fas fa-code"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger delete-budget" data-id="${budget.id}" title="Excluir">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
 
-        if (budget.paga) {
-            situacao = 'Recebido';
-            situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
-        } else if (situacao === 'Concretizada') {
-            situacaoStyle = 'background-color: #00dcea; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
-        } else if (situacao === 'Em Aberto') {
-            situacaoStyle = 'background-color: #ff8300; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
-        } else if (situacao === 'Aprovado') {
-            situacaoStyle = 'background-color: #28a745; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
-        } else if (situacao === 'Recusado') {
-            situacaoStyle = 'background-color: #dc3545; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
-        }
-
-        row.innerHTML = `
-            <td class="text-center align-middle">
-                <input type="checkbox" class="budget-checkbox" data-valor="${valorFinal.toFixed(2)}">
-            </td>
-            <td>${budget.numero}</td>
-            <td>${budget.cliente}</td>
-            <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
-            <td>${formatDate(budget.data)}</td>
-            <td>${formatarMoeda(valorFinal)}</td>
-            <td>
-                <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
-                    <i class="fas fa-print"></i> 
-                </a>
-                <button class="btn btn-sm btn-outline-warning generate-sale-btn" data-id="${budget.id}" title="Gerar Venda" style="background-color: transparent;">
-                    <i class="fas fa-file-invoice-dollar"></i> 
-                </button>
-                <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <button class="btn btn-sm btn-outline-danger delete-budget" data-id="${budget.id}" title="Excluir">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-
-    addEventListeners();
-    setupCheckboxes();
-    renderPagination(filteredBudgets.length);
-}
+        addEventListeners();
+        setupCheckboxes();
+        renderPagination(filteredBudgets.length);
+    }
 
     // Função para formatar a data considerando o fuso horário do Brasil (GMT-3)
     function formatDate(dateString) {
@@ -222,9 +225,14 @@ function renderBudgetsTable() {
     function filterBudgets(budgetsArray) {
         const searchTerm = searchInput.value.toLowerCase();
         const searchNumber = searchByNumberInput.value.toLowerCase();
-        return budgetsArray.filter(budget => 
-            budget.cliente.toLowerCase().includes(searchTerm) &&
-            budget.numero.toLowerCase().includes(searchNumber)
+        
+        // Garantir que budgetsArray é um array e filtrar itens undefined
+        const validBudgets = Array.isArray(budgetsArray) ? budgetsArray.filter(budget => budget) : [];
+        
+        return validBudgets.filter(budget => 
+            // Verificar se budget e suas propriedades existem antes de usar toLowerCase()
+            (budget.cliente?.toLowerCase() || '').includes(searchTerm) &&
+            (budget.numero?.toLowerCase() || '').includes(searchNumber)
         );
     }
 
@@ -260,7 +268,6 @@ function renderBudgetsTable() {
 
     // Função para adicionar event listeners aos botões de editar e excluir
     function addEventListeners() {
-        // Remova o event listener para o botão de visualização, pois agora é um link <a>
         document.querySelectorAll('.edit-budget').forEach(button => {
             button.addEventListener('click', () => {
                 const budgetId = button.getAttribute('data-id');
@@ -271,9 +278,21 @@ function renderBudgetsTable() {
         document.querySelectorAll('.delete-budget').forEach(button => {
             button.addEventListener('click', () => {
                 const budgetId = button.getAttribute('data-id');
-                if (confirm('Tem certeza que deseja excluir este orçamento?')) {
-                    deleteBudget(budgetId);
-                }
+                
+                // Encontrar a linha do orçamento
+                const budgetRow = button.closest('tr');
+                const budgetNumber = budgetRow.querySelector('td:nth-child(2)').textContent;
+                const clientName = budgetRow.querySelector('td:nth-child(3)').textContent;
+                
+                // Atualizar o modal com as informações do orçamento
+                document.getElementById('deleteModalBudgetNumber').textContent = budgetNumber;
+                document.getElementById('deleteModalClientName').textContent = clientName;
+                
+                // Armazena o ID do orçamento a ser excluído
+                budgetToDeleteId = budgetId;
+                
+                // Mostra o modal de confirmação
+                $('#deleteConfirmModal').modal('show');
             });
         });
 
@@ -291,7 +310,30 @@ function renderBudgetsTable() {
             });
         });
 
-        // Remova o event listener para o botão de visualização
+        // Adicionar listeners para os botões de copiar JSON
+        document.querySelectorAll('.copy-json').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const budgetData = button.getAttribute('data-budget');
+                
+                try {
+                    const budget = JSON.parse(budgetData);
+                    // Formatar o JSON para ficar mais legível
+                    const formattedJson = JSON.stringify(budget, null, 2);
+                    
+                    // Copiar para a área de transferência
+                    navigator.clipboard.writeText(formattedJson).then(() => {
+                        showNotification('JSON copiado com sucesso!', 'success');
+                    }).catch(err => {
+                        console.error('Erro ao copiar:', err);
+                        showNotification('Erro ao copiar JSON', 'error');
+                    });
+                } catch (error) {
+                    console.error('Erro ao processar JSON:', error);
+                    showNotification('Erro ao processar JSON', 'error');
+                }
+            });
+        });
     }
 
     // Função para excluir um orçamento
@@ -386,6 +428,117 @@ function renderBudgetsTable() {
         });
     }
 
+    // Função para mostrar uma notificação
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} notification`;
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '9999';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '4px';
+        notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    // Função para importar JSON
+    async function importBudgetFromJson() {
+        try {
+            const jsonInput = document.getElementById('jsonInput').value;
+            
+            // Validar se o input está vazio
+            if (!jsonInput.trim()) {
+                showNotification('Por favor, insira um JSON válido', 'warning');
+                return;
+            }
+
+            // Tentar fazer o parse do JSON
+            let budgetData;
+            try {
+                budgetData = JSON.parse(jsonInput);
+            } catch (e) {
+                showNotification('JSON inválido. Por favor, verifique o formato', 'error');
+                return;
+            }
+
+            // Buscar todos os orçamentos existentes para determinar o próximo número
+            const response = await fetch('/api/budgets');
+            const allBudgets = await response.json();
+            
+            // Encontrar o maior número de orçamento
+            const maxNumber = allBudgets.reduce((max, budget) => {
+                const currentNumber = parseInt(budget.numero) || 0;
+                return currentNumber > max ? currentNumber : max;
+            }, 0);
+
+            // Próximo número será o maior número + 1
+            const nextNumber = (maxNumber + 1).toString();
+
+            // Preparar os dados do orçamento
+            const newBudget = {
+                ...budgetData,
+                id: undefined, // Remover ID para que um novo seja gerado
+                numero: nextNumber, // Usar o próximo número calculado
+                data: new Date().toISOString().split('T')[0], // Data atual
+                situacao: 'Em Aberto',
+                paga: false
+            };
+
+            // Enviar o novo orçamento para o servidor
+            const saveResponse = await fetch('/api/budgets', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newBudget)
+            });
+
+            if (!saveResponse.ok) {
+                throw new Error('Erro ao importar orçamento');
+            }
+
+            // Fechar o modal
+            $('#importJsonModal').modal('hide');
+
+            // Limpar o textarea
+            document.getElementById('jsonInput').value = '';
+
+            // Mostrar notificação de sucesso
+            showNotification('Orçamento importado com sucesso!', 'success');
+            
+            // Recarregar a lista de orçamentos
+            fetchBudgets();
+
+        } catch (error) {
+            console.error('Erro ao importar orçamento:', error);
+            showNotification('Erro ao importar orçamento. Por favor, verifique os dados e tente novamente.', 'error');
+        }
+    }
+
     // Inicializar a página
     fetchBudgets();
+
+    // Adicionar listener para o botão de confirmar exclusão no modal
+    document.getElementById('confirmDelete').addEventListener('click', () => {
+        if (budgetToDeleteId) {
+            deleteBudget(budgetToDeleteId);
+            $('#deleteConfirmModal').modal('hide');
+            budgetToDeleteId = null; // Limpa o ID após a exclusão
+        }
+    });
+
+    // Adicionar listener para o botão de importar JSON
+    document.getElementById('importJsonButton').addEventListener('click', () => {
+        $('#importJsonModal').modal('show');
+    });
+
+    // Adicionar listener para o botão de confirmar importação
+    document.getElementById('importJsonConfirm').addEventListener('click', importBudgetFromJson);
 });
