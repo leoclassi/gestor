@@ -318,16 +318,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 try {
                     const budget = JSON.parse(budgetData);
-                    // Formatar o JSON para ficar mais legível
                     const formattedJson = JSON.stringify(budget, null, 2);
                     
-                    // Copiar para a área de transferência
-                    navigator.clipboard.writeText(formattedJson).then(() => {
-                        showNotification('JSON copiado com sucesso!', 'success');
-                    }).catch(err => {
-                        console.error('Erro ao copiar:', err);
-                        showNotification('Erro ao copiar JSON', 'error');
-                    });
+                    // Criar um elemento temporário
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = formattedJson;
+                    document.body.appendChild(tempTextArea);
+                    
+                    // Selecionar e copiar o texto
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    
+                    // Remover o elemento temporário
+                    document.body.removeChild(tempTextArea);
+                    
+                    showNotification('JSON copiado com sucesso!', 'success');
                 } catch (error) {
                     console.error('Erro ao processar JSON:', error);
                     showNotification('Erro ao processar JSON', 'error');
