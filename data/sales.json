@@ -4888,32 +4888,5 @@
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1731000945382"
-  },
-  {
-    "numero": "219",
-    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
-    "situacao": "Concretizada",
-    "data": "2024-11-07",
-    "prazoEntrega": "",
-    "formaPagamento": "A Combinar",
-    "produtos": [
-      {
-        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-        "quantidade": 100,
-        "valor": 13,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 1300
-      }
-    ],
-    "valorTotal": 1300,
-    "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
-    },
-    "valorFinal": 1300,
-    "paga": false,
-    "tipoPagamento": "À Vista",
-    "id": "1731020930209"
   }
 ]
