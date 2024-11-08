@@ -1942,5 +1942,23 @@
     },
     "dataCadastro": "07/11/2024, 21:58:34",
     "id": "1731027514764"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "08/11/2024, 15:42:55",
+    "id": "1731091375666"
   }
 ]

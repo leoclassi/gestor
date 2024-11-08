@@ -6,21 +6,15 @@ const whatsappManager = require('../whatsapp-service');
 console.log('Registrando rotas do WhatsApp...');
 
 router.post('/send-pdf', async (req, res) => {
+    let pdfBuffer = null;
     try {
-        const { phoneNumber, pdfData, caption } = req.body;
-        
-        // Converte base64 para buffer
-        const pdfBuffer = Buffer.from(pdfData, 'base64');
-        
+        const { pdfData } = req.body;
+        pdfBuffer = Buffer.from(pdfData, 'base64');
         const result = await whatsappManager.sendPdfMessage(phoneNumber, pdfBuffer, caption);
-        
         res.json(result);
-    } catch (error) {
-        console.error('Erro ao processar requisição:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Erro ao enviar PDF pelo WhatsApp'
-        });
+    } finally {
+        // Ajuda o GC a liberar a memória
+        pdfBuffer = null;
     }
 });
 

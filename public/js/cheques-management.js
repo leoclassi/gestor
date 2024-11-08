@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCheques();
     setupEventListeners();
     setupThemeToggle();
-    setupCheckboxes();
 });
 
 let chequeToDelete = null;
+let mostrandoDepositados = false;
 
 function calcularSomas(cheques) {
     const hoje = new Date();
@@ -37,42 +37,104 @@ function loadCheques() {
             return response.json();
         })
         .then(cheques => {
-            // Ordenar os cheques
-            cheques.sort((a, b) => {
+            // Separar cheques em duas categorias
+            const chequesNaoDepositados = cheques.filter(cheque => !cheque.compensado);
+            const chequesDepositados = cheques.filter(cheque => cheque.compensado);
+
+            // Ordenar cheques não depositados
+            chequesNaoDepositados.sort((a, b) => {
                 const dataA = new Date(a.dataCompensacao);
                 const dataB = new Date(b.dataCompensacao);
                 const hoje = new Date();
                 hoje.setHours(0, 0, 0, 0);
 
-                // Função para calcular a diferença em dias
                 const diffDias = (data) => Math.floor((data - hoje) / (1000 * 60 * 60 * 24));
-
-                // Cheques compensados vão para o final
-                if (a.compensado && !b.compensado) return 1;
-                if (!a.compensado && b.compensado) return -1;
-                if (a.compensado && b.compensado) {
-                    // Se ambos são compensados, ordena por data de compensação
-                    return dataA - dataB;
-                }
-
-                // Ordenar por data de compensação
                 const diffA = diffDias(dataA);
                 const diffB = diffDias(dataB);
 
-                // Cheques vencidos primeiro
                 if (diffA < 0 && diffB >= 0) return -1;
                 if (diffA >= 0 && diffB < 0) return 1;
-
-                // Ordenar por proximidade da data de compensação
                 return diffA - diffB;
             });
 
             const chequesTable = document.getElementById('chequesTable');
             chequesTable.innerHTML = '';
-            cheques.forEach(cheque => {
-                const row = createChequeRow(cheque);
-                chequesTable.appendChild(row);
-            });
+
+            // Adicionar cheques não depositados
+            if (!mostrandoDepositados) {
+                chequesNaoDepositados.forEach(cheque => {
+                    const row = createChequeRow(cheque);
+                    chequesTable.appendChild(row);
+                });
+            } else {
+                // Agrupar cheques depositados por data de compensação
+                const chequesDepositadosPorData = chequesDepositados.reduce((grupos, cheque) => {
+                    const dataComp = new Date(cheque.dataHoraCompensacao);
+                    const dataKey = dataComp.toISOString().split('T')[0];
+                    if (!grupos[dataKey]) {
+                        grupos[dataKey] = [];
+                    }
+                    grupos[dataKey].push(cheque);
+                    return grupos;
+                }, {});
+
+                // Ordenar as datas (mais recentes primeiro)
+                const datasOrdenadas = Object.keys(chequesDepositadosPorData).sort((a, b) => new Date(b) - new Date(a));
+
+                // Adicionar cheques depositados agrupados por data
+                datasOrdenadas.forEach(data => {
+                    // Criar linha de cabeçalho para a data
+                    const headerRow = document.createElement('tr');
+                    headerRow.classList.add('cheque-depositado', 'data-header');
+                    
+                    // Formatar a data para o padrão brasileiro, adicionando 1 dia
+                    const dataObj = new Date(data);
+                    dataObj.setDate(dataObj.getDate() + 1);
+                    const dataFormatada = dataObj.toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    
+                    // Calcular a soma dos cheques do dia
+                    const somaChequesData = chequesDepositadosPorData[data].reduce((soma, cheque) => 
+                        soma + parseFloat(cheque.valor), 0
+                    );
+                    
+                    const headerStyle = `
+                        background-color: #28a745;
+                        color: white;
+                        font-size: 1.1em;
+                        padding: 12px;
+                        border-radius: 4px;
+                        margin-top: 10px;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    `;
+
+                    headerRow.style.cssText = headerStyle;
+                    headerRow.innerHTML = `
+                        <td colspan="8" class="text-center font-weight-bold">
+                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.2em;">📅</span>
+                                <span>Depositados em ${dataFormatada}</span>
+                                <span style="margin: 0 10px;">•</span>
+                                <span>Total: ${formatarValor(somaChequesData)}</span>
+                            </div>
+                        </td>
+                    `;
+                    chequesTable.appendChild(headerRow);
+
+                    // Adicionar os cheques desta data
+                    chequesDepositadosPorData[data].forEach(cheque => {
+                        const row = createChequeRow(cheque);
+                        row.classList.add('cheque-depositado');
+                        chequesTable.appendChild(row);
+                    });
+                });
+            }
+
+            // Após renderizar todos os cheques, configure os listeners
+            setupCopyJsonListeners();
 
             // Calcular e exibir as somas
             const somas = calcularSomas(cheques);
@@ -85,14 +147,20 @@ function loadCheques() {
 
 function createChequeRow(cheque) {
     const row = document.createElement('tr');
+    if (cheque.compensado) {
+        row.classList.add('cheque-depositado');
+        row.style.display = mostrandoDepositados ? '' : 'none';
+    }
     const estadoCheque = cheque.compensado ? `<span class="text-success">Compensado em <br>${formatDateTime(cheque.dataHoraCompensacao)}</span>` : calcularEstadoCheque(cheque.dataCompensacao);
     const temAnotacoes = cheque.anotacoes && cheque.anotacoes.trim() !== '';
     
     // Transformando o nome do remetente para maiúsculas
     const remetenteMaiusculas = (cheque.remetente || '').toUpperCase();
 
+    // Escapar o JSON do cheque adequadamente
+    const chequeJson = JSON.stringify(cheque).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+
     row.innerHTML = `
-        <td class="text-center-custom"><input type="checkbox" class="cheque-checkbox" data-id="${cheque.id}" data-valor="${cheque.valor}"></td>
         <td class="text-center-custom">${cheque.numeroCheque || ''}</td>
         <td class="text-center-custom">${formatarValor(cheque.valor)}</td>
         <td class="text-center-custom">${remetenteMaiusculas}</td>
@@ -105,6 +173,9 @@ function createChequeRow(cheque) {
             </button>
             <button class="btn btn-sm btn-outline-warning edit-cheque" data-id="${cheque.id}" title="Editar">✏️</button>
             <button class="btn btn-sm btn-outline-info note-cheque" data-id="${cheque.id}" title="Anotações">📝</button>
+            <button class="btn btn-sm btn-outline-info copy-json" data-cheque='${chequeJson}' title="Copiar JSON">
+                <i class="fas fa-code"></i>
+            </button>
             <button class="btn btn-sm btn-outline-danger delete-cheque" data-id="${cheque.id}" title="Excluir">🗑️</button>
         </td>
     `;
@@ -173,6 +244,19 @@ function setupEventListeners() {
     }
 
     setupNotesEventListeners();
+
+    const toggleDepositadosBtn = document.getElementById('toggleDepositadosBtn');
+    if (toggleDepositadosBtn) {
+        toggleDepositadosBtn.addEventListener('click', toggleChequesDepositados);
+    }
+
+    // Adicionar listener para o botão de importar JSON
+    document.getElementById('importJsonButton').addEventListener('click', () => {
+        $('#importJsonModal').modal('show');
+    });
+
+    // Adicionar listener para o botão de confirmar importação
+    document.getElementById('importJsonConfirm').addEventListener('click', importChequeFromJson);
 }
 
 function filterCheques() {
@@ -373,44 +457,6 @@ function formatarDataBrasilia(dataISO) {
     return `${dia}/${mes}/${ano}`;
 }
 
-function setupCheckboxes() {
-    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-
-    if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('.cheque-checkbox');
-            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-            updateSomaCheques();
-        });
-
-        // Adicionar evento de mudança para cada checkbox individual
-        document.getElementById('chequesTable').addEventListener('change', function(e) {
-            if (e.target.classList.contains('cheque-checkbox')) {
-                updateSomaCheques();
-                updateSelectAllCheckbox();
-            }
-        });
-    }
-}
-
-function updateSomaCheques() {
-    const checkboxes = document.querySelectorAll('.cheque-checkbox:checked');
-    let soma = 0;
-    checkboxes.forEach(checkbox => {
-        soma += parseFloat(checkbox.dataset.valor) || 0;
-    });
-    document.getElementById('somaCheques').textContent = formatarValor(soma);
-}
-
-function updateSelectAllCheckbox() {
-    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-    const checkboxes = document.querySelectorAll('.cheque-checkbox');
-    const checkedCheckboxes = document.querySelectorAll('.cheque-checkbox:checked');
-    if (selectAllCheckbox) {
-        selectAllCheckbox.checked = checkboxes.length === checkedCheckboxes.length && checkboxes.length > 0;
-    }
-}
-
 function formatarValor(valor) {
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
@@ -501,3 +547,182 @@ function atualizarSomas(somas) {
     animateValue(document.getElementById('somaAVencer'), 0, somas.aVencer, duration);
     animateValue(document.getElementById('somaDepositados'), 0, somas.depositados, duration);
 }
+
+function toggleChequesDepositados() {
+    const btn = document.getElementById('toggleDepositadosBtn');
+    mostrandoDepositados = !mostrandoDepositados;
+    
+    if (mostrandoDepositados) {
+        btn.innerHTML = '<i class="fas fa-eye-slash"></i> Não Depositados';
+        btn.classList.remove('btn-info', 'text-white');
+        btn.classList.add('btn-warning', 'text-white');
+    } else {
+        btn.innerHTML = '<i class="fas fa-eye"></i> Depositados';
+        btn.classList.remove('btn-warning', 'text-white');
+        btn.classList.add('btn-info', 'text-white');
+    }
+
+    // Recarrega os cheques após mudar o estado
+    loadCheques();
+}
+
+// Função para importar cheque do JSON
+async function importChequeFromJson() {
+    try {
+        const jsonInput = document.getElementById('jsonInput').value;
+        
+        // Validar se o input está vazio
+        if (!jsonInput.trim()) {
+            showNotification('Por favor, insira um JSON válido', 'warning');
+            return;
+        }
+
+        // Tentar fazer o parse do JSON
+        let chequeData;
+        try {
+            chequeData = JSON.parse(jsonInput);
+        } catch (e) {
+            showNotification('JSON inválido. Por favor, verifique o formato', 'error');
+            return;
+        }
+
+        // Preparar os dados do cheque
+        const newCheque = {
+            ...chequeData,
+            id: undefined, // Remover ID para que um novo seja gerado
+            compensado: false,
+            dataHoraCompensacao: null
+        };
+
+        // Enviar o novo cheque para o servidor
+        const response = await fetch('/api/cheques', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newCheque)
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao importar cheque');
+        }
+
+        // Fechar o modal
+        $('#importJsonModal').modal('hide');
+
+        // Limpar o textarea
+        document.getElementById('jsonInput').value = '';
+
+        // Mostrar notificação de sucesso
+        showNotification('Cheque importado com sucesso!', 'success');
+        
+        // Recarregar a lista de cheques
+        loadCheques();
+
+    } catch (error) {
+        console.error('Erro ao importar cheque:', error);
+        showNotification('Erro ao importar cheque. Por favor, verifique os dados e tente novamente.', 'error');
+    }
+}
+
+// Adicione a função showNotification se ainda não existir
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} notification`;
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.zIndex = '9999';
+    notification.style.padding = '10px 20px';
+    notification.style.borderRadius = '4px';
+    notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Adicione esta nova função
+function setupCopyJsonListeners() {
+    document.querySelectorAll('.copy-json').forEach(button => {
+        button.removeEventListener('click', handleCopyJson); // Remove listeners antigos
+        button.addEventListener('click', handleCopyJson);
+    });
+}
+
+// Função para lidar com o clique no botão de copiar JSON
+function handleCopyJson(e) {
+    e.stopPropagation();
+    const chequeData = this.getAttribute('data-cheque')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'");
+    
+    try {
+        const cheque = JSON.parse(chequeData);
+        const formattedJson = JSON.stringify(cheque, null, 2);
+        
+        // Usar o método mais compatível
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = formattedJson;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+        showNotification('JSON copiado com sucesso!', 'success');
+    } catch (error) {
+        console.error('Erro ao processar JSON:', error);
+        showNotification('Erro ao processar JSON', 'error');
+    }
+}
+
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .dark-theme .data-header {
+            background-color: #1e7e34 !important;
+            color: white !important;
+        }
+        
+        .data-header {
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Estilo para as linhas dos cheques depositados */
+        .cheque-depositado:not(.data-header) {
+            background-color: rgba(40, 167, 69, 0.05);
+        }
+        
+        .dark-theme .cheque-depositado:not(.data-header) {
+            background-color: rgba(30, 126, 52, 0.1);
+        }
+
+        .table th:last-child,
+        .table td:last-child {
+            width: 220px; /* Aumentado de 180px para 220px */
+            max-width: 220px;
+            white-space: nowrap;
+        }
+
+        /* Ajuste para os botões de ação */
+        .table td:last-child .btn {
+            padding: 0.2rem 0.4rem; /* Reduzido de 0.25rem 0.5rem */
+            font-size: 0.8rem; /* Reduzido de 0.875rem */
+            line-height: 1.4;
+            margin-right: 1px; /* Reduzido de 2px */
+            width: 32px; /* Reduzido de 38px */
+            height: 32px; /* Reduzido de 38px */
+        }
+
+        /* Ajuste para o ícone dentro dos botões */
+        .table td:last-child .btn i {
+            font-size: 0.75rem; /* Reduzido de 0.8rem */
+        }
+
+        .actions-column {
+            text-align: center !important; /* Mudado de left para center */
+            padding: 4px !important; /* Adicionado padding menor */
+        }
+    </style>
+`);

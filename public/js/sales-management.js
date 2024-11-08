@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchByNumberInput = document.getElementById('searchByNumber');
     const monthYearSelector = document.getElementById('monthYearSelector');
     const themeToggle = document.getElementById('themeToggle');
-    const selectAllCheckbox = document.getElementById('selectAllSales');
-    const totalSelectedDisplay = document.getElementById('somaVendas');
     const paginationContainer = document.getElementById('pagination');
     let sales = [];
     let currentPage = 1;
@@ -288,11 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             row.innerHTML = `
-                <td class="text-center align-middle">
-                    <input type="checkbox" class="sale-checkbox" data-valor="${valorFinal.toFixed(2)}">
-                </td>
                 <td>${sale.numero}</td>
-                <td>${sale.cliente}</td>
+                <td class="text-truncate" style="max-width: 300px;" title="${sale.cliente}">${sale.cliente}</td>
                 <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
                 <td>${formatDate(sale.data)}</td>
                 <td class="valor-total">
@@ -359,7 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Após renderizar a tabela
         addEventListeners();
-        setupCheckboxes();
         renderPagination(filteredSales.length);
     }
 
@@ -528,30 +522,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(error => console.error('Erro:', error));
-    }
-
-    // Função para configurar os checkboxes
-    function setupCheckboxes() {
-        const saleCheckboxes = document.querySelectorAll('.sale-checkbox');
-
-        selectAllCheckbox.addEventListener('change', function() {
-            saleCheckboxes.forEach(checkbox => {
-                checkbox.checked = this.checked;
-            });
-            updateTotalSelected();
-        });
-
-        saleCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateTotalSelected);
-        });
-    }
-
-    // Função para atualizar a soma das vendas selecionadas
-    function updateTotalSelected() {
-        const saleCheckboxes = document.querySelectorAll('.sale-checkbox:checked');
-        const totalSelected = Array.from(saleCheckboxes)
-            .reduce((total, checkbox) => total + parseFloat(checkbox.dataset.valor), 0);
-        totalSelectedDisplay.textContent = formatarMoeda(totalSelected);
     }
 
     // Função para marcar a venda como paga

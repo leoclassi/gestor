@@ -4888,5 +4888,82 @@
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1731000945382"
+  },
+  {
+    "id": "1731090642723",
+    "numero": "219",
+    "data": "2024-11-08",
+    "cliente": "ORLANDO GIMENES",
+    "produtos": [
+      {
+        "produto": "Arame - 1000 Metros  Ø",
+        "quantidade": 9,
+        "valor": 600,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 5400
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 307,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 10745
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 92,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 5520
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 54,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 918
+      }
+    ],
+    "valorTotal": 22583,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 22583,
+    "tipoPagamento": "À Vista",
+    "formaPagamento": "A Combinar",
+    "situacao": "Concretizada",
+    "paga": false
+  },
+  {
+    "numero": "220",
+    "cliente": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "situacao": "Concretizada",
+    "data": "2024-11-08",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 13
+      }
+    ],
+    "valorTotal": 13,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 13,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731091379340"
   }
 ]

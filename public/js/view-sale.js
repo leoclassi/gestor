@@ -495,3 +495,29 @@ window.copyPixCode = function() {
         showNotification('Erro ao copiar código', 'error');
     });
 }
+
+async function sendPdfToWhatsApp(element, phoneNumber, saleNumber) {
+    let pdfBlob = null;
+    let objectUrl = null;
+    
+    try {
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            logging: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff'
+        });
+
+        pdfBlob = pdf.output('blob');
+        await whatsappService.sendPdfToWhatsApp(pdfBlob, phoneNumber, '', `PEDIDO_${saleNumber}`);
+
+    } finally {
+        // Limpa recursos
+        if (objectUrl) {
+            URL.revokeObjectURL(objectUrl);
+        }
+        // Ajuda o GC a liberar a memória
+        pdfBlob = null;
+    }
+}

@@ -602,7 +602,14 @@
 
         <div class="content">
             <div class="container">
-                <h1 class="mb-4">💰 Gerenciamento de Cheques</h1>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1>💰 Gerenciamento de Cheques</h1>
+                    <div>
+                        <button id="importJsonButton" class="btn btn-sm btn-outline-primary mr-2" title="Importar JSON">
+                            <i class="fas fa-file-import"></i> Importar JSON
+                        </button>
+                    </div>
+                </div>
                 <!-- Adicione este código logo após a tag <h1> e antes da div com a classe "row mb-3" -->
                 <div class="summary-cards mb-4">
                     <div class="summary-card vencidos">
@@ -627,7 +634,10 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
-                        <button id="newChequeBtn" class="btn btn-primary">
+                        <button id="toggleDepositadosBtn" class="btn btn-info text-white">
+                            <i class="fas fa-eye"></i> Depositados
+                        </button>
+                        <button id="newChequeBtn" class="btn btn-success ml-2">
                             <i class="fas fa-plus-circle"></i> Novo Cheque
                         </button>
                         <button id="deleteCookieButton" class="btn btn-danger ml-2">
@@ -641,9 +651,6 @@
                     <table class="table table-bordered table-hover table-sm">
                         <thead class="thead-light">
                             <tr>
-                                <th class="text-center align-middle">
-                                    <input type="checkbox" id="selectAllCheckbox">
-                                </th>
                                 <th class="text-center align-middle">🔢 Nº</th>
                                 <th class="text-center align-middle">💰 Valor</th>
                                 <th class="text-center align-middle">👤 Remetente</th>
@@ -873,5 +880,29 @@
         }, 3000);
     }
     </script>
+
+    <!-- Modal de Importação JSON -->
+    <div class="modal fade" id="importJsonModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar JSON de Cheque</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="jsonInput">Cole o JSON do cheque aqui:</label>
+                        <textarea class="form-control" id="jsonInput" rows="10" style="font-family: monospace;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="importJsonConfirm">Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

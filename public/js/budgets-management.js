@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchByNumberInput = document.getElementById('searchByNumber');
     const monthYearSelector = document.getElementById('monthYearSelector');
     const themeToggle = document.getElementById('themeToggle');
-    const selectAllCheckbox = document.getElementById('selectAllBudgets');
-    const totalSelectedDisplay = document.getElementById('somaOrcamentos');
     const paginationContainer = document.getElementById('pagination');
     let budgets = [];
     let currentPage = 1;
@@ -164,11 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             row.innerHTML = `
-                <td class="text-center align-middle">
-                    <input type="checkbox" class="budget-checkbox" data-valor="${valorFinal.toFixed(2)}">
-                </td>
                 <td>${budget.numero}</td>
-                <td>${budget.cliente}</td>
+                <td class="text-truncate" style="max-width: 300px;" title="${budget.cliente}">${budget.cliente}</td>
                 <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
                 <td>${formatDate(budget.data)}</td>
                 <td>${formatarMoeda(valorFinal)}</td>
@@ -176,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>
-                    <button class="btn btn-sm btn-outline-warning generate-sale-btn" data-id="${budget.id}" title="Gerar Venda" style="background-color: transparent;">
+                    <button class="btn btn-sm btn-outline-warning action-button" title="Gerar Venda" onclick="generateSale('${budget.id}')">
                         <i class="fas fa-file-invoice-dollar"></i> 
                     </button>
                     <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
@@ -194,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         addEventListeners();
-        setupCheckboxes();
         renderPagination(filteredBudgets.length);
     }
 
@@ -354,30 +348,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Erro:', error));
     }
 
-    // Função para configurar os checkboxes
-    function setupCheckboxes() {
-        const budgetCheckboxes = document.querySelectorAll('.budget-checkbox');
-
-        selectAllCheckbox.addEventListener('change', function() {
-            budgetCheckboxes.forEach(checkbox => {
-                checkbox.checked = this.checked;
-            });
-            updateTotalSelected();
-        });
-
-        budgetCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateTotalSelected);
-        });
-    }
-
-    // Função para atualizar a soma dos orçamentos selecionados
-    function updateTotalSelected() {
-        const budgetCheckboxes = document.querySelectorAll('.budget-checkbox:checked');
-        const totalSelected = Array.from(budgetCheckboxes)
-            .reduce((total, checkbox) => total + parseFloat(checkbox.dataset.valor), 0);
-        totalSelectedDisplay.textContent = formatarMoeda(totalSelected);
-    }
-
     // Função para marcar o orçamento como pago
     function markBudgetAsPaid(budgetId) {
         const button = document.querySelector(`button.mark-paid[data-id="${budgetId}"]`);
@@ -420,8 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Venda gerada com sucesso!');
-                // Recarregar a tabela de orçamentos ou atualizar o status do orçamento
+                showNotification('Venda gerada com sucesso!', 'success');
                 fetchBudgets();
             } else {
                 throw new Error(data.message || 'Erro ao gerar venda');
@@ -429,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erro ao gerar venda:', error);
-            alert(`Erro ao gerar venda: ${error.message}`);
+            showNotification(`Erro ao gerar venda: ${error.message}`, 'error');
         });
     }
 
@@ -546,4 +515,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adicionar listener para o botão de confirmar importação
     document.getElementById('importJsonConfirm').addEventListener('click', importBudgetFromJson);
+
+    // Adicione este estilo no início do arquivo ou em uma tag <style> no HTML
+    const style = document.createElement('style');
+    style.textContent = `
+        .btn-outline-warning.action-button:hover {
+            color: #ffffff !important;
+        }
+        .btn-outline-warning.action-button:hover i {
+            color: #ffffff !important;
+        }
+    `;
+    document.head.appendChild(style);
 });

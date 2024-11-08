@@ -1401,7 +1401,7 @@
     "id": "1731001180571",
     "numero": "28",
     "cliente": "ORLANDO GIMENES",
-    "situacao": "Em Aberto",
+    "situacao": "Aprovado",
     "data": "2024-11-07",
     "prazoEntrega": "",
     "formaPagamento": "A Combinar",
@@ -1651,6 +1651,33 @@
       "tipo": "value"
     },
     "valorFinal": 9838,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1731091514894",
+    "numero": "33",
+    "cliente": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "situacao": "Em Aberto",
+    "data": "2024-11-08",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 13
+      }
+    ],
+    "valorTotal": 13,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 13,
     "tipoPagamento": "À Vista",
     "paga": false
   }
