@@ -18,6 +18,7 @@ const BOLETOS_FILE = path.join(__dirname, 'data', 'boletos.json');
 const SALES_FILE = path.join(__dirname, 'data', 'sales.json');
 const mongoose = require('mongoose');
 const whatsappRoutes = require('./routes/whatsapp');
+const whatsappManager = require('./whatsapp-service');
 
 const upload = multer({ dest: 'uploads/' });
 
@@ -1334,7 +1335,7 @@ app.get('/api/dashboard-data', authenticateToken, async (req, res) => {
             .slice(0, 5)
             .map(([produto, quantidade]) => ({ nome: produto, quantidade }));
 
-        // Se não houver produtos, adicione uma mensagem
+        // Se no houver produtos, adicione uma mensagem
         if (produtosMaisVendidos.length === 0) {
             produtosMaisVendidos.push({ nome: "Nenhum produto identificado nas vendas", quantidade: 0 });
         }
@@ -1717,9 +1718,95 @@ app.get('/api/boletos-a-vencer', async (req, res) => {
     }
 });
 
-// DEPOIS DAS ROTAS, ADICIONE OS MIDDLEWARES DE ERRO
+// Mova esta rota ANTES dos middlewares de erro
+// Rota para webhook do PIX
+app.post('/api/pix/webhook', async (req, res) => {
+    console.log('🟢 Iniciando processamento do webhook PIX');
+    console.log('Headers recebidos:', JSON.stringify(req.headers, null, 2));
+    
+    try {
+        const pixData = req.body;
+        console.log('📦 Payload recebido:', JSON.stringify(pixData, null, 2));
 
-// Middleware para lidar com erros de rota não encontrada
+        if (!pixData || !pixData.pix || !Array.isArray(pixData.pix)) {
+            console.error('❌ Payload inválido recebido');
+            return res.status(400).json({ error: 'Payload inválido' });
+        }
+
+        // Processa cada transação PIX recebida
+        for (const pix of pixData.pix) {
+            console.log('🔄 Processando transação PIX:', JSON.stringify(pix, null, 2));
+            
+            const { txid, valor, horario, infoPagador, pagador } = pix;
+            
+            // Busca a venda pelo txid
+            const saleNumber = txid.replace('PEDIDO', '');
+            console.log(`🔍 Buscando venda número: ${saleNumber}`);
+            
+            // Tenta encontrar a venda no arquivo de vendas
+            const sales = await readJSONFile(salesFile);
+            const sale = sales.find(s => s.numero === saleNumber);
+            
+            if (sale) {
+                console.log(`✅ Venda encontrada: ${sale.id}`);
+                
+                // Registra o pagamento no Discord
+                console.log('📨 Enviando notificação para o Discord...');
+                await sendDiscordPixNotification({
+                    saleNumber,
+                    valor,
+                    horario,
+                    infoPagador,
+                    pagador,
+                    sale
+                });
+
+                // Envia mensagem para o WhatsApp
+                console.log('📱 Enviando confirmação para o WhatsApp...');
+                try {
+                    const message = 
+                        "✅ *Pagamento PIX Recebido!*\n\n" +
+                        `🛍️ Pedido: #${saleNumber}\n` +
+                        `👤 Cliente: ${sale.cliente}\n` +
+                        `💰 Valor: R$ ${valor}\n` +
+                        `📅 Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
+                        `\n📱 Pagador: ${pagador.nome}\n` +
+                        `📄 CPF: ${pagador.cpf}\n`;
+
+                    const adminPhone = process.env.ADMIN_WHATSAPP; // Pega o número do arquivo .env
+                    await whatsappManager.sendTextMessage(adminPhone, message);
+                    console.log('✅ Mensagem WhatsApp enviada com sucesso');
+                } catch (whatsappError) {
+                    console.error('❌ Erro ao enviar mensagem WhatsApp:', whatsappError);
+                }
+                
+                // Atualiza o status da venda
+                sale.paga = true;
+                sale.dataPagamento = new Date().toISOString();
+                await writeJSONFile(salesFile, sales);
+                console.log('💾 Status da venda atualizado com sucesso');
+            } else {
+                console.warn(`⚠️ Venda não encontrada para o número: ${saleNumber}`);
+            }
+        }
+
+        console.log('✅ Webhook processado com sucesso');
+        res.status(200).json({ 
+            message: 'Webhook processado com sucesso',
+            processedAt: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('❌ Erro ao processar webhook PIX:', error);
+        console.error('Stack trace:', error.stack);
+        res.status(500).json({ 
+            error: 'Erro ao processar webhook',
+            message: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// DEPOIS coloque os middlewares de erro
 app.use((req, res, next) => {
     console.log(`Rota não encontrada: ${req.method} ${req.url}`);
     res.status(404).json({ 
@@ -1729,7 +1816,6 @@ app.use((req, res, next) => {
     });
 });
 
-// Middleware para lidar com erros gerais
 app.use((err, req, res, next) => {
     console.error('Erro na aplicação:', err);
     res.status(500).json({ 
@@ -1737,3 +1823,51 @@ app.use((err, req, res, next) => {
         message: err.message
     });
 });
+
+// Função atualizada para enviar notificação ao Discord
+async function sendDiscordPixNotification(pixData) {
+    console.log('🔔 Iniciando envio de notificação para o Discord');
+    try {
+        const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+        if (!webhookUrl) {
+            throw new Error('URL do webhook do Discord não configurada');
+        }
+
+        const { saleNumber, valor, horario, infoPagador, pagador, sale } = pixData;
+
+        const message = {
+            embeds: [{
+                title: "🟢 Pagamento PIX Recebido",
+                color: 0x00ff00,
+                fields: [
+                    { name: "Número do Pedido", value: saleNumber, inline: true },
+                    { name: "Valor", value: `R$ ${valor}`, inline: true },
+                    { name: "Data/Hora", value: new Date(horario).toLocaleString('pt-BR'), inline: true },
+                    { name: "Pagador", value: pagador.nome, inline: true },
+                    { name: "CPF", value: pagador.cpf, inline: true },
+                    { name: "Informações", value: infoPagador || "N/A", inline: true },
+                    { name: "Cliente", value: sale?.cliente || "N/A", inline: true }
+                ],
+                timestamp: new Date().toISOString()
+            }]
+        };
+
+        console.log('📤 Enviando mensagem para o Discord:', JSON.stringify(message, null, 2));
+
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(message)
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Erro ao enviar para o Discord: ${response.status} - ${errorText}`);
+        }
+
+        console.log('✅ Notificação enviada com sucesso para o Discord');
+    } catch (error) {
+        console.error('❌ Erro ao enviar notificação para o Discord:', error);
+        console.error('Stack trace:', error.stack);
+    }
+}

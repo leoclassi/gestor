@@ -1944,10 +1944,28 @@
     "id": "1731027514764"
   },
   {
-    "tipoCliente": "Pessoa Física",
-    "nome": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "CEYA COMERCIAL LTDA",
     "email": "",
-    "telefone": "",
+    "telefone": "(14) 32828080",
+    "cpf": "",
+    "cnpj": "50.538.362/0002-90",
+    "endereco": {
+      "cep": "17.470-000",
+      "logradouro": "RUA ADOLPHO PINHEIRO DE GOES",
+      "numero": "330",
+      "bairro": "VILA DUARTINA",
+      "cidade": "DUARTINA",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/11/2024, 14:29:43",
+    "id": "1731086987441"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DELEGADO",
+    "email": "",
+    "telefone": "(14) 997908700",
     "cpf": "",
     "cnpj": "",
     "endereco": {
@@ -1958,7 +1976,97 @@
       "cidade": "",
       "uf": ""
     },
-    "dataCadastro": "08/11/2024, 15:42:55",
-    "id": "1731091375666"
+    "dataCadastro": "08/11/2024, 14:31:21",
+    "id": "1731087084752"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DELEGADO",
+    "email": "",
+    "telefone": "(14) 997908700",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "08/11/2024, 14:31:17",
+    "id": "1731087119202"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "MARCELO FONTE",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/11/2024, 14:32:02",
+    "id": "1731087126213"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DELEGADO",
+    "email": "",
+    "telefone": "(14) 997908700",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "08/11/2024, 14:31:17",
+    "id": "1731087152454"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "INDEPENDENTE BARRETOS CONSTRUCOES E INCORPORACOES LTDA",
+    "email": "financeiro@barretosparkhotel.com.br",
+    "telefone": "(17) 3325-5151 / (17) 3328-1290",
+    "cpf": "",
+    "cnpj": "07.441.962/0001-25",
+    "endereco": {
+      "cep": "14.788-899",
+      "logradouro": "RODOVIA BRIGADEIRO FARIA LIMA",
+      "numero": "S/N",
+      "bairro": "AREA RURAL DE BARRETOS",
+      "cidade": "BARRETOS",
+      "uf": "SP"
+    },
+    "dataCadastro": "08/11/2024, 14:35:51",
+    "id": "1731087355512"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JAIR BATALHA",
+    "email": "",
+    "telefone": "(14) 997929539",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": "undefined"
+    },
+    "dataCadastro": "08/11/2024, 15:01:11",
+    "id": "1731088871402"
   }
 ]
