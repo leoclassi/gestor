@@ -1739,32 +1739,32 @@ app.post('/api/pix/webhook', async (req, res) => {
             
             const { txid, valor, horario, infoPagador, pagador } = pix;
             
-            // Busca a venda pelo txid
+            // Busca a venda pelo txid (se existir)
             const saleNumber = txid.replace('PEDIDO', '');
-            console.log(`🔍 Buscando venda número: ${saleNumber}`);
+            console.log(`🔍 Verificando txid: ${txid}`);
             
             // Tenta encontrar a venda no arquivo de vendas
             const sales = await readJSONFile(salesFile);
             const sale = sales.find(s => s.numero === saleNumber);
             
-            if (sale) {
-                console.log(`✅ Venda encontrada: ${sale.id}`);
-                
-                // Registra o pagamento no Discord
-                console.log('📨 Enviando notificação para o Discord...');
-                await sendDiscordPixNotification({
-                    saleNumber,
-                    valor,
-                    horario,
-                    infoPagador,
-                    pagador,
-                    sale
-                });
+            // Envia notificação para Discord e WhatsApp independentemente de encontrar a venda
+            // Registra o pagamento no Discord
+            console.log('📨 Enviando notificação para o Discord...');
+            await sendDiscordPixNotification({
+                txid,
+                valor,
+                horario,
+                infoPagador,
+                pagador,
+                sale // pode ser undefined
+            });
 
-                // Envia mensagem para o WhatsApp
-                console.log('📱 Enviando confirmação para o WhatsApp...');
-                try {
-                    const message = 
+            // Envia mensagem para o WhatsApp
+            console.log('📱 Enviando confirmação para o WhatsApp...');
+            try {
+                let message;
+                if (sale) {
+                    message = 
                         "✅ *Pagamento PIX Recebido!*\n\n" +
                         `🛍️ Pedido: #${saleNumber}\n` +
                         `👤 Cliente: ${sale.cliente}\n` +
@@ -1772,21 +1772,29 @@ app.post('/api/pix/webhook', async (req, res) => {
                         `📅 Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
                         `\n📱 Pagador: ${pagador.nome}\n` +
                         `📄 CPF: ${pagador.cpf}\n`;
-
-                    const adminPhone = process.env.ADMIN_WHATSAPP; // Pega o número do arquivo .env
-                    await whatsappManager.sendTextMessage(adminPhone, message);
-                    console.log('✅ Mensagem WhatsApp enviada com sucesso');
-                } catch (whatsappError) {
-                    console.error('❌ Erro ao enviar mensagem WhatsApp:', whatsappError);
+                } else {
+                    message = 
+                        "✅ *Pagamento PIX Recebido!*\n\n" +
+                        `⚠️ PIX sem venda vinculada\n` +
+                        `💰 Valor: R$ ${valor}\n` +
+                        `📅 Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
+                        `\n📱 Pagador: ${pagador.nome}\n` +
+                        `📄 CPF: ${pagador.cpf}\n`;
                 }
-                
-                // Atualiza o status da venda
+
+                const adminPhone = process.env.ADMIN_WHATSAPP;
+                await whatsappManager.sendTextMessage(adminPhone, message);
+                console.log('✅ Mensagem WhatsApp enviada com sucesso');
+            } catch (whatsappError) {
+                console.error('❌ Erro ao enviar mensagem WhatsApp:', whatsappError);
+            }
+            
+            // Atualiza o status da venda apenas se ela existir
+            if (sale) {
                 sale.paga = true;
                 sale.dataPagamento = new Date().toISOString();
                 await writeJSONFile(salesFile, sales);
                 console.log('💾 Status da venda atualizado com sucesso');
-            } else {
-                console.warn(`⚠️ Venda não encontrada para o número: ${saleNumber}`);
             }
         }
 
@@ -1806,25 +1814,7 @@ app.post('/api/pix/webhook', async (req, res) => {
     }
 });
 
-// DEPOIS coloque os middlewares de erro
-app.use((req, res, next) => {
-    console.log(`Rota não encontrada: ${req.method} ${req.url}`);
-    res.status(404).json({ 
-        error: 'Rota não encontrada',
-        path: req.url,
-        method: req.method
-    });
-});
-
-app.use((err, req, res, next) => {
-    console.error('Erro na aplicação:', err);
-    res.status(500).json({ 
-        error: 'Erro interno do servidor',
-        message: err.message
-    });
-});
-
-// Função atualizada para enviar notificação ao Discord
+// Modifique também a função de notificação do Discord
 async function sendDiscordPixNotification(pixData) {
     console.log('🔔 Iniciando envio de notificação para o Discord');
     try {
@@ -1833,21 +1823,28 @@ async function sendDiscordPixNotification(pixData) {
             throw new Error('URL do webhook do Discord não configurada');
         }
 
-        const { saleNumber, valor, horario, infoPagador, pagador, sale } = pixData;
+        const { txid, valor, horario, infoPagador, pagador, sale } = pixData;
+
+        const fields = [
+            { name: "Valor", value: `R$ ${valor}`, inline: true },
+            { name: "Data/Hora", value: new Date(horario).toLocaleString('pt-BR'), inline: true },
+            { name: "Pagador", value: pagador.nome, inline: true },
+            { name: "CPF", value: pagador.cpf, inline: true }
+        ];
+
+        // Adiciona campos específicos dependendo se é uma venda ou não
+        if (sale) {
+            fields.unshift({ name: "Número do Pedido", value: sale.numero, inline: true });
+            fields.push({ name: "Cliente", value: sale.cliente, inline: true });
+        } else {
+            fields.push({ name: "⚠️ Observação", value: "PIX sem venda vinculada", inline: false });
+        }
 
         const message = {
             embeds: [{
                 title: "🟢 Pagamento PIX Recebido",
-                color: 0x00ff00,
-                fields: [
-                    { name: "Número do Pedido", value: saleNumber, inline: true },
-                    { name: "Valor", value: `R$ ${valor}`, inline: true },
-                    { name: "Data/Hora", value: new Date(horario).toLocaleString('pt-BR'), inline: true },
-                    { name: "Pagador", value: pagador.nome, inline: true },
-                    { name: "CPF", value: pagador.cpf, inline: true },
-                    { name: "Informações", value: infoPagador || "N/A", inline: true },
-                    { name: "Cliente", value: sale?.cliente || "N/A", inline: true }
-                ],
+                color: sale ? 0x00ff00 : 0xffa500, // Verde para vendas, laranja para PIX avulso
+                fields: fields,
                 timestamp: new Date().toISOString()
             }]
         };
@@ -1871,3 +1868,21 @@ async function sendDiscordPixNotification(pixData) {
         console.error('Stack trace:', error.stack);
     }
 }
+
+// DEPOIS coloque os middlewares de erro
+app.use((req, res, next) => {
+    console.log(`Rota não encontrada: ${req.method} ${req.url}`);
+    res.status(404).json({ 
+        error: 'Rota não encontrada',
+        path: req.url,
+        method: req.method
+    });
+});
+
+app.use((err, req, res, next) => {
+    console.error('Erro na aplicação:', err);
+    res.status(500).json({ 
+        error: 'Erro interno do servidor',
+        message: err.message
+    });
+});
