@@ -265,12 +265,25 @@ function filterCheques() {
     const rows = document.getElementById('chequesTable').getElementsByTagName('tr');
 
     for (let row of rows) {
-        // Ajustando o índice para acessar a célula do remetente corretamente após a remoção da coluna Banco
-        const remetente = row.cells[3].textContent.toLowerCase(); // Novo índice após remoção da coluna Banco
-        const chequeNumber = row.cells[1].textContent.toLowerCase();
+        // Pular linhas de cabeçalho de data
+        if (row.classList.contains('data-header')) {
+            continue;
+        }
+
+        // Pegando os valores das células corretas
+        const numeroCheque = row.cells[0]?.textContent.toLowerCase() || '';
+        const remetente = row.cells[2]?.textContent.toLowerCase() || '';
+
+        // Verificar se atende aos critérios de busca
         const matchesSearch = remetente.includes(searchTerm);
-        const matchesNumber = chequeNumber.includes(searchByNumber);
-        row.style.display = (matchesSearch && matchesNumber) ? '' : 'none';
+        const matchesNumber = numeroCheque.includes(searchByNumber);
+
+        // Mostrar ou esconder a linha baseado nos critérios
+        if (matchesSearch && matchesNumber) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
     }
 }
 

@@ -236,6 +236,75 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Adicionar evento de submit ao formulário
+    const chequeForm = document.getElementById('chequeForm');
+    if (chequeForm) {
+        chequeForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Validar campos obrigatórios
+            const campos = ['numeroCheque', 'agencia', 'contaCorrente', 'valor', 'dataEmissao', 'remetente', 'dataCompensacao'];
+            for (const campo of campos) {
+                const elemento = document.getElementById(campo);
+                if (!elemento.value.trim()) {
+                    showToast(`O campo ${campo} é obrigatório`, 'warning');
+                    elemento.focus();
+                    return;
+                }
+            }
+
+            // Formatar valor corretamente
+            const valorStr = document.getElementById('valor').value;
+            const valor = parseFloat(valorStr.replace(',', '.'));
+            
+            if (isNaN(valor)) {
+                showToast('Valor inválido', 'warning');
+                return;
+            }
+
+            const cheque = {
+                numeroCheque: document.getElementById('numeroCheque').value.trim(),
+                banco: document.getElementById('banco').value.trim() || null,
+                agencia: document.getElementById('agencia').value.trim(),
+                contaCorrente: document.getElementById('contaCorrente').value.trim(),
+                valor: valor,
+                dataEmissao: document.getElementById('dataEmissao').value,
+                remetente: document.getElementById('remetente').value.trim(),
+                dataCompensacao: document.getElementById('dataCompensacao').value,
+                id: Date.now().toString(),
+                compensado: false
+            };
+
+            try {
+                const response = await fetch('/api/cheques', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(cheque)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Erro ao salvar cheque');
+                }
+
+                const data = await response.json();
+                showToast('Cheque cadastrado com sucesso!', 'success');
+                
+                // Redirecionar para a página de gerenciamento após salvar
+                setTimeout(() => {
+                    window.location.href = 'cheques-management.html';
+                }, 1000); // Espera 1 segundo para mostrar a mensagem de sucesso
+
+            } catch (error) {
+                console.error('Erro:', error);
+                showToast(error.message || 'Erro ao cadastrar cheque', 'error');
+            }
+        });
+    }
 });
 
 // Funções auxiliares
