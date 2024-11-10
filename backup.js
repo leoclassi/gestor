@@ -6,7 +6,7 @@ const FormData = require('form-data');
 const schedule = require('node-schedule'); // Importando node-schedule
 
 require('dotenv').config();
-const WEBHOOK_URL = process.env.WEBHOOK_URL;
+const BACKUP_WEBHOOK_URL = process.env.BACKUP_WEBHOOK_URL;
 
 // Função para formatar a data
 function getFormattedDate() {
@@ -22,7 +22,7 @@ function createBackup() {
     const zip = new AdmZip();
     const formattedDate = getFormattedDate(); // Obter a data formatada
     const outputFile = path.join(__dirname, 'public', 'backups', `Backup_${formattedDate}.zip`); // Novo nome de arquivo
-    const filesToBackup = ['cheques.json', 'products.json', 'clients.json', 'config.json', 'sales.json', 'users.json', 'budgets.json'];
+    const filesToBackup = ['cheques.json', 'products.json', 'clients.json', 'config.json', 'sales.json', 'users.json', 'budgets.json', 'remetentes.json'];
 
     filesToBackup.forEach(file => {
         const filePath = path.join(__dirname, 'data', file);
@@ -42,7 +42,7 @@ async function sendBackupToDiscord(filePath) {
     });
 
     try {
-        await axios.post(WEBHOOK_URL, form, {
+        await axios.post(BACKUP_WEBHOOK_URL, form, {
             headers: {
                 ...form.getHeaders(),
                 'Content-Type': 'multipart/form-data'

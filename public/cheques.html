@@ -46,121 +46,318 @@
         .btn-logout i {
             margin-right: 10px;
         }
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,0,0,.075);
+            cursor: pointer;
+        }
+        
+        .modal-lg {
+            max-width: 800px;
+        }
+        
+        .btn-group-sm > .btn,
+        .btn-sm {
+            padding: .25rem .5rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            border-radius: .2rem;
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary, .btn-info, .btn-secondary, .btn-warning {
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-info:hover {
+            background-color: #17a2b8;
+        }
+
+        .btn-secondary:hover {
+            background-color: #6c757d;
+        }
+
+        .btn-warning:hover {
+            background-color: #ffc107;
+        }
+
+        /* Novos estilos para os ícones */
+        .form-group label i {
+            color: #6c757d;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dark-theme .form-group label i {
+            color: #adb5bd;
+        }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+        .input-group-text {
+            color: #495057;
+        }
+
+        .card-header i {
+            color: inherit;
+            margin-right: 8px;
+        }
+
+        /* Efeito hover nos campos */
+        .form-control:hover {
+            border-color: #80bdff;
+        }
+
+        /* Estilo para os ícones nos botões */
+        .btn i {
+            margin-right: 5px;
+        }
+
+        /* Melhorar aparência do select */
+        select.form-control {
+            cursor: pointer;
+        }
+
+        /* Estilo para o card principal */
+        .card {
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Estilos para o modal de gerenciamento de remetentes */
+        #gerenciarRemetentesModal .modal-content {
+            border-radius: 8px;
+        }
+
+        #gerenciarRemetentesModal .modal-header {
+            padding: 1rem 1.5rem;
+        }
+
+        #gerenciarRemetentesModal .table {
+            margin-bottom: 0;
+        }
+
+        #gerenciarRemetentesModal .table th {
+            border-top: none;
+            font-weight: 600;
+        }
+
+        #gerenciarRemetentesModal .btn-action {
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.25rem;
+        }
+
+        /* Tema Claro */
+        #gerenciarRemetentesModal .modal-content {
+            background-color: #fff;
+        }
+
+        #gerenciarRemetentesModal .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        #gerenciarRemetentesModal .modal-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+
+        #gerenciarRemetentesModal .table {
+            color: #212529;
+        }
+
+        /* Tema Escuro */
+        .dark-theme #gerenciarRemetentesModal .modal-content {
+            background-color: #2d2d2d;
+            color: #fff;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .modal-header {
+            background-color: #1a1a1a;
+            border-bottom: 1px solid #404040;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .modal-footer {
+            background-color: #1a1a1a;
+            border-top: 1px solid #404040;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .close {
+            color: #fff;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .table {
+            color: #fff;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .table td,
+        .dark-theme #gerenciarRemetentesModal .table th {
+            border-color: #404040;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .table-hover tbody tr:hover {
+            background-color: rgba(255,255,255,0.075);
+            color: #ffffff !important;
+        }
+
+        .dark-theme #gerenciarRemetentesModal .table-hover tbody tr:hover td {
+            color: #ffffff !important;
+        }
+
+        /* Ajuste do hover na tabela para tema claro */
+        #gerenciarRemetentesModal .table-hover tbody tr:hover {
+            background-color: rgba(0,0,0,.075);
+            color: #212529;
+        }
+
+        /* Estilos para os botões de ação na tabela */
+        #gerenciarRemetentesModal .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        #gerenciarRemetentesModal .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #gerenciarRemetentesModal .btn-sm i {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        /* Ajuste para a coluna de ações */
+        #gerenciarRemetentesModal .table th:last-child,
+        #gerenciarRemetentesModal .table td:last-child {
+            width: 100px;
+            text-align: center;
+        }
+
+        .toast {
+            background-color: var(--toast-bg);
+            color: var(--toast-color);
+        }
+        
+        .toast-success {
+            border-left: 4px solid #28a745;
+        }
+        
+        .toast-error {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .toast-warning {
+            border-left: 4px solid #ffc107;
+        }
+        
+        .toast-info {
+            border-left: 4px solid #17a2b8;
+        }
+
+        .dark-theme .toast {
+            background-color: #2d2d2d;
+            color: #fff;
+        }
+
+        .toast-header {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+
+        .dark-theme .toast-header {
+            color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                window.location.href = 'login.html';
-            }
-
-            document.getElementById('logoutButton').addEventListener('click', () => {
-                localStorage.removeItem('token');
-                window.location.href = 'login.html';
-            });
-
-            // Adicionar evento de clique ao botão Cancelar
-            document.getElementById('cancelarBtn').addEventListener('click', () => {
-                window.location.href = 'cheques-management.html';
-            });
-        });
-    </script>
 </head>
 <body>
-    <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = 'login.html';
-            return;
-        }
-
-        const requiredPermission = 'cheques';
-        try {
-            const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const data = await response.json();
-            if (!data.hasPermission) {
-                document.getElementById('accessDeniedMessage').style.display = 'block';
-                document.querySelector('.content').style.display = 'none';
-            }
-        } catch (error) {
-            console.error('Erro ao verificar permissão:', error);
-            document.getElementById('accessDeniedMessage').innerHTML = `
-                <h4 class="alert-heading">Erro ao verificar permissões</h4>
-                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
-            `;
-            document.getElementById('accessDeniedMessage').style.display = 'block';
-            document.querySelector('.content').style.display = 'none';
-        }
-    });
-    </script>
-
-<div class="sidebar">
-    <div class="sidebar-header">
-        <h1>🌲</h1>
-        <h3>Portugal</h3>
-        <h4>Madeiras</h4>
-        <hr>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
+            <hr>
+        </div>
+        <div class="sidebar-content">
+            <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
+                📦 Produtos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="productsSubmenu">
+                <li>
+                    <a href="index.html" class="pl-5">Gerenciar Produtos</a>
+                </li>
+            </ul>
+            <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
+                👥 Clientes <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="clientsSubmenu">
+                <li>
+                    <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
+                </li>
+            </ul>
+            <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
+                🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="ordersSubmenu">
+                <li>
+                    <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
+                </li>
+                <li>
+                    <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
+                </li>
+            </ul>
+            <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
+                💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="financeiroSubmenu">
+                <li>
+                    <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
+                </li>
+                <li>
+                    <a href="boletos.html" class="pl-5">Boletos Bancários</a>
+                </li>
+                <li>
+                    <a href="new-dashboard.html" class="pl-5">Dashboard</a>
+                </li>
+            </ul>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
+                🔐 Admin <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <li>
+                    <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
+                </li>
+                <li>
+                    <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="sidebar-content">
-        <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false">
-            📦 Produtos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="productsSubmenu">
-            <li>
-                <a href="index.html" class="pl-5">Gerenciar Produtos</a>
-            </li>
-        </ul>
-        <a href="#clientsSubmenu" data-toggle="collapse" aria-expanded="false">
-            👥 Clientes <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="clientsSubmenu">
-            <li>
-                <a href="clients.html" class="pl-5">Gerenciar Clientes</a>
-            </li>
-        </ul>
-        <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false">
-            🛒 Pedidos <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="ordersSubmenu">
-            <li>
-                <a href="sales-management.html" class="pl-5">Gerenciar Vendas</a>
-            </li>
-            <li>
-                <a href="budgets-management.html" class="pl-5">Gerenciar Orçamentos</a>
-            </li>
-        </ul>
-        <a href="#financeiroSubmenu" data-toggle="collapse" aria-expanded="false">
-            💰 Financeiro <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="financeiroSubmenu">
-            <li>
-                <a href="cheques-management.html" class="pl-5">Gerenciar Cheques</a>
-            </li>
-            <li>
-                <a href="boletos.html" class="pl-5">Boletos Bancários</a>
-            </li>
-            <li>
-                <a href="new-dashboard.html" class="pl-5">Dashboard</a>
-            </li>
-        </ul>
-        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
-            🔐 Admin <i class="fas fa-chevron-right arrow"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="adminSubmenu">
-            <li>
-                <a href="user-management.html" class="pl-5">Gerenciar Usuários</a>
-            </li>
-            <li>
-                <a href="backup-management.html" class="pl-5">Gerenciar Backup</a>
-            </li>
-        </ul>
-    </div>
-</div>
 
     <div class="content">
         <div class="container">
@@ -170,6 +367,33 @@
                     <i class="fas fa-arrow-left mr-2"></i>Voltar
                 </a>
             </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-users mr-2"></i>Remetente
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cadastrarRemetenteModal">
+                                <i class="fas fa-plus mr-2"></i>Novo Remetente
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm ml-2" id="gerenciarRemetentesBtn">
+                                <i class="fas fa-cog mr-2"></i>Gerenciar Remetentes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="selecionarRemetente">
+                            <i class="fas fa-user-circle mr-2"></i>Selecionar Remetente
+                        </label>
+                        <select class="form-control" id="selecionarRemetente">
+                            <option value="">Selecione um remetente...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <form id="chequeForm">
                 <div class="card mb-4">
                     <div class="card-header">
@@ -177,26 +401,38 @@
                     </div>
                     <div class="card-body">
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="numeroCheque">Número do Cheque</label>
+                            <div class="form-group col-md-6">
+                                <label for="numeroCheque">
+                                    <i class="fas fa-hashtag mr-2"></i>Número do Cheque
+                                </label>
                                 <input type="text" class="form-control" id="numeroCheque" required>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="banco">Banco</label>
+                            <div class="form-group col-md-6">
+                                <label for="banco">
+                                    <i class="fas fa-university mr-2"></i>Banco
+                                </label>
                                 <input type="text" class="form-control" id="banco" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="agencia">Agência</label>
-                                <input type="text" class="form-control" id="agencia" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="contaCorrente">Conta Corrente</label>
+                            <div class="form-group col-md-6">
+                                <label for="agencia">
+                                    <i class="fas fa-building mr-2"></i>Agência
+                                </label>
+                                <input type="text" class="form-control" id="agencia" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="contaCorrente">
+                                    <i class="fas fa-piggy-bank mr-2"></i>Conta Corrente
+                                </label>
                                 <input type="text" class="form-control" id="contaCorrente" required>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="valor">Valor</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="valor">
+                                    <i class="fas fa-dollar-sign mr-2"></i>Valor
+                                </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
@@ -204,18 +440,24 @@
                                     <input type="text" class="form-control valor" id="valor" required>
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="dataEmissao">Data de Emissão</label>
+                            <div class="form-group col-md-6">
+                                <label for="dataEmissao">
+                                    <i class="fas fa-calendar-alt mr-2"></i>Data de Emissão
+                                </label>
                                 <input type="date" class="form-control" id="dataEmissao" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="remetente">Nome do Remetente</label>
+                                <label for="remetente">
+                                    <i class="fas fa-user mr-2"></i>Nome do Remetente
+                                </label>
                                 <input type="text" class="form-control" id="remetente" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="dataCompensacao">Data de Compensação</label>
+                                <label for="dataCompensacao">
+                                    <i class="fas fa-calendar-check mr-2"></i>Data de Compensação
+                                </label>
                                 <input type="date" class="form-control" id="dataCompensacao" required>
                             </div>
                         </div>
@@ -226,41 +468,8 @@
                     <button type="submit" class="btn btn-success mr-2">
                         <i class="fas fa-save mr-2"></i>Salvar Cheque
                     </button>
-                    <button type="button" class="btn btn-secondary mr-2" id="cancelarBtn">
-                        <i class="fas fa-times mr-2"></i>Cancelar
-                    </button>
-                    <button type="button" class="btn btn-warning mr-2" id="limparBtn">
-                        <i class="fas fa-eraser mr-2"></i>Limpar
-                    </button>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#autoPreencherModal">
-                        <i class="fas fa-magic mr-2"></i>Auto Preencher
-                    </button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Modal de Auto Preenchimento -->
-    <div class="modal fade" id="autoPreencherModal" tabindex="-1" aria-labelledby="autoPreencherModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoPreencherModalLabel">Auto Preencher Cheque</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="chequeJson">Insira os dados do cheque em formato JSON:</label>
-                        <textarea class="form-control" id="chequeJson" rows="10"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="preencherCheque">Preencher</button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -290,5 +499,143 @@
             border-color: #666600;
         }
     </style>
+
+    <!-- Adicione este modal no final do body, antes dos scripts -->
+    <div class="modal fade" id="cadastrarRemetenteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-plus mr-2"></i>Cadastrar Novo Remetente
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="remetenteForm">
+                        <div class="form-group">
+                            <label for="nomeRemetente">
+                                <i class="fas fa-user mr-2"></i>Nome do Remetente
+                            </label>
+                            <input type="text" class="form-control" id="nomeRemetente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bancoRemetente">
+                                <i class="fas fa-university mr-2"></i>Banco
+                            </label>
+                            <input type="text" class="form-control" id="bancoRemetente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agenciaRemetente">
+                                <i class="fas fa-building mr-2"></i>Agência
+                            </label>
+                            <input type="text" class="form-control" id="agenciaRemetente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contaRemetente">
+                                <i class="fas fa-piggy-bank mr-2"></i>Conta Corrente
+                            </label>
+                            <input type="text" class="form-control" id="contaRemetente" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="salvarRemetente">
+                        <i class="fas fa-save mr-2"></i>Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicione este novo modal para gerenciar remetentes -->
+    <div class="modal fade" id="gerenciarRemetentesModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-users mr-2"></i>Gerenciar Remetentes
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-user mr-2"></i>Nome</th>
+                                    <th><i class="fas fa-university mr-2"></i>Banco</th>
+                                    <th><i class="fas fa-building mr-2"></i>Agência</th>
+                                    <th><i class="fas fa-piggy-bank mr-2"></i>Conta</th>
+                                    <th class="text-center"><i class="fas fa-cogs mr-2"></i>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="remetentesTableBody">
+                                <!-- Preenchido dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicione este modal para edição de remetentes -->
+    <div class="modal fade" id="editarRemetenteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit mr-2"></i>Editar Remetente
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarRemetenteForm">
+                        <input type="hidden" id="editRemetenteId">
+                        <div class="form-group">
+                            <label for="editNomeRemetente">
+                                <i class="fas fa-user mr-2"></i>Nome do Remetente
+                            </label>
+                            <input type="text" class="form-control" id="editNomeRemetente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBancoRemetente">
+                                <i class="fas fa-university mr-2"></i>Banco
+                            </label>
+                            <input type="text" class="form-control" id="editBancoRemetente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAgenciaRemetente">
+                                <i class="fas fa-building mr-2"></i>Agência
+                            </label>
+                            <input type="text" class="form-control" id="editAgenciaRemetente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editContaRemetente">
+                                <i class="fas fa-piggy-bank mr-2"></i>Conta Corrente
+                            </label>
+                            <input type="text" class="form-control" id="editContaRemetente" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="salvarEdicaoRemetente">
+                        <i class="fas fa-save mr-2"></i>Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicione antes do fechamento do body -->
+    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 9999; right: 0; bottom: 0;">
+        <div id="toastContainer"></div>
+    </div>
 </body>
 </html>

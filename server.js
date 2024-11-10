@@ -1869,7 +1869,81 @@ async function sendDiscordPixNotification(pixData) {
     }
 }
 
-// DEPOIS coloque os middlewares de erro
+// Mova a constante para o início do arquivo junto com as outras constantes
+const remetentesFile = path.join(__dirname, 'data', 'remetentes.json');
+
+// Adicione estas rotas junto com as outras rotas da API
+// Rotas para remetentes de cheques
+app.get('/api/remetentes', async (req, res) => {
+    try {
+        const remetentes = await readJSONFile(remetentesFile);
+        res.json(remetentes);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar remetentes' });
+    }
+});
+
+app.get('/api/remetentes/:id', async (req, res) => {
+    try {
+        const remetentes = await readJSONFile(remetentesFile);
+        const remetente = remetentes.find(r => r.id === req.params.id);
+        if (remetente) {
+            res.json(remetente);
+        } else {
+            res.status(404).json({ error: 'Remetente não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar remetente:', error);
+        res.status(500).json({ error: 'Erro ao buscar remetente' });
+    }
+});
+
+app.post('/api/remetentes', async (req, res) => {
+    try {
+        const remetentes = await readJSONFile(remetentesFile);
+        const novoRemetente = {
+            id: Date.now().toString(),
+            ...req.body
+        };
+        remetentes.push(novoRemetente);
+        await writeJSONFile(remetentesFile, remetentes);
+        res.status(201).json(novoRemetente);
+    } catch (error) {
+        console.error('Erro ao criar remetente:', error);
+        res.status(500).json({ error: 'Erro ao criar remetente' });
+    }
+});
+
+app.put('/api/remetentes/:id', async (req, res) => {
+    try {
+        const remetentes = await readJSONFile(remetentesFile);
+        const index = remetentes.findIndex(r => r.id === req.params.id);
+        if (index !== -1) {
+            remetentes[index] = { ...remetentes[index], ...req.body };
+            await writeJSONFile(remetentesFile, remetentes);
+            res.json(remetentes[index]);
+        } else {
+            res.status(404).json({ error: 'Remetente não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar remetente:', error);
+        res.status(500).json({ error: 'Erro ao atualizar remetente' });
+    }
+});
+
+app.delete('/api/remetentes/:id', async (req, res) => {
+    try {
+        const remetentes = await readJSONFile(remetentesFile);
+        const filteredRemetentes = remetentes.filter(r => r.id !== req.params.id);
+        await writeJSONFile(remetentesFile, filteredRemetentes);
+        res.json({ message: 'Remetente excluído com sucesso' });
+    } catch (error) {
+        console.error('Erro ao excluir remetente:', error);
+        res.status(500).json({ error: 'Erro ao excluir remetente' });
+    }
+});
+
+// DEPOIS das rotas dos remetentes, coloque os middlewares de erro
 app.use((req, res, next) => {
     console.log(`Rota não encontrada: ${req.method} ${req.url}`);
     res.status(404).json({ 
