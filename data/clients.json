@@ -415,24 +415,6 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "JOSE MAURICIO SOARES PARDO",
-    "email": "",
-    "telefone": "(14) 991411136 ou (14) 996146253",
-    "cpf": "",
-    "cnpj": "",
-    "endereco": {
-      "cep": "",
-      "logradouro": "QUERCIA SITIO PEDRA BRANCA",
-      "numero": "",
-      "bairro": "",
-      "cidade": "Duartina",
-      "uf": "SP"
-    },
-    "dataCadastro": "08/10/2024, 15:11:35",
-    "id": "1728411095055"
-  },
-  {
-    "tipoCliente": "Pessoa Física",
     "nome": "MARCOS DEVIDE PAULINO",
     "email": "",
     "telefone": "55 14 99682-2946",
@@ -2053,9 +2035,81 @@
   },
   {
     "tipoCliente": "Pessoa Física",
+    "nome": "NIL",
+    "email": "",
+    "telefone": "(14) 996805961",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "RUA JOSÉ MADRIGAL GALHARDO",
+      "numero": "237",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/11/2024, 14:18:41",
+    "id": "1731345528860"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIS CARLOS",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/11/2024, 14:21:45",
+    "id": "1731345711958"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIS CARLOS FERNANDES",
+    "email": "",
+    "telefone": "(14) 997333200",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO MUNDO NOVO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/11/2024, 14:23:48",
+    "id": "1731345835318"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "JOSE MAURICIO SOARES PARDO",
+    "email": "",
+    "telefone": "(14) 3265-1786",
+    "cpf": "",
+    "cnpj": "08.550.214/0001-43",
+    "endereco": {
+      "cep": "17.490-001",
+      "logradouro": "SITIO PEDRA BRANCA",
+      "numero": "",
+      "bairro": "PEDRA BRANCA",
+      "cidade": "PIRATININGA",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/11/2024, 14:33:21",
+    "id": "1731346408030"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
     "nome": "JAIR BATALHA",
     "email": "",
-    "telefone": "(14) 997929539",
+    "telefone": "(14) 99792-9539",
     "cpf": "",
     "cnpj": "",
     "endereco": {
@@ -2064,9 +2118,9 @@
       "numero": "",
       "bairro": "",
       "cidade": "",
-      "uf": "undefined"
+      "estado": ""
     },
-    "dataCadastro": "08/11/2024, 15:01:11",
-    "id": "1731088871402"
+    "dataCadastro": "11/11/2024, 15:01:41",
+    "id": "1731348108289"
   }
 ]

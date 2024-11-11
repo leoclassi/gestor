@@ -1655,86 +1655,94 @@
     "paga": false
   },
   {
-    "id": "1731089002729",
-    "numero": "34",
+    "id": "1731348375727",
+    "numero": "40",
     "cliente": "JAIR BATALHA",
     "situacao": "Em Aberto",
-    "data": "2024-11-08",
+    "data": "2024-11-11",
     "prazoEntrega": "",
     "formaPagamento": "A Combinar",
     "produtos": [
       {
-        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
-        "quantidade": 8,
-        "valor": 86.4,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 691.2
-      },
-      {
-        "produto": "Palanque - 5,00 Metros - 13 a 16 cm Ø",
-        "quantidade": 6,
-        "valor": 175,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 1050
-      },
-      {
-        "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
-        "quantidade": 3,
-        "valor": 86.4,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 259.2
-      },
-      {
-        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
-        "quantidade": 1,
-        "valor": 125,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 125
-      },
-      {
         "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
-        "quantidade": 4,
+        "quantidade": 8,
         "valor": 64.8,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 259.2
+        "subtotal": 518.4
       },
       {
-        "produto": "Palanque - 3,50 Metros - 10 a 13 cm Ø",
-        "quantidade": 3,
-        "valor": 69.6,
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 125,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 208.8
-      },
-      {
-        "produto": "Palanque - 4,50 Metros - 10 a 13 cm Ø",
-        "quantidade": 4,
-        "valor": 100,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 400
+        "subtotal": 750
       },
       {
         "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
-        "quantidade": 4,
+        "quantidade": 3,
         "valor": 86.4,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 345.6
+        "subtotal": 259.2
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 1,
+        "valor": 64,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 64
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 139.2
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 3,
+        "valor": 39.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 118.8
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 52,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 208
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 192
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 1,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 25
       }
     ],
-    "valorTotal": 3339,
+    "valorTotal": 2274.6,
     "descontoTotal": {
       "valor": 0,
       "tipo": "value"
     },
-    "valorFinal": 3339,
-    "tipoPagamento": "À Vista",
-    "paga": false
+    "valorFinal": 2274.6,
+    "paga": false,
+    "tipoPagamento": "À Vista"
   }
 ]

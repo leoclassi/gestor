@@ -5189,5 +5189,334 @@
         "valor": 4919
       }
     ]
+  },
+  {
+    "numero": "224",
+    "cliente": "NIL",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Palanque - 6,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 3,
+        "valor": 95,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 285
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 3,
+        "valor": 84,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 252
+      }
+    ],
+    "valorTotal": 537,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 537,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731345581079"
+  },
+  {
+    "numero": "225",
+    "cliente": "MARCELO FONTE",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Crédito",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 25,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 425
+      }
+    ],
+    "valorTotal": 425,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 425,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731345676749"
+  },
+  {
+    "numero": "227",
+    "cliente": "LUIS CARLOS FERNANDES",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 50,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 650
+      }
+    ],
+    "valorTotal": 650,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 650,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731345860669"
+  },
+  {
+    "numero": "228",
+    "cliente": "NIL",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 360
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 55,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 110
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 30
+      }
+    ],
+    "valorTotal": 500,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 500,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731346232037"
+  },
+  {
+    "numero": "229",
+    "cliente": "PANORAMA MATERIAIS DE CONSTRUCAO LTDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 100,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2500
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 30,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 510
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 10,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 600
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 518.4
+      }
+    ],
+    "valorTotal": 4128.4,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 4128.4,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731346311038"
+  },
+  {
+    "numero": "230",
+    "cliente": "JOSE MAURICIO SOARES PARDO",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 300,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 7500
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 30,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1800
+      }
+    ],
+    "valorTotal": 8800.59,
+    "descontoTotal": {
+      "valor": 5.37,
+      "tipo": "percentage"
+    },
+    "valorFinal": 8800.59,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 3,
+    "dataPrimeiraParcela": "2024-12-11",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/11",
+        "valor": 2933.53
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/10",
+        "valor": 2933.53
+      },
+      {
+        "numero": 3,
+        "data": "2025/02/09",
+        "valor": 2933.53
+      }
+    ],
+    "id": "1731346504339"
+  },
+  {
+    "cliente": "JAIR BATALHA",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 8,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 518.4
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 750
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 259.2
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 1,
+        "valor": 64,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 64
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 139.2
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 3,
+        "valor": 39.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 118.8
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 52,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 208
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 4,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 192
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 1,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 25
+      }
+    ],
+    "valorTotal": 2274.6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2274.6,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "numero": "231",
+    "id": "1731351193721"
   }
 ]
