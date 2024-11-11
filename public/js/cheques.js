@@ -291,13 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(errorData.message || 'Erro ao salvar cheque');
                 }
 
-                const data = await response.json();
                 showToast('Cheque cadastrado com sucesso!', 'success');
-                
-                // Redirecionar para a página de gerenciamento após salvar
-                setTimeout(() => {
-                    window.location.href = 'cheques-management.html';
-                }, 1000); // Espera 1 segundo para mostrar a mensagem de sucesso
+                // Redirecionar imediatamente
+                window.location.href = 'cheques-management.html';
 
             } catch (error) {
                 console.error('Erro:', error);
@@ -305,6 +301,65 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Adicione estas funções
+    function setupMultipleCheques() {
+        const addAnotherBtn = document.getElementById('addAnotherCheque');
+        const form = document.getElementById('chequeForm');
+
+        // Mostrar botão após o primeiro cheque ser salvo
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // ... código existente do submit ...
+
+            try {
+                const response = await fetch('/api/cheques', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(cheque)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao salvar cheque');
+                }
+
+                showToast('Cheque cadastrado com sucesso!', 'success');
+                
+                // Mostrar botão de adicionar outro cheque
+                addAnotherBtn.style.display = 'inline-block';
+                
+                // Limpar apenas os campos específicos
+                document.getElementById('numeroCheque').value = '';
+                document.getElementById('valor').value = '';
+                document.getElementById('dataCompensacao').value = '';
+                
+                // Focar no campo número do cheque
+                document.getElementById('numeroCheque').focus();
+
+            } catch (error) {
+                console.error('Erro:', error);
+                showToast(error.message || 'Erro ao cadastrar cheque', 'error');
+            }
+        });
+
+        // Configurar botão de adicionar outro cheque
+        addAnotherBtn.addEventListener('click', function() {
+            // Limpar apenas os campos específicos
+            document.getElementById('numeroCheque').value = '';
+            document.getElementById('valor').value = '';
+            document.getElementById('dataCompensacao').value = '';
+            
+            // Focar no campo número do cheque
+            document.getElementById('numeroCheque').focus();
+        });
+    }
+
+    // Adicione a chamada da função no DOMContentLoaded
+    setupMultipleCheques();
 });
 
 // Funções auxiliares
@@ -312,28 +367,92 @@ function removerZerosAEsquerda(valor) {
     return valor.replace(/^0+/, '');
 }
 
-// Função para carregar os remetentes do servidor e preencher o select
+// Adicionar estas funções
+let remetentesLista = []; // Array para armazenar todos os remetentes
+
 async function carregarRemetentes() {
     try {
         const response = await fetch('/api/remetentes');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const remetentes = await response.json();
+        remetentesLista = await response.json();
         
-        const select = document.getElementById('selecionarRemetente');
-        select.innerHTML = '<option value="">Selecione um remetente...</option>';
-        
-        remetentes.forEach(remetente => {
-            const option = document.createElement('option');
-            option.value = remetente.id;
-            option.textContent = remetente.nome;
-            select.appendChild(option);
-        });
+        // Configurar o campo de pesquisa
+        setupPesquisaRemetente();
     } catch (error) {
         console.error('Erro ao carregar remetentes:', error);
         showToast('Erro ao carregar a lista de remetentes', 'error');
     }
+}
+
+function setupPesquisaRemetente() {
+    const pesquisaInput = document.getElementById('pesquisaRemetente');
+    const resultadosDiv = document.getElementById('resultadosPesquisa');
+
+    pesquisaInput.addEventListener('input', (e) => {
+        const termo = e.target.value.toLowerCase();
+        if (termo.length < 2) {
+            resultadosDiv.classList.remove('show');
+            return;
+        }
+
+        const resultados = remetentesLista.filter(rem => 
+            rem.nome.toLowerCase().includes(termo)
+        ).slice(0, 10); // Limita a 10 resultados
+
+        mostrarResultados(resultados);
+    });
+
+    // Fechar resultados quando clicar fora
+    document.addEventListener('click', (e) => {
+        if (!pesquisaInput.contains(e.target) && !resultadosDiv.contains(e.target)) {
+            resultadosDiv.classList.remove('show');
+        }
+    });
+}
+
+function mostrarResultados(resultados) {
+    const resultadosDiv = document.getElementById('resultadosPesquisa');
+    const pesquisaInput = document.getElementById('pesquisaRemetente');
+    const rect = pesquisaInput.getBoundingClientRect();
+
+    // Posicionar a lista abaixo do input
+    resultadosDiv.style.top = `${rect.bottom + window.scrollY}px`;
+    resultadosDiv.style.left = `${rect.left}px`;
+    resultadosDiv.style.width = `${rect.width}px`;
+
+    resultadosDiv.innerHTML = '';
+
+    if (resultados.length === 0) {
+        resultadosDiv.innerHTML = '<div class="resultado-item">Nenhum resultado encontrado</div>';
+        resultadosDiv.classList.add('show');
+        return;
+    }
+
+    resultados.forEach(rem => {
+        const div = document.createElement('div');
+        div.className = 'resultado-item';
+        div.textContent = rem.nome;
+        div.addEventListener('click', () => selecionarRemetente(rem));
+        resultadosDiv.appendChild(div);
+    });
+
+    resultadosDiv.classList.add('show');
+}
+
+function selecionarRemetente(remetente) {
+    const pesquisaInput = document.getElementById('pesquisaRemetente');
+    const resultadosDiv = document.getElementById('resultadosPesquisa');
+
+    pesquisaInput.value = remetente.nome;
+    resultadosDiv.classList.remove('show');
+
+    // Preencher os campos bancários
+    document.getElementById('banco').value = remetente.banco || '';
+    document.getElementById('agencia').value = remetente.agencia || '';
+    document.getElementById('contaCorrente').value = remetente.conta || '';
+    document.getElementById('remetente').value = remetente.nome;
 }
 
 // Adicione esta função ao escopo global
@@ -413,36 +532,133 @@ window.excluirRemetente = async function(id) {
 
 // Adicione esta função para mostrar as notificações
 function showToast(message, type = 'info') {
-    const icons = {
-        success: 'fas fa-check-circle',
-        error: 'fas fa-exclamation-circle',
-        warning: 'fas fa-exclamation-triangle',
-        info: 'fas fa-info-circle'
-    };
-
     const toast = document.createElement('div');
     toast.className = `toast toast-${type} mb-3`;
-    toast.setAttribute('role', 'alert');
-    toast.setAttribute('aria-live', 'assertive');
-    toast.setAttribute('aria-atomic', 'true');
+    toast.style.position = 'fixed';
+    toast.style.top = '20px';
+    toast.style.right = '20px';
+    toast.style.zIndex = '9999';
     toast.innerHTML = `
         <div class="toast-header">
-            <i class="${icons[type]} mr-2" style="color: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : type === 'warning' ? '#ffc107' : '#17a2b8'}"></i>
-            <strong class="mr-auto">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+            <i class="fas fa-info-circle mr-2"></i>
+            <strong class="mr-auto">${type}</strong>
+            <button type="button" class="ml-2 mb-1 close" onclick="this.parentElement.parentElement.remove()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="toast-body">
-            ${message}
-        </div>
+        <div class="toast-body">${message}</div>
     `;
 
-    document.getElementById('toastContainer').appendChild(toast);
-    $(toast).toast({ delay: 5000 }).toast('show');
+    document.body.appendChild(toast);
+    
+    // Remover após 3 segundos sem animação
+    setTimeout(() => toast.remove(), 3000);
+}
 
-    // Remover o toast depois que ele for fechado
-    $(toast).on('hidden.bs.toast', function() {
-        $(this).remove();
+// Adicionar estas funções
+let chequesLista = [];
+
+function adicionarChequeALista() {
+    const numeroCheque = document.getElementById('numeroCheque').value;
+    const valor = document.getElementById('valor').value;
+    const dataCompensacao = document.getElementById('dataCompensacao').value;
+    const remetente = document.getElementById('remetente').value;
+    const banco = document.getElementById('banco').value;
+    const agencia = document.getElementById('agencia').value;
+    const contaCorrente = document.getElementById('contaCorrente').value;
+    const dataEmissao = document.getElementById('dataEmissao').value;
+
+    if (!numeroCheque || !valor || !dataCompensacao || !remetente) {
+        showToast('Preencha todos os campos obrigatórios', 'warning');
+        return;
+    }
+
+    const cheque = {
+        numeroCheque,
+        valor: parseFloat(valor),
+        dataCompensacao,
+        remetente,
+        banco,
+        agencia,
+        contaCorrente,
+        dataEmissao,
+        id: Date.now().toString(),
+        compensado: false
+    };
+
+    chequesLista.push(cheque);
+    atualizarTabelaCheques();
+    limparCamposCheque();
+}
+
+function limparCamposCheque() {
+    document.getElementById('numeroCheque').value = '';
+    document.getElementById('valor').value = '';
+    document.getElementById('dataCompensacao').value = '';
+    document.getElementById('numeroCheque').focus();
+}
+
+function atualizarTabelaCheques() {
+    const tbody = document.getElementById('chequesListaBody');
+    tbody.innerHTML = '';
+
+    chequesLista.forEach((cheque, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${cheque.numeroCheque}</td>
+            <td>R$ ${cheque.valor.toFixed(2)}</td>
+            <td>${formatarData(cheque.dataCompensacao)}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="removerCheque(${index})" title="Remover">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(tr);
     });
 }
+
+function removerCheque(index) {
+    chequesLista.splice(index, 1);
+    atualizarTabelaCheques();
+}
+
+async function salvarTodosCheques() {
+    if (chequesLista.length === 0) {
+        showToast('Adicione pelo menos um cheque à lista', 'warning');
+        return;
+    }
+
+    try {
+        for (const cheque of chequesLista) {
+            const response = await fetch('/api/cheques', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(cheque)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro ao salvar cheque ${cheque.numeroCheque}`);
+            }
+        }
+
+        showToast(`${chequesLista.length} cheques salvos com sucesso!`, 'success');
+        setTimeout(() => {
+            window.location.href = 'cheques-management.html';
+        }, 1500);
+    } catch (error) {
+        console.error('Erro:', error);
+        showToast(error.message, 'error');
+    }
+}
+
+function formatarData(data) {
+    return new Date(data).toLocaleDateString('pt-BR');
+}
+
+// Adicionar event listeners
+document.getElementById('adicionarCheque').addEventListener('click', adicionarChequeALista);
+document.getElementById('salvarTodosCheques').addEventListener('click', salvarTodosCheques);

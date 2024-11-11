@@ -293,6 +293,364 @@
             color: #fff;
             border-bottom: 1px solid rgba(255,255,255,.1);
         }
+
+        /* Adicionar estes estilos */
+        #resultadosPesquisa {
+            display: none;
+            position: absolute;
+            z-index: 9999;
+            background: var(--modal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            top: 100%;
+            left: 0;
+        }
+
+        #resultadosPesquisa.show {
+            display: block;
+        }
+
+        .resultado-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resultado-item:last-child {
+            border-bottom: none;
+        }
+
+        .resultado-item:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .dark-theme #resultadosPesquisa {
+            background: #2d2d2d;
+            border-color: #404040;
+        }
+
+        .dark-theme .resultado-item {
+            border-bottom-color: #404040;
+        }
+
+        .dark-theme .resultado-item:hover {
+            background-color: #404040;
+            color: white;
+        }
+
+        /* Ajuste para o container do formulário */
+        .form-group {
+            position: relative;  /* Importante para posicionamento do dropdown */
+        }
+
+        /* Ajustes para a lista de resultados */
+        #resultadosPesquisa {
+            position: absolute !important; /* Forçar posição absoluta */
+            top: 100% !important; /* Posicionar logo abaixo do input */
+            left: 0 !important;
+            width: 100% !important;
+            max-height: 250px;
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 9999;
+            margin-top: 5px;
+        }
+
+        /* Estilo para cada item da lista */
+        .resultado-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            background: #fff;
+        }
+
+        .resultado-item:last-child {
+            border-bottom: none;
+        }
+
+        .resultado-item:hover {
+            background-color: #f8f9fa;
+            color: #000;
+        }
+
+        /* Ajustes para tema escuro */
+        .dark-theme #resultadosPesquisa {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .dark-theme .resultado-item {
+            background: #2d2d2d;
+            color: #fff;
+            border-bottom-color: #444;
+        }
+
+        .dark-theme .resultado-item:hover {
+            background: #3d3d3d;
+            color: #fff;
+        }
+
+        /* Estilização da barra de rolagem */
+        #resultadosPesquisa::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #resultadosPesquisa::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        #resultadosPesquisa::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .dark-theme #resultadosPesquisa::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        .dark-theme #resultadosPesquisa::-webkit-scrollbar-thumb {
+            background: #666;
+        }
+
+        /* Garantir que o dropdown não ultrapasse a largura do input */
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Garantir que o formulário não sobreponha */
+        #chequeForm {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Ajuste para tema escuro */
+        .dark-theme #resultadosPesquisa {
+            background: #2d2d2d;
+            border-color: #404040;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        /* Ajuste para posicionamento dos resultados */
+        .input-group {
+            position: relative;
+        }
+
+        /* Remover estas animações */
+        /* .card {
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        } */
+
+        /* Manter apenas a sombra sem animação */
+        .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Remover também estas transições */
+        /* .btn-primary, .btn-info, .btn-secondary, .btn-warning {
+            transition: background-color 0.3s ease;
+        } */
+
+        /* Remover qualquer transform ou transition dos elementos do formulário */
+        .form-control:hover,
+        .input-group:hover,
+        .form-group:hover {
+            transform: none;
+            transition: none;
+        }
+
+        /* Remover todas as animações e transições */
+        *, *::before, *::after {
+            transition: none !important;
+            transform: none !important;
+            animation: none !important;
+        }
+
+        .card {
+            box-shadow: none;
+            transform: none !important;
+        }
+
+        .card:hover {
+            transform: none !important;
+        }
+
+        .btn, .btn:hover {
+            transition: none !important;
+            transform: none !important;
+        }
+
+        .form-control, .form-control:hover,
+        .input-group, .input-group:hover,
+        .form-group, .form-group:hover {
+            transform: none !important;
+            transition: none !important;
+        }
+
+        /* Remover animações do dropdown de resultados */
+        #resultadosPesquisa {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        .resultado-item, .resultado-item:hover {
+            transition: none !important;
+            transform: none !important;
+        }
+
+        /* Remover animações dos toasts */
+        .toast {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        /* Remover qualquer outra animação do Bootstrap */
+        .fade {
+            transition: none !important;
+        }
+
+        .collapse {
+            transition: none !important;
+        }
+
+        /* Ajuste para a coluna de ações */
+        .table th:last-child,
+        .table td:last-child {
+            width: 80px !important;
+            max-width: 80px !important;
+            text-align: center;
+        }
+
+        /* Ajuste para os botões de ação */
+        .table .btn-sm {
+            padding: 0.2rem;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Melhorar espaçamento da tabela */
+        .table td, .table th {
+            padding: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Estilo para o botão de adicionar à lista */
+        #adicionarCheque {
+            min-width: 120px;
+        }
+
+        /* Estilo para o botão de salvar todos */
+        #salvarTodosCheques {
+            min-width: 200px;
+        }
+
+        /* Adicione estes estilos */
+        .table td, .table th {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        .table td:nth-child(2) { /* Coluna de valor */
+            text-align: right !important;
+        }
+
+        .table .btn-sm {
+            margin: 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ajuste para a coluna de ações */
+        .table th:last-child,
+        .table td:last-child {
+            width: 80px !important;
+            max-width: 80px !important;
+            text-align: center !important;
+        }
+
+        /* Ajuste para alinhamento das colunas */
+        .table td, .table th {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        /* Remover alinhamento específico para coluna de valor */
+        /* .table td:nth-child(2) {
+            text-align: right !important;
+        } */
+
+        /* Ajuste para a tabela */
+        .table {
+            margin-bottom: 0;
+        }
+
+        /* Ajuste para as células da tabela */
+        .table td {
+            padding: 0.5rem;
+            white-space: nowrap;
+        }
+
+        /* Remova todos os estilos anteriores de alinhamento e adicione estes */
+        .table th,
+        .table td {
+            text-align: center !important;
+            vertical-align: middle !important;
+            padding: 8px !important;
+        }
+
+        /* Garantir que não haja outros estilos interferindo */
+        .table td[class],
+        .table td:not([class]) {
+            text-align: center !important;
+        }
+
+        /* Ajuste específico para a coluna de valor */
+        .table td:nth-child(2) {
+            text-align: center !important;
+        }
+
+        /* Remover qualquer outro estilo que possa estar interferindo */
+        [class*="text-"] {
+            text-align: center !important;
+        }
+
+        /* Adicione estes estilos */
+        .section-divider {
+            border-top: 1px solid #eee;
+            margin: 2rem 0;
+        }
+
+        .dark-theme .section-divider {
+            border-top-color: #444;
+        }
+
+        /* Ajuste o espaçamento dos cards */
+        .card {
+            margin-bottom: 2rem;
+        }
+
+        /* Ajuste o espaçamento do botão */
+        .btn-success {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -388,9 +746,21 @@
                         <label for="selecionarRemetente">
                             <i class="fas fa-user-circle mr-2"></i>Selecionar Remetente
                         </label>
-                        <select class="form-control" id="selecionarRemetente">
-                            <option value="">Selecione um remetente...</option>
-                        </select>
+                        <div class="input-group">
+                            <input type="text" 
+                                   id="pesquisaRemetente" 
+                                   class="form-control" 
+                                   placeholder="Digite para pesquisar remetente..."
+                                   autocomplete="off">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="resultadosPesquisa" class="dropdown-menu w-100" style="max-height: 200px; overflow-y: auto;">
+                            <!-- Resultados serão inseridos aqui -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -464,10 +834,47 @@
                     </div>
                 </div>
 
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-success mr-2">
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-success">
                         <i class="fas fa-save mr-2"></i>Salvar Cheque
                     </button>
+                </div>
+
+                <div class="section-divider mb-4"></div>
+
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-list mr-2"></i>Lista de Cheques a Cadastrar
+                        </div>
+                        <div>
+                            <button type="button" id="adicionarCheque" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus mr-2"></i>Adicionar à Lista
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 20%">Nº Cheque</th>
+                                        <th class="text-center" style="width: 25%">Valor</th>
+                                        <th class="text-center" style="width: 40%">Data Compensação</th>
+                                        <th class="text-center" style="width: 15%">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="chequesListaBody">
+                                    <!-- Cheques serão adicionados aqui -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-right mt-3">
+                            <button type="button" id="salvarTodosCheques" class="btn btn-success">
+                                <i class="fas fa-save mr-2"></i>Salvar Todos os Cheques
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

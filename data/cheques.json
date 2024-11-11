@@ -1006,16 +1006,5 @@
     "compensado": false,
     "dataHoraCompensacao": null,
     "id": "1731085535455"
-  },
-  {
-    "numeroCheque": "32",
-    "banco": "756",
-    "agencia": "3041",
-    "contaCorrente": "18180-3",
-    "valor": 22.22,
-    "dataEmissao": "2024-11-10",
-    "remetente": "MARIA CARREIRA MENDES",
-    "dataCompensacao": "2022-02-23",
-    "id": "1731210913458"
   }
 ]
