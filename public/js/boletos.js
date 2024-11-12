@@ -453,7 +453,7 @@ window.generateRemessa = async (saleId) => {
 
         // Formatar o endereço do cliente
         const numeroFormatado = client.endereco.numero ? client.endereco.numero.replace('S/N', 'S N') : '';
-        const logradouroNumero = removeAcentos(`${client.endereco.logradouro.trim()}, ${numeroFormatado}`).trim();
+        const logradouroNumero = removeAcentos(`${client.endereco.logradouro.trim()}  ${numeroFormatado}`).trim();
         const enderecoFormatado = `   ${logradouroNumero.padEnd(40, ' ').slice(0, 40)}`;
         const bairroFormatado = removeAcentos(client.endereco.bairro).padEnd(12, ' ').slice(0, 12);
 

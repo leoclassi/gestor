@@ -2097,7 +2097,7 @@
     "endereco": {
       "cep": "17.490-001",
       "logradouro": "SITIO PEDRA BRANCA",
-      "numero": "",
+      "numero": "S/N",
       "bairro": "PEDRA BRANCA",
       "cidade": "PIRATININGA",
       "uf": "SP"
@@ -2122,5 +2122,23 @@
     },
     "dataCadastro": "11/11/2024, 15:01:41",
     "id": "1731348108289"
+  },
+  {
+    "id": "1731366978295",
+    "tipoCliente": "Pessoa Física",
+    "nome": "LEONARDO BANHARA PIRES",
+    "email": "",
+    "telefone": "(14) 997992564",
+    "cpf": "452.497.678-77",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17470-007",
+      "logradouro": "Rua Benedito Gebara",
+      "numero": "S/N",
+      "bairro": "Centro",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "11/11/2024, 20:16:18"
   }
 ]

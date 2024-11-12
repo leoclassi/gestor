@@ -5518,5 +5518,243 @@
     "tipoPagamento": "À Vista",
     "numero": "231",
     "id": "1731351193721"
+  },
+  {
+    "numero": "232",
+    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 13
+      }
+    ],
+    "valorTotal": 13,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 13,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 6,
+    "dataPrimeiraParcela": "2024-12-11",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/11",
+        "valor": 2.1666666666666665
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/10",
+        "valor": 2.1666666666666665
+      },
+      {
+        "numero": 3,
+        "data": "2025/02/09",
+        "valor": 2.1666666666666665
+      },
+      {
+        "numero": 4,
+        "data": "2025/03/11",
+        "valor": 2.1666666666666665
+      },
+      {
+        "numero": 5,
+        "data": "2025/04/10",
+        "valor": 2.1666666666666665
+      },
+      {
+        "numero": 6,
+        "data": "2025/05/10",
+        "valor": 2.1666666666666665
+      }
+    ],
+    "id": "1731362712109"
+  },
+  {
+    "numero": "233",
+    "cliente": "LEONARDO BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 5,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 5
+      }
+    ],
+    "valorTotal": 5,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 5,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 7,
+    "dataPrimeiraParcela": "2024-12-11",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/11",
+        "valor": 0.7142857142857143
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/10",
+        "valor": 0.7142857142857143
+      },
+      {
+        "numero": 3,
+        "data": "2025/02/09",
+        "valor": 0.7142857142857143
+      },
+      {
+        "numero": 4,
+        "data": "2025/03/11",
+        "valor": 0.7142857142857143
+      },
+      {
+        "numero": 5,
+        "data": "2025/04/10",
+        "valor": 0.7142857142857143
+      },
+      {
+        "numero": 6,
+        "data": "2025/05/10",
+        "valor": 0.7142857142857143
+      },
+      {
+        "numero": 7,
+        "data": "2025/06/09",
+        "valor": 0.7142857142857143
+      }
+    ],
+    "id": "1731367010864"
+  },
+  {
+    "numero": "234",
+    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 6
+      }
+    ],
+    "valorTotal": 6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 6,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 6,
+    "dataPrimeiraParcela": "2024-12-11",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/11",
+        "valor": 1
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/10",
+        "valor": 1
+      },
+      {
+        "numero": 3,
+        "data": "2025/02/09",
+        "valor": 1
+      },
+      {
+        "numero": 4,
+        "data": "2025/03/11",
+        "valor": 1
+      },
+      {
+        "numero": 5,
+        "data": "2025/04/10",
+        "valor": 1
+      },
+      {
+        "numero": 6,
+        "data": "2025/05/10",
+        "valor": 1
+      }
+    ],
+    "id": "1731367094954"
+  },
+  {
+    "numero": "235",
+    "cliente": "LEONARDO BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-11",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 1,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 17
+      }
+    ],
+    "valorTotal": 17,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 17,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 3,
+    "dataPrimeiraParcela": "2024-12-11",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/11",
+        "valor": 5.666666666666667
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/10",
+        "valor": 5.666666666666667
+      },
+      {
+        "numero": 3,
+        "data": "2025/02/09",
+        "valor": 5.666666666666667
+      }
+    ],
+    "id": "1731367126784"
   }
 ]
