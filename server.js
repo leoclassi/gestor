@@ -69,7 +69,7 @@ async function writeJSONFile(filePath, data) {
     }
 }
 
-// Função para ler o arquivo de configuração
+// Função para ler o arquivo de configuraço
 async function readConfig() {
     return JSON.parse(await fs.readFile(path.join(__dirname, 'data', 'config.json'), 'utf8'));
 }
@@ -1721,90 +1721,175 @@ app.get('/api/boletos-a-vencer', async (req, res) => {
 // Mova esta rota ANTES dos middlewares de erro
 // Rota para webhook do PIX
 app.post('/api/pix/webhook', async (req, res) => {
-    console.log('🟢 Iniciando processamento do webhook PIX');
+    console.log('🟢 Iniciando processamento do webhook');
     console.log('Headers recebidos:', JSON.stringify(req.headers, null, 2));
     
     try {
-        const pixData = req.body;
-        console.log('📦 Payload recebido:', JSON.stringify(pixData, null, 2));
+        const payload = req.body;
+        console.log('📦 Payload recebido:', JSON.stringify(payload, null, 2));
 
-        if (!pixData || !pixData.pix || !Array.isArray(pixData.pix)) {
-            console.error('❌ Payload inválido recebido');
-            return res.status(400).json({ error: 'Payload inválido' });
-        }
+        // Verifica se é um payload de PIX ou Boleto baseado na estrutura
+        const isPix = payload.pix && Array.isArray(payload.pix);
+        const isBoleto = Array.isArray(payload) && payload[0]?.numeroConvenio;
 
-        // Processa cada transação PIX recebida
-        for (const pix of pixData.pix) {
-            console.log('🔄 Processando transação PIX:', JSON.stringify(pix, null, 2));
-            
-            const { txid, valor, horario, infoPagador, pagador } = pix;
-            
-            // Busca a venda pelo txid (se existir)
-            const saleNumber = txid.replace('PEDIDO', '');
-            console.log(`🔍 Verificando txid: ${txid}`);
-            
-            // Tenta encontrar a venda no arquivo de vendas
-            const sales = await readJSONFile(salesFile);
-            const sale = sales.find(s => s.numero === saleNumber);
-            
-            // Envia notificação para Discord e WhatsApp independentemente de encontrar a venda
-            // Registra o pagamento no Discord
-            console.log('📨 Enviando notificação para o Discord...');
-            await sendDiscordPixNotification({
-                txid,
-                valor,
-                horario,
-                infoPagador,
-                pagador,
-                sale // pode ser undefined
-            });
+        if (isPix) {
+            // Processa pagamentos PIX
+            console.log('🔄 Processando pagamento PIX');
+            for (const pix of payload.pix) {
+                const { txid, valor, horario, infoPagador, pagador } = pix;
+                
+                const saleNumber = txid.replace('PEDIDO', '');
+                const sales = await readJSONFile(salesFile);
+                const sale = sales.find(s => s.numero === saleNumber);
+                
+                await sendDiscordPixNotification({
+                    txid,
+                    valor,
+                    horario,
+                    infoPagador,
+                    pagador,
+                    sale
+                });
 
-            // Envia mensagem para o WhatsApp
-            console.log('📱 Enviando confirmação para o WhatsApp...');
-            try {
-                let message;
-                if (sale) {
-                    message = 
+                // Envia mensagem WhatsApp para PIX
+                try {
+                    let message = isPix ? 
                         "✅ *Pagamento PIX Recebido!*\n\n" +
-                        `🛍️ Pedido: #${saleNumber}\n` +
-                        `👤 Cliente: ${sale.cliente}\n` +
+                        (sale ? `🛍️ Pedido: #${saleNumber}\n` +
+                               `👤 Cliente: ${sale.cliente}\n` : '') +
                         `💰 Valor: R$ ${valor}\n` +
                         `📅 Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
                         `\n📱 Pagador: ${pagador.nome}\n` +
-                        `📄 CPF: ${pagador.cpf}\n`;
-                } else {
-                    message = 
-                        "✅ *Pagamento PIX Recebido!*\n\n" +
-                        `⚠️ PIX sem venda vinculada\n` +
-                        `💰 Valor: R$ ${valor}\n` +
-                        `📅 Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
-                        `\n📱 Pagador: ${pagador.nome}\n` +
-                        `📄 CPF: ${pagador.cpf}\n`;
+                        `📄 CPF: ${pagador.cpf}\n` :
+                        "⚠️ PIX sem venda vinculada";
+
+                    const adminPhone = process.env.ADMIN_WHATSAPP;
+                    await whatsappManager.sendTextMessage(adminPhone, message);
+                } catch (whatsappError) {
+                    console.error('❌ Erro ao enviar mensagem WhatsApp:', whatsappError);
                 }
 
-                const adminPhone = process.env.ADMIN_WHATSAPP;
-                await whatsappManager.sendTextMessage(adminPhone, message);
-                console.log('✅ Mensagem WhatsApp enviada com sucesso');
-            } catch (whatsappError) {
-                console.error('❌ Erro ao enviar mensagem WhatsApp:', whatsappError);
+                if (sale) {
+                    sale.paga = true;
+                    sale.dataPagamento = new Date().toISOString();
+                    await writeJSONFile(salesFile, sales);
+                }
             }
-            
-            // Atualiza o status da venda apenas se ela existir
-            if (sale) {
-                sale.paga = true;
-                sale.dataPagamento = new Date().toISOString();
-                await writeJSONFile(salesFile, sales);
-                console.log('💾 Status da venda atualizado com sucesso');
+        } else if (isBoleto) {
+            // Processa pagamentos de Boleto
+            console.log('🔄 Processando pagamento Boleto');
+            for (const boleto of payload) {
+                const {
+                    id,
+                    dataVencimento,
+                    valorOriginal,
+                    valorPagoSacado,
+                    dataAgendamento
+                } = boleto;
+
+                // Buscar vendas com forma de pagamento "Boleto Bancário"
+                const sales = await readJSONFile(salesFile);
+                const boletosVendas = sales.filter(sale => 
+                    sale.formaPagamento === "Boleto Bancário" && 
+                    sale.tipoPagamento === "Parcelado" &&
+                    !sale.paga
+                );
+
+                let vendaEncontrada = null;
+                let parcelaIndex = -1;
+
+                // Procurar a parcela com valor e data correspondentes
+                for (const venda of boletosVendas) {
+                    const parcelaIdx = venda.parcelas.findIndex(parcela => {
+                        // Converter valor do boleto para número com 2 casas decimais
+                        const valorBoleto = Number(valorPagoSacado).toFixed(2);
+                        const valorParcela = Number(parcela.valor).toFixed(2);
+                        
+                        // Converter data do boleto para formato comparável
+                        const [dia, mes, ano] = dataVencimento.split('.');
+                        const dataVenc = `${ano}/${mes}/${dia}`;
+                        
+                        return valorBoleto === valorParcela && 
+                               parcela.data === dataVenc && 
+                               !parcela.paga;
+                    });
+
+                    if (parcelaIdx !== -1) {
+                        vendaEncontrada = venda;
+                        parcelaIndex = parcelaIdx;
+                        break;
+                    }
+                }
+
+                if (vendaEncontrada) {
+                    console.log(`🎯 Venda encontrada: ${vendaEncontrada.numero}, Parcela: ${parcelaIndex + 1}`);
+                    
+                    // Marcar parcela como paga
+                    vendaEncontrada.parcelas[parcelaIndex].paga = true;
+                    vendaEncontrada.parcelas[parcelaIndex].dataPagamento = dataAgendamento;
+
+                    // Verificar se todas as parcelas foram pagas
+                    const todasPagas = vendaEncontrada.parcelas.every(p => p.paga);
+                    if (todasPagas) {
+                        vendaEncontrada.paga = true;
+                        vendaEncontrada.dataPagamento = new Date().toISOString();
+                    }
+
+                    await writeJSONFile(salesFile, sales);
+
+                    // Enviar notificações...
+                    await sendDiscordBoletoNotification({
+                        id,
+                        dataVencimento,
+                        valorOriginal,
+                        valorPagoSacado,
+                        dataAgendamento,
+                        vendaNumero: vendaEncontrada.numero,
+                        cliente: vendaEncontrada.cliente,
+                        parcelaNumero: parcelaIndex + 1,
+                        totalParcelas: vendaEncontrada.parcelas.length
+                    });
+
+                    // Enviar mensagem WhatsApp
+                    try {
+                        const dataVencimentoFormatada = dataVencimento.split('.').join('/');
+                        const dataPagamentoFormatada = dataAgendamento.split(' ')[0]; // Pega só a data, remove o horário
+                        
+                        const message = 
+                            "✅ *Pagamento de Boleto Recebido!*\n\n" +
+                            `🛍️ Venda #${vendaEncontrada.numero}\n` +
+                            `👤 Cliente: ${vendaEncontrada.cliente}\n` +
+                            `💰 Valor Pago: R$ ${valorPagoSacado}\n` +
+                            `📅 Vencimento: ${dataVencimentoFormatada}\n` +
+                            `📅 Data Pagamento: ${dataPagamentoFormatada}\n` +
+                            `🔢 Parcela: ${parcelaIndex + 1}/${vendaEncontrada.parcelas.length}`;
+
+                        const adminPhone = process.env.ADMIN_WHATSAPP;
+                        await whatsappManager.sendTextMessage(adminPhone, message);
+                    } catch (whatsappError) {
+                        console.error('❌ Erro ao enviar mensagem WhatsApp:', whatsappError);
+                    }
+                } else {
+                    console.log('⚠️ Nenhuma venda encontrada para este boleto');
+                    await sendDiscordBoletoNotification({
+                        ...boleto,
+                        observacao: "Boleto não identificado no sistema"
+                    });
+                }
             }
+        } else {
+            console.error('❌ Payload inválido ou não reconhecido');
+            return res.status(400).json({ error: 'Payload inválido ou não reconhecido' });
         }
 
         console.log('✅ Webhook processado com sucesso');
         res.status(200).json({ 
             message: 'Webhook processado com sucesso',
-            processedAt: new Date().toISOString()
+            processedAt: new Date().toISOString(),
+            type: isPix ? 'pix' : 'boleto'
         });
     } catch (error) {
-        console.error('❌ Erro ao processar webhook PIX:', error);
+        console.error('❌ Erro ao processar webhook:', error);
         console.error('Stack trace:', error.stack);
         res.status(500).json({ 
             error: 'Erro ao processar webhook',
@@ -1814,42 +1899,47 @@ app.post('/api/pix/webhook', async (req, res) => {
     }
 });
 
-// Modifique também a função de notificação do Discord
-async function sendDiscordPixNotification(pixData) {
-    console.log('🔔 Iniciando envio de notificação para o Discord');
+// Função para notificação de boletos
+async function sendDiscordBoletoNotification(boletoData) {
+    console.log('🔔 Iniciando envio de notificação de boleto para o Discord');
     try {
-        const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+        const webhookUrl = process.env.DISCORD_WEBHOOK_URL_BOLETO;
         if (!webhookUrl) {
-            throw new Error('URL do webhook do Discord não configurada');
+            throw new Error('URL do webhook de boletos do Discord não configurada');
         }
 
-        const { txid, valor, horario, infoPagador, pagador, sale } = pixData;
+        const { dataVencimento, valorPagoSacado, dataAgendamento, vendaNumero, cliente, parcelaNumero, totalParcelas, observacao } = boletoData;
+
+        // Formatar as datas
+        const dataVencimentoFormatada = dataVencimento.split('.').join('/');
+        const dataPagamentoFormatada = dataAgendamento.split(' ')[0];
 
         const fields = [
-            { name: "Valor", value: `R$ ${valor}`, inline: true },
-            { name: "Data/Hora", value: new Date(horario).toLocaleString('pt-BR'), inline: true },
-            { name: "Pagador", value: pagador.nome, inline: true },
-            { name: "CPF", value: pagador.cpf, inline: true }
+            { name: "Valor Pago", value: `R$ ${valorPagoSacado}`, inline: true },
+            { name: "Data Vencimento", value: dataVencimentoFormatada, inline: true },
+            { name: "Data Pagamento", value: dataPagamentoFormatada, inline: true }
         ];
 
-        // Adiciona campos específicos dependendo se é uma venda ou não
-        if (sale) {
-            fields.unshift({ name: "Número do Pedido", value: sale.numero, inline: true });
-            fields.push({ name: "Cliente", value: sale.cliente, inline: true });
-        } else {
-            fields.push({ name: "⚠️ Observação", value: "PIX sem venda vinculada", inline: false });
+        if (vendaNumero) {
+            fields.push(
+                { name: "Número da Venda", value: vendaNumero, inline: true },
+                { name: "Parcela", value: `${parcelaNumero}/${totalParcelas}`, inline: true }
+            );
+        }
+
+        if (observacao) {
+            fields.push({ name: "Observação", value: observacao, inline: false });
         }
 
         const message = {
             embeds: [{
-                title: "🟢 Pagamento PIX Recebido",
-                color: sale ? 0x00ff00 : 0xffa500, // Verde para vendas, laranja para PIX avulso
-                fields: fields,
-                timestamp: new Date().toISOString()
+                title: "🟢 Pagamento de Boleto Recebido",
+                description: cliente ? `Cliente: **${cliente}**` : undefined,
+                color: vendaNumero ? 0x00ff00 : 0xffa500,
+                fields: fields
+                // Removido o timestamp
             }]
         };
-
-        console.log('📤 Enviando mensagem para o Discord:', JSON.stringify(message, null, 2));
 
         const response = await fetch(webhookUrl, {
             method: 'POST',
@@ -1862,9 +1952,63 @@ async function sendDiscordPixNotification(pixData) {
             throw new Error(`Erro ao enviar para o Discord: ${response.status} - ${errorText}`);
         }
 
-        console.log('✅ Notificação enviada com sucesso para o Discord');
+        console.log('✅ Notificação de boleto enviada com sucesso para o Discord');
     } catch (error) {
-        console.error('❌ Erro ao enviar notificação para o Discord:', error);
+        console.error('❌ Erro ao enviar notificação de boleto para o Discord:', error);
+        console.error('Stack trace:', error.stack);
+    }
+}
+
+// Função para notificação de PIX
+async function sendDiscordPixNotification(pixData) {
+    console.log('🔔 Iniciando envio de notificação PIX para o Discord');
+    try {
+        const webhookUrl = process.env.DISCORD_WEBHOOK_URL_PIX;
+        if (!webhookUrl) {
+            throw new Error('URL do webhook PIX do Discord não configurada');
+        }
+
+        const { txid, valor, horario, pagador, sale } = pixData;
+
+        const fields = [
+            { name: "Valor", value: `R$ ${valor}`, inline: true },
+            { name: "Data/Hora", value: new Date(horario).toLocaleString('pt-BR'), inline: true },
+            { name: "Pagador", value: pagador.nome, inline: true },
+            { name: "CPF", value: pagador.cpf, inline: true }
+        ];
+
+        if (sale) {
+            fields.unshift({ name: "Número do Pedido", value: sale.numero, inline: true });
+            fields.push({ name: "Cliente", value: sale.cliente, inline: true });
+        } else {
+            fields.push({ name: "⚠️ Observação", value: "PIX sem venda vinculada", inline: false });
+        }
+
+        const message = {
+            embeds: [{
+                title: "🟢 Pagamento PIX Recebido",
+                color: sale ? 0x00ff00 : 0xffa500,
+                fields: fields,
+                timestamp: new Date().toISOString()
+            }]
+        };
+
+        console.log('📤 Enviando mensagem PIX para o Discord');
+
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(message)
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Erro ao enviar para o Discord: ${response.status} - ${errorText}`);
+        }
+
+        console.log('✅ Notificação PIX enviada com sucesso para o Discord');
+    } catch (error) {
+        console.error('❌ Erro ao enviar notificação PIX para o Discord:', error);
         console.error('Stack trace:', error.stack);
     }
 }

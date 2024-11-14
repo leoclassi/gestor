@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>
-                    <button class="btn btn-sm btn-outline-warning action-button" data-id="${budget.id}" title="Gerar Venda">
+                    <button class="btn btn-sm btn-outline-warning action-button" title="Gerar Venda" onclick="generateSale('${budget.id}')">
                         <i class="fas fa-file-invoice-dollar"></i> 
                     </button>
                     <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
@@ -297,17 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Adicionar listeners para os botões de gerar venda
-        document.querySelectorAll('.action-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
+        document.querySelectorAll('.generate-sale-btn').forEach(button => {
+            button.addEventListener('click', () => {
                 const budgetId = button.getAttribute('data-id');
-                if (budgetId) {
-                    generateSale(budgetId);
-                } else {
-                    showNotification('ID do orçamento não encontrado', 'error');
-                }
+                generateSale(budgetId);
             });
         });
 
@@ -387,11 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para gerar uma venda a partir de um orçamento
     function generateSale(budgetId) {
-        if (!budgetId) {
-            showNotification('ID do orçamento inválido', 'error');
-            return;
-        }
-
         fetch(`/api/generate-sale/${budgetId}`, {
             method: 'POST',
             headers: {
@@ -399,16 +387,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(response.status === 404 ? 'Orçamento não encontrado' : 'Erro ao gerar venda');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
                 showNotification('Venda gerada com sucesso!', 'success');
-                fetchBudgets(); // Atualiza a lista de orçamentos
+                fetchBudgets();
             } else {
                 throw new Error(data.message || 'Erro ao gerar venda');
             }

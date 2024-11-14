@@ -451,24 +451,6 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "AGNALDO MARANHO",
-    "email": "",
-    "telefone": "(14) 997211520",
-    "cpf": "",
-    "cnpj": "",
-    "endereco": {
-      "cep": "",
-      "logradouro": "CHACARA",
-      "numero": "",
-      "bairro": "",
-      "cidade": "Duartina",
-      "uf": "SP"
-    },
-    "dataCadastro": "09/10/2024, 14:11:43",
-    "id": "1728493906089"
-  },
-  {
-    "tipoCliente": "Pessoa Física",
     "nome": "VINICIUS",
     "email": "",
     "telefone": "(14) 996506489",
@@ -1227,7 +1209,7 @@
     "tipoCliente": "Pessoa Física",
     "nome": "KENEDY AZEVEDO MENDONÇA",
     "email": "",
-    "telefone": "",
+    "telefone": "(14) 996303350",
     "cpf": "",
     "cnpj": "",
     "endereco": {
@@ -1749,7 +1731,7 @@
     "tipoCliente": "Pessoa Física",
     "nome": "RAUL MERCADO MAX",
     "email": "",
-    "telefone": "",
+    "telefone": "(14) 997710069",
     "cpf": "",
     "cnpj": "",
     "endereco": {
@@ -2140,5 +2122,221 @@
       "uf": "SP"
     },
     "dataCadastro": "11/11/2024, 20:16:18"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "FERABIUZZI",
+    "email": "",
+    "telefone": "(14) 981135086",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "12/11/2024, 14:08:25",
+    "id": "1731431306949"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "EVANDRO TAPERÃO",
+    "email": "",
+    "telefone": "(14) 996311050",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO HORTO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "12/11/2024, 14:17:53",
+    "id": "1731431875529"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "MATA VIRGEM - ATIVIDADES DE TURISMO E BOMBEIRO CIVIL - LTDA",
+    "email": "fiscal.guimaraes@hotmail.com",
+    "telefone": "(14) 997295747",
+    "cpf": "",
+    "cnpj": "04.402.618/0001-39",
+    "endereco": {
+      "cep": "14.357-302",
+      "logradouro": "RUA MARCIO PIRES SOUZA",
+      "numero": "675",
+      "bairro": "JARDIM LUIZA",
+      "cidade": "ALTINOPOLIS",
+      "uf": "SP"
+    },
+    "dataCadastro": "12/11/2024, 14:23:13",
+    "id": "1731432194908"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "GIL MELO",
+    "email": "",
+    "telefone": "(14) 996245735",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Espírito Santo do Turvo",
+      "uf": "SP"
+    },
+    "dataCadastro": "12/11/2024, 14:27:47",
+    "id": "1731432468650"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JOSÉ EDUARDO",
+    "email": "",
+    "telefone": "(14) 996248725",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "12/11/2024, 14:29:31",
+    "id": "1731432573037"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "AGNALDO MARANHO",
+    "email": "",
+    "telefone": "(14) 997331095",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "12/11/2024, 14:31:07",
+    "id": "1731432669107"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RC PISCINAS",
+    "email": "",
+    "telefone": "(14) 99105-8734",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "12/11/2024, 14:58:11",
+    "id": "1731434293231"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CLOVIS MIRANDA",
+    "email": "",
+    "telefone": "(14) 997610364",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "13/11/2024, 14:20:20",
+    "id": "1731518425600"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "MALCON",
+    "email": "",
+    "telefone": "(14) 99870-2157",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "13/11/2024, 14:32:27",
+    "id": "1731519151328"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ROMINHO",
+    "email": "",
+    "telefone": "(14) 99787-5229",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "14/11/2024, 14:18:54",
+    "id": "1731604737154"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "TRANSANTOS",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Bauru",
+      "uf": "SP"
+    },
+    "dataCadastro": "14/11/2024, 14:22:37",
+    "id": "1731604960308"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "TAVINHO",
+    "email": "",
+    "telefone": "(14) 99174-1418",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "14/11/2024, 14:29:11",
+    "id": "1731605354660"
   }
 ]

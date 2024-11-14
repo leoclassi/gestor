@@ -471,8 +471,8 @@
     "id": "1726584012389",
     "codigo": "5678901234",
     "nome": "Palanque - 6,00 Metros - 6 a 8 cm Ø",
-    "valor": 68,
-    "valorEspecial": 68,
+    "valor": 76,
+    "valorEspecial": 76,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -480,8 +480,8 @@
     "id": "1726584012390",
     "codigo": "6789012345",
     "nome": "Palanque - 6,00 Metros - 8 a 10 cm Ø",
-    "valor": 95,
-    "valorEspecial": 95,
+    "valor": 97,
+    "valorEspecial": 97,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -489,8 +489,8 @@
     "id": "1726584012391",
     "codigo": "7890123456",
     "nome": "Palanque - 6,00 Metros - 10 a 13 cm Ø",
-    "valor": 133,
-    "valorEspecial": 133,
+    "valor": 150,
+    "valorEspecial": 150,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -498,8 +498,8 @@
     "id": "1726584012392",
     "codigo": "8901234567",
     "nome": "Palanque - 6,00 Metros - 13 a 16 cm Ø",
-    "valor": 186,
-    "valorEspecial": 186,
+    "valor": 209,
+    "valorEspecial": 209,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -508,7 +508,7 @@
     "codigo": "9012345678",
     "nome": "Palanque - 6,00 Metros - 16 a 20 cm Ø",
     "valor": 300,
-    "valorEspecial": 300,
+    "valorEspecial": 360,
     "estoque": 20,
     "dataCadastro": "17/09/2024, 11:40:12"
   },
@@ -525,7 +525,7 @@
     "id": "1728584012411",
     "codigo": "7890123456",
     "nome": "Palanque - 6,50 Metros - 6 a 8 cm Ø",
-    "valor": 76,
+    "valor": 82,
     "valorEspecial": 76,
     "estoque": 20,
     "dataCadastro": "17/10/2024, 11:40:12"

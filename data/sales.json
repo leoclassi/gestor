@@ -1116,7 +1116,7 @@
       "tipo": "value"
     },
     "valorFinal": 600,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "id": "1728411732566",
     "intervaloParcelas": 30,
@@ -1126,7 +1126,8 @@
       {
         "numero": 1,
         "data": "2024/11/14",
-        "valor": 600
+        "valor": 600,
+        "paga": true
       }
     ]
   },
@@ -5191,41 +5192,6 @@
     ]
   },
   {
-    "numero": "224",
-    "cliente": "NIL",
-    "situacao": "Concretizada",
-    "data": "2024-11-11",
-    "prazoEntrega": "",
-    "formaPagamento": "Dinheiro à Vista",
-    "produtos": [
-      {
-        "produto": "Palanque - 6,00 Metros - 8 a 10 cm Ø",
-        "quantidade": 3,
-        "valor": 95,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 285
-      },
-      {
-        "produto": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
-        "quantidade": 3,
-        "valor": 84,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 252
-      }
-    ],
-    "valorTotal": 537,
-    "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
-    },
-    "valorFinal": 537,
-    "paga": true,
-    "tipoPagamento": "À Vista",
-    "id": "1731345581079"
-  },
-  {
     "numero": "225",
     "cliente": "MARCELO FONTE",
     "situacao": "Concretizada",
@@ -5262,19 +5228,19 @@
     "produtos": [
       {
         "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
-        "quantidade": 50,
+        "quantidade": 70,
         "valor": 13,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 650
+        "subtotal": 910
       }
     ],
-    "valorTotal": 650,
+    "valorTotal": 910,
     "descontoTotal": {
       "valor": 0,
       "tipo": "value"
     },
-    "valorFinal": 650,
+    "valorFinal": 910,
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1731345860669"
@@ -5523,7 +5489,538 @@
     "numero": "232",
     "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
     "situacao": "Concretizada",
-    "data": "2024-11-11",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 15
+      }
+    ],
+    "valorTotal": 15,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 15,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 1,
+    "quantidadeParcelas": 3,
+    "dataPrimeiraParcela": "2024-12-13",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/13",
+        "valor": 5
+      },
+      {
+        "numero": 2,
+        "data": "2024/12/14",
+        "valor": 5
+      },
+      {
+        "numero": 3,
+        "data": "2024/12/15",
+        "valor": 5
+      }
+    ],
+    "id": "1731407453977"
+  },
+  {
+    "numero": "234",
+    "cliente": "J.N. QUIOSQUES ARTESANAIS LTDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 40,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2160
+      }
+    ],
+    "valorTotal": 2160,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2160,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731431653279"
+  },
+  {
+    "numero": "238",
+    "cliente": "EVANDRO TAPERÃO",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 50,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1250
+      }
+    ],
+    "valorTotal": 1250,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1250,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731431885479"
+  },
+  {
+    "numero": "239",
+    "cliente": "MATA VIRGEM - ATIVIDADES DE TURISMO E BOMBEIRO CIVIL - LTDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 4,00 metros",
+        "quantidade": 20,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1440
+      }
+    ],
+    "valorTotal": 1440,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1440,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731432211629",
+    "dataPagamento": "2024-11-12T21:21:28.486Z"
+  },
+  {
+    "numero": "240",
+    "cliente": "RAUL MERCADO MAX",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 518.4
+      }
+    ],
+    "valorTotal": 518.4,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 518.4,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731432331503"
+  },
+  {
+    "numero": "241",
+    "cliente": "GIL MELO",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Débito",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 2,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 129.6
+      }
+    ],
+    "valorTotal": 129.6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 129.6,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731432487299"
+  },
+  {
+    "numero": "242",
+    "cliente": "JOSÉ EDUARDO",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,50 Metros - 4 a 6 cm Ø",
+        "quantidade": 20,
+        "valor": 20,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 400
+      }
+    ],
+    "valorTotal": 400,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 400,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731432595277"
+  },
+  {
+    "numero": "243",
+    "cliente": "AGNALDO MARANHO",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 6,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 324
+      },
+      {
+        "produto": "Sarrafo - 3x5 cm - 3,00 metros",
+        "quantidade": 8,
+        "valor": 18,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 144
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 6,
+        "valor": 26,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 156
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 4,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 259.2
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 1,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 86.4
+      }
+    ],
+    "valorTotal": 969.6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 969.6,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731432763819"
+  },
+  {
+    "numero": "244",
+    "cliente": "ALESSANDER GASPARELO",
+    "situacao": "Concretizada",
+    "data": "2024-11-12",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 375
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 2,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 200
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 20,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 960
+      }
+    ],
+    "valorTotal": 1535,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1535,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731436725729"
+  },
+  {
+    "numero": "245",
+    "cliente": "BERGA - ANTONIO CARLOS BERGAMASCHI",
+    "situacao": "Concretizada",
+    "data": "2024-11-13",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Crédito",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 10,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 130
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 12,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 480
+      }
+    ],
+    "valorTotal": 610,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 610,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731518270958"
+  },
+  {
+    "numero": "246",
+    "cliente": "CLOVIS MIRANDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-13",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Débito",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 125
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 172.8
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,50 metros",
+        "quantidade": 2,
+        "valor": 63,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 126
+      }
+    ],
+    "valorTotal": 423.8,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 423.8,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731518494824"
+  },
+  {
+    "numero": "247",
+    "cliente": "CLOVIS MIRANDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-14",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Crédito",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 1,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 125
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 172.8
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,50 metros",
+        "quantidade": 2,
+        "valor": 63,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 126
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 2,50 metros",
+        "quantidade": 2,
+        "valor": 45,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 90
+      }
+    ],
+    "valorTotal": 513.8,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 513.8,
+    "paga": true,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 3,
+    "dataPrimeiraParcela": "2024-12-14",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/14",
+        "valor": 171.26666666666665
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/13",
+        "valor": 171.26666666666665
+      },
+      {
+        "numero": 3,
+        "data": "2025/02/12",
+        "valor": 171.26666666666665
+      }
+    ],
+    "id": "1731604610401"
+  },
+  {
+    "numero": "248",
+    "cliente": "TRANSANTOS",
+    "situacao": "Concretizada",
+    "data": "2024-11-14",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 4,
+        "valor": 80,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 320
+      }
+    ],
+    "valorTotal": 320,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 320,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731604971074"
+  },
+  {
+    "id": "1731605549650",
+    "numero": "249",
+    "data": "2024-11-14",
+    "cliente": "FERABIUZZI",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 13,
+        "valor": 80,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1040
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 65,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2275
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 9,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 153
+      }
+    ],
+    "valorTotal": 3468,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3468,
+    "tipoPagamento": "À Vista",
+    "formaPagamento": "PIX",
+    "situacao": "Concretizada",
+    "paga": true,
+    "dataPagamento": "2024-11-14T18:21:00.344Z"
+  },
+  {
+    "numero": "250",
+    "cliente": "LEONARDO BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-14",
     "prazoEntrega": "",
     "formaPagamento": "Boleto Bancário",
     "produtos": [
@@ -5536,225 +6033,202 @@
         "subtotal": 13
       }
     ],
-    "valorTotal": 13,
+    "valorTotal": 2.6,
     "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
+      "valor": 80,
+      "tipo": "percentage"
     },
-    "valorFinal": 13,
-    "paga": false,
+    "valorFinal": 2.6,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "intervaloParcelas": 30,
-    "quantidadeParcelas": 6,
-    "dataPrimeiraParcela": "2024-12-11",
+    "quantidadeParcelas": 5,
+    "dataPrimeiraParcela": "2024-12-14",
     "parcelas": [
       {
         "numero": 1,
-        "data": "2024/12/11",
-        "valor": 2.1666666666666665
+        "data": "2024/12/14",
+        "valor": 0.52
       },
       {
         "numero": 2,
-        "data": "2025/01/10",
-        "valor": 2.1666666666666665
+        "data": "2025/01/13",
+        "valor": 0.52
       },
       {
         "numero": 3,
-        "data": "2025/02/09",
-        "valor": 2.1666666666666665
+        "data": "2025/02/12",
+        "valor": 0.52
       },
       {
         "numero": 4,
-        "data": "2025/03/11",
-        "valor": 2.1666666666666665
+        "data": "2025/03/14",
+        "valor": 0.52
       },
       {
         "numero": 5,
-        "data": "2025/04/10",
-        "valor": 2.1666666666666665
-      },
-      {
-        "numero": 6,
-        "data": "2025/05/10",
-        "valor": 2.1666666666666665
+        "data": "2025/04/13",
+        "valor": 0.52,
+        "paga": true,
+        "dataPagamento": "14/11/2024 16:30:00"
       }
     ],
-    "id": "1731362712109"
+    "id": "1731605765094",
+    "dataPagamento": "2024-11-14T20:45:06.362Z"
   },
   {
-    "numero": "233",
-    "cliente": "LEONARDO BANHARA PIRES",
-    "situacao": "Concretizada",
-    "data": "2024-11-11",
-    "prazoEntrega": "",
-    "formaPagamento": "Boleto Bancário",
+    "id": "1731606758482",
+    "numero": "251",
+    "data": "2024-11-14",
+    "cliente": "MALCON",
     "produtos": [
       {
-        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-        "quantidade": 1,
-        "valor": 5,
+        "produto": "Palanque - 4,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 4,
+        "valor": 165.6,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 5
-      }
-    ],
-    "valorTotal": 5,
-    "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
-    },
-    "valorFinal": 5,
-    "paga": false,
-    "tipoPagamento": "Parcelado",
-    "intervaloParcelas": 30,
-    "quantidadeParcelas": 7,
-    "dataPrimeiraParcela": "2024-12-11",
-    "parcelas": [
-      {
-        "numero": 1,
-        "data": "2024/12/11",
-        "valor": 0.7142857142857143
+        "subtotal": 662.4
       },
       {
-        "numero": 2,
-        "data": "2025/01/10",
-        "valor": 0.7142857142857143
-      },
-      {
-        "numero": 3,
-        "data": "2025/02/09",
-        "valor": 0.7142857142857143
-      },
-      {
-        "numero": 4,
-        "data": "2025/03/11",
-        "valor": 0.7142857142857143
-      },
-      {
-        "numero": 5,
-        "data": "2025/04/10",
-        "valor": 0.7142857142857143
-      },
-      {
-        "numero": 6,
-        "data": "2025/05/10",
-        "valor": 0.7142857142857143
-      },
-      {
-        "numero": 7,
-        "data": "2025/06/09",
-        "valor": 0.7142857142857143
-      }
-    ],
-    "id": "1731367010864"
-  },
-  {
-    "numero": "234",
-    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
-    "situacao": "Concretizada",
-    "data": "2024-11-11",
-    "prazoEntrega": "",
-    "formaPagamento": "Boleto Bancário",
-    "produtos": [
-      {
-        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-        "quantidade": 1,
-        "valor": 6,
+        "produto": "Palanque - 5,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 2,
+        "valor": 245,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 6
+        "subtotal": 490
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 13 a 16 cm Ø",
+        "quantidade": 12,
+        "valor": 100,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1200
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 44,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1540
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 2,
+        "valor": 80,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 160
       }
     ],
-    "valorTotal": 6,
+    "valorTotal": 4052.4,
     "descontoTotal": {
       "valor": 0,
       "tipo": "value"
     },
-    "valorFinal": 6,
-    "paga": false,
-    "tipoPagamento": "Parcelado",
-    "intervaloParcelas": 30,
-    "quantidadeParcelas": 6,
-    "dataPrimeiraParcela": "2024-12-11",
-    "parcelas": [
-      {
-        "numero": 1,
-        "data": "2024/12/11",
-        "valor": 1
-      },
-      {
-        "numero": 2,
-        "data": "2025/01/10",
-        "valor": 1
-      },
-      {
-        "numero": 3,
-        "data": "2025/02/09",
-        "valor": 1
-      },
-      {
-        "numero": 4,
-        "data": "2025/03/11",
-        "valor": 1
-      },
-      {
-        "numero": 5,
-        "data": "2025/04/10",
-        "valor": 1
-      },
-      {
-        "numero": 6,
-        "data": "2025/05/10",
-        "valor": 1
-      }
-    ],
-    "id": "1731367094954"
+    "valorFinal": 4052.4,
+    "tipoPagamento": "À Vista",
+    "formaPagamento": "A Combinar",
+    "situacao": "Concretizada",
+    "paga": true
   },
   {
-    "numero": "235",
-    "cliente": "LEONARDO BANHARA PIRES",
+    "numero": "252",
+    "cliente": "KENEDY AZEVEDO MENDONÇA",
     "situacao": "Concretizada",
-    "data": "2024-11-11",
+    "data": "2024-11-14",
     "prazoEntrega": "",
-    "formaPagamento": "Boleto Bancário",
+    "formaPagamento": "PIX",
     "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 24,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 600
+      },
       {
         "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
-        "quantidade": 1,
+        "quantidade": 8,
         "valor": 17,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 17
+        "subtotal": 136
       }
     ],
-    "valorTotal": 17,
+    "valorTotal": 699.2,
     "descontoTotal": {
-      "valor": 0,
+      "valor": 5,
+      "tipo": "percentage"
+    },
+    "valorFinal": 699.2,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731606909623"
+  },
+  {
+    "numero": "253",
+    "cliente": "OLEANA RODRIGUES MACIEL DE ANDRADE",
+    "situacao": "Concretizada",
+    "data": "2024-11-14",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 300,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 10500
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 30,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1800
+      }
+    ],
+    "valorTotal": 11562,
+    "descontoTotal": {
+      "valor": 6,
+      "tipo": "percentage"
+    },
+    "valorFinal": 11562,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731607397628"
+  },
+  {
+    "numero": "254",
+    "cliente": "ANA IZABEL",
+    "situacao": "Concretizada",
+    "data": "2021-02-03",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 31,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 775
+      }
+    ],
+    "valorTotal": 760,
+    "descontoTotal": {
+      "valor": 15,
       "tipo": "value"
     },
-    "valorFinal": 17,
+    "valorFinal": 760,
     "paga": false,
-    "tipoPagamento": "Parcelado",
-    "intervaloParcelas": 30,
-    "quantidadeParcelas": 3,
-    "dataPrimeiraParcela": "2024-12-11",
-    "parcelas": [
-      {
-        "numero": 1,
-        "data": "2024/12/11",
-        "valor": 5.666666666666667
-      },
-      {
-        "numero": 2,
-        "data": "2025/01/10",
-        "valor": 5.666666666666667
-      },
-      {
-        "numero": 3,
-        "data": "2025/02/09",
-        "valor": 5.666666666666667
-      }
-    ],
-    "id": "1731367126784"
+    "tipoPagamento": "À Vista",
+    "id": "1731609625311"
   }
 ]

@@ -126,21 +126,10 @@ async function atualizarUltimoNumeroBoleto(numero) {
     }
 }
 
-// Função para remover acentos e caracteres especiais, mantendo vírgulas
+// Adicione esta função auxiliar no início do arquivo ou antes da função generateRemessa
 function removeAcentos(str) {
-    return str.normalize("NFD")
-             .replace(/[\u0300-\u036f]/g, "") // Remove acentos
-             .replace(/[^a-zA-Z0-9\s,]/g, "") // Remove caracteres especiais exceto vírgula
-             .replace(/ÁREA/gi, "AREA") // Substitui casos específicos
-             .replace(/JOSÉ/gi, "JOSE")
-             .replace(/[áàãâä]/gi, "a")
-             .replace(/[éèêë]/gi, "e")
-             .replace(/[íìîï]/gi, "i")
-             .replace(/[óòõôö]/gi, "o")
-             .replace(/[úùûü]/gi, "u")
-             .replace(/[ý]/gi, "y")
-             .replace(/[ñ]/gi, "n")
-             .replace(/[ç]/gi, "c");
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+               .replace(/[^a-zA-Z0-9\s]/g, ""); // Remove caracteres especiais, mantendo apenas letras, números e espaços
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -452,8 +441,7 @@ window.generateRemessa = async (saleId) => {
         const nomeCliente = removeAcentos(client.nome).padEnd(37, ' ').slice(0, 37);
 
         // Formatar o endereço do cliente
-        const numeroFormatado = client.endereco.numero ? client.endereco.numero.replace('S/N', 'S N') : '';
-        const logradouroNumero = removeAcentos(`${client.endereco.logradouro.trim()}  ${numeroFormatado}`).trim();
+        const logradouroNumero = removeAcentos(`${client.endereco.logradouro} ${client.endereco.numero}`).trim();
         const enderecoFormatado = `   ${logradouroNumero.padEnd(40, ' ').slice(0, 40)}`;
         const bairroFormatado = removeAcentos(client.endereco.bairro).padEnd(12, ' ').slice(0, 12);
 
