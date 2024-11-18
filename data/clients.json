@@ -2338,5 +2338,59 @@
     },
     "dataCadastro": "14/11/2024, 14:29:11",
     "id": "1731605354660"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "VALDECI BATISTA PIRES",
+    "email": "",
+    "telefone": "",
+    "cpf": "093.032.378-54",
+    "cnpj": "",
+    "endereco": {
+      "cep": "17470-007",
+      "logradouro": "Rua Benedito Gebara",
+      "numero": "6",
+      "bairro": "Centro",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "14/11/2024, 18:37:14",
+    "id": "1731620233906"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANTONIO FERNANDES",
+    "email": "",
+    "telefone": "(14) 998352642",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "15/11/2024, 12:34:07",
+    "id": "1731684849689"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JUNIOR MPL",
+    "email": "",
+    "telefone": "(14) 997288977",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "15/11/2024, 12:48:51",
+    "id": "1731685733737"
   }
 ]

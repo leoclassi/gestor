@@ -1784,7 +1784,7 @@ app.post('/api/pix/webhook', async (req, res) => {
                     dataVencimento,
                     valorOriginal,
                     valorPagoSacado,
-                    dataAgendamento
+                    dataLiquidacao
                 } = boleto;
 
                 // Buscar vendas com forma de pagamento "Boleto Bancário"
@@ -1826,7 +1826,7 @@ app.post('/api/pix/webhook', async (req, res) => {
                     
                     // Marcar parcela como paga
                     vendaEncontrada.parcelas[parcelaIndex].paga = true;
-                    vendaEncontrada.parcelas[parcelaIndex].dataPagamento = dataAgendamento;
+                    vendaEncontrada.parcelas[parcelaIndex].dataPagamento = dataLiquidacao;
 
                     // Verificar se todas as parcelas foram pagas
                     const todasPagas = vendaEncontrada.parcelas.every(p => p.paga);
@@ -1843,7 +1843,7 @@ app.post('/api/pix/webhook', async (req, res) => {
                         dataVencimento,
                         valorOriginal,
                         valorPagoSacado,
-                        dataAgendamento,
+                        dataLiquidacao, // Usar dataLiquidacao em vez de dataAgendamento
                         vendaNumero: vendaEncontrada.numero,
                         cliente: vendaEncontrada.cliente,
                         parcelaNumero: parcelaIndex + 1,
@@ -1852,8 +1852,14 @@ app.post('/api/pix/webhook', async (req, res) => {
 
                     // Enviar mensagem WhatsApp
                     try {
-                        const dataVencimentoFormatada = dataVencimento.split('.').join('/');
-                        const dataPagamentoFormatada = dataAgendamento.split(' ')[0]; // Pega só a data, remove o horário
+                        // Verifica e formata as datas considerando diferentes formatos
+                        const dataVencimentoFormatada = dataVencimento ? 
+                            (dataVencimento.includes('.') ? dataVencimento.split('.').join('/') : dataVencimento) : 
+                            'Data não disponível';
+                        
+                        const dataPagamentoFormatada = dataLiquidacao ? 
+                            dataLiquidacao.split(' ')[0] : 
+                            'Data não disponível';
                         
                         const message = 
                             "✅ *Pagamento de Boleto Recebido!*\n\n" +
@@ -1908,11 +1914,22 @@ async function sendDiscordBoletoNotification(boletoData) {
             throw new Error('URL do webhook de boletos do Discord não configurada');
         }
 
-        const { dataVencimento, valorPagoSacado, dataAgendamento, vendaNumero, cliente, parcelaNumero, totalParcelas, observacao } = boletoData;
+        const { dataVencimento, valorPagoSacado, dataLiquidacao, vendaNumero, cliente, parcelaNumero, totalParcelas, observacao } = boletoData;
 
-        // Formatar as datas
-        const dataVencimentoFormatada = dataVencimento.split('.').join('/');
-        const dataPagamentoFormatada = dataAgendamento.split(' ')[0];
+        // Formatar as datas considerando diferentes formatos possíveis
+        let dataVencimentoFormatada = 'Data não disponível';
+        if (dataVencimento) {
+            // Se a data vier com pontos (22.11.2024), converte para barras
+            dataVencimentoFormatada = dataVencimento.includes('.') ? 
+                dataVencimento.split('.').join('/') : 
+                dataVencimento;
+        }
+
+        let dataPagamentoFormatada = 'Data não disponível';
+        if (dataLiquidacao) {
+            // Se a data vier com hora (18/11/2024 10:33:30), pega só a data
+            dataPagamentoFormatada = dataLiquidacao.split(' ')[0];
+        }
 
         const fields = [
             { name: "Valor Pago", value: `R$ ${valorPagoSacado}`, inline: true },
@@ -1937,7 +1954,6 @@ async function sendDiscordBoletoNotification(boletoData) {
                 description: cliente ? `Cliente: **${cliente}**` : undefined,
                 color: vendaNumero ? 0x00ff00 : 0xffa500,
                 fields: fields
-                // Removido o timestamp
             }]
         };
 

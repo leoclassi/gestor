@@ -101,6 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setupClientAutocomplete();
         });
 
+    // Adicione este estilo no início do arquivo ou onde os outros estilos estão definidos
+    const autocompleteStyles = document.createElement('style');
+    autocompleteStyles.textContent = `
+        .ui-autocomplete {
+            max-width: 100%; /* Limita a largura máxima do menu ao tamanho do campo de entrada */
+            width: auto !important; /* Ajusta a largura automaticamente */
+        }
+    `;
+    document.head.appendChild(autocompleteStyles);
+
+    // Certifique-se de que o autocomplete está sendo aplicado corretamente
     function setupClientAutocomplete() {
         $(clienteInput).autocomplete({
             source: clients.map(client => client.nome),
@@ -108,9 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
             select: function(event, ui) {
                 event.preventDefault();
                 $(this).val(ui.item.value);
+                lockClientField();
             }
         }).focus(function() {
-            $(this).autocomplete("search", "");
+            if (!$(this).prop('disabled')) {
+                $(this).autocomplete("search", "");
+            }
+        }).autocomplete("widget").css({
+            'max-width': $(clienteInput).outerWidth() + 'px' // Ajusta a largura do menu ao campo
         });
     }
 
@@ -124,13 +140,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selectedProduct = products.find(p => p.nome === ui.item.value);
                 if (selectedProduct) {
                     const row = $(this).closest('.form-row');
-                    row.find('input[type="number"]').eq(0).prop('disabled', false); // Habilitar quantidade
-                    row.find('select.tipo-preco').prop('disabled', false); // Habilitar tipo de preço
+                    row.find('input[type="number"]').eq(0).prop('disabled', false);
+                    row.find('select.tipo-preco').prop('disabled', false);
                     updateUnitPrice(row, selectedProduct);
+                    
+                    // Adicionar o lock após selecionar o produto
+                    lockProductField(row);
                 }
             }
         }).focus(function() {
-            $(this).autocomplete("search", "");
+            if (!$(this).prop('disabled')) {
+                $(this).autocomplete("search", "");
+            }
         });
     }
 
@@ -166,9 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <input type="text" class="form-control produto-autocomplete" required>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-primary add-new-product-btn">
-                                <i class="fas fa-plus"></i>
-                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-secondary toggle-lock" title="Clique para bloquear">
+                                    <i class="fas fa-lock-open"></i>
+                                </button>
+                                <button type="button" class="btn btn-primary add-new-product-btn" title="Adicionar novo produto">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,8 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <input type="number" class="form-control desconto-input" min="0" value="0">
                         <div class="input-group-append">
                             <select class="form-control desconto-tipo desconto-dropdown">
+                            <option value="value">R$</option>
                                 <option value="percentage">%</option>
-                                <option value="value">R$</option>
                             </select>
                         </div>
                     </div>
@@ -218,6 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setupProductAutocomplete($productRow.find('.produto-autocomplete')[0]);
         setupRowEventListeners($productRow);
+        
+        // Adicionar evento para o botão de lock
+        $productRow.find('.toggle-lock').on('click', function() {
+            toggleProductLock($productRow);
+        });
+        
         updateTotalValue();
         updateItemNumbers();
 
@@ -514,70 +546,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para adicionar um produto ao formulário
     function adicionarProduto(produto) {
-        const productRow = document.createElement('div');
-        productRow.classList.add('form-row', 'mb-3', 'align-items-end');
-        productRow.innerHTML = `
-            <div class="form-group produto-col">
-                <label for="produto">Produto</label>
-                <div class="input-group">
-                    <div class="drag-handle" style="cursor: move; padding: 8px; display: flex; align-items: center; color: #666;">
-                        <i class="fas fa-grip-vertical"></i>
-                    </div>
-                    <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-primary add-new-product-btn">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group quantidade-col">
-                <label for="quantidade">Quantidade</label>
-                <input type="number" class="form-control quantidade-input" value="${produto.quantidade}" min="1" required>
-            </div>
-            <div class="form-group valor-col">
-                <label for="valor">Valor</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">R$</span>
-                    </div>
-                    <input type="number" class="form-control" step="0.01" min="0" value="${produto.valor.toFixed(2)}" required>
-                    <div class="input-group-append">
-                        <select class="form-control tipo-preco" required>
-                            <option value="simples" ${produto.tipoPreco === 'simples' ? 'selected' : ''}>Simples</option>
-                            <option value="especial" ${produto.tipoPreco === 'especial' ? 'selected' : ''}>Especial</option>
-                        </select>
+        const productRowHTML = `
+            <div class="form-row mb-3 align-items-end">
+                <div class="form-group produto-col">
+                    <label for="produto">Produto</label>
+                    <div class="input-group">
+                        <div class="drag-handle" style="cursor: move; padding: 8px; display: flex; align-items: center; color: #666;">
+                            <i class="fas fa-grip-vertical"></i>
+                        </div>
+                        <input type="text" class="form-control produto-autocomplete" value="${produto.produto}" required>
+                        <div class="input-group-append">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-secondary toggle-lock" title="Clique para editar">
+                                    <i class="fas fa-lock"></i>
+                                </button>
+                                <button type="button" class="btn btn-primary add-new-product-btn" title="Adicionar novo produto">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group desconto-col">
-                <label for="desconto">Desconto</label>
-                <div class="input-group">
-                    <input type="number" class="form-control desconto-input" min="0" value="${Math.round(produto.desconto || 0)}">
-                    <div class="input-group-append">
-                        <select class="form-control desconto-tipo desconto-dropdown">
-                            <option value="percentage" ${produto.descontoTipo === 'percentage' ? 'selected' : ''}>%</option>
-                            <option value="value" ${produto.descontoTipo === 'value' ? 'selected' : ''}>R$</option>
-                        </select>
+                <div class="form-group quantidade-col">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="number" class="form-control quantidade-input" value="${produto.quantidade}" min="1" required>
+                </div>
+                <div class="form-group valor-col">
+                    <label for="valor">Valor</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        <input type="number" class="form-control" step="0.01" min="0" value="${produto.valor.toFixed(2)}" required>
+                        <div class="input-group-append">
+                            <select class="form-control tipo-preco" required>
+                                <option value="simples" ${produto.tipoPreco === 'simples' ? 'selected' : ''}>Simples</option>
+                                <option value="especial" ${produto.tipoPreco === 'especial' ? 'selected' : ''}>Especial</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group subtotal-col">
-                <label for="subtotal">Subtotal</label>
-                <input type="text" class="form-control" readonly value="${formatCurrency(produto.subtotal)}">
-            </div>
-            <div class="form-group col-auto">
-                <button type="button" class="btn btn-danger remove-product">X</button>
+                <div class="form-group desconto-col">
+                    <label for="desconto">Desconto</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control desconto-input" min="0" value="${Math.round(produto.desconto || 0)}">
+                        <div class="input-group-append">
+                            <select class="form-control desconto-tipo desconto-dropdown">
+                                <option value="percentage" ${produto.descontoTipo === 'percentage' ? 'selected' : ''}>%</option>
+                                <option value="value" ${produto.descontoTipo === 'value' ? 'selected' : ''}>R$</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group subtotal-col">
+                    <label for="subtotal">Subtotal</label>
+                    <input type="text" class="form-control" readonly value="${formatCurrency(produto.subtotal)}">
+                </div>
+                <div class="form-group col-auto">
+                    <button type="button" class="btn btn-danger remove-product">X</button>
+                </div>
             </div>
         `;
-        productsContainer.appendChild(productRow);
         
-        setupProductAutocomplete(productRow.querySelector('.produto-autocomplete'));
-        setupRowEventListeners($(productRow));
+        const $productRow = $(productRowHTML);
+        productsContainer.appendChild($productRow[0]);
+        
+        setupProductAutocomplete($productRow.find('.produto-autocomplete')[0]);
+        setupRowEventListeners($productRow);
+        
+        // Adicionar evento para o botão de lock
+        $productRow.find('.toggle-lock').on('click', function() {
+            toggleProductLock($productRow);
+        });
+        
+        // Bloquear o campo de produto já que é uma edição
+        lockProductField($productRow);
+        
         updateItemNumbers();
         
-        $(productRow).find('.add-new-product-btn').on('click', () => {
-            currentProductRow = productRow;
+        $productRow.find('.add-new-product-btn').on('click', () => {
+            currentProductRow = $productRow[0];
             if (addProductModal) {
                 addProductModal.show();
             }
@@ -892,7 +940,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function buscarCNPJ() {
         const cnpj = document.getElementById('cnpj').value.replace(/\D/g, '');
         if (cnpj.length !== 14) {
-            alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 d��gitos.');
+            alert('CNPJ inválido. Por favor, insira um CNPJ válido com 14 dgitos.');
             return;
         }
 
@@ -1392,4 +1440,292 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
+
+    // Adicione estas novas funções
+    function lockProductField(row) {
+        const productInput = row.find('.produto-autocomplete');
+        const lockButton = row.find('.toggle-lock');
+        
+        productInput.prop('disabled', true);
+        lockButton.html('<i class="fas fa-lock"></i>');
+        lockButton.attr('title', 'Clique para editar');
+        
+        // Adiciona classe para estilização
+        productInput.addClass('locked');
+    }
+
+    function unlockProductField(row) {
+        const productInput = row.find('.produto-autocomplete');
+        const lockButton = row.find('.toggle-lock');
+        
+        productInput.prop('disabled', false);
+        lockButton.html('<i class="fas fa-lock-open"></i>');
+        lockButton.attr('title', 'Clique para bloquear');
+        
+        // Remove classe de estilização
+        productInput.removeClass('locked');
+    }
+
+    function toggleProductLock(row) {
+        const productInput = row.find('.produto-autocomplete');
+        if (productInput.prop('disabled')) {
+            unlockProductField(row);
+        } else {
+            lockProductField(row);
+        }
+    }
+
+    // Adicione estes estilos ao final do arquivo
+    const additionalStyles = document.createElement('style');
+    additionalStyles.textContent = `
+        .produto-autocomplete.locked {
+            background-color: #f8f9fa !important;
+            cursor: not-allowed;
+        }
+
+        .dark-theme .produto-autocomplete.locked {
+            background-color: #2c2c2c !important;
+        }
+
+        .toggle-lock {
+            padding: 0.375rem 0.75rem;
+        }
+
+        .toggle-lock i {
+            font-size: 0.9rem;
+        }
+    `;
+    document.head.appendChild(additionalStyles);
+
+    // Adicione estas novas funções para controlar o lock do cliente
+    function lockClientField() {
+        const $clienteContainer = $('#cliente').parent();
+        const $clienteInput = $('#cliente');
+        
+        let $lockButton = $clienteContainer.find('.toggle-client-lock');
+        if (!$lockButton.length) {
+            const $buttonGroup = $('<div class="btn-group"></div>');
+            $lockButton = $('<button type="button" class="btn btn-outline-secondary toggle-client-lock" title="Clique para editar"><i class="fas fa-lock"></i></button>');
+            const $addButton = $clienteContainer.find('.btn-novo-cliente');
+            
+            // Remover o botão existente e adicionar ao novo grupo
+            $addButton.remove();
+            $buttonGroup.append($lockButton);
+            $buttonGroup.append($addButton.addClass('btn-outline-primary').removeClass('btn-primary'));
+            
+            $clienteContainer.find('.input-group-append').append($buttonGroup);
+            $lockButton.on('click', toggleClientLock);
+        }
+        
+        $clienteInput.prop('disabled', true);
+        $lockButton.html('<i class="fas fa-lock"></i>');
+        $lockButton.attr('title', 'Clique para editar');
+        $clienteInput.addClass('locked');
+    }
+
+    function unlockClientField() {
+        const $clienteInput = $('#cliente');
+        const $lockButton = $('.toggle-client-lock');
+        
+        $clienteInput.prop('disabled', false);
+        $lockButton.html('<i class="fas fa-lock-open"></i>');
+        $lockButton.attr('title', 'Clique para bloquear');
+        $clienteInput.removeClass('locked');
+    }
+
+    function toggleClientLock() {
+        const $clienteInput = $('#cliente');
+        if ($clienteInput.prop('disabled')) {
+            unlockClientField();
+        } else {
+            lockClientField();
+        }
+    }
+
+    // Modifique o CSS adicionando estilos para o campo de cliente
+    const clientStyles = document.createElement('style');
+    clientStyles.textContent = `
+        #cliente.locked {
+            background-color: #f8f9fa !important;
+            cursor: not-allowed;
+        }
+
+        .dark-theme #cliente.locked {
+            background-color: #2c2c2c !important;
+        }
+
+        .toggle-client-lock {
+            padding: 0.375rem 0.75rem;
+            border-radius: 0;
+        }
+
+        .toggle-client-lock i {
+            font-size: 0.9rem;
+        }
+
+        /* Ajuste para o layout dos botões */
+        .input-group-append .toggle-client-lock {
+            margin-left: -1px;
+            border-radius: 0;
+        }
+
+        .input-group-append .btn-novo-cliente {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    `;
+    document.head.appendChild(clientStyles);
+
+    // Modifique a parte do código que carrega os dados da venda para incluir o lock do cliente
+    if (saleId) {
+        fetch(`/api/sales/${saleId}`)
+            .then(response => response.json())
+            .then(sale => {
+                document.getElementById('numero').value = sale.numero;
+                document.getElementById('cliente').value = sale.cliente;
+                // ... outros campos ...
+                
+                // Adicionar o lock do cliente se houver um cliente selecionado
+                if (sale.cliente) {
+                    lockClientField();
+                }
+                
+                // ... resto do código ...
+            })
+            .catch(error => console.error('Erro ao buscar detalhes da venda:', error));
+    }
+
+    // Atualize os estilos
+    const updatedStyles = document.createElement('style');
+    updatedStyles.textContent = `
+        .btn-group .btn {
+            padding: 0.375rem 0.5rem;
+            border-radius: 0;
+        }
+
+        .btn-group .btn:first-child {
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+        }
+
+        .btn-group .btn:last-child {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .btn-group .btn + .btn {
+            margin-left: -1px;
+        }
+
+        .input-group-append .btn-group {
+            display: flex;
+        }
+
+        .toggle-lock, .toggle-client-lock {
+            border-right: 0;
+        }
+
+        .add-new-product-btn, .btn-novo-cliente {
+            border-left: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .dark-theme .btn-outline-secondary {
+            color: #adb5bd;
+            border-color: #6c757d;
+        }
+
+        .dark-theme .btn-outline-primary {
+            color: #9fcdff;
+            border-color: #007bff;
+        }
+
+        .dark-theme .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+        .dark-theme .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .input-group .form-control {
+            border-right: 0;
+        }
+
+        .btn-group .btn:hover {
+            z-index: 1;
+        }
+    `;
+    document.head.appendChild(updatedStyles);
+
+    // Modifique o estilo existente ou adicione este novo
+    const inputGroupStyles = document.createElement('style');
+    inputGroupStyles.textContent = `
+        /* Ajuste para as bordas dos input-groups */
+        .input-group .form-control:not(:last-child) {
+            border-right: 1px solid var(--input-border);
+        }
+
+        .input-group-append:last-child .form-control,
+        .input-group-append:last-child .btn,
+        .input-group-append:last-child .btn-group > .btn:last-child,
+        .input-group-append:last-child .desconto-dropdown,
+        .input-group-append:last-child .tipo-preco {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border-right: 1px solid var(--input-border);
+        }
+
+        /* Ajuste específico para o select de tipo de preço */
+        .valor-col .input-group-append .tipo-preco {
+            border-left: 1px solid var(--input-border);
+            border-right: 1px solid var(--input-border);
+        }
+
+        /* Ajuste específico para o select de desconto */
+        .desconto-col .input-group-append .desconto-dropdown {
+            border-left: 1px solid var(--input-border);
+            border-right: 1px solid var(--input-border);
+        }
+
+        /* Ajuste para o tema escuro */
+        .dark-theme .input-group .form-control:not(:last-child),
+        .dark-theme .input-group-append:last-child .form-control,
+        .dark-theme .input-group-append:last-child .btn,
+        .dark-theme .input-group-append:last-child .btn-group > .btn:last-child,
+        .dark-theme .input-group-append:last-child .desconto-dropdown,
+        .dark-theme .input-group-append:last-child .tipo-preco {
+            border-color: var(--input-border);
+        }
+    `;
+    document.head.appendChild(inputGroupStyles);
+
+    // Adicione ou modifique o estilo existente para ajustar as larguras das colunas
+    const columnStyles = document.createElement('style');
+    columnStyles.textContent = `
+        /* Ajuste das larguras das colunas */
+        .produto-col { 
+            width: 35%; /* Ajustado para 35% */
+        }
+        .quantidade-col { 
+            width: 10%; 
+        }
+        .valor-col { 
+            width: 20%; /* Ajustado para 20% */
+        }
+        .desconto-col { 
+            width: 15%; /* Ajustado para 15% */
+        }
+        .subtotal-col { 
+            width: 15%; /* Reduzido de 20% para 15% */
+        }
+
+        /* Mantenha os outros estilos de coluna existentes */
+        .form-row > .form-group {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+    `;
+    document.head.appendChild(columnStyles);
 });

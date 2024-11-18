@@ -988,7 +988,9 @@
       {
         "numero": 1,
         "data": "2024/11/15",
-        "valor": 8848.2
+        "valor": 8848.2,
+        "paga": true,
+        "dataPagamento": "18/11/2024 07:08:52"
       },
       {
         "numero": 2,
@@ -5241,7 +5243,7 @@
       "tipo": "value"
     },
     "valorFinal": 910,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1731345860669"
   },
@@ -5486,53 +5488,6 @@
     "id": "1731351193721"
   },
   {
-    "numero": "232",
-    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
-    "situacao": "Concretizada",
-    "data": "2024-11-12",
-    "prazoEntrega": "",
-    "formaPagamento": "Boleto Bancário",
-    "produtos": [
-      {
-        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-        "quantidade": 1,
-        "valor": 15,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 15
-      }
-    ],
-    "valorTotal": 15,
-    "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
-    },
-    "valorFinal": 15,
-    "paga": false,
-    "tipoPagamento": "Parcelado",
-    "intervaloParcelas": 1,
-    "quantidadeParcelas": 3,
-    "dataPrimeiraParcela": "2024-12-13",
-    "parcelas": [
-      {
-        "numero": 1,
-        "data": "2024/12/13",
-        "valor": 5
-      },
-      {
-        "numero": 2,
-        "data": "2024/12/14",
-        "valor": 5
-      },
-      {
-        "numero": 3,
-        "data": "2024/12/15",
-        "valor": 5
-      }
-    ],
-    "id": "1731407453977"
-  },
-  {
     "numero": "234",
     "cliente": "J.N. QUIOSQUES ARTESANAIS LTDA",
     "situacao": "Concretizada",
@@ -5637,7 +5592,7 @@
       "tipo": "value"
     },
     "valorFinal": 518.4,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1731432331503"
   },
@@ -6017,66 +5972,6 @@
     "dataPagamento": "2024-11-14T18:21:00.344Z"
   },
   {
-    "numero": "250",
-    "cliente": "LEONARDO BANHARA PIRES",
-    "situacao": "Concretizada",
-    "data": "2024-11-14",
-    "prazoEntrega": "",
-    "formaPagamento": "Boleto Bancário",
-    "produtos": [
-      {
-        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-        "quantidade": 1,
-        "valor": 13,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 13
-      }
-    ],
-    "valorTotal": 2.6,
-    "descontoTotal": {
-      "valor": 80,
-      "tipo": "percentage"
-    },
-    "valorFinal": 2.6,
-    "paga": true,
-    "tipoPagamento": "Parcelado",
-    "intervaloParcelas": 30,
-    "quantidadeParcelas": 5,
-    "dataPrimeiraParcela": "2024-12-14",
-    "parcelas": [
-      {
-        "numero": 1,
-        "data": "2024/12/14",
-        "valor": 0.52
-      },
-      {
-        "numero": 2,
-        "data": "2025/01/13",
-        "valor": 0.52
-      },
-      {
-        "numero": 3,
-        "data": "2025/02/12",
-        "valor": 0.52
-      },
-      {
-        "numero": 4,
-        "data": "2025/03/14",
-        "valor": 0.52
-      },
-      {
-        "numero": 5,
-        "data": "2025/04/13",
-        "valor": 0.52,
-        "paga": true,
-        "dataPagamento": "14/11/2024 16:30:00"
-      }
-    ],
-    "id": "1731605765094",
-    "dataPagamento": "2024-11-14T20:45:06.362Z"
-  },
-  {
     "id": "1731606758482",
     "numero": "251",
     "data": "2024-11-14",
@@ -6230,5 +6125,210 @@
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1731609625311"
+  },
+  {
+    "numero": "257",
+    "cliente": "ANTONIO FERNANDES",
+    "situacao": "Concretizada",
+    "data": "2024-11-15",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Crédito",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 20,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 500
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 20,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 700
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 8,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 480
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 6,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 102
+      }
+    ],
+    "valorTotal": 1700,
+    "descontoTotal": {
+      "valor": 82,
+      "tipo": "value"
+    },
+    "valorFinal": 1700,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1731684937548"
+  },
+  {
+    "numero": "258",
+    "cliente": "JUNIOR MPL",
+    "situacao": "Concretizada",
+    "data": "2024-11-15",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 24,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1440
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 36,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 900
+      },
+      {
+        "produto": "Ripão - 12x3 cm - 4,00 metros",
+        "quantidade": 3,
+        "valor": 52,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 156
+      }
+    ],
+    "valorTotal": 2496,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2496,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731685782098"
+  },
+  {
+    "numero": "259",
+    "cliente": "INDEPENDENTE BARRETOS CONSTRUCOES E INCORPORACOES LTDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-15",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 100,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 3500
+      }
+    ],
+    "valorTotal": 3500,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3500,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1731686092829"
+  },
+  {
+    "numero": "260",
+    "cliente": "VALDECI BATISTA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-15",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 2,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 2
+      }
+    ],
+    "valorTotal": 2,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2,
+    "paga": true,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 7,
+    "quantidadeParcelas": 1,
+    "dataPrimeiraParcela": "2024-11-22",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/11/22",
+        "valor": 2,
+        "paga": true
+      }
+    ],
+    "id": "1731925841755",
+    "dataPagamento": "2024-11-18T13:52:39.181Z"
+  },
+  {
+    "numero": "261",
+    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
+    "situacao": "Concretizada",
+    "data": "2024-11-15",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 1,
+        "valor": 6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 6
+      }
+    ],
+    "valorTotal": 6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 6,
+    "paga": true,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 4,
+    "quantidadeParcelas": 2,
+    "dataPrimeiraParcela": "2024-11-26",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/11/26",
+        "valor": 3,
+        "paga": true
+      },
+      {
+        "numero": 2,
+        "data": "2024/11/30",
+        "valor": 3,
+        "paga": true
+      }
+    ],
+    "id": "1731928992671",
+    "dataPagamento": "2024-11-18T14:38:21.709Z"
   }
 ]
