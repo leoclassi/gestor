@@ -1119,14 +1119,14 @@
     "tipoCliente": "Pessoa Jurídica",
     "nome": "J.N. QUIOSQUES ARTESANAIS LTDA",
     "email": "e.s.luiz@uol.com.br",
-    "telefone": "(14) 3265-1156",
+    "telefone": "(14) 997720019",
     "cpf": "",
     "cnpj": "01.707.763/0001-30",
     "endereco": {
       "cep": "17.492-540",
-      "logradouro": "RUA DAS MANGUEIRAS",
-      "numero": "683",
-      "bairro": "REAL VILLAGE",
+      "logradouro": "Rua das Mangueiras",
+      "numero": "",
+      "bairro": "Real Village",
       "cidade": "Piratininga",
       "uf": "SP"
     },
@@ -2392,5 +2392,203 @@
     },
     "dataCadastro": "15/11/2024, 12:48:51",
     "id": "1731685733737"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "APARECIDO OSMAR COLATTO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:31:47",
+    "id": "1731951116226"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ALEXANDRE FAZENDO CRISTO REI",
+    "email": "",
+    "telefone": "(17) 996630003",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA CRISTO REI",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:34:59",
+    "id": "1731951308468"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ADRIANO",
+    "email": "",
+    "telefone": "(11) 997407955",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "NENE CARLOS",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:39:17",
+    "id": "1731951566456"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "SAMUEL",
+    "email": "",
+    "telefone": "(14) 9977076217",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "RECANTO DOS PASSAROS",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:44:07",
+    "id": "1731951856416"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "MARIA DE LURDES",
+    "email": "",
+    "telefone": "(14) 996882998",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "18/11/2024, 14:46:40",
+    "id": "1731952009296"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ELTON",
+    "email": "",
+    "telefone": "(14) 998291508",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:48:26",
+    "id": "1731952115636"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JUNIOR ARAS",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:49:55",
+    "id": "1731952204573"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DIDIO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": ""
+    },
+    "dataCadastro": "18/11/2024, 14:53:28",
+    "id": "1731952417073"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIS APARECIDO DA SILVA",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 14:59:09",
+    "id": "1731952757974"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JOAQUIM",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 15:04:18",
+    "id": "1731953067354"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "RICARDO CURI",
+    "email": "",
+    "telefone": "(14) 99772-2400",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "18/11/2024, 15:58:17",
+    "id": "1731956306065"
   }
 ]

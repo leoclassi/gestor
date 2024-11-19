@@ -1402,5 +1402,14 @@
     "valorEspecial": 600,
     "estoque": 4342,
     "dataCadastro": "07/11/2024, 14:39:06"
+  },
+  {
+    "id": "1731952248994",
+    "codigo": "7357587818",
+    "nome": "Ripão - 12x3 cm - 4,50 metros",
+    "valor": 67.5,
+    "valorEspecial": 67.5,
+    "estoque": 5234242,
+    "dataCadastro": "18/11/2024, 14:50:40"
   }
 ]

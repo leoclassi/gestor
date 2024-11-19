@@ -451,7 +451,9 @@
     "dataEmissao": "2024-11-13",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-11-13",
-    "id": "1726432475580"
+    "id": "1726432475580",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-18T19:34:36.428Z"
   },
   {
     "numeroCheque": "3777",
@@ -944,8 +946,8 @@
     "dataEmissao": "2024-11-08",
     "remetente": "MARCOS ROBERTO FURLANETTO",
     "dataCompensacao": "2024-11-18",
-    "compensado": false,
-    "dataHoraCompensacao": null,
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-18T19:34:39.108Z",
     "id": "1731085344829"
   },
   {
@@ -1011,5 +1013,41 @@
     "compensado": false,
     "dataHoraCompensacao": null,
     "id": "1731085535455"
+  },
+  {
+    "numeroCheque": "3839",
+    "valor": 10000,
+    "dataCompensacao": "2024-11-30",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-18",
+    "id": "1731946394108",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3840",
+    "valor": 1000,
+    "dataCompensacao": "2024-12-08",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-18",
+    "id": "1731946394547",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3845",
+    "valor": 13000,
+    "dataCompensacao": "2024-12-17",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-18",
+    "id": "1731946394864",
+    "compensado": false
   }
 ]

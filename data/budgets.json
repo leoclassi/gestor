@@ -2023,5 +2023,56 @@
     "valorFinal": 10596,
     "paga": false,
     "tipoPagamento": "À Vista"
+  },
+  {
+    "id": "1731956396193",
+    "numero": "46",
+    "cliente": "RICARDO CURI",
+    "situacao": "Em Aberto",
+    "data": "2024-11-18",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 70,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1050
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 50,
+        "valor": 23,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1150
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 15,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 600
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 2,50 metros",
+        "quantidade": 12,
+        "valor": 42,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 504
+      }
+    ],
+    "valorTotal": 3304,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3304,
+    "tipoPagamento": "À Vista",
+    "paga": false
   }
 ]

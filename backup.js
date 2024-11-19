@@ -43,7 +43,8 @@ function createBackup() {
             'sales.json',
             'users.json',
             'budgets.json',
-            'remetentes.json'
+            'remetentes.json',
+            'boletos.json'
         ];
 
         // Verificar e adicionar cada arquivo ao zip

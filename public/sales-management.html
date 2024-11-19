@@ -70,26 +70,73 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
+            gap: 15px;
         }
+        
         .summary-card {
             flex: 1;
-            margin: 0 10px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: all 0.3s ease;
         }
+        
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
         .summary-card h3 {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 1.2em;
-            color: rgba(255, 255, 255, 0.7); /* Cor mais clara para o título */
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
         }
+        
         .summary-card .value {
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.7); /* Cor semitransparente para o valor */
+            color: rgba(255, 255, 255, 0.95);
         }
+
+        /* Cores para o tema claro */
+        .total-vendas { 
+            background: linear-gradient(135deg, #1e4d8c 0%, #3b7ddd 100%);
+        }
+        
+        .pendente { 
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+        
+        .pagos { 
+            background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+        }
+
+        /* Cores para o tema escuro */
+        .dark-theme .total-vendas { 
+            background: linear-gradient(135deg, #153661 0%, #2d5ca3 100%);
+        }
+        
+        .dark-theme .pendente { 
+            background: linear-gradient(135deg, #6c3483 0%, #8e44ad 100%);
+        }
+        
+        .dark-theme .pagos { 
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+        }
+
+        /* Adiciona uma borda sutil */
+        .summary-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Melhora a legibilidade do texto */
+        .summary-card h3, 
+        .summary-card .value {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
         .vencidos { background-color: #8B0000; }
         .a-vencer { background-color: #00008B; }
         .pagos { background-color: #006400; }

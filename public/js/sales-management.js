@@ -70,7 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/api/sales')
             .then(response => response.json())
             .then(data => {
-                sales = data.sort((a, b) => new Date(b.data) - new Date(a.data));
+                // Ordenar primeiro pelo número e depois pela data, ambos em ordem decrescente
+                sales = data.sort((a, b) => {
+                    // Primeiro tenta ordenar pelo número
+                    const numDiff = parseInt(b.numero) - parseInt(a.numero);
+                    if (numDiff !== 0) return numDiff;
+                    
+                    // Se os números forem iguais, ordena pela data
+                    return new Date(b.data) - new Date(a.data);
+                });
                 organizeSalesByMonthYear();
                 if (!selectedMonthYear) {
                     setCurrentMonthYear();
@@ -530,28 +538,66 @@ document.addEventListener('DOMContentLoaded', () => {
         const icon = button.querySelector('i');
         const isPaga = icon.classList.contains('fa-money-bill-wave');
 
-        fetch(`/api/sales/${saleId}/pay`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ paga: !isPaga })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                icon.classList.toggle('fa-money-bill-wave');
-                icon.classList.toggle('fa-hand-holding-usd');
-                button.title = isPaga ? 'Marcar como Paga' : 'Desmarcar como Paga';
-                fetchSales(); // Recarrega a lista de vendas sem redefinir o mês
-            } else {
-                throw new Error(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar o estado da venda:', error);
-            showNotification('Ocorreu um erro ao atualizar o estado da venda. Por favor, tente novamente.', 'error');
-        });
+        // Primeiro, buscar os detalhes da venda para verificar as parcelas
+        fetch(`/api/sales/${saleId}`)
+            .then(response => response.json())
+            .then(sale => {
+                // Se a venda tem parcelas, vamos marcar todas como pagas
+                if (sale.parcelas && sale.parcelas.length > 0) {
+                    // Criar um array de promessas para marcar cada parcela como paga
+                    const promises = sale.parcelas.map((_, index) => 
+                        fetch('/api/mark-parcel-as-paid', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            },
+                            body: JSON.stringify({ saleId: saleId, parcelIndex: index })
+                        }).then(response => response.json())
+                    );
+
+                    // Executar todas as promessas
+                    Promise.all(promises)
+                        .then(() => {
+                            icon.classList.toggle('fa-money-bill-wave');
+                            icon.classList.toggle('fa-hand-holding-usd');
+                            button.title = isPaga ? 'Marcar como Paga' : 'Desmarcar como Paga';
+                            fetchSales(); // Recarrega a lista de vendas
+                        })
+                        .catch(error => {
+                            console.error('Erro ao marcar parcelas como pagas:', error);
+                            showNotification('Erro ao marcar parcelas como pagas. Por favor, tente novamente.', 'error');
+                        });
+                } else {
+                    // Se não tem parcelas, continua com o comportamento normal
+                    fetch(`/api/sales/${saleId}/pay`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ paga: !isPaga })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            icon.classList.toggle('fa-money-bill-wave');
+                            icon.classList.toggle('fa-hand-holding-usd');
+                            button.title = isPaga ? 'Marcar como Paga' : 'Desmarcar como Paga';
+                            fetchSales();
+                        } else {
+                            throw new Error(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao atualizar o estado da venda:', error);
+                        showNotification('Ocorreu um erro ao atualizar o estado da venda. Por favor, tente novamente.', 'error');
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar detalhes da venda:', error);
+                showNotification('Erro ao buscar detalhes da venda. Por favor, tente novamente.', 'error');
+            });
     }
 
     // Modifique a função toggleParcelas para garantir que ela funcione corretamente

@@ -64,7 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/api/budgets')
             .then(response => response.json())
             .then(data => {
-                budgets = data.sort((a, b) => new Date(b.data) - new Date(a.data));
+                // Ordenar primeiro pelo número e depois pela data, ambos em ordem decrescente
+                budgets = data.sort((a, b) => {
+                    // Primeiro tenta ordenar pelo número
+                    const numDiff = parseInt(b.numero) - parseInt(a.numero);
+                    if (numDiff !== 0) return numDiff;
+                    
+                    // Se os números forem iguais, ordena pela data
+                    return new Date(b.data) - new Date(a.data);
+                });
                 organizeBudgetsByMonthYear();
                 if (!selectedMonthYear) {
                     setCurrentMonthYear(); // Apenas define o mês atual se nenhum mês estiver selecionado
