@@ -2026,8 +2026,8 @@
   },
   {
     "id": "1731956396193",
-    "numero": "46",
-    "cliente": "RICARDO CURI",
+    "numero": "48",
+    "cliente": "JORGE RICARDO KOURY E OUTROS",
     "situacao": "Em Aberto",
     "data": "2024-11-18",
     "prazoEntrega": "",
@@ -2072,6 +2072,97 @@
       "tipo": "value"
     },
     "valorFinal": 3304,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1732034717983",
+    "numero": "47",
+    "cliente": "CARLOS ALBERTO SARTORATO",
+    "situacao": "Em Aberto",
+    "data": "2024-11-19",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 375
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 518.4
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 6,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 208.8
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 2,
+        "valor": 39.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 79.2
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 2,
+        "valor": 20.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 40.8
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 2,
+        "valor": 26.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 52.8
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 2,
+        "valor": 15.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 31.2
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 4 a 6 cm Ø",
+        "quantidade": 15,
+        "valor": 31.2,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 468
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 15,
+        "valor": 15.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 234
+      }
+    ],
+    "valorTotal": 2008.2,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2008.2,
     "tipoPagamento": "À Vista",
     "paga": false
   }

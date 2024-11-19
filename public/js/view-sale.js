@@ -170,6 +170,84 @@ document.addEventListener('DOMContentLoaded', () => {
             showNotification('Erro ao enviar documentos para o cliente', 'error');
         }
     });
+
+    // Número fixo do escritório
+    const OFFICE_PHONE = '5514981690670'; // Substitua pelo número correto do escritório
+
+    // Event listener para o botão "Enviar Escritório"
+    document.getElementById('sendToOfficeButton').addEventListener('click', async () => {
+        try {
+            // Gerar PDF
+            const element = document.querySelector('.container');
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                logging: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff'
+            });
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            
+            const imgWidth = 210;
+            const pageHeight = 295;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            while (heightLeft >= pageHeight) {
+                position = heightLeft - pageHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
+            const pdfBlob = pdf.output('blob');
+            
+            // Obter informações da venda
+            const saleNumber = document.getElementById('saleNumber').textContent;
+            const clientName = document.getElementById('clientName').textContent.trim();
+            const formattedClientName = clientName.replace(/\s+/g, '_').toUpperCase();
+
+            const whatsappService = new WhatsAppService();
+
+            // Enviar PDF com a mensagem "Fazer nota" tanto na mensagem quanto no nome do arquivo
+            await whatsappService.sendPdfToWhatsApp(
+                pdfBlob, 
+                OFFICE_PHONE, 
+                'Fazer nota', // Mensagem específica para o escritório
+                `FAZER_NOTA_VENDA_${formattedClientName}_${saleNumber}` // Nome do arquivo incluindo "FAZER NOTA"
+            );
+
+            showNotification('Documento enviado com sucesso para o escritório!', 'success');
+
+        } catch (error) {
+            console.error('Erro ao processar:', error);
+            showNotification('Erro ao enviar documento para o escritório', 'error');
+        }
+    });
+
+    // Estilização do novo botão
+    const officeButton = document.getElementById('sendToOfficeButton');
+    officeButton.style.backgroundColor = '#28a745'; // Mesma cor verde do Bootstrap success
+    officeButton.style.borderColor = '#28a745';
+
+    // Quando o mouse passar por cima
+    officeButton.addEventListener('mouseenter', () => {
+        officeButton.style.backgroundColor = '#218838';
+        officeButton.style.borderColor = '#1e7e34';
+    });
+
+    // Quando o mouse sair
+    officeButton.addEventListener('mouseleave', () => {
+        officeButton.style.backgroundColor = '#28a745';
+        officeButton.style.borderColor = '#28a745';
+    });
 });
 
 function fetchSaleDetails(saleId) {

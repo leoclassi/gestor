@@ -3785,7 +3785,7 @@
       "tipo": "percentage"
     },
     "valorFinal": 3800,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1730225542844"
   },
@@ -4119,7 +4119,7 @@
       "tipo": "percentage"
     },
     "valorFinal": 475,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1730740082829"
   },
@@ -4426,7 +4426,7 @@
       "tipo": "value"
     },
     "valorFinal": 522,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1730744160457"
   },
@@ -4624,7 +4624,7 @@
       "tipo": "value"
     },
     "valorFinal": 2730,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "intervaloParcelas": 30,
     "quantidadeParcelas": 4,
@@ -4633,22 +4633,26 @@
       {
         "numero": 1,
         "data": "2024/12/05",
-        "valor": 682.5
+        "valor": 682.5,
+        "paga": true
       },
       {
         "numero": 2,
         "data": "2025/01/04",
-        "valor": 682.5
+        "valor": 682.5,
+        "paga": true
       },
       {
         "numero": 3,
         "data": "2025/02/03",
-        "valor": 682.5
+        "valor": 682.5,
+        "paga": true
       },
       {
         "numero": 4,
         "data": "2025/03/05",
-        "valor": 682.5
+        "valor": 682.5,
+        "paga": true
       }
     ],
     "id": "1730828649008"
@@ -4969,7 +4973,7 @@
       "tipo": "value"
     },
     "valorFinal": 68,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1731087097473"
   },
@@ -5748,7 +5752,7 @@
       "tipo": "value"
     },
     "valorFinal": 1535,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1731436725729"
   },
@@ -6225,7 +6229,7 @@
   },
   {
     "numero": "259",
-    "cliente": "INDEPENDENTE BARRETOS CONSTRUCOES E INCORPORACOES LTDA",
+    "cliente": "ALESSANDER GASPARELO",
     "situacao": "Concretizada",
     "data": "2024-11-15",
     "prazoEntrega": "",
@@ -6238,14 +6242,22 @@
         "desconto": 0,
         "descontoTipo": "percentage",
         "subtotal": 3500
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 18,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 864
       }
     ],
-    "valorTotal": 3500,
+    "valorTotal": 4364,
     "descontoTotal": {
       "valor": 0,
       "tipo": "value"
     },
-    "valorFinal": 3500,
+    "valorFinal": 4364,
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1731686092829"
@@ -6438,7 +6450,7 @@
     "situacao": "Concretizada",
     "data": "2024-11-18",
     "prazoEntrega": "",
-    "formaPagamento": "PIX",
+    "formaPagamento": "A Combinar",
     "produtos": [
       {
         "produto": "Palanque - 2,50 Metros - 16 a 20 cm Ø",
@@ -6479,7 +6491,7 @@
       "tipo": "value"
     },
     "valorFinal": 2750,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1731951356956"
   },
@@ -6862,5 +6874,114 @@
       }
     ],
     "id": "1731956810018"
+  },
+  {
+    "numero": "275",
+    "cliente": "CARLÃO LARANJEIRA",
+    "situacao": "Concretizada",
+    "data": "2024-11-19",
+    "prazoEntrega": "",
+    "formaPagamento": "Cheque",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 6,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 360
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 20 a 25 cm Ø",
+        "quantidade": 2,
+        "valor": 160,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 320
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 6,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 150
+      }
+    ],
+    "valorTotal": 830,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 830,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732034030864"
+  },
+  {
+    "cliente": "JORGE RICARDO KOURY E OUTROS",
+    "situacao": "Concretizada",
+    "data": "2024-11-19",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 70,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1050
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 50,
+        "valor": 23,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1150
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 15,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 600
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 2,50 metros",
+        "quantidade": 12,
+        "valor": 42,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 504
+      }
+    ],
+    "valorTotal": 3304,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3304,
+    "tipoPagamento": "Parcelado",
+    "paga": false,
+    "numero": "276",
+    "id": "1732035443820",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 2,
+    "dataPrimeiraParcela": "2024-12-19",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/19",
+        "valor": 1652
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/18",
+        "valor": 1652
+      }
+    ]
   }
 ]

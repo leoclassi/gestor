@@ -588,6 +588,22 @@
             background-color: #1a1a1a;
             border-color: #404040;
         }
+
+        /* Adicione junto com os outros estilos */
+        #sendToOfficeButton {
+            background-color: #28a745;
+            border-color: #28a745;
+            margin: 0 10px; /* Adiciona espaço entre os botões */
+        }
+
+        #sendToOfficeButton:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .floating-buttons {
+            gap: 10px; /* Ajusta o espaçamento entre os botões */
+        }
     </style>
 </head>
 <body>
@@ -697,6 +713,9 @@
     <div class="floating-buttons">
         <button id="sendToClientButton" class="btn btn-success action-button">
             <i class="fas fa-paper-plane"></i> Enviar Cliente
+        </button>
+        <button id="sendToOfficeButton" class="btn btn-info action-button">
+            <i class="fas fa-building"></i> Enviar Escritório
         </button>
         <button id="printButton" class="btn btn-primary action-button">
             <i class="fas fa-print"></i> Imprimir e Enviar

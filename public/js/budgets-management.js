@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="view-budget.html?id=${budget.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>
-                    <button class="btn btn-sm btn-outline-warning action-button" title="Gerar Venda" onclick="generateSale('${budget.id}')">
+                    <button class="btn btn-sm btn-outline-warning action-button generate-sale-btn" data-id="${budget.id}" title="Gerar Venda">
                         <i class="fas fa-file-invoice-dollar"></i> 
                     </button>
                     <button class="btn btn-sm btn-outline-primary edit-budget" data-id="${budget.id}" title="Editar">
@@ -306,9 +306,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('.generate-sale-btn').forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 const budgetId = button.getAttribute('data-id');
-                generateSale(budgetId);
+                try {
+                    const response = await fetch(`/api/generate-sale/${budgetId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showNotification('Venda gerada com sucesso!', 'success');
+                        fetchBudgets(); // Atualiza a lista de orçamentos
+                    } else {
+                        throw new Error(data.message || 'Erro ao gerar venda');
+                    }
+                } catch (error) {
+                    console.error('Erro ao gerar venda:', error);
+                    showNotification(`Erro ao gerar venda: ${error.message}`, 'error');
+                }
             });
         });
 
@@ -418,9 +438,6 @@ document.addEventListener('DOMContentLoaded', () => {
         notification.style.top = '20px';
         notification.style.right = '20px';
         notification.style.zIndex = '9999';
-        notification.style.padding = '10px 20px';
-        notification.style.borderRadius = '4px';
-        notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
         notification.textContent = message;
 
         document.body.appendChild(notification);

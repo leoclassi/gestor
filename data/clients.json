@@ -2574,10 +2574,46 @@
     "id": "1731953067354"
   },
   {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "JORGE RICARDO KOURY E OUTROS",
+    "email": "ricardo@bnr.com.br",
+    "telefone": "(14) 3471-1542 / (14) 9772-2400 / (14) 3471-1542",
+    "cpf": "",
+    "cnpj": "07.991.642/0001-49",
+    "endereco": {
+      "cep": "17.450-000",
+      "logradouro": "SÍTIO ITAPUA",
+      "numero": "S/N",
+      "bairro": "ANHUMAS",
+      "cidade": "GALIA",
+      "uf": "SP"
+    },
+    "dataCadastro": "18/11/2024, 15:58:17",
+    "id": "1731956306065"
+  },
+  {
     "tipoCliente": "Pessoa Física",
-    "nome": "RICARDO CURI",
+    "nome": "CARLÃO LARANJEIRA",
     "email": "",
-    "telefone": "(14) 99772-2400",
+    "telefone": "(14) 997844905",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Avaí",
+      "uf": "SP"
+    },
+    "dataCadastro": "19/11/2024, 13:33:11",
+    "id": "1732034001823"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "CARLOS ALBERTO SARTORATO",
+    "email": "",
+    "telefone": "(14) 99696-1496",
     "cpf": "",
     "cnpj": "",
     "endereco": {
@@ -2588,7 +2624,7 @@
       "cidade": "",
       "estado": ""
     },
-    "dataCadastro": "18/11/2024, 15:58:17",
-    "id": "1731956306065"
+    "dataCadastro": "19/11/2024, 13:45:04",
+    "id": "1732034715272"
   }
 ]
