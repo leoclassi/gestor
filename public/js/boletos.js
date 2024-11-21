@@ -132,6 +132,47 @@ function removeAcentos(str) {
                .replace(/[^a-zA-Z0-9\s]/g, ""); // Remove caracteres especiais, mantendo apenas letras, números e espaços
 }
 
+// Adicione esta função no início do arquivo, junto com as outras funções
+async function updateLastRemessaNumber() {
+    try {
+        const response = await fetch('/api/boletos');
+        const data = await response.json();
+        const lastNumber = data.ultimoNumeroBoleto || 0;
+        
+        const element = document.getElementById('lastRemessaNumber');
+        if (element) {
+            element.textContent = lastNumber;
+        }
+    } catch (error) {
+        console.error('Erro ao buscar último número de remessa:', error);
+    }
+}
+
+// Adicione esta função para incrementar o número
+async function incrementarNumeroRemessa() {
+    try {
+        const response = await fetch('/api/boletos');
+        const data = await response.json();
+        const novoNumero = (data.ultimoNumeroBoleto || 0) + 1;
+        
+        await fetch('/api/boletos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ultimoNumeroBoleto: novoNumero }),
+        });
+
+        // Atualiza o número na interface
+        const element = document.getElementById('lastRemessaNumber');
+        if (element) {
+            element.textContent = novoNumero;
+        }
+    } catch (error) {
+        console.error('Erro ao incrementar número de remessa:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const boletosTableBody = document.getElementById('boletosTableBody');
     const themeToggle = document.getElementById('themeToggle');
@@ -541,6 +582,9 @@ window.generateRemessa = async (saleId) => {
         a.click();
         window.URL.revokeObjectURL(downloadUrl);
         document.body.removeChild(a);
+
+        // Após gerar a remessa com sucesso, atualizar o número mostrado
+        updateLastRemessaNumber();
     } catch (error) {
         console.error('Erro ao gerar remessa:', error);
         alert('Erro ao gerar arquivo de remessa. Por favor, tente novamente.');
@@ -549,7 +593,16 @@ window.generateRemessa = async (saleId) => {
 
     // Carregar boletos ao iniciar a página
     loadBoletos();
+    
+    // Atualizar o número da última remessa
+    updateLastRemessaNumber();
 
     // Ativar os tooltips do Bootstrap
     $('[data-toggle="tooltip"]').tooltip();
+
+    // Adicionar listener para o botão de incremento
+    const incrementButton = document.getElementById('incrementRemessa');
+    if (incrementButton) {
+        incrementButton.addEventListener('click', incrementarNumeroRemessa);
+    }
 });

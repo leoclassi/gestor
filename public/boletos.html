@@ -387,6 +387,27 @@
         .dark-theme .btn-warning i {
             color: white !important;
         }
+        .last-remessa-number {
+            font-size: 1.1em;
+        }
+        
+        .last-remessa-number .badge {
+            font-size: 0.9em;
+            padding: 8px 12px !important;
+        }
+        
+        .dark-theme .last-remessa-number .badge-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .text-muted {
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+        
+        .dark-theme .text-muted {
+            color: #adb5bd !important;
+        }
     </style>
 </head>
 <body>
@@ -455,7 +476,17 @@
 
     <div class="content">
         <div class="container-fluid">
-            <h1 class="mt-4 mb-4">💸 Boletos Bancários</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>💸 Boletos Bancários</h1>
+                <div class="d-flex align-items-center">
+                    <small class="text-muted mr-2">
+                        Última remessa: #<span id="lastRemessaNumber">0</span>
+                    </small>
+                    <button id="incrementRemessa" class="btn btn-sm btn-outline-secondary" title="Incrementar número">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
             
             <!-- Adicionar cards de resumo -->
             <div class="summary-cards">

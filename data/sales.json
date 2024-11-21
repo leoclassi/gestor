@@ -1617,7 +1617,7 @@
       "tipo": "value"
     },
     "valorFinal": 300,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "intervaloParcelas": 30,
     "quantidadeParcelas": 3,
@@ -1626,17 +1626,20 @@
       {
         "numero": 1,
         "data": "2024/11/11",
-        "valor": 100
+        "valor": 100,
+        "paga": true
       },
       {
         "numero": 2,
         "data": "2024/12/11",
-        "valor": 100
+        "valor": 100,
+        "paga": true
       },
       {
         "numero": 3,
         "data": "2025/01/10",
-        "valor": 100
+        "valor": 100,
+        "paga": true
       }
     ],
     "id": "1728926247047"
@@ -3466,11 +3469,11 @@
     "produtos": [
       {
         "produto": "Palanque - 5,00 Metros - 6 a 8 cm Ø",
-        "quantidade": 60,
+        "quantidade": 66,
         "valor": 64,
         "desconto": 0,
         "descontoTipo": "percentage",
-        "subtotal": 3840
+        "subtotal": 4224
       },
       {
         "produto": "Ripa - 5x2 cm - 4,00 metros",
@@ -3489,15 +3492,16 @@
         "subtotal": 500
       }
     ],
-    "valorTotal": 6090,
+    "valorTotal": 6264,
     "descontoTotal": {
-      "valor": 0,
+      "valor": 210,
       "tipo": "value"
     },
-    "valorFinal": 6090,
-    "paga": false,
+    "valorFinal": 6264,
+    "paga": true,
     "tipoPagamento": "À Vista",
-    "id": "1730136824428"
+    "id": "1730136824428",
+    "dataPagamento": "2024-11-20T17:39:07.591Z"
   },
   {
     "numero": "184",
@@ -6263,74 +6267,6 @@
     "id": "1731686092829"
   },
   {
-    "numero": "260",
-    "cliente": "HENRIQUE MATHEUS BANHARA PIRES",
-    "situacao": "Concretizada",
-    "data": "2024-11-18",
-    "prazoEntrega": "",
-    "formaPagamento": "Boleto Bancário",
-    "produtos": [
-      {
-        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
-        "quantidade": 1,
-        "valor": 1,
-        "desconto": 0,
-        "descontoTipo": "value",
-        "subtotal": 1
-      }
-    ],
-    "valorTotal": 1,
-    "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
-    },
-    "valorFinal": 1,
-    "paga": true,
-    "tipoPagamento": "Parcelado",
-    "intervaloParcelas": 30,
-    "quantidadeParcelas": 5,
-    "dataPrimeiraParcela": "2024-12-18",
-    "parcelas": [
-      {
-        "numero": 1,
-        "data": "2024/12/18",
-        "valor": 0.2,
-        "paga": true,
-        "dataPagamento": "18/11/2024 15:59:30"
-      },
-      {
-        "numero": 2,
-        "data": "2025/01/17",
-        "valor": 0.2,
-        "paga": true,
-        "dataPagamento": "18/11/2024 16:00:24"
-      },
-      {
-        "numero": 3,
-        "data": "2025/02/16",
-        "valor": 0.2,
-        "paga": true,
-        "dataPagamento": "18/11/2024 16:01:35"
-      },
-      {
-        "numero": 4,
-        "data": "2025/03/18",
-        "valor": 0.2,
-        "paga": true,
-        "dataPagamento": "18/11/2024 16:02:15"
-      },
-      {
-        "numero": 5,
-        "data": "2025/04/17",
-        "valor": 0.2,
-        "paga": true,
-        "dataPagamento": "18/11/2024 16:02:40"
-      }
-    ],
-    "id": "1731950758587",
-    "dataPagamento": "2024-11-18T19:22:26.094Z"
-  },
-  {
     "numero": "261",
     "cliente": "PANORAMA MATERIAIS DE CONSTRUCAO LTDA",
     "situacao": "Concretizada",
@@ -6983,5 +6919,156 @@
         "valor": 1652
       }
     ]
+  },
+  {
+    "id": "1732123880420",
+    "numero": "277",
+    "data": "2024-11-20",
+    "cliente": "CARLOS ALBERTO SARTORATO",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 375
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 518.4
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 6,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 208.8
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 2,
+        "valor": 39.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 79.2
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 2,
+        "valor": 20.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 40.8
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 2,
+        "valor": 26.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 52.8
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 2,
+        "valor": 15.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 31.2
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 4 a 6 cm Ø",
+        "quantidade": 15,
+        "valor": 31.2,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 468
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 15,
+        "valor": 15.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 234
+      }
+    ],
+    "valorTotal": 2008.2,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2008.2,
+    "tipoPagamento": "Parcelado",
+    "formaPagamento": "Cartão de Crédito",
+    "situacao": "Concretizada",
+    "paga": true,
+    "prazoEntrega": "",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 2,
+    "dataPrimeiraParcela": "2024-12-20",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/20",
+        "valor": 1004.1,
+        "paga": true
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/19",
+        "valor": 1004.1,
+        "paga": true
+      }
+    ]
+  },
+  {
+    "numero": "278",
+    "cliente": "EMERSON",
+    "situacao": "Concretizada",
+    "data": "2024-11-20",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 8 a 10 cm Ø",
+        "quantidade": 6,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 180
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 3,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 144
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 6 a 8 cm Ø",
+        "quantidade": 3,
+        "valor": 52,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 156
+      }
+    ],
+    "valorTotal": 480,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 480,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732124410710"
   }
 ]

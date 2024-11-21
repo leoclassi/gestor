@@ -293,15 +293,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 situacaoStyle = 'background-color: #ffa500; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;';
             }
 
+            function abreviarFormaPagamento(formaPagamento) {
+                if (!formaPagamento) return '-';
+                
+                const abreviacoes = {
+                    'Cartão de Crédito': 'Cartão Créd.',
+                    'Cartão de Débito': 'Cartão Déb.',
+                    'Boleto Bancário': 'Boleto',
+                    'Dinheiro à Vista': 'Dinheiro',
+                    'A Combinar': 'A Combinar',
+                };
+
+                return abreviacoes[formaPagamento] || formaPagamento;
+            }
+
             row.innerHTML = `
-                <td>${sale.numero}</td>
-                <td class="text-truncate" style="max-width: 300px;" title="${sale.cliente}">${sale.cliente}</td>
-                <td class="text-center align-middle"><span style="${situacaoStyle}">${situacao}</span></td>
-                <td>${formatDate(sale.data)}</td>
-                <td class="valor-total">
+                <td style="width: 5%">${sale.numero}</td>
+                <td class="text-truncate" style="max-width: 180px; width: 22%;" title="${sale.cliente}">${sale.cliente}</td>
+                <td class="text-center align-middle" style="width: 10%"><span style="${situacaoStyle}">${situacao}</span></td>
+                <td style="width: 10%">${formatDate(sale.data)}</td>
+                <td class="valor-total" style="width: 10%">
                     R$ ${formatarMoeda(valorFinal).replace('R$ ', '')}
                 </td>
-                <td>
+                <td class="text-center" style="width: 13%" title="${sale.formaPagamento || '-'}">${abreviarFormaPagamento(sale.formaPagamento)}</td>
+                <td style="width: 30%">
                     <a href="view-sale.html?id=${sale.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>
