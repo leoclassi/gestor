@@ -235,7 +235,7 @@
   },
   {
     "tipoCliente": "Pessoa Física",
-    "nome": "CARLOS QUATROCI",
+    "nome": "CARLOS QUARTETO",
     "email": "",
     "telefone": "(14) 996339408",
     "cpf": "",
@@ -2662,5 +2662,23 @@
     },
     "dataCadastro": "20/11/2024, 14:34:56",
     "id": "1732124143131"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIZ ROBERTO",
+    "email": "",
+    "telefone": "(14) 98135-9572",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "21/11/2024, 14:53:23",
+    "id": "1732211618920"
   }
 ]

@@ -1411,5 +1411,14 @@
     "valorEspecial": 67.5,
     "estoque": 5234242,
     "dataCadastro": "18/11/2024, 14:50:40"
+  },
+  {
+    "id": "1732209404340",
+    "codigo": "9923053199",
+    "nome": "Viga - 8x15 cm - 3,50 metros",
+    "valor": 148,
+    "valorEspecial": 148,
+    "estoque": 5555555,
+    "dataCadastro": "21/11/2024, 14:16:29"
   }
 ]

@@ -19,13 +19,95 @@ const SALES_FILE = path.join(__dirname, 'data', 'sales.json');
 const mongoose = require('mongoose');
 const whatsappRoutes = require('./routes/whatsapp');
 const whatsappManager = require('./whatsapp-service');
+const discordService = require('./discord-service');
+const sessionManager = require('./session-manager');
 
 const upload = multer({ dest: 'uploads/' });
 
+// Configurações básicas do Express
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json({limit: '50mb'}));
 app.use(express.static('public'));
+
+// Middleware de log
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
+});
+
+// Função para obter o IP real do cliente
+async function getClientIP(req) {
+    try {
+        // Primeiro tenta pegar dos headers
+        const forwardedFor = req.headers['x-forwarded-for'];
+        if (forwardedFor) {
+            const ips = forwardedFor.split(',').map(ip => ip.trim());
+            // Retorna o primeiro IP não privado
+            for (const ip of ips) {
+                if (!isPrivateIP(ip)) {
+                    return ip;
+                }
+            }
+        }
+
+        // Se não encontrou nos headers, faz uma chamada externa
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error('Erro ao obter IP:', error);
+        return 'IP não disponível';
+    }
+}
+
+// Função para verificar se é IP privado
+function isPrivateIP(ip) {
+    return ip === '127.0.0.1' || 
+           ip === '::1' || 
+           ip.startsWith('10.') || 
+           ip.startsWith('192.168.') || 
+           ip.startsWith('172.') ||
+           ip.startsWith('fc00:') ||
+           ip.startsWith('fe80:');
+}
+
+// ROTAS DE SESSÃO - COLOCADAS NO INÍCIO
+app.post('/api/session/start', async (req, res) => {
+    try {
+        const { userId, username } = req.body;
+        const ip = await getClientIP(req);
+        console.log('Iniciando sessão para:', username, 'ID:', userId, 'IP:', ip);
+        sessionManager.updateSession(userId, username, ip);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Erro ao iniciar sessão:', error);
+        res.status(500).json({ error: 'Erro ao iniciar sessão' });
+    }
+});
+
+app.post('/api/session/heartbeat', async (req, res) => {
+    try {
+        const { userId } = req.body;
+        sessionManager.heartbeat(userId);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Erro no heartbeat:', error);
+        res.status(500).json({ error: 'Erro no heartbeat' });
+    }
+});
+
+app.post('/api/session/end', async (req, res) => {
+    try {
+        const { userId } = req.body;
+        console.log('Encerrando sessão para ID:', userId);
+        sessionManager.removeSession(userId);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Erro ao encerrar sessão:', error);
+        res.status(500).json({ error: 'Erro ao encerrar sessão' });
+    }
+});
 
 const productsFile = path.join(__dirname, 'data', 'products.json');
 const clientsFile = path.join(__dirname, 'data', 'clients.json');
@@ -33,6 +115,24 @@ const salesFile = path.join(__dirname, 'data', 'sales.json');
 const chequesFile = path.join(__dirname, 'data', 'cheques.json');
 require('dotenv').config();
 const SECRET_KEY = process.env.SECRET_KEY;
+
+// Adicione após a configuração do dotenv
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+
+// Após inicializar o bot
+if (DISCORD_TOKEN) {
+    discordService.initializeBot(DISCORD_TOKEN);
+    discordService.setupSessionListeners(sessionManager);
+    
+    // Criar mensagem de status inicial após 5 segundos
+    setTimeout(() => {
+        discordService.updateStatusMessage(sessionManager).catch(error => {
+            console.error('Erro ao criar mensagem de status inicial:', error);
+        });
+    }, 5000);
+} else {
+    console.warn('Token do Discord não configurado');
+}
 
 // Crie a pasta 'temp' se ela não existir
 const tempDir = path.join(__dirname, 'temp');
@@ -207,6 +307,25 @@ app.post('/api/sales', async (req, res) => {
 
         sales.push(newSale);
         await writeJSONFile(salesFile, sales);
+
+        // Adicione a notificação do Discord
+        if (DISCORD_TOKEN) {
+            try {
+                await discordService.sendChannelEmbed(DISCORD_TOKEN, {
+                    title: '🛍️ Nova Venda Registrada',
+                    description: `Venda #${newSale.numero} registrada com sucesso!`,
+                    color: '#00ff00',
+                    fields: [
+                        { name: 'Cliente', value: newSale.cliente, inline: true },
+                        { name: 'Valor Total', value: `R$ ${newSale.valorTotal.toFixed(2)}`, inline: true },
+                        { name: 'Forma de Pagamento', value: newSale.formaPagamento, inline: true }
+                    ],
+                    timestamp: true
+                });
+            } catch (discordError) {
+                console.error('Erro ao enviar notificação para o Discord:', discordError);
+            }
+        }
 
         res.status(201).json(newSale);
     } catch (error) {
@@ -1488,6 +1607,23 @@ app.post('/api/mark-parcel-as-paid', async (req, res) => {
             message: 'Venda/parcela marcada como paga com sucesso', 
             saleStatus: sale.paga ? 'Pago' : 'Pendente'
         });
+
+        if (DISCORD_TOKEN) {
+            try {
+                await discordService.sendChannelEmbed(DISCORD_TOKEN, {
+                    title: '💰 Pagamento Recebido',
+                    description: `Pagamento registrado para a venda #${saleId}`,
+                    color: '#00ff00',
+                    fields: [
+                        { name: 'Parcela', value: `${parcelIndex + 1}`, inline: true },
+                        { name: 'Status', value: 'Pago', inline: true }
+                    ],
+                    timestamp: true
+                });
+            } catch (discordError) {
+                console.error('Erro ao enviar notificação para o Discord:', discordError);
+            }
+        }
     } catch (error) {
         console.error('Erro ao marcar venda/parcela como paga:', error);
         res.status(500).json({ success: false, message: 'Erro interno do servidor' });
@@ -1758,7 +1894,7 @@ app.post('/api/pix/webhook', async (req, res) => {
                         (sale ? `🛍️ Pedido: #${saleNumber}\n` +
                                `👤 Cliente: ${sale.cliente}\n` : '') +
                         `💰 Valor: R$ ${valor}\n` +
-                        `📅 Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
+                        ` Data: ${new Date(horario).toLocaleString('pt-BR')}\n` +
                         `\n📱 Pagador: ${pagador.nome}\n` +
                         `📄 CPF: ${pagador.cpf}\n` :
                         "⚠️ PIX sem venda vinculada";

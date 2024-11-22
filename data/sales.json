@@ -279,7 +279,7 @@
     "valorFinal": 392,
     "tipoPagamento": "À Vista",
     "id": "1727806810016",
-    "paga": false
+    "paga": true
   },
   {
     "numero": "9",
@@ -446,33 +446,6 @@
     "paga": true
   },
   {
-    "numero": "13",
-    "cliente": "RICARDO",
-    "situacao": "Concretizada",
-    "data": "2024-10-04",
-    "prazoEntrega": "",
-    "formaPagamento": "PIX",
-    "produtos": [
-      {
-        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
-        "quantidade": 6,
-        "valor": 72,
-        "desconto": 0,
-        "descontoTipo": "percentage",
-        "subtotal": 432
-      }
-    ],
-    "valorTotal": 432,
-    "descontoTotal": {
-      "valor": 0,
-      "tipo": "value"
-    },
-    "valorFinal": 432,
-    "tipoPagamento": "À Vista",
-    "id": "1728063488233",
-    "paga": false
-  },
-  {
     "numero": "120",
     "cliente": "SEBASTIÃO DE SANTOS FIGUEIREDO",
     "situacao": "Concretizada",
@@ -538,7 +511,7 @@
       "tipo": "value"
     },
     "valorFinal": 480,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1728306205030"
   },
@@ -788,7 +761,7 @@
       "tipo": "value"
     },
     "valorFinal": 990,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1728408153426"
   },
@@ -1925,7 +1898,7 @@
       "tipo": "value"
     },
     "valorFinal": 7700,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1729185633368"
   },
@@ -2008,7 +1981,7 @@
       "tipo": "percentage"
     },
     "valorFinal": 6523,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1729185919149"
   },
@@ -2501,7 +2474,7 @@
   },
   {
     "numero": "166",
-    "cliente": "CARLOS QUATROCI",
+    "cliente": "CARLOS QUARTETO",
     "situacao": "Concretizada",
     "data": "2024-10-23",
     "prazoEntrega": "",
@@ -2538,7 +2511,7 @@
       "tipo": "value"
     },
     "valorFinal": 3102,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "intervaloParcelas": 30,
     "quantidadeParcelas": 2,
@@ -2553,7 +2526,8 @@
       {
         "numero": 2,
         "data": "2024/11/22",
-        "valor": 1551
+        "valor": 1551,
+        "paga": true
       }
     ],
     "id": "1729704328216"
@@ -2824,7 +2798,7 @@
       "tipo": "value"
     },
     "valorFinal": 420,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1729792091335"
   },
@@ -2867,7 +2841,7 @@
       "tipo": "value"
     },
     "valorFinal": 4415,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1729877161038"
   },
@@ -3177,7 +3151,7 @@
     "tipoPagamento": "À Vista",
     "formaPagamento": "PIX",
     "situacao": "Concretizada",
-    "paga": false,
+    "paga": true,
     "prazoEntrega": ""
   },
   {
@@ -3262,7 +3236,7 @@
       "tipo": "value"
     },
     "valorFinal": 1070,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "intervaloParcelas": 30,
     "quantidadeParcelas": 1,
@@ -3271,10 +3245,13 @@
       {
         "numero": 1,
         "data": "2024/11/24",
-        "valor": 1070
+        "valor": 1070,
+        "paga": true,
+        "dataPagamento": "21/11/2024 13:26:03"
       }
     ],
-    "id": "1729882046635"
+    "id": "1729882046635",
+    "dataPagamento": "2024-11-21T16:28:13.902Z"
   },
   {
     "numero": "179",
@@ -3385,7 +3362,7 @@
       "tipo": "value"
     },
     "valorFinal": 1867,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "Parcelado",
     "intervaloParcelas": 30,
     "quantidadeParcelas": 3,
@@ -3394,17 +3371,20 @@
       {
         "numero": 1,
         "data": "2024/11/27",
-        "valor": 622.3333333333334
+        "valor": 622.3333333333334,
+        "paga": true
       },
       {
         "numero": 2,
         "data": "2024/12/27",
-        "valor": 622.3333333333334
+        "valor": 622.3333333333334,
+        "paga": true
       },
       {
         "numero": 3,
         "data": "2025/01/26",
-        "valor": 622.3333333333334
+        "valor": 622.3333333333334,
+        "paga": true
       }
     ],
     "id": "1730136513818"
@@ -4700,7 +4680,7 @@
       "tipo": "value"
     },
     "valorFinal": 7425,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1730829498248"
   },
@@ -6227,9 +6207,10 @@
       "tipo": "value"
     },
     "valorFinal": 2496,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
-    "id": "1731685782098"
+    "id": "1731685782098",
+    "dataPagamento": "2024-11-21T19:17:51.001Z"
   },
   {
     "numero": "259",
@@ -6272,7 +6253,7 @@
     "situacao": "Concretizada",
     "data": "2024-11-18",
     "prazoEntrega": "",
-    "formaPagamento": "A Combinar",
+    "formaPagamento": "PIX",
     "produtos": [
       {
         "produto": "Palanque - 3,20 Metros - 16 a 20 cm Ø",
@@ -6297,14 +6278,30 @@
         "desconto": 0,
         "descontoTipo": "value",
         "subtotal": 105.6
+      },
+      {
+        "produto": "Palanque - 4,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 2,
+        "valor": 197,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 394
+      },
+      {
+        "produto": "Viga - 8x15 cm - 3,50 metros",
+        "quantidade": 12,
+        "valor": 148,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1776
       }
     ],
-    "valorTotal": 681.36,
+    "valorTotal": 2525.86,
     "descontoTotal": {
       "valor": 15,
       "tipo": "percentage"
     },
-    "valorFinal": 681.36,
+    "valorFinal": 2525.86,
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1731951016196"

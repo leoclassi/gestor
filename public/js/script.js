@@ -327,4 +327,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
         alert(`${produtos.length} produto(s) adicionado(s) com sucesso!`);
     }
+
+    // Função para obter IP público
+    async function getPublicIP() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        } catch (error) {
+            console.error('Erro ao obter IP público:', error);
+            return null;
+        }
+    }
+
+    // Modificar a função de login
+    async function handleLogin(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            
+            if (data.success) {
+                localStorage.setItem('token', data.token);
+                
+                // Decodificar o token para obter o ID do usuário
+                const tokenParts = data.token.split('.');
+                const payload = JSON.parse(atob(tokenParts[1]));
+                
+                // Obter IP público
+                const publicIP = await getPublicIP();
+                
+                // Iniciar a sessão
+                await fetch('/api/session/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${data.token}`
+                    },
+                    body: JSON.stringify({
+                        userId: payload.id,
+                        username: payload.username,
+                        ip: publicIP
+                    })
+                });
+
+                // Configurar heartbeat
+                const heartbeatInterval = setInterval(async () => {
+                    try {
+                        await fetch('/api/session/heartbeat', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${data.token}`
+                            },
+                            body: JSON.stringify({ userId: payload.id })
+                        });
+                    } catch (error) {
+                        console.error('Erro no heartbeat:', error);
+                        clearInterval(heartbeatInterval);
+                    }
+                }, 20000);
+
+                // Configurar cleanup ao fechar a página
+                window.addEventListener('beforeunload', async () => {
+                    clearInterval(heartbeatInterval);
+                    await fetch('/api/session/end', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${data.token}`
+                        },
+                        body: JSON.stringify({ userId: payload.id })
+                    });
+                });
+
+                // Redirecionar para a página principal
+                window.location.href = data.redirectTo;
+            } else {
+                alert('Credenciais inválidas');
+            }
+        } catch (error) {
+            console.error('Erro no login:', error);
+            alert('Erro ao fazer login');
+        }
+    }
+
+    // Adicionar o event listener para o formulário de login
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
 });
