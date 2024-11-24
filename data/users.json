@@ -6,16 +6,18 @@
     "isAdmin": true,
     "permissions": [
       "all"
-    ]
+    ],
+    "lastSeen": "2024-11-22T18:27:49.272Z"
   },
   {
     "id": "1727743672100",
     "username": "Augusta",
     "password": "$2b$10$if.CjaJyZfbx.eoV3I3i5ez.diKgEfeUsBzVIfaKN8Bd4unqsCkKC",
-    "isAdmin": false,
+    "isAdmin": true,
     "permissions": [
-      "cheques"
-    ]
+      "all"
+    ],
+    "lastSeen": "2024-11-23T11:08:38.669Z"
   },
   {
     "id": "1727744557350",
@@ -24,6 +26,7 @@
     "isAdmin": true,
     "permissions": [
       "all"
-    ]
+    ],
+    "lastSeen": "2024-11-22T15:48:02.815Z"
   }
 ]

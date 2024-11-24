@@ -302,21 +302,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Boleto Bancário': 'Boleto',
                     'Dinheiro à Vista': 'Dinheiro',
                     'A Combinar': 'A Combinar',
+                    'PIX': 'PIX',
+                    'Cheque': 'Cheque'
                 };
 
-                return abreviacoes[formaPagamento] || formaPagamento;
+                // Definir ícones para cada tipo de pagamento
+                const icones = {
+                    'Cartão Créd.': '<i class="fas fa-credit-card"></i>',
+                    'Cartão Déb.': '<i class="fas fa-credit-card"></i>',
+                    'Boleto': '<i class="fas fa-barcode"></i>',
+                    'Dinheiro': '<i class="fas fa-money-bill-wave"></i>',
+                    'PIX': '<i class="fas fa-qrcode"></i>',
+                    'Cheque': '<i class="fas fa-money-check"></i>',
+                    'A Combinar': '<i class="fas fa-handshake"></i>'
+                };
+
+                const abreviacao = abreviacoes[formaPagamento] || formaPagamento;
+                const icone = icones[abreviacao] || '';
+
+                // Cor única para todos os métodos de pagamento
+                const cor = '#6c757d'; // Cinza claro do Bootstrap
+
+                return `<span style="background-color: ${cor}; color: white; border-radius: 3px; padding: 2px 4px; font-size: 0.85em; font-weight: bold; display: inline-block;">${icone} ${abreviacao}</span>`;
             }
 
             row.innerHTML = `
-                <td style="width: 5%">${sale.numero}</td>
-                <td class="text-truncate" style="max-width: 180px; width: 22%;" title="${sale.cliente}">${sale.cliente}</td>
-                <td class="text-center align-middle" style="width: 10%"><span style="${situacaoStyle}">${situacao}</span></td>
-                <td style="width: 10%">${formatDate(sale.data)}</td>
-                <td class="valor-total" style="width: 10%">
+                <td style="width: 5%; text-align: center; vertical-align: middle;">${sale.numero}</td>
+                <td style="max-width: 180px; width: 22%; text-align: center; vertical-align: middle;" title="${sale.cliente}">${sale.cliente}</td>
+                <td style="width: 10%; text-align: center; vertical-align: middle;"><span style="${situacaoStyle}">${situacao}</span></td>
+                <td style="width: 10%; text-align: center; vertical-align: middle;">${formatDate(sale.data)}</td>
+                <td class="valor-total" style="width: 10%; text-align: center; vertical-align: middle;">
                     R$ ${formatarMoeda(valorFinal).replace('R$ ', '')}
                 </td>
-                <td class="text-center" style="width: 13%" title="${sale.formaPagamento || '-'}">${abreviarFormaPagamento(sale.formaPagamento)}</td>
-                <td style="width: 30%">
+                <td style="width: 13%; text-align: center; vertical-align: middle;">${abreviarFormaPagamento(sale.formaPagamento)}</td>
+                <td style="width: 30%; text-align: center; vertical-align: middle;">
                     <a href="view-sale.html?id=${sale.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>

@@ -504,7 +504,8 @@
     "remetente": "C. De Oliveira Peças - ME",
     "dataCompensacao": "2024-11-21",
     "id": "1727553862280",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-22T17:01:17.033Z"
   },
   {
     "numeroCheque": "850455",
@@ -607,7 +608,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-11-19",
     "id": "1728320922297",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-22T17:01:13.780Z"
   },
   {
     "numeroCheque": "3810",
@@ -740,7 +742,8 @@
     "remetente": "Maria Carreira Mendes",
     "dataCompensacao": "2024-11-20",
     "id": "1729543112109",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-22T17:01:15.573Z"
   },
   {
     "numeroCheque": "3793",
@@ -821,7 +824,9 @@
     "dataEmissao": "2024-10-28",
     "remetente": "CARVAO GALETO LTDA",
     "dataCompensacao": "2024-11-21",
-    "id": "1730135454017"
+    "id": "1730135454017",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-22T17:01:19.055Z"
   },
   {
     "numeroCheque": "3826",

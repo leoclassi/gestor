@@ -7067,5 +7067,234 @@
     "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1732124410710"
+  },
+  {
+    "numero": "279",
+    "cliente": "JOÃO RICHARD",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 20,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 300
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 120
+      }
+    ],
+    "valorTotal": 420,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 420,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732296496882"
+  },
+  {
+    "numero": "280",
+    "cliente": "PAULO NUNES",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Débito",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 3,
+        "valor": 65,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 195
+      }
+    ],
+    "valorTotal": 195,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 195,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732296565945"
+  },
+  {
+    "numero": "281",
+    "cliente": "LUIS ANOTNIO",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 200,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 7000
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 20 a 25 cm Ø",
+        "quantidade": 8,
+        "valor": 140,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1120
+      }
+    ],
+    "valorTotal": 8120,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 8120,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732296646174"
+  },
+  {
+    "numero": "282",
+    "cliente": "WAGNER",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Débito",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 6,
+        "valor": 34.8,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 208.8
+      }
+    ],
+    "valorTotal": 208.8,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 208.8,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732296771492"
+  },
+  {
+    "numero": "283",
+    "cliente": "KENEDY AZEVEDO MENDONÇA",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 10,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 350
+      },
+      {
+        "produto": "Balancim 3x4 cm - 1,25 mts [DZ]",
+        "quantidade": 1,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 35
+      }
+    ],
+    "valorTotal": 385,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 385,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732296817988"
+  },
+  {
+    "numero": "284",
+    "cliente": "MATEUS",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 24,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 600
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 20,
+        "valor": 20,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 400
+      }
+    ],
+    "valorTotal": 1000,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1000,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732297015125"
+  },
+  {
+    "numero": "285",
+    "cliente": "JOEL TEZA",
+    "situacao": "Concretizada",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 6,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 78
+      },
+      {
+        "produto": "Balancim 3x4 cm - 1,25 mts [DZ]",
+        "quantidade": 1,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 35
+      }
+    ],
+    "valorTotal": 100,
+    "descontoTotal": {
+      "valor": 13,
+      "tipo": "value"
+    },
+    "valorFinal": 100,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732297109675"
   }
 ]

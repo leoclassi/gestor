@@ -2165,5 +2165,48 @@
     "valorFinal": 2008.2,
     "tipoPagamento": "À Vista",
     "paga": false
+  },
+  {
+    "id": "1732298496652",
+    "numero": "49",
+    "cliente": "ALEXANDRE GALANTE",
+    "situacao": "Em Aberto",
+    "data": "2024-11-22",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,00 Metros - 20 a 25 cm Ø",
+        "quantidade": 2,
+        "valor": 228,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 456
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 20 a 25 cm Ø",
+        "quantidade": 1,
+        "valor": 343,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 343
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 15,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1296
+      }
+    ],
+    "valorTotal": 2095,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 2095,
+    "tipoPagamento": "À Vista",
+    "paga": false
   }
 ]
