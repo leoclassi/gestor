@@ -408,6 +408,46 @@
         .dark-theme .text-muted {
             color: #adb5bd !important;
         }
+        .nav-tabs {
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .nav-tabs .nav-link {
+            border: none;
+            color: #6c757d;
+            font-weight: 500;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tabs .nav-link:hover {
+            border: none;
+            color: #495057;
+        }
+        
+        .nav-tabs .nav-link.active {
+            border: none;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            background-color: transparent;
+        }
+        
+        .dark-theme .nav-tabs {
+            border-bottom-color: #444;
+        }
+        
+        .dark-theme .nav-tabs .nav-link {
+            color: #adb5bd;
+        }
+        
+        .dark-theme .nav-tabs .nav-link:hover {
+            color: #fff;
+        }
+        
+        .dark-theme .nav-tabs .nav-link.active {
+            color: #fff;
+            border-bottom-color: #007bff;
+        }
     </style>
 </head>
 <body>
@@ -504,24 +544,69 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th style="width: 7%">🔢 Nº</th>
-                                    <th class="text-center">👤 Cliente</th>
-                                    <th class="text-center">📅 Data</th>
-                                    <th class="text-center">💰 Valor</th>
-                                    <th class="text-center">🚦 Status</th>
-                                    <th class="text-center">⚙️ Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="boletosTableBody">
-                                <!-- Os dados dos boletos serão inseridos aqui via JavaScript -->
-                            </tbody>
-                        </table>
+            <!-- Adicionar após o div summary-cards e antes do card principal -->
+            <ul class="nav nav-tabs mb-4" id="boletosTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="ativos-tab" data-toggle="tab" href="#ativos" role="tab">
+                        📋 Boletos Ativos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pagos-tab" data-toggle="tab" href="#pagos" role="tab">
+                        ✅ Boletos Pagos
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Modificar a estrutura do card para usar tabs -->
+            <div class="tab-content" id="boletosTabContent">
+                <!-- Tab Boletos Ativos -->
+                <div class="tab-pane fade show active" id="ativos" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 7%">🔢 Nº</th>
+                                            <th class="text-center">👤 Cliente</th>
+                                            <th class="text-center">📅 Data</th>
+                                            <th class="text-center">💰 Valor</th>
+                                            <th class="text-center">🚦 Status</th>
+                                            <th class="text-center">⚙️ Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="boletosAtivosTableBody">
+                                        <!-- Os dados dos boletos ativos serão inseridos aqui -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Boletos Pagos -->
+                <div class="tab-pane fade" id="pagos" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 7%">🔢 Nº</th>
+                                            <th class="text-center">👤 Cliente</th>
+                                            <th class="text-center">📅 Data</th>
+                                            <th class="text-center">💰 Valor</th>
+                                            <th class="text-center">🚦 Status</th>
+                                            <th class="text-center">⚙️ Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="boletosPagosTableBody">
+                                        <!-- Os dados dos boletos pagos serão inseridos aqui -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
