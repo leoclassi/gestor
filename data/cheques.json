@@ -1054,5 +1054,41 @@
     "dataEmissao": "2024-11-18",
     "id": "1731946394864",
     "compensado": false
+  },
+  {
+    "numeroCheque": "3846",
+    "valor": 10000,
+    "dataCompensacao": "2024-12-09",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-25",
+    "id": "1732539117418",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3847",
+    "valor": 10000,
+    "dataCompensacao": "2024-12-21",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-25",
+    "id": "1732539117886",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3848",
+    "valor": 13000,
+    "dataCompensacao": "2024-12-28",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-25",
+    "id": "1732539118191",
+    "compensado": false
   }
 ]

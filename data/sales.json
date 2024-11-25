@@ -624,7 +624,7 @@
       "tipo": "value"
     },
     "valorFinal": 2550,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1728309669730",
     "intervaloParcelas": 30,
@@ -3763,12 +3763,12 @@
         "subtotal": 4000
       }
     ],
-    "valorTotal": 3800,
+    "valorTotal": 4000,
     "descontoTotal": {
-      "valor": 5,
+      "valor": 0,
       "tipo": "percentage"
     },
-    "valorFinal": 3800,
+    "valorFinal": 4000,
     "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1730225542844"
@@ -7296,5 +7296,176 @@
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1732297109675"
+  },
+  {
+    "numero": "286",
+    "cliente": "JOSE ANTONIO PONCE",
+    "situacao": "Concretizada",
+    "data": "2024-11-25",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 5,
+        "valor": 165.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 828
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 6,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 210
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 15,
+        "valor": 17,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 255
+      }
+    ],
+    "valorTotal": 1293,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1293,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732555210758"
+  },
+  {
+    "numero": "287",
+    "cliente": "JONAS CICCONE FERRO E OUTROS",
+    "situacao": "Concretizada",
+    "data": "2024-11-25",
+    "prazoEntrega": "",
+    "formaPagamento": "Boleto Bancário",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 160,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 2400
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 20,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 800
+      }
+    ],
+    "valorTotal": 3200,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 3200,
+    "paga": false,
+    "tipoPagamento": "Parcelado",
+    "intervaloParcelas": 30,
+    "quantidadeParcelas": 2,
+    "dataPrimeiraParcela": "2024-12-25",
+    "parcelas": [
+      {
+        "numero": 1,
+        "data": "2024/12/25",
+        "valor": 1600
+      },
+      {
+        "numero": 2,
+        "data": "2025/01/24",
+        "valor": 1600
+      }
+    ],
+    "id": "1732555317038"
+  },
+  {
+    "numero": "288",
+    "cliente": "ROBERTO BARBOZA",
+    "situacao": "Concretizada",
+    "data": "2024-11-25",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 120,
+        "valor": 60,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 7200
+      },
+      {
+        "produto": "Palanque - 8,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 4,
+        "valor": 543,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 2172
+      }
+    ],
+    "valorTotal": 9372,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 9372,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732557356548"
+  },
+  {
+    "numero": "289",
+    "cliente": "DOMINGOS",
+    "situacao": "Concretizada",
+    "data": "2024-11-25",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 330,
+        "valor": 35,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 11550
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 10,
+        "valor": 80,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 800
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 10,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 150
+      }
+    ],
+    "valorTotal": 12500,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 12500,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732557991284"
   }
 ]

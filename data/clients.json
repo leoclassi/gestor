@@ -309,7 +309,7 @@
     "tipoCliente": "Pessoa Jurídica",
     "nome": "ROBERTO BARBOZA",
     "email": "simone@fazreal.com.br",
-    "telefone": "(14) 8176-4943",
+    "telefone": "(14) 98176-4943",
     "cpf": "",
     "cnpj": "08.006.948/0001-66",
     "endereco": {
@@ -2806,5 +2806,59 @@
     },
     "dataCadastro": "22/11/2024, 15:01:29",
     "id": "1732298492844"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "JOSE ANTONIO PONCE",
+    "email": "",
+    "telefone": "(14) 997942851",
+    "cpf": "215.789.778-00",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/11/2024, 14:18:54",
+    "id": "1732555141401"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "JONAS CICCONE FERRO E OUTROS",
+    "email": "jonas.ferro@spmodal.com.br",
+    "telefone": "(14) 9691-0444",
+    "cpf": "",
+    "cnpj": "17.837.781/0002-57",
+    "endereco": {
+      "cep": "16.689-899",
+      "logradouro": "FAZENDA MORRO DO IPE",
+      "numero": "S/N",
+      "bairro": "AREA RURAL DE NOGUEIRA",
+      "cidade": "AVAI",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/11/2024, 14:21:21",
+    "id": "1732555288477"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "DOMINGOS",
+    "email": "",
+    "telefone": "(19) 996041613",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "SÍTIO PARAÍSO",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Piratininga",
+      "uf": "SP"
+    },
+    "dataCadastro": "25/11/2024, 15:05:59",
+    "id": "1732557966885"
   }
 ]

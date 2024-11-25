@@ -327,15 +327,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             row.innerHTML = `
-                <td style="width: 5%; text-align: center; vertical-align: middle;">${sale.numero}</td>
-                <td style="max-width: 180px; width: 22%; text-align: center; vertical-align: middle;" title="${sale.cliente}">${sale.cliente}</td>
-                <td style="width: 10%; text-align: center; vertical-align: middle;"><span style="${situacaoStyle}">${situacao}</span></td>
-                <td style="width: 10%; text-align: center; vertical-align: middle;">${formatDate(sale.data)}</td>
-                <td class="valor-total" style="width: 10%; text-align: center; vertical-align: middle;">
+                <td style="width: 8%; text-align: center; vertical-align: middle;">${sale.numero}</td>
+                <td style="width: 30%; text-align: center; vertical-align: middle;" title="${sale.cliente}">${sale.cliente}</td>
+                <td style="width: 12%; text-align: center; vertical-align: middle;">${formatDate(sale.data)}</td>
+                <td class="valor-total" style="width: 12%; text-align: center; vertical-align: middle;">
                     R$ ${formatarMoeda(valorFinal).replace('R$ ', '')}
                 </td>
-                <td style="width: 13%; text-align: center; vertical-align: middle;">${abreviarFormaPagamento(sale.formaPagamento)}</td>
-                <td style="width: 30%; text-align: center; vertical-align: middle;">
+                <td style="width: 15%; text-align: center; vertical-align: middle;">
+                    ${getStatusPaymentBadge(sale)}
+                </td>
+                <td style="width: 23%; text-align: center; vertical-align: middle;">
                     <a href="view-sale.html?id=${sale.id}" target="_blank" class="btn btn-sm btn-outline-info" title="Imprimir">
                         <i class="fas fa-print"></i> 
                     </a>
@@ -909,4 +910,51 @@ async function importSaleFromJson() {
         console.error('Erro ao importar venda:', error);
         showNotification('Erro ao importar venda. Por favor, verifique os dados e tente novamente.', 'error');
     }
+}
+
+// Adicione esta nova função para gerar o badge de status/pagamento
+function getStatusPaymentBadge(sale) {
+    const icones = {
+        'Cartão Créd.': '<i class="fas fa-credit-card"></i>',
+        'Cartão Déb.': '<i class="fas fa-credit-card"></i>',
+        'Boleto': '<i class="fas fa-barcode"></i>',
+        'Dinheiro': '<i class="fas fa-money-bill-wave"></i>',
+        'PIX': '<i class="fas fa-qrcode"></i>',
+        'Cheque': '<i class="fas fa-money-check"></i>',
+        'A Combinar': '<i class="fas fa-handshake"></i>'
+    };
+
+    const abreviacoes = {
+        'Cartão de Crédito': 'Cartão Créd.',
+        'Cartão de Débito': 'Cartão Déb.',
+        'Boleto Bancário': 'Boleto',
+        'Dinheiro à Vista': 'Dinheiro',
+        'A Combinar': 'A Combinar',
+        'PIX': 'PIX',
+        'Cheque': 'Cheque'
+    };
+
+    const formaPagamento = abreviacoes[sale.formaPagamento] || sale.formaPagamento;
+    const icone = icones[formaPagamento] || '';
+    
+    // Define a cor com base no status de pagamento
+    const backgroundColor = sale.paga ? '#28a745' : '#6c757d';
+    
+    return `<span class="payment-badge ${sale.paga ? 'paid' : ''}" style="
+        background-color: ${backgroundColor}; 
+        color: white; 
+        border-radius: 3px; 
+        padding: 2px 6px; 
+        font-size: 0.85em; 
+        font-weight: 500; 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 4px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        min-width: 90px;
+        justify-content: center;
+    ">
+        ${icone} ${formaPagamento}
+    </span>`;
 }
