@@ -1438,5 +1438,23 @@
     "valorEspecial": 36,
     "estoque": 20,
     "dataCadastro": "25/11/2024, 14:52:55"
+  },
+  {
+    "id": "1732645086230",
+    "codigo": "2933258029",
+    "nome": "Palanque - 1,50 Metros - 20 a 25 cm Ø",
+    "valor": 102,
+    "valorEspecial": 102,
+    "estoque": 2424523,
+    "dataCadastro": "26/11/2024, 15:18:03"
+  },
+  {
+    "id": "1732645366093",
+    "codigo": "3484182287",
+    "nome": "Frete",
+    "valor": 2500,
+    "valorEspecial": 2500,
+    "estoque": null,
+    "dataCadastro": "26/11/2024, 15:22:43"
   }
 ]

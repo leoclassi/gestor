@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="btn btn-sm btn-danger delete-user" data-id="${user.id}">
                             <i class="fas fa-trash"></i> Excluir
                         </button>
+                        <button class="btn btn-sm btn-warning revoke-token" data-id="${user.id}">
+                            <i class="fas fa-ban"></i> Revogar Token
+                        </button>
                     </td>
                 </tr>
             `).join('');
@@ -285,9 +288,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adicionar evento de clique para o botão de logout
     if (logoutButton) {
-        logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('token');
-            window.location.href = 'login.html';
+        logoutButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                } else {
+                    console.error('Erro ao fazer logout');
+                }
+            } catch (error) {
+                console.error('Erro ao fazer logout:', error);
+            }
         });
     }
 
@@ -298,4 +316,64 @@ document.addEventListener('DOMContentLoaded', () => {
         editingUserId = null;
         clearErrorMessage(); // Limpa mensagens de erro ao fechar o modal
     });
+
+    // Event listener para o botão de revogar todos os tokens
+    document.getElementById('revokeAllTokens').addEventListener('click', () => {
+        if (confirm('Tem certeza que deseja revogar todos os tokens? Todos os usuários serão deslogados.')) {
+            revokeAllTokens();
+        }
+    });
+
+    // Event listener para os botões de revogar token individual
+    userTable.addEventListener('click', (e) => {
+        if (e.target.classList.contains('revoke-token') || e.target.closest('.revoke-token')) {
+            const userId = e.target.closest('.revoke-token').dataset.id;
+            if (confirm('Tem certeza que deseja revogar o token deste usuário? Ele será deslogado.')) {
+                revokeUserToken(userId);
+            }
+        }
+    });
+
+    // Adicione estas novas funções para lidar com a revogação de tokens
+    async function revokeUserToken(userId) {
+        try {
+            const response = await fetch(`/api/users/${userId}/revoke-token`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Falha ao revogar token');
+            }
+
+            showPopup('Token revogado com sucesso!');
+            loadUsers(); // Recarrega a lista de usuários
+        } catch (error) {
+            console.error('Erro ao revogar token:', error);
+            showErrorMessage(`Erro ao revogar token: ${error.message}`);
+        }
+    }
+
+    async function revokeAllTokens() {
+        try {
+            const response = await fetch('/api/users/revoke-all-tokens', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Falha ao revogar todos os tokens');
+            }
+
+            showPopup('Todos os tokens foram revogados com sucesso!');
+            loadUsers(); // Recarrega a lista de usuários
+        } catch (error) {
+            console.error('Erro ao revogar todos os tokens:', error);
+            showErrorMessage(`Erro ao revogar tokens: ${error.message}`);
+        }
+    }
 });

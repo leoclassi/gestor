@@ -1090,5 +1090,65 @@
     "dataEmissao": "2024-11-25",
     "id": "1732539118191",
     "compensado": false
+  },
+  {
+    "numeroCheque": "977089",
+    "valor": 840,
+    "dataCompensacao": "2024-12-03",
+    "remetente": "KATIA R M DE OLIVEIRA EIRELI",
+    "banco": "33",
+    "agencia": "396",
+    "contaCorrente": "1300515",
+    "dataEmissao": "2024-11-26",
+    "id": "1732635352293",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "852980",
+    "valor": 830,
+    "dataCompensacao": "2024-12-20",
+    "remetente": "DILMA MARIA RODRIGUES",
+    "banco": "1",
+    "agencia": "665",
+    "contaCorrente": "3857",
+    "dataEmissao": "2024-11-26",
+    "id": "1732635352575",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3849",
+    "valor": 12000,
+    "dataCompensacao": "2024-12-31",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-26",
+    "id": "1732635352950",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3850",
+    "valor": 13000,
+    "dataCompensacao": "2025-01-17",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-26",
+    "id": "1732635353228",
+    "compensado": false
+  },
+  {
+    "numeroCheque": "3851",
+    "valor": 13000,
+    "dataCompensacao": "2025-01-27",
+    "remetente": "MARIA CARREIRA MENDES - ME",
+    "banco": "756",
+    "agencia": "3041",
+    "contaCorrente": "18180-3",
+    "dataEmissao": "2024-11-26",
+    "id": "1732635353527",
+    "compensado": false
   }
 ]

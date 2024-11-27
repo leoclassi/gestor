@@ -163,34 +163,49 @@
                 return;
             }
 
-            const requiredPermission = 'vendas'; // Ajuste conforme necessário para cada página
+            const requiredPermission = 'vendas';
             try {
                 const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
+                
+                if (response.status === 401 || response.status === 403) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
                 const data = await response.json();
                 if (!data.hasPermission) {
-                    // Em vez de usar alert, mostramos a mensagem personalizada
                     document.getElementById('accessDeniedMessage').style.display = 'block';
-                    // Ocultar o conteúdo principal da página
                     document.querySelector('.content').style.display = 'none';
                 }
             } catch (error) {
                 console.error('Erro ao verificar permissão:', error);
-                // Também podemos usar a mensagem personalizada para erros
-                document.getElementById('accessDeniedMessage').innerHTML = `
-                    <h4 class="alert-heading">Erro ao verificar permissões</h4>
-                    <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
-                `;
-                document.getElementById('accessDeniedMessage').style.display = 'block';
-                document.querySelector('.content').style.display = 'none';
-            }
-
-            document.getElementById('logoutButton').addEventListener('click', () => {
                 localStorage.removeItem('token');
                 window.location.href = 'login.html';
+            }
+
+            document.getElementById('logoutButton').addEventListener('click', async () => {
+                try {
+                    const response = await fetch('/api/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    } else {
+                        console.error('Erro ao fazer logout');
+                    }
+                } catch (error) {
+                    console.error('Erro ao fazer logout:', error);
+                }
             });
         });
     </script>
@@ -432,29 +447,29 @@
             return;
         }
 
-        const requiredPermission = 'vendas'; // Ajuste conforme necessário para cada página
+        const requiredPermission = 'vendas';
         try {
             const response = await fetch(`/api/check-permission?permission=${requiredPermission}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
+            
+            if (response.status === 401 || response.status === 403) {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+                return;
+            }
+
             const data = await response.json();
             if (!data.hasPermission) {
-                // Em vez de usar alert, mostramos a mensagem personalizada
                 document.getElementById('accessDeniedMessage').style.display = 'block';
-                // Ocultar o conteúdo principal da página
                 document.querySelector('.content').style.display = 'none';
             }
         } catch (error) {
             console.error('Erro ao verificar permissão:', error);
-            // Também podemos usar a mensagem personalizada para erros
-            document.getElementById('accessDeniedMessage').innerHTML = `
-                <h4 class="alert-heading">Erro ao verificar permissões</h4>
-                <p>Ocorreu um erro ao verificar suas permissões. Por favor, faça login novamente.</p>
-            `;
-            document.getElementById('accessDeniedMessage').style.display = 'block';
-            document.querySelector('.content').style.display = 'none';
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
         }
     });
     </script>

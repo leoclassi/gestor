@@ -2208,5 +2208,150 @@
     "valorFinal": 2095,
     "tipoPagamento": "À Vista",
     "paga": false
+  },
+  {
+    "id": "1732641654528",
+    "numero": "50",
+    "cliente": "CARLOS EDUARDO MORAIS",
+    "situacao": "Em Aberto",
+    "data": "2024-11-26",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 3,50 metros",
+        "quantidade": 120,
+        "valor": 56,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 6720
+      }
+    ],
+    "valorTotal": 6720,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 6720,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1732641909627",
+    "numero": "52",
+    "cliente": "CARVALHO & GARCIA - COMERCIO DE MATERIAIS PARA CONSTRUCAO E MADEIRAS LTDA.",
+    "situacao": "Em Aberto",
+    "data": "2024-11-26",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,00 Metros - 16 a 20 cm Ø",
+        "quantidade": 4,
+        "valor": 165.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 662.4
+      },
+      {
+        "produto": "Palanque - 7,00 Metros - 20 a 25 cm Ø",
+        "quantidade": 2,
+        "valor": 500,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1000
+      },
+      {
+        "produto": "Palanque - 5,00 Metros - 10 a 13 cm Ø",
+        "quantidade": 11,
+        "valor": 125,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1375
+      }
+    ],
+    "valorTotal": 3027.4,
+    "descontoTotal": {
+      "valor": 10,
+      "tipo": "value"
+    },
+    "valorFinal": 3027.4,
+    "tipoPagamento": "À Vista",
+    "paga": false
+  },
+  {
+    "id": "1732645397565",
+    "numero": "53",
+    "cliente": "J.N. QUIOSQUES ARTESANAIS LTDA",
+    "situacao": "Em Aberto",
+    "data": "2024-11-26",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 8,
+        "valor": 138,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1104
+      },
+      {
+        "produto": "Palanque - 5,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 8,
+        "valor": 70.84,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 566.72
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 32,
+        "valor": 39.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1267.2
+      },
+      {
+        "produto": "Palanque - 1,50 Metros - 20 a 25 cm Ø",
+        "quantidade": 1,
+        "valor": 102,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 102
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 8,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 240
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 16,
+        "valor": 20.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 326.4
+      },
+      {
+        "produto": "Frete",
+        "quantidade": 1,
+        "valor": 2500,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 2500
+      }
+    ],
+    "valorTotal": 6106.32,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 6106.32,
+    "tipoPagamento": "À Vista",
+    "paga": false
   }
 ]

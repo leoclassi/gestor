@@ -2937,7 +2937,9 @@
       {
         "numero": 1,
         "data": "2024/11/24",
-        "valor": 715
+        "valor": 715,
+        "paga": true,
+        "dataPagamento": "26/11/2024 15:42:40"
       },
       {
         "numero": 2,
@@ -7293,7 +7295,7 @@
       "tipo": "value"
     },
     "valorFinal": 100,
-    "paga": false,
+    "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1732297109675"
   },
@@ -7467,5 +7469,191 @@
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1732557991284"
+  },
+  {
+    "numero": "290",
+    "cliente": "JOAO CRISOSTOMO SIMOES RODRIGUES E OUTRO",
+    "situacao": "Concretizada",
+    "data": "2024-11-26",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Débito",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 10,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 250
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 5,
+        "valor": 13,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 65
+      }
+    ],
+    "valorTotal": 315,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 315,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732641248235"
+  },
+  {
+    "numero": "291",
+    "cliente": "LUIZ ",
+    "situacao": "Concretizada",
+    "data": "2024-11-26",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 14,
+        "valor": 15,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 210
+      }
+    ],
+    "valorTotal": 200,
+    "descontoTotal": {
+      "valor": 10,
+      "tipo": "value"
+    },
+    "valorFinal": 200,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732641465149"
+  },
+  {
+    "numero": "292",
+    "cliente": "NIL",
+    "situacao": "Concretizada",
+    "data": "2024-11-26",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Palanque - 6,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 3,
+        "valor": 95,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 285
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 3,
+        "valor": 84,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 252
+      }
+    ],
+    "valorTotal": 537,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 537,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732644444713"
+  },
+  {
+    "numero": "293",
+    "cliente": "FIOVO MARANHO",
+    "situacao": "Concretizada",
+    "data": "2024-11-27",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 4,50 metros",
+        "quantidade": 1,
+        "valor": 81,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 81
+      },
+      {
+        "produto": "Ripão - 15x3 cm - 3,00 metros",
+        "quantidade": 1,
+        "valor": 54,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 54
+      }
+    ],
+    "valorTotal": 135,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 135,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732728250712"
+  },
+  {
+    "numero": "294",
+    "cliente": "ANDRÉ COLAÇO",
+    "situacao": "Concretizada",
+    "data": "2024-11-27",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Palanque - 4,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 12,
+        "valor": 140,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1680
+      }
+    ],
+    "valorTotal": 1680,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1680,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732728399141"
+  },
+  {
+    "numero": "295",
+    "cliente": "NARDO",
+    "situacao": "Concretizada",
+    "data": "2024-11-27",
+    "prazoEntrega": "",
+    "formaPagamento": "Dinheiro à Vista",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 5,
+        "valor": 10,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 50
+      }
+    ],
+    "valorTotal": 50,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 50,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732728501267"
   }
 ]

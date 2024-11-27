@@ -21,6 +21,7 @@ const whatsappRoutes = require('./routes/whatsapp');
 const whatsappManager = require('./whatsapp-service');
 const discordService = require('./discord-service');
 const sessionManager = require('./session-manager');
+const { v4: uuidv4 } = require('uuid');
 
 const upload = multer({ dest: 'uploads/' });
 
@@ -29,6 +30,37 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json({limit: '50mb'}));
 app.use(express.static('public'));
+
+// Rotas de Revogação de Token
+app.post('/api/users/:id/revoke-token', authenticateToken, isAdmin, async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const revoked = await updateUserRevocationId(userId);
+        
+        if (revoked) {
+            res.json({ success: true, message: 'Token revogado com sucesso' });
+        } else {
+            res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao revogar token:', error);
+        res.status(500).json({ success: false, message: 'Erro interno do servidor' });
+    }
+});
+
+app.post('/api/users/revoke-all-tokens', authenticateToken, isAdmin, async (req, res) => {
+    try {
+        const users = await readJSONFile(usersFile);
+        for (const user of users) {
+            user.revocation_id = uuidv4();
+        }
+        await writeJSONFile(usersFile, users);
+        res.json({ success: true, message: 'Todos os tokens foram revogados' });
+    } catch (error) {
+        console.error('Erro ao revogar todos os tokens:', error);
+        res.status(500).json({ success: false, message: 'Erro interno do servidor' });
+    }
+});
 
 // Middleware de log
 app.use((req, res, next) => {
@@ -498,7 +530,24 @@ app.post('/api/register', authenticateToken, isAdmin, async (req, res) => {
     }
 });
 
-// Rota de login
+// Adicione esta função auxiliar após as outras funções auxiliares
+async function updateUserRevocationId(userId) {
+    try {
+        const users = await readJSONFile(usersFile);
+        const userIndex = users.findIndex(u => u.id === userId);
+        if (userIndex !== -1) {
+            users[userIndex].revocation_id = uuidv4();
+            await writeJSONFile(usersFile, users);
+            return users[userIndex].revocation_id;
+        }
+        return null;
+    } catch (error) {
+        console.error('Erro ao atualizar revocation_id:', error);
+        return null;
+    }
+}
+
+// Modifique a rota de login
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
@@ -507,12 +556,16 @@ app.post('/login', async (req, res) => {
         const user = users.find(u => u.username === username);
 
         if (user && await bcrypt.compare(password, user.password)) {
+            // Gerar novo revocation_id
+            const revocation_id = await updateUserRevocationId(user.id);
+            
             const token = jwt.sign(
                 { 
                     id: user.id, 
                     username: user.username, 
                     isAdmin: user.isAdmin,
-                    permissions: user.permissions 
+                    permissions: user.permissions,
+                    revocation_id: revocation_id
                 }, 
                 SECRET_KEY, 
                 { expiresIn: '100y' }
@@ -532,6 +585,49 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ success: false, message: 'Erro interno do servidor' });
     }
 });
+
+// Adicione uma nova rota para logout
+app.post('/api/logout', authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        await updateUserRevocationId(userId); // Isso invalidará o token atual
+        res.json({ success: true, message: 'Logout realizado com sucesso' });
+    } catch (error) {
+        console.error('Erro durante logout:', error);
+        res.status(500).json({ success: false, message: 'Erro ao realizar logout' });
+    }
+});
+
+// Modifique o middleware authenticateToken para verificar o revocation_id
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ error: 'Token não fornecido' });
+    }
+
+    jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ error: 'Token inválido' });
+        }
+
+        try {
+            const users = await readJSONFile(usersFile);
+            const user = users.find(u => u.id === decoded.id);
+
+            if (!user || user.revocation_id !== decoded.revocation_id) {
+                return res.status(403).json({ error: 'Token revogado' });
+            }
+
+            req.user = decoded;
+            next();
+        } catch (error) {
+            console.error('Erro ao verificar revocation_id:', error);
+            res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    });
+}
 
 async function testDiscordWebhook() {
     const webhookUrl = 'https://discord.com/api/webhooks/1294771376447684615/hc4HetIIxayquuoJOEm8m9JVY9ith2n9n4oQCdmYG47Ryx426-esCuOlX_JV1w9GXWtg';
@@ -765,12 +861,29 @@ function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
-    if (!token) return res.sendStatus(401);
+    if (!token) {
+        return res.status(401).json({ error: 'Token não fornecido' });
+    }
 
-    jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.user = user;
-        next();
+    jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ error: 'Token inválido' });
+        }
+
+        try {
+            const users = await readJSONFile(usersFile);
+            const user = users.find(u => u.id === decoded.id);
+
+            if (!user || user.revocation_id !== decoded.revocation_id) {
+                return res.status(403).json({ error: 'Token revogado' });
+            }
+
+            req.user = decoded;
+            next();
+        } catch (error) {
+            console.error('Erro ao verificar revocation_id:', error);
+            res.status(500).json({ error: 'Erro interno do servidor' });
+        }
     });
 }
 
@@ -1937,15 +2050,15 @@ app.post('/api/pix/webhook', async (req, res) => {
                 // Procurar a parcela com valor e data correspondentes
                 for (const venda of boletosVendas) {
                     const parcelaIdx = venda.parcelas.findIndex(parcela => {
-                        // Converter valor do boleto para número com 2 casas decimais
-                        const valorBoleto = Number(valorPagoSacado).toFixed(2);
+                        // Converter valor original do boleto para número com 2 casas decimais
+                        const valorOriginalBoleto = Number(valorOriginal).toFixed(2);
                         const valorParcela = Number(parcela.valor).toFixed(2);
                         
                         // Converter data do boleto para formato comparável
                         const [dia, mes, ano] = dataVencimento.split('.');
                         const dataVenc = `${ano}/${mes}/${dia}`;
                         
-                        return valorBoleto === valorParcela && 
+                        return valorOriginalBoleto === valorParcela && 
                                parcela.data === dataVenc && 
                                !parcela.paga;
                     });
@@ -2050,12 +2163,22 @@ async function sendDiscordBoletoNotification(boletoData) {
             throw new Error('URL do webhook de boletos do Discord não configurada');
         }
 
-        const { dataVencimento, valorPagoSacado, dataLiquidacao, vendaNumero, cliente, parcelaNumero, totalParcelas, observacao } = boletoData;
+        const { 
+            dataVencimento, 
+            valorOriginal, // Adicionado valorOriginal do payload
+            valorPagoSacado, 
+            dataLiquidacao, 
+            vendaNumero, 
+            cliente, 
+            parcelaNumero, 
+            totalParcelas, 
+            observacao,
+            nomePortador // Adicionado nomePortador do payload
+        } = boletoData;
 
         // Formatar as datas considerando diferentes formatos possíveis
         let dataVencimentoFormatada = 'Data não disponível';
         if (dataVencimento) {
-            // Se a data vier com pontos (22.11.2024), converte para barras
             dataVencimentoFormatada = dataVencimento.includes('.') ? 
                 dataVencimento.split('.').join('/') : 
                 dataVencimento;
@@ -2063,21 +2186,36 @@ async function sendDiscordBoletoNotification(boletoData) {
 
         let dataPagamentoFormatada = 'Data não disponível';
         if (dataLiquidacao) {
-            // Se a data vier com hora (18/11/2024 10:33:30), pega só a data
             dataPagamentoFormatada = dataLiquidacao.split(' ')[0];
         }
 
         const fields = [
-            { name: "Valor Pago", value: `R$ ${valorPagoSacado}`, inline: true },
+            { name: "Valor Original", value: `R$ ${valorOriginal.toFixed(2)}`, inline: true },
+            { name: "Valor Pago", value: `R$ ${valorPagoSacado.toFixed(2)}`, inline: true },
             { name: "Data Vencimento", value: dataVencimentoFormatada, inline: true },
             { name: "Data Pagamento", value: dataPagamentoFormatada, inline: true }
         ];
+
+        // Adicionar informações do portador se disponível
+        if (nomePortador) {
+            fields.push({ name: "Pagador", value: nomePortador, inline: true });
+        }
 
         if (vendaNumero) {
             fields.push(
                 { name: "Número da Venda", value: vendaNumero, inline: true },
                 { name: "Parcela", value: `${parcelaNumero}/${totalParcelas}`, inline: true }
             );
+
+            // Adicionar informação sobre juros se houver diferença
+            const diferenca = (parseFloat(valorPagoSacado) - parseFloat(valorOriginal)).toFixed(2);
+            if (diferenca > 0) {
+                fields.push({ 
+                    name: "Juros/Multa", 
+                    value: `R$ ${diferenca}`, 
+                    inline: true 
+                });
+            }
         }
 
         if (observacao) {
@@ -2133,7 +2271,7 @@ async function sendDiscordPixNotification(pixData) {
             fields.unshift({ name: "Número do Pedido", value: sale.numero, inline: true });
             fields.push({ name: "Cliente", value: sale.cliente, inline: true });
         } else {
-            fields.push({ name: "⚠️ Observação", value: "PIX sem venda vinculada", inline: false });
+            fields.push({ name: "️ Observação", value: "PIX sem venda vinculada", inline: false });
         }
 
         const message = {

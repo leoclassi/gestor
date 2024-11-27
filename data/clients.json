@@ -847,24 +847,6 @@
   },
   {
     "tipoCliente": "Pessoa Jurídica",
-    "nome": "CARVALHO & GARCIA - COMERCIO DE MATERIAIS PARA CONSTRUCAO E MADEIRAS LTDA.",
-    "email": "madflorestabauru@hotmail.com",
-    "telefone": "(14) 3238-1303",
-    "cpf": "",
-    "cnpj": "26.213.863/0001-30",
-    "endereco": {
-      "cep": "17.050-460",
-      "logradouro": "RUA WENCESLAU BRAZ QUADRA",
-      "numero": "11-29",
-      "bairro": "VILA PACIFICO",
-      "cidade": "Bauru",
-      "uf": "SP"
-    },
-    "dataCadastro": "18/10/2024, 14:03:31",
-    "id": "1729271014637"
-  },
-  {
-    "tipoCliente": "Pessoa Jurídica",
     "nome": "ALESSANDER GASPARELO",
     "email": "",
     "telefone": "(14) 997942780",
@@ -1461,7 +1443,7 @@
     "tipoCliente": "Pessoa Jurídica",
     "nome": "CARLOS EDUARDO MORAIS",
     "email": "",
-    "telefone": "(14) 3492-1257",
+    "telefone": "(14) 99738-1408",
     "cpf": "",
     "cnpj": "29.078.865/0001-52",
     "endereco": {
@@ -2860,5 +2842,95 @@
     },
     "dataCadastro": "25/11/2024, 15:05:59",
     "id": "1732557966885"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "JOAO CRISOSTOMO SIMOES RODRIGUES E OUTRO",
+    "email": "",
+    "telefone": "(14) 99773-2531",
+    "cpf": "",
+    "cnpj": "23.463.915/0001-39",
+    "endereco": {
+      "cep": "17.480-000",
+      "logradouro": "FAZENDA N. S. DE LOURDES",
+      "numero": "S/N",
+      "bairro": "CORRENTE",
+      "cidade": "CABRALIA PAULISTA",
+      "uf": "SP"
+    },
+    "dataCadastro": "26/11/2024, 14:13:40",
+    "id": "1732641223507"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUIZ ",
+    "email": "",
+    "telefone": "(14) 997426630",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "FAZENDA CORRENTE",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "26/11/2024, 14:17:22",
+    "id": "1732641444747"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "CARVALHO & GARCIA - COMERCIO DE MATERIAIS PARA CONSTRUCAO E MADEIRAS LTDA.",
+    "email": "madflorestabauru@hotmail.com",
+    "telefone": "(14) 99710-1303",
+    "cpf": "",
+    "cnpj": "26.213.863/0001-30",
+    "endereco": {
+      "cep": "17.050-460",
+      "logradouro": "RUA WENCESLAU BRAZ QUADRA",
+      "numero": "11-29",
+      "bairro": "VILA PACIFICO",
+      "cidade": "BAURU",
+      "estado": "SP"
+    },
+    "dataCadastro": "26/11/2024, 14:25:01",
+    "id": "1732641904567"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "ANDRÉ COLAÇO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "CARVOARIA",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Cabrália Paulista",
+      "uf": "SP"
+    },
+    "dataCadastro": "27/11/2024, 14:26:12",
+    "id": "1732728375291"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "NARDO",
+    "email": "",
+    "telefone": "",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "27/11/2024, 14:28:09",
+    "id": "1732728492500"
   }
 ]
