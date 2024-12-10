@@ -642,7 +642,9 @@
     "dataEmissao": "2024-10-09",
     "remetente": "CARVAO GALETO LTDA",
     "dataCompensacao": "2024-11-27",
-    "id": "1728498810699"
+    "id": "1728498810699",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-28T18:32:26.610Z"
   },
   {
     "numeroCheque": "3781",
@@ -800,7 +802,9 @@
     "dataEmissao": "2024-10-28",
     "remetente": "DILMA MARIA RODRIGUES",
     "dataCompensacao": "2024-11-23",
-    "id": "1730135353592"
+    "id": "1730135353592",
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-28T18:32:23.446Z"
   },
   {
     "numeroCheque": "3824",
@@ -887,8 +891,8 @@
     "dataEmissao": "2024-11-07",
     "remetente": "MARIA CARREIRA MENDES - ME",
     "dataCompensacao": "2024-11-23",
-    "compensado": false,
-    "dataHoraCompensacao": null,
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-28T18:32:25.602Z",
     "id": "1731085130055"
   },
   {
@@ -927,7 +931,8 @@
     "remetente": "MARCOS ROBERTO FURLANETTO",
     "dataCompensacao": "2024-11-28",
     "id": "1731085274679",
-    "compensado": false
+    "compensado": true,
+    "dataHoraCompensacao": "2024-11-28T18:32:31.223Z"
   },
   {
     "numeroCheque": "1989",

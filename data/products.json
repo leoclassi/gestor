@@ -1456,5 +1456,23 @@
     "valorEspecial": 2500,
     "estoque": null,
     "dataCadastro": "26/11/2024, 15:22:43"
+  },
+  {
+    "id": "1732815916446",
+    "codigo": "1312588650",
+    "nome": "Ripão - 12x3 cm - 2,50 metros",
+    "valor": 30,
+    "valorEspecial": 30,
+    "estoque": 428742,
+    "dataCadastro": "28/11/2024, 14:45:11"
+  },
+  {
+    "id": "1732818174417",
+    "codigo": "9890224625",
+    "nome": "Ripão - 10x3 cm - 3,20 metros",
+    "valor": 32,
+    "valorEspecial": 32,
+    "estoque": 32965,
+    "dataCadastro": "28/11/2024, 15:22:54"
   }
 ]

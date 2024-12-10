@@ -2283,7 +2283,7 @@
     "id": "1732645397565",
     "numero": "53",
     "cliente": "J.N. QUIOSQUES ARTESANAIS LTDA",
-    "situacao": "Em Aberto",
+    "situacao": "Aprovado",
     "data": "2024-11-26",
     "prazoEntrega": "",
     "formaPagamento": "A Combinar",
@@ -2353,5 +2353,144 @@
     "valorFinal": 6106.32,
     "tipoPagamento": "À Vista",
     "paga": false
+  },
+  {
+    "id": "1732903815771",
+    "numero": "55",
+    "cliente": "LUZENILDO JUNIOR",
+    "situacao": "Em Aberto",
+    "data": "2024-11-29",
+    "prazoEntrega": "",
+    "formaPagamento": "A Combinar",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 5,
+        "valor": 96,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 480
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 2,
+        "valor": 86.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 172.8
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 10 a 13 cm Ø",
+        "quantidade": 19,
+        "valor": 69.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1322.4
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 10 a 13 cm Ø",
+        "quantidade": 9,
+        "valor": 64.8,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 583.2
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 21,
+        "valor": 48,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 1008
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 4 a 6 cm Ø",
+        "quantidade": 6,
+        "valor": 31.2,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 187.2
+      },
+      {
+        "produto": "Palanque - 2,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 24,
+        "valor": 15.6,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 374.4
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 4 a 6 cm Ø",
+        "quantidade": 4,
+        "valor": 26.4,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 105.6
+      },
+      {
+        "produto": "Viga - 6x16 cm - 3,00 metros",
+        "quantidade": 5,
+        "valor": 108,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 540
+      },
+      {
+        "produto": "Viga - 6x12 cm - 3,00 metros",
+        "quantidade": 6,
+        "valor": 87,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 522
+      },
+      {
+        "produto": "Caibro - 5x6 cm - 3,50 metros",
+        "quantidade": 6,
+        "valor": 52.5,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 315
+      },
+      {
+        "produto": "Caibro - 5x6 cm - 2,00 metros",
+        "quantidade": 24,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 720
+      },
+      {
+        "produto": "Caibro - 5x6 cm - 3,00 metros",
+        "quantidade": 4,
+        "valor": 45,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 180
+      },
+      {
+        "produto": "Sarrafo - 3x5 cm - 3,00 metros",
+        "quantidade": 40,
+        "valor": 18,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 720
+      },
+      {
+        "produto": "Caibro - 5x6 cm - 3,00 metros",
+        "quantidade": 5,
+        "valor": 45,
+        "desconto": 0,
+        "descontoTipo": "percentage",
+        "subtotal": 225
+      }
+    ],
+    "valorTotal": 7455.6,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 7455.6,
+    "paga": false,
+    "tipoPagamento": "À Vista"
   }
 ]

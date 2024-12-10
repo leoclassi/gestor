@@ -7,17 +7,22 @@
     "permissions": [
       "all"
     ],
-    "lastSeen": "2024-11-26T22:41:51.375Z"
+    "lastSeen": "2024-12-09T19:48:35.880Z",
+    "revocation_id": "38de30e8-b91b-4011-91e7-b19ffc8a823f"
   },
   {
     "id": "1727743672100",
     "username": "Augusta",
     "password": "$2b$10$if.CjaJyZfbx.eoV3I3i5ez.diKgEfeUsBzVIfaKN8Bd4unqsCkKC",
-    "isAdmin": true,
+    "isAdmin": false,
     "permissions": [
-      "all"
+      "cheques",
+      "vendas",
+      "produtos",
+      "clientes"
     ],
-    "lastSeen": "2024-11-25T18:39:28.458Z"
+    "lastSeen": "2024-11-30T09:07:45.270Z",
+    "revocation_id": "9f6847ea-dc32-4d2f-bdae-3d71cba688c7"
   },
   {
     "id": "1727744557350",
@@ -27,6 +32,7 @@
     "permissions": [
       "all"
     ],
-    "lastSeen": "2024-11-26T22:27:14.377Z"
+    "lastSeen": "2024-11-29T17:12:03.156Z",
+    "revocation_id": "f2101a8c-3098-4e64-b378-df5e887f27a7"
   }
 ]

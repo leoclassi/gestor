@@ -7155,14 +7155,22 @@
         "desconto": 0,
         "descontoTipo": "value",
         "subtotal": 1120
+      },
+      {
+        "produto": "Palanque - 2,50 Metros - 13 a 16 cm Ø",
+        "quantidade": 8,
+        "valor": 50,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 400
       }
     ],
-    "valorTotal": 8120,
+    "valorTotal": 8000,
     "descontoTotal": {
-      "valor": 0,
+      "valor": 520,
       "tipo": "value"
     },
-    "valorFinal": 8120,
+    "valorFinal": 8000,
     "paga": false,
     "tipoPagamento": "À Vista",
     "id": "1732296646174"
@@ -7655,5 +7663,236 @@
     "paga": true,
     "tipoPagamento": "À Vista",
     "id": "1732728501267"
+  },
+  {
+    "numero": "296",
+    "cliente": "DOMINGOS",
+    "situacao": "Concretizada",
+    "data": "2024-11-28",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Débito",
+    "produtos": [
+      {
+        "produto": "Palanque - 5,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 6,
+        "valor": 80,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 480
+      },
+      {
+        "produto": "Palanque - 4,00 Metros - 8 a 10 cm Ø",
+        "quantidade": 2,
+        "valor": 55,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 110
+      }
+    ],
+    "valorTotal": 560,
+    "descontoTotal": {
+      "valor": 30,
+      "tipo": "value"
+    },
+    "valorFinal": 560,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732814790660"
+  },
+  {
+    "numero": "297",
+    "cliente": "LEANDRO CORDEIRO",
+    "situacao": "Concretizada",
+    "data": "2024-11-28",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Repique - 2,20 Metros - 13 a 16 cm Ø",
+        "quantidade": 30,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1200
+      }
+    ],
+    "valorTotal": 1200,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 1200,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732814873694"
+  },
+  {
+    "id": "1732815071520",
+    "numero": "298",
+    "data": "2024-11-28",
+    "cliente": "J.N. QUIOSQUES ARTESANAIS LTDA",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,50 Metros - 16 a 20 cm Ø",
+        "quantidade": 8,
+        "valor": 138,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1104
+      },
+      {
+        "produto": "Palanque - 5,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 8,
+        "valor": 70.84,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 566.72
+      },
+      {
+        "produto": "Palanque - 3,50 Metros - 6 a 8 cm Ø",
+        "quantidade": 32,
+        "valor": 39.6,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 1267.2
+      },
+      {
+        "produto": "Palanque - 1,50 Metros - 20 a 25 cm Ø",
+        "quantidade": 1,
+        "valor": 102,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 102
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 8,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 240
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 6 a 8 cm Ø",
+        "quantidade": 16,
+        "valor": 20.4,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 326.4
+      },
+      {
+        "produto": "Frete",
+        "quantidade": 1,
+        "valor": 2500,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 2500
+      }
+    ],
+    "valorTotal": 6106.32,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 6106.32,
+    "tipoPagamento": "À Vista",
+    "formaPagamento": "PIX",
+    "situacao": "Concretizada",
+    "paga": false,
+    "prazoEntrega": ""
+  },
+  {
+    "numero": "299",
+    "cliente": "CARLÃO LARANJEIRA",
+    "situacao": "Concretizada",
+    "data": "2024-11-28",
+    "prazoEntrega": "",
+    "formaPagamento": "PIX",
+    "produtos": [
+      {
+        "produto": "Ripão - 15x3 cm - 4,00 metros",
+        "quantidade": 4,
+        "valor": 72,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 288
+      },
+      {
+        "produto": "Ripão - 12x3 cm - 3,00 metros",
+        "quantidade": 3,
+        "valor": 36,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 108
+      },
+      {
+        "produto": "Ripão - 12x3 cm - 2,50 metros",
+        "quantidade": 4,
+        "valor": 30,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 120
+      },
+      {
+        "produto": "Palanque - 3,20 Metros - 16 a 20 cm Ø",
+        "quantidade": 2,
+        "valor": 120,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 240
+      }
+    ],
+    "valorTotal": 756,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 756,
+    "paga": false,
+    "tipoPagamento": "À Vista",
+    "id": "1732815992260"
+  },
+  {
+    "numero": "300",
+    "cliente": "GIG@NET PROVEDOR DE INTERNET LTDA",
+    "situacao": "Concretizada",
+    "data": "2024-11-28",
+    "prazoEntrega": "",
+    "formaPagamento": "Cartão de Crédito",
+    "produtos": [
+      {
+        "produto": "Palanque - 3,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 2,
+        "valor": 40,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 80
+      },
+      {
+        "produto": "Repique - 2,20 Metros - 8 a 10 cm Ø",
+        "quantidade": 2,
+        "valor": 25,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 50
+      },
+      {
+        "produto": "Ripão - 10x3 cm - 3,20 metros",
+        "quantidade": 2,
+        "valor": 32,
+        "desconto": 0,
+        "descontoTipo": "value",
+        "subtotal": 64
+      }
+    ],
+    "valorTotal": 194,
+    "descontoTotal": {
+      "valor": 0,
+      "tipo": "value"
+    },
+    "valorFinal": 194,
+    "paga": true,
+    "tipoPagamento": "À Vista",
+    "id": "1732818189583"
   }
 ]

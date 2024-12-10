@@ -31,6 +31,131 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json({limit: '50mb'}));
 app.use(express.static('public'));
 
+// Adicione logo após as configurações básicas do Express, antes das outras rotas
+// Aproximadamente na linha 40, após app.use(express.static('public'));
+
+// Rotas do WhatsApp Marketing
+app.post('/api/enviar-mensagem', async (req, res) => {
+    try {
+        const { tipo, mensagem, grupo, contatoEspecifico, intervaloEnvio = 2000 } = req.body;
+        let contatos = [];
+        let sucessos = 0;
+        let falhas = 0;
+        const resultados = [];
+
+        // Se for envio para contato específico
+        if (contatoEspecifico) {
+            const todosContatos = await readJSONFile(path.join(__dirname, 'data', 'contatos.json'));
+            const contato = todosContatos.find(c => c.telefone === contatoEspecifico);
+            if (contato) {
+                contatos = [contato];
+            }
+        } else {
+            // Busca contatos baseado no grupo
+            const todosContatos = await readJSONFile(path.join(__dirname, 'data', 'contatos.json'));
+            if (grupo && grupo !== 'todos') {
+                contatos = todosContatos.filter(c => c.grupo === grupo && c.ativo);
+            } else {
+                contatos = todosContatos.filter(c => c.ativo);
+            }
+        }
+
+        // Verifica se há contatos para enviar
+        if (contatos.length === 0) {
+            return res.json({ 
+                success: false, 
+                message: 'Nenhum contato encontrado para envio',
+                resultados: [] 
+            });
+        }
+
+        // Processa cada contato
+        const todosContatos = await readJSONFile(path.join(__dirname, 'data', 'contatos.json'));
+        
+        for (const contato of contatos) {
+            try {
+                // Aguarda o intervalo entre mensagens
+                await new Promise(resolve => setTimeout(resolve, intervaloEnvio));
+
+                // Envia a mensagem
+                await whatsappManager.sendTextMessage(contato.telefone, mensagem);
+
+                // Encontra e atualiza o contato na lista completa
+                const contatoIndex = todosContatos.findIndex(c => c.telefone === contato.telefone);
+                if (contatoIndex !== -1) {
+                    todosContatos[contatoIndex].mensagensEnviadas = (todosContatos[contatoIndex].mensagensEnviadas || 0) + 1;
+                    todosContatos[contatoIndex].ultimaMensagem = new Date();
+                }
+
+                sucessos++;
+                resultados.push({
+                    nome: contato.nome,
+                    telefone: contato.telefone,
+                    status: 'sucesso'
+                });
+
+            } catch (error) {
+                console.error(`Erro ao enviar mensagem para ${contato.nome} (${contato.telefone}):`, error);
+                falhas++;
+                resultados.push({
+                    nome: contato.nome,
+                    telefone: contato.telefone,
+                    status: 'falha',
+                    erro: error.message
+                });
+            }
+        }
+
+        // Salva todos os contatos atualizados
+        await writeJSONFile(path.join(__dirname, 'data', 'contatos.json'), todosContatos);
+
+        res.json({
+            success: true,
+            total: contatos.length,
+            sucessos,
+            falhas,
+            resultados
+        });
+
+    } catch (error) {
+        console.error('Erro ao processar envio de mensagens:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Erro ao processar envio de mensagens',
+            detalhes: error.message
+        });
+    }
+});
+
+// Modifique a rota de contatos para garantir que sempre retorne um array
+app.use('/api/contatos', async (req, res, next) => {
+    const CONTATOS_FILE = path.join(__dirname, 'data', 'contatos.json');
+    
+    if (req.method === 'GET') {
+        try {
+            const data = await fs.readFile(CONTATOS_FILE, 'utf8');
+            const contatos = JSON.parse(data || '[]');
+            res.json(Array.isArray(contatos) ? contatos : []);
+        } catch (error) {
+            console.error('Erro ao ler contatos:', error);
+            // Em caso de erro, retorna array vazio em vez de erro
+            res.json([]);
+        }
+    } 
+    else if (req.method === 'POST') {
+        try {
+            await fs.writeFile(CONTATOS_FILE, JSON.stringify(req.body, null, 2));
+            res.json({ success: true });
+        } catch (error) {
+            console.error('Erro ao salvar contatos:', error);
+            res.status(500).json({ error: 'Erro ao salvar contatos' });
+        }
+    }
+    else {
+        next();
+    }
+});
+
 // Rotas de Revogação de Token
 app.post('/api/users/:id/revoke-token', authenticateToken, isAdmin, async (req, res) => {
     try {
@@ -2249,7 +2374,7 @@ async function sendDiscordBoletoNotification(boletoData) {
     }
 }
 
-// Função para notificação de PIX
+// Função para notifica��ão de PIX
 async function sendDiscordPixNotification(pixData) {
     console.log('🔔 Iniciando envio de notificação PIX para o Discord');
     try {

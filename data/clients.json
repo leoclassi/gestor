@@ -2577,7 +2577,7 @@
     "tipoCliente": "Pessoa Física",
     "nome": "CARLÃO LARANJEIRA",
     "email": "",
-    "telefone": "(14) 997844905",
+    "telefone": "(14) 99784-4905",
     "cpf": "",
     "cnpj": "",
     "endereco": {
@@ -2811,7 +2811,7 @@
     "tipoCliente": "Pessoa Jurídica",
     "nome": "JONAS CICCONE FERRO E OUTROS",
     "email": "jonas.ferro@spmodal.com.br",
-    "telefone": "(14) 9691-0444",
+    "telefone": "(14) 99691-0444",
     "cpf": "",
     "cnpj": "17.837.781/0002-57",
     "endereco": {
@@ -2932,5 +2932,59 @@
     },
     "dataCadastro": "27/11/2024, 14:28:09",
     "id": "1732728492500"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LEANDRO CORDEIRO",
+    "email": "",
+    "telefone": "(14) 99848-9236",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "Duartina",
+      "uf": "SP"
+    },
+    "dataCadastro": "28/11/2024, 14:27:35",
+    "id": "1732814859619"
+  },
+  {
+    "tipoCliente": "Pessoa Jurídica",
+    "nome": "GIG@NET PROVEDOR DE INTERNET LTDA",
+    "email": "giganetlucianopolis@gmail.com",
+    "telefone": "(14) 9672-9651 / (14) 3732-7645",
+    "cpf": "",
+    "cnpj": "35.607.687/0001-02",
+    "endereco": {
+      "cep": "17.474-899",
+      "logradouro": "SITIO SAO VICENTE",
+      "numero": "57",
+      "bairro": "CONGONHAS",
+      "cidade": "DUARTINA",
+      "uf": ""
+    },
+    "dataCadastro": "28/11/2024, 15:20:42",
+    "id": "1732818042807"
+  },
+  {
+    "tipoCliente": "Pessoa Física",
+    "nome": "LUZENILDO JUNIOR",
+    "email": "",
+    "telefone": "(14) 99811-3826",
+    "cpf": "",
+    "cnpj": "",
+    "endereco": {
+      "cep": "",
+      "logradouro": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    "dataCadastro": "29/11/2024, 15:10:43",
+    "id": "1732903845016"
   }
 ]

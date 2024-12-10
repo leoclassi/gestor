@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Marketing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <style>
+        /* Estilos específicos para WhatsApp Marketing */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .summary-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .summary-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+            background-color: rgba(0,123,255,0.05);
+        }
+
+        .dark-theme .upload-area {
+            border-color: #444;
+        }
+
+        .dark-theme .upload-area:hover {
+            border-color: #0d6efd;
+            background-color: rgba(13,110,253,0.05);
+        }
+
+        /* Cores para os cards de estatísticas */
+        .total-contatos { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+        .ativos { background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%); }
+        .grupos { background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%); }
+        .mensagens { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+
+        /* Tema escuro */
+        .dark-theme .total-contatos { background: linear-gradient(135deg, #1a7a94 0%, #5ab8cc 100%); }
+        .dark-theme .ativos { background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); }
+        .dark-theme .grupos { background: linear-gradient(135deg, #6c3483 0%, #8e44ad 100%); }
+        .dark-theme .mensagens { background: linear-gradient(135deg, #0d7267 0%, #2bc665 100%); }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Copie o mesmo sidebar do sales-management.html -->
+        <div class="sidebar-header">
+            <h1>🌲</h1>
+            <h3>Portugal</h3>
+            <h4>Madeiras</h4>
+            <hr>
+        </div>
+        <div class="sidebar-content">
+            <!-- Mesmo conteúdo do sidebar -->
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>📱 WhatsApp Marketing</h1>
+                <div>
+                    <button id="importarContatos" class="btn btn-sm btn-outline-primary mr-2">
+                        <i class="fas fa-file-import"></i> Importar Contatos
+                    </button>
+                    <button id="novaCampanha" class="btn btn-sm btn-success">
+                        <i class="fas fa-paper-plane"></i> Nova Campanha
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cards de Estatísticas -->
+            <div class="summary-cards mb-4">
+                <div class="summary-card total-contatos">
+                    <h3>Total de Contatos</h3>
+                    <div id="totalContatos" class="value">0</div>
+                </div>
+                <div class="summary-card mensagens">
+                    <h3>Mensagens Enviadas</h3>
+                    <div id="mensagensEnviadas" class="value">0</div>
+                </div>
+            </div>
+
+            <!-- Filtros e Busca -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <input type="text" id="searchContato" class="form-control w-25" placeholder="🔍 Buscar Contato">
+                <select id="filterGrupo" class="form-control w-25 ml-2">
+                    <option value="">Todos os Grupos</option>
+                    <option value="Clientes">Clientes</option>
+                    <option value="Fornecedores">Fornecedores</option>
+                    <option value="Leads">Leads</option>
+                </select>
+            </div>
+
+            <!-- Tabela de Contatos -->
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width: 5%; text-align: center;">
+                                <input type="checkbox" id="selectAll">
+                            </th>
+                            <th style="width: 40%; padding-left: 15px;">👤 Nome</th>
+                            <th style="width: 35%; text-align: center;">📱 Telefone</th>
+                            <th style="width: 20%; text-align: center;">⚙️ Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contatosTable">
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginação -->
+            <div id="pagination" class="d-flex justify-content-center mt-3"></div>
+        </div>
+    </div>
+
+    <!-- Botão de Tema -->
+    <button id="themeToggle" class="btn btn-sm">🌓</button>
+
+    <!-- Modal de Importação -->
+    <div class="modal fade" id="importModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar Contatos</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <button class="btn btn-lg btn-outline-primary btn-block" id="importarGoogle">
+                                <i class="fab fa-google"></i> Google Contacts
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-lg btn-outline-success btn-block" id="importarExcel">
+                                <i class="fas fa-file-excel"></i> Excel/CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="upload-area d-none" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                        <h5>Arraste seu arquivo aqui</h5>
+                        <p class="text-muted">ou</p>
+                        <input type="file" id="fileInput" class="d-none" accept=".csv,.xlsx">
+                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                            Selecionar Arquivo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Nova Campanha -->
+    <div class="modal fade" id="campanhaModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nova Campanha</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Tipo de Mensagem</label>
+                        <select class="form-control" id="tipoCampanha">
+                            <option value="orcamento">Solicitação de Orçamento</option>
+                        </select>
+                    </div>
+
+                    <!-- Novo campo para seleção de contatos -->
+                    <div class="form-group">
+                        <label>Enviar para</label>
+                        <select class="form-control" id="tipoEnvio">
+                            <option value="grupo">Grupo de Contatos</option>
+                            <option value="individual">Contato Específico</option>
+                        </select>
+                    </div>
+
+                    <!-- Seleção de grupo (mostra quando tipoEnvio = grupo) -->
+                    <div class="form-group" id="grupoSection">
+                        <label>Grupo de Contatos</label>
+                        <select class="form-control" id="grupoCampanha">
+                            <option value="todos">Todos os Contatos</option>
+                            <option value="clientes">Apenas Clientes</option>
+                            <option value="fornecedores">Apenas Fornecedores</option>
+                        </select>
+                    </div>
+
+                    <!-- Seleção de contato individual (mostra quando tipoEnvio = individual) -->
+                    <div class="form-group d-none" id="contatoSection">
+                        <label>Selecionar Contato</label>
+                        <select class="form-control" id="contatoEspecifico">
+                            <option value="">Selecione um contato...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mensagem</label>
+                        <textarea class="form-control" id="mensagemCampanha" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="enviarCampanha">
+                        <i class="fas fa-paper-plane"></i> Enviar Campanha
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Progresso -->
+    <div class="modal fade" id="progressModal" tabindex="-1" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enviando Mensagens</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="sr-only">Enviando...</span>
+                    </div>
+                    <p>Por favor, aguarde enquanto as mensagens são enviadas...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/session-handler.js"></script>
+    <script src="/js/whatsapp-marketing.js"></script>
+</body>
+</html> 
